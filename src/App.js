@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import 'App.css';
+import GlobalStyles from 'GlobalStyles';
+import styled from 'styled-components';
+import Test from 'assets/fonts/Test';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <RootContainer>
+        <TextField>hello</TextField>
+        <TextField>font</TextField>
+        <Test />
+      </RootContainer>
+    </>
   );
 }
+
+
+
+const RootContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const TextField = styled.span`
+  display: flex;
+  width: 150px;
+  height: 150px;
+  background-color: wheat;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default App;
