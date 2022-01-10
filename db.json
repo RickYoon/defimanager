@@ -1,0 +1,27 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "Lastprices": [
+    {
+      "id": 1,
+      "date": "2022-01-01",
+      "klayswap": 122333222,
+      "Eklipse": 56023122
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
+}

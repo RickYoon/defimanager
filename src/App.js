@@ -2,9 +2,19 @@ import 'App.css';
 import GlobalStyles from 'GlobalStyles';
 import styled from 'styled-components';
 import Test from 'assets/fonts/Test';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 
 
 function App() {
+
+  useEffect(() => {
+    loadUsers()
+  }, [])
+  const loadUsers = async () => {
+    const result = await axios.get('http://localhost:3003/users')
+    console.log(result.data)
+  }
   return (
     <>
       <GlobalStyles />
