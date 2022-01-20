@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import myFont from 'assets/fonts/cookie-regular-webfont.woff'
+import myFont from 'assets/fonts/OpenSans-Semibold.woff'
 
 const GlobalStyles = createGlobalStyle` 
     ${reset}
@@ -13,11 +13,12 @@ const GlobalStyles = createGlobalStyle`
         
     }    
     body {
-        font-family: 'cookie-regular-webfont';
+        font-family: 'OpenSans-Semibold';
+        background: #e9ecef;
     }
     @font-face {
-    font-family: 'cookie-regular-webfont';
-    src: local('cookie-regular-webfont'),url(${myFont}) format('woff');
+    font-family: 'OpenSans-Semibold';
+    src: local('OpenSans-Semibold'),url(${myFont}) format('woff');
     }
 `;
 
