@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "export PORT=8080 && react-scripts start",
+    "start": "export PORT=7777 && react-scripts start",
     "json-server": "json-server --watch db.json --port 3003",
     "start:dev": "concurrently \"npm start\" \"npm run json-server \"",
     "build": "react-scripts build",
