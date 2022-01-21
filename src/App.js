@@ -22,9 +22,15 @@ const TodoTemplateBlock = styled.div`
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
+  .loader {
+    margin-left:200px;
+  }
   
   @media screen and (max-width: 500px){
     width: 350px;
+    .loader {
+    margin-left:135px;
+  }
   }
 `;
 
@@ -34,7 +40,6 @@ const TemplateBlock = styled.div`
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   font-size: 25px;
@@ -54,7 +59,6 @@ const TodoHeadBlock = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #e9ecef;
   h1 {
     margin: 0;
     font-size: 36px;
@@ -104,6 +108,7 @@ function App() {
       console.log(response.data.body.data)
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
+      tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
 
       tempArr.sort(function (a, b) {
         return a.tvl > b.tvl ? -1 : a.tvl < b.tvl ? 1 : 0;
@@ -145,11 +150,11 @@ function App() {
       <TemplateBlock>KlayLabs.net (Beta.)<span onClick={moveNotion} style={{ cursor: "pointer" }}><BiBook /></span>
       </TemplateBlock>
       <TodoTemplateBlock>
-        {isloading ? <ReactLoading type="cubes" color="#F0E9D2" className="loader" /> :
+        {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height={'20%'} width={'20%'} className="loader" /> :
           <>
             <TodoHeadBlock>
               <div>
-                <span className="tasks-left">TVL:{transnumber()}</span> <span className="dayy">({tvldata.total.diff}%/7days)</span>
+                <span className="tasks-left">total:{transnumber()}</span> <span className="dayy">({tvldata.total.diff}%/7days)</span>
                 <span className="day">ref: {tvldata.refDate}</span>
               </div>
             </TodoHeadBlock>
@@ -172,9 +177,10 @@ function App() {
                         <td style={{ width: "50px", textAlign: "center" }}>{index + 1}</td>
                         <td style={{ width: "200px", paddingLeft: "1em" }}>{tvld.proj}</td>
                         <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
-                        {tvld.diff > 0 ?
-                          <td style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
-                          <td style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
+                        {tvld.diff === null ? <td style={{ width: "100px", textAlign: "right", color: "red" }}>new</td> :
+                          tvld.diff > 0 ?
+                            <td style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
+                            <td style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
                         }
                       </tr>
                     ))
@@ -183,7 +189,8 @@ function App() {
                 </tbody>
               </table>
             </div>
-          </>}
+          </>
+        }
       </TodoTemplateBlock>
 
     </>
