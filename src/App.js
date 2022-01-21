@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BiBook } from "react-icons/bi";
+import ReactLoading from 'react-loading';
 
 const TodoTemplateBlock = styled.div`
   width: 512px;
@@ -79,7 +80,7 @@ const TodoHeadBlock = styled.div`
 
 
 function App() {
-
+  const [isloading, setIsloading] = useState(true)
   const [tvldata, setTvldata] = useState({
     refDate: "0000-00-00",
     total: {
@@ -113,6 +114,7 @@ function App() {
       }
 
       setTvldata(responseObj)
+      setIsloading(false)
     })
   }
 
@@ -139,43 +141,47 @@ function App() {
       <TemplateBlock>KlayLabs.net (Beta.)<span onClick={moveNotion} style={{ cursor: "pointer" }}><BiBook /></span>
       </TemplateBlock>
       <TodoTemplateBlock>
-        <TodoHeadBlock>
-          <div>
-            <span className="tasks-left">TVL:{transnumber()}</span> <span className="dayy">({tvldata.total.diff}%/7days)</span>
-            <span className="day">ref: {tvldata.refDate}</span>
-          </div>
-        </TodoHeadBlock>
+        {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height="5%" width="100%" /> :
+          <>
+            <TodoHeadBlock>
+              <div>
+                <span className="tasks-left">TVL:{transnumber()}</span> <span className="dayy">({tvldata.total.diff}%/7days)</span>
+                <span className="day">ref: {tvldata.refDate}</span>
+              </div>
+            </TodoHeadBlock>
 
-        <div style={{ margin: "20px" }}>
-          <table style={{ borderCollapse: "collapse", borderWidth: "1px" }}>
-            <thead>
-              <tr style={{ height: "35px" }}>
-                <th style={{ width: "50px" }}>Rank</th>
-                <td style={{ width: "200px", paddingLeft: "1em" }}>proj</td>
-                <td style={{ width: "100px", textAlign: "right" }}>TVL($)</td>
-                <td style={{ width: "100px", textAlign: "right" }}>7days</td>
-              </tr>
-            </thead>
-            <tbody>
-
-              {tvldata.data.length === 0 ? <div>Loading</div> :
-                tvldata.data.map((tvld, index) => (
+            <div style={{ margin: "20px" }}>
+              <table style={{ borderCollapse: "collapse", borderWidth: "1px" }}>
+                <thead>
                   <tr style={{ height: "35px" }}>
-                    <td style={{ width: "50px", textAlign: "center" }}>{index + 1}</td>
-                    <td style={{ width: "200px", paddingLeft: "1em" }}>{tvld.proj}</td>
-                    <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
-                    {tvld.diff > 0 ?
-                      <td style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
-                      <td style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
-                    }
+                    <th style={{ width: "50px" }}>Rank</th>
+                    <td style={{ width: "200px", paddingLeft: "1em" }}>proj</td>
+                    <td style={{ width: "100px", textAlign: "right" }}>TVL($)</td>
+                    <td style={{ width: "100px", textAlign: "right" }}>7days</td>
                   </tr>
-                ))
-              }
+                </thead>
+                <tbody>
 
-            </tbody>
-          </table>
-        </div>
+                  {tvldata.data.length === 0 ? <div>Loading</div> :
+                    tvldata.data.map((tvld, index) => (
+                      <tr style={{ height: "35px" }}>
+                        <td style={{ width: "50px", textAlign: "center" }}>{index + 1}</td>
+                        <td style={{ width: "200px", paddingLeft: "1em" }}>{tvld.proj}</td>
+                        <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                        {tvld.diff > 0 ?
+                          <td style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
+                          <td style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
+                        }
+                      </tr>
+                    ))
+                  }
+
+                </tbody>
+              </table>
+            </div>
+          </>}
       </TodoTemplateBlock>
+
     </>
   );
 }
