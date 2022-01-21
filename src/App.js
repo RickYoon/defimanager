@@ -3,7 +3,7 @@ import GlobalStyles from 'GlobalStyles';
 import styled from 'styled-components';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
+import { BiBook } from "react-icons/bi";
 
 const TodoTemplateBlock = styled.div`
   width: 512px;
@@ -34,16 +34,16 @@ const TemplateBlock = styled.div`
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
 
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
+  font-size: 25px;
 
   margin-top: 32px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   @media screen and (max-width: 500px){
     width: 350px;
   }
 `;
-
-
 
 const TodoHeadBlock = styled.div`
   padding-top: 24px;
@@ -128,13 +128,16 @@ function App() {
     )
   }
 
-  // tvldata.total.tvl
+  const moveNotion = () => {
+    window.location.href = "https://rebrand.ly/uqqlzva"
+  }
 
 
   return (
     <>
       <GlobalStyles />
-      <TemplateBlock>KlayLabs (beta)</TemplateBlock>
+      <TemplateBlock>KlayLabs.net (Beta.)<span onClick={moveNotion} style={{ cursor: "pointer" }}><BiBook /></span>
+      </TemplateBlock>
       <TodoTemplateBlock>
         <TodoHeadBlock>
           <div>
@@ -150,7 +153,7 @@ function App() {
                 <th style={{ width: "50px" }}>Rank</th>
                 <td style={{ width: "200px", paddingLeft: "1em" }}>proj</td>
                 <td style={{ width: "100px", textAlign: "right" }}>TVL($)</td>
-                <td style={{ width: "100px", textAlign: "right" }}>7Dchg</td>
+                <td style={{ width: "100px", textAlign: "right" }}>7days</td>
               </tr>
             </thead>
             <tbody>
