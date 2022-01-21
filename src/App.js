@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BiBook } from "react-icons/bi";
 import ReactLoading from 'react-loading';
+import Loading from 'react-loading';
 
 const TodoTemplateBlock = styled.div`
   width: 512px;
@@ -21,6 +22,7 @@ const TodoTemplateBlock = styled.div`
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
+  
   @media screen and (max-width: 500px){
     width: 350px;
   }
@@ -41,6 +43,7 @@ const TemplateBlock = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+
   @media screen and (max-width: 500px){
     width: 350px;
   }
@@ -74,6 +77,7 @@ const TodoHeadBlock = styled.div`
     padding-left: 10px;
     font-weight: bold;
   }
+  
 `;
 
 
@@ -141,7 +145,7 @@ function App() {
       <TemplateBlock>KlayLabs.net (Beta.)<span onClick={moveNotion} style={{ cursor: "pointer" }}><BiBook /></span>
       </TemplateBlock>
       <TodoTemplateBlock>
-        {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height="5%" width="100%" /> :
+        {isloading ? <ReactLoading type="cubes" color="#F0E9D2" className="loader" /> :
           <>
             <TodoHeadBlock>
               <div>
