@@ -5,7 +5,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BiBook } from "react-icons/bi";
 import ReactLoading from 'react-loading';
-import Loading from 'react-loading';
 
 const TodoTemplateBlock = styled.div`
   width: 512px;
@@ -30,7 +29,10 @@ const TodoTemplateBlock = styled.div`
     width: 350px;
     .loader {
     margin-left:135px;
-  }
+    }
+    .mobtrans{
+      display:none;
+    }
   }
 `;
 
@@ -126,7 +128,7 @@ function App() {
       console.log(response.data.body.data)
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
-      tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
+      // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
 
       tempArr.sort(function (a, b) {
         return a.tvl > b.tvl ? -1 : a.tvl < b.tvl ? 1 : 0;
@@ -157,6 +159,8 @@ function App() {
     )
   }
 
+
+
   const moveNotion = () => {
     window.location.href = "https://rebrand.ly/uqqlzva"
   }
@@ -181,9 +185,10 @@ function App() {
               <table style={{ borderCollapse: "collapse", borderWidth: "1px" }}>
                 <thead>
                   <tr style={{ height: "35px" }}>
-                    <th style={{ width: "50px" }}>Rank</th>
+                    <th style={{ width: "20px" }}>Rank</th>
                     <td style={{ width: "200px", paddingLeft: "1em" }}>proj</td>
                     <td style={{ width: "100px", textAlign: "right" }}>TVL($)</td>
+                    <td className="mobtrans" style={{ width: "100px", textAlign: "right" }}>1day</td>
                     <td style={{ width: "100px", textAlign: "right" }}>7days</td>
                   </tr>
                 </thead>
@@ -192,10 +197,16 @@ function App() {
                   {tvldata.data.length === 0 ? <div>Loading</div> :
                     tvldata.data.map((tvld, index) => (
                       <tr style={{ height: "35px" }}>
-                        <td style={{ width: "50px", textAlign: "center" }}>{index + 1}</td>
+                        <td style={{ width: "20px", textAlign: "center" }}>{index + 1}</td>
                         <td style={{ width: "200px", paddingLeft: "1em" }}>{tvld.proj}</td>
+                        {/* <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td> */}
                         <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
-                        {tvld.diff === null ? <td style={{ width: "100px", textAlign: "right", color: "red" }}>new</td> :
+                        {tvld.difftwo === null ? <td style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
+                          tvld.difftwo > 0 ?
+                            <td className="mobtrans" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</td> :
+                            <td className="mobtrans" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.difftwo}%</td>
+                        }
+                        {tvld.diff === null ? <td style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
                           tvld.diff > 0 ?
                             <td style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
                             <td style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
