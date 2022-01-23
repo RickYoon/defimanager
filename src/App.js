@@ -28,11 +28,23 @@ const TodoTemplateBlock = styled.div`
   @media screen and (max-width: 500px){
     width: 350px;
     .loader {
-    margin-left:135px;
+      margin-left:135px;
     }
     .mobtrans{
       display:none;
     }
+    .tablecss{
+      font-size:13px;
+      
+    }
+    /* .head{
+    }
+    .headcol:before {
+      content: 'Row ';
+    }
+  .content {
+    background: #8cdba3;
+} */
   }
 `;
 
@@ -53,6 +65,7 @@ const TemplateBlock = styled.div`
 
   @media screen and (max-width: 500px){
     width: 350px;
+    font-size: 20px;
   }
 `;
 
@@ -99,8 +112,22 @@ const TodoHeadBlock = styled.div`
     margin-top: 10px;
     font-weight: bold;
     padding-left: 10px;
-    font-weight: bold;
   }
+  @media screen and (max-width: 500px){
+    .tasks-left {
+      font-size: 15px;
+      margin-top: 10px;
+      font-weight: bold;
+      margin-left: -8px;
+  }
+  .dayy {
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+
+  }
+
   
 `;
 
@@ -181,15 +208,15 @@ function App() {
               </div>
             </TodoHeadBlock>
 
-            <div style={{ margin: "20px" }}>
-              <table style={{ borderCollapse: "collapse", borderWidth: "1px" }}>
+            <div className="tablecss" style={{ margin: "20px" }}>
+              <table>
                 <thead>
                   <tr style={{ height: "35px" }}>
-                    <th style={{ width: "20px" }}>Rank</th>
-                    <td style={{ width: "200px", paddingLeft: "1em" }}>proj</td>
-                    <td style={{ width: "100px", textAlign: "right" }}>TVL($)</td>
-                    <td className="mobtrans" style={{ width: "100px", textAlign: "right" }}>1day</td>
-                    <td style={{ width: "100px", textAlign: "right" }}>7days</td>
+                    <th className="head" style={{ width: "20px" }}>Rank</th>
+                    <td className="head" style={{ width: "50px", paddingLeft: "1em" }}>proj</td>
+                    <td className="content" style={{ width: "100px", textAlign: "right" }}>TVL($)</td>
+                    <td className="content" style={{ width: "100px", textAlign: "right" }}>1day</td>
+                    <td className="content" style={{ width: "100px", textAlign: "right" }}>7days</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -197,19 +224,19 @@ function App() {
                   {tvldata.data.length === 0 ? <div>Loading</div> :
                     tvldata.data.map((tvld, index) => (
                       <tr style={{ height: "35px" }}>
-                        <td style={{ width: "20px", textAlign: "center" }}>{index + 1}</td>
-                        <td style={{ width: "200px", paddingLeft: "1em" }}>{tvld.proj}</td>
+                        <td className="head" style={{ width: "20px", textAlign: "center" }}>{index + 1}</td>
+                        <td className="head" style={{ width: "50px", paddingLeft: "1em" }}>{tvld.proj}</td>
                         {/* <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td> */}
-                        <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
-                        {tvld.difftwo === null ? <td style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
+                        <td className="content" style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                        {tvld.difftwo === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
                           tvld.difftwo > 0 ?
-                            <td className="mobtrans" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</td> :
-                            <td className="mobtrans" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.difftwo}%</td>
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</td> :
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.difftwo}%</td>
                         }
-                        {tvld.diff === null ? <td style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
+                        {tvld.diff === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
                           tvld.diff > 0 ?
-                            <td style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
-                            <td style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
                         }
                       </tr>
                     ))
