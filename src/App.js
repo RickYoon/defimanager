@@ -38,7 +38,7 @@ function App() {
   const loadchart = async () => {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlChart"
     await axios.get(url).then(function (response) {
-      console.log("response", response)
+      // console.log("response", response)
       let tempArr = response.data.body.Items;
       let tempKeys = Object.keys(tempArr[0]);
 
@@ -50,13 +50,13 @@ function App() {
         })
       }
 
-      console.log("after", tempArr)
+      // console.log("after", tempArr)
 
       tempArr.sort(function (a, b) {
         return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
       })
 
-      console.log("tempArr", tempArr)
+      // console.log("tempArr", tempArr)
 
       setChartdata(tempArr)
     })
@@ -65,7 +65,7 @@ function App() {
   const loadtvl = async () => {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
     await axios.get(url).then(function (response) {
-      console.log(response.data.body.data)
+      // console.log(response.data.body.data)
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
       // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
@@ -127,7 +127,7 @@ function App() {
             <XAxis dataKey="date" hide={true} />
             <YAxis axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
             <Tooltip />
-            <Legend />
+            <Legend style={{ fontSize: "12px" }} />
             {checkklayswap === true ? null : <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1} />}
             <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1} />
             <Line type="linear" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1} />
