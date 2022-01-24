@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BiBook } from "react-icons/bi";
 import ReactLoading from 'react-loading';
+import { LineChart, Line, YAxis, XAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 function App() {
   const [isloading, setIsloading] = useState(true)
@@ -45,6 +46,36 @@ function App() {
       setIsloading(false)
     })
   }
+  const [users, setUser] = useState([{
+    "name": "2022-01-22",
+    "uv": 4000,
+    "pv": 2400,
+    "amt": 2400
+  },
+  {
+    "name": "2022-01-23",
+    "uv": 3000,
+    "pv": 1400,
+    "amt": 400
+  },
+  {
+    "name": "2022-01-24",
+    "uv": 3000,
+    "pv": 1400,
+    "amt": 400
+  },
+  {
+    "name": "2022-01-25",
+    "uv": 3000,
+    "pv": 1400,
+    "amt": 400
+  },
+  {
+    "name": "2022-01-26",
+    "uv": 3000,
+    "pv": 1400,
+    "amt": 400
+  }]);
 
   const transnumber = () => {
 
@@ -70,6 +101,24 @@ function App() {
       <GlobalStyles />
       <TemplateBlock>KlayLabs.net (Beta.)<span onClick={moveNotion} style={{ cursor: "pointer" }}><BiBook /></span>
       </TemplateBlock>
+      <Chartcover>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart
+            className="mx-auto"
+            width={500}
+            height={300}
+            data={users}
+          >
+            <XAxis dataKey="name" />
+            <YAxis axisLine={false} tickLine={false} mirror={true} tick={{ stroke: 'gray', strokeWidth: 1 }} />
+            <Tooltip />
+            <Legend />
+            {/* <CartesianGrid vertical={false} strokeDasharray="1" /> */}
+            <Line YAxis="right" type="monotone" dataKey="pv" stroke="#8884d8" dot={false} />
+            <Line type="monotone" dataKey="uv" stroke="#82ca9d" dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      </Chartcover>
 
       <TodoTemplateBlock>
         {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height={'20%'} width={'20%'} className="loader" /> :
@@ -101,15 +150,15 @@ function App() {
                         <td className="head" style={{ width: "50px", paddingLeft: "1em" }}>{tvld.proj}</td>
                         {/* <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td> */}
                         <td className="content" style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
-                        {tvld.difftwo === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</td> :
+                        {tvld.difftwo === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
                           tvld.difftwo > 0 ?
-                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.difftwo}%</td> :
-                            <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</td>
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</td> :
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.difftwo}%</td>
                         }
-                        {tvld.diff === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</td> :
+                        {tvld.diff === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>-</td> :
                           tvld.diff > 0 ?
-                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td> :
-                            <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td>
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td> :
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td>
                         }
                       </tr>
                     ))
@@ -248,5 +297,22 @@ const TodoHeadBlock = styled.div`
     }
   }
 `;
+
+const Chartcover = styled.div`
+  background-color: white;
+  width: 512px;
+  max-height: 768px;
+  margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
+  border-radius: 10px;
+  padding : 10px;
+  @media screen and (max-width: 500px){
+    width: 100%;
+  }
+
+`
+
+
+
+
 
 export default App;
