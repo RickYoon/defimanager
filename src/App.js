@@ -103,12 +103,12 @@ function App() {
                         <td className="content" style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
                         {tvld.difftwo === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</td> :
                           tvld.difftwo > 0 ?
-                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.difftwo}%</td> :
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo}%</td> :
                             <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</td>
                         }
                         {tvld.diff === null ? <td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</td> :
                           tvld.diff > 0 ?
-                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>{tvld.diff}%</td> :
+                            <td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.diff}%</td> :
                             <td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.diff}%</td>
                         }
                       </tr>
