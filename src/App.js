@@ -125,7 +125,8 @@ function App() {
             data={chartdata}
           >
             <XAxis dataKey="date" hide={true} />
-            <YAxis axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
+            {checkklayswap === true ? <YAxis axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} /> :
+              <YAxis domain={[0, 1300]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />}
             <Tooltip />
             <Legend style={{ fontSize: "12px" }} />
             {checkklayswap === true ? null : <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1} />}
