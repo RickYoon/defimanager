@@ -119,6 +119,7 @@ function App() {
       </SubTemplateBlock>
       <Chartcover>
         <TemplateBlockinner>Top 10 trends (M$) - 7days<span style={{ fontSize: "12px" }}><input type="checkbox" checked={checkklayswap} name="klayswapcheck" onClick={onshow} />klayswap 제외</span></TemplateBlockinner>
+
         <ResponsiveContainer width="100%" height={300}>
           <LineChart
             className="mx-auto"
@@ -128,17 +129,17 @@ function App() {
             {checkklayswap === true ? <YAxis axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} /> :
               <YAxis domain={[0, 1300]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />}
             <Tooltip />
-            <Legend style={{ fontSize: "12px" }} />
-            {checkklayswap === true ? null : <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1} />}
-            <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[3]} dataKey="klayFi" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[4]} dataKey="Kokoa Finance" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[5]} dataKey="Kronosdao" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[6]} dataKey="Claimswap" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[7]} dataKey="PALA" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[8]} dataKey="Klaymore" strokeWidth={1} />
-            <Line type="linear" stroke={colorarr[9]} dataKey="Donkey" strokeWidth={1} />
+            <Legend />
+            {checkklayswap === true ? null : <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1} isAnimationActive={false} />}
+            <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1} isAnimationActive={false} />
+            <Line type="monotone" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[3]} dataKey="klayFi" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[4]} dataKey="Kokoa Finance" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[5]} dataKey="Kronosdao" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[6]} dataKey="Claimswap" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[7]} dataKey="PALA" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[8]} dataKey="Klaymore" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[9]} dataKey="Donkey" strokeWidth={1} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
       </Chartcover>
@@ -160,8 +161,8 @@ function App() {
               <table>
                 <thead>
                   <tr style={{ height: "35px" }}>
-                    <th className="head" style={{ width: "20px" }}>Rank</th>
-                    <td className="head" style={{ width: "50px", paddingLeft: "1em" }}>proj</td>
+                    <th className="head" style={{ width: "10px" }}>#</th>
+                    <td className="head" style={{ width: "40px", paddingLeft: "1em" }}>Project</td>
                     <td className="content" style={{ width: "300px", textAlign: "right" }}>TVL($)</td>
                     <td className="content" style={{ width: "300px", textAlign: "right" }}>1day</td>
                     <td className="content" style={{ width: "300px", textAlign: "right" }}>7days</td>
@@ -172,8 +173,8 @@ function App() {
                   {tvldata.data.length === 0 ? <div>Loading</div> :
                     tvldata.data.map((tvld, index) => (
                       <tr style={{ height: "35px" }}>
-                        <td className="head" style={{ width: "20px", textAlign: "center" }}>{index + 1}</td>
-                        <td className="head" style={{ width: "50px", paddingLeft: "1em" }}>{tvld.proj}</td>
+                        <td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</td>
+                        <td className="head" style={{ width: "40px", paddingLeft: "1em" }}>{tvld.proj}</td>
                         {/* <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td> */}
                         <td className="content" style={{ width: "300px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
                         {tvld.difftwo === null ? <td className="content" style={{ width: "300px", textAlign: "right", color: "gray" }}>-</td> :
@@ -231,7 +232,7 @@ const TodoTemplateBlock = styled.div`
       display:none;
     }
     .tablecss{
-      font-size:13px;
+      font-size:15px;
       
     }
     /* .head{
@@ -331,7 +332,7 @@ const TodoHeadBlock = styled.div`
   .day {
     margin-top: 4px;
     color: #868e96;
-    font-size: 12px;
+    font-size: 13px;
     float: right;
   }
   .dayy {
@@ -339,7 +340,7 @@ const TodoHeadBlock = styled.div`
     font-size: 15px;
   }
   .tasks-left {
-    font-size: 20px;
+    font-size: 25px;
     margin-top: 10px;
     font-weight: bold;
     padding-left: 10px;
@@ -360,7 +361,7 @@ const TodoHeadBlock = styled.div`
 
 const Chartcover = styled.div`
   background-color: white;
-  width: 512px;
+  width: 780px;
   max-height: 768px;
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   border-radius: 10px;
