@@ -196,8 +196,9 @@ function App() {
           </>
         }
       </TodoTemplateBlock>
-      <TemplateLastBlock>-수집시간에 따른 오차가 발생함으로 추이를 보는 용도를 권합니다.</TemplateLastBlock>
-      <TemplateLastBlock>-수치는 매일 한번 업데이트 됩니다.</TemplateLastBlock>
+      <TemplateLastBlock>- 수집시간에 따른 오차가 발생함으로 추이를 보는 용도를 권합니다.</TemplateLastBlock>
+      <TemplateLastBlock>- 수치는 매일 한번 업데이트 됩니다.</TemplateLastBlock>
+      <Copyright>Copyright 2022. KLAYlabs. All rights reserved.</Copyright>
 
     </>
   );
@@ -309,6 +310,22 @@ const TemplateLastBlock = styled.div`
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
   border-radius: 16px;
   padding-top:5px;
+
+  margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
+  font-size: 12px;
+  color: gray;
+
+  @media screen and (max-width: 500px){
+    width: 350px;
+  }
+`;
+
+const Copyright = styled.div`
+  width: 512px;
+  max-height: 768px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align:center;
 
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   font-size: 12px;
