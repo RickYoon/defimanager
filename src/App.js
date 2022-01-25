@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BiBook } from "react-icons/bi";
+// import { AiFillTrophy } from "react-icons/ai";
 import ReactLoading from 'react-loading';
 import { LineChart, Line, YAxis, XAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -117,6 +118,7 @@ function App() {
       </TemplateBlock>
       <SubTemplateBlock>beta version
       </SubTemplateBlock>
+      {/* <SubTemplateBlock style={{ marginTop: "10px", marginBottom: "10px" }}><Underline primary={true}><AiFillTrophy style={{ marginRight: "5px" }} />DefiRank</Underline> <Underline style={{ marginLeft: "10px" }}>Utils</Underline></SubTemplateBlock> */}
       <Chartcover>
         <TemplateBlockinner>Top 10 trends (M$) - 7days<span style={{ fontSize: "12px" }}><input type="checkbox" checked={checkklayswap} name="klayswapcheck" onClick={onshow} />klayswap 제외</span></TemplateBlockinner>
 
@@ -162,10 +164,11 @@ function App() {
                 <thead>
                   <tr style={{ height: "35px" }}>
                     <th className="head" style={{ width: "10px" }}>#</th>
-                    <td className="head" style={{ width: "40px", paddingLeft: "1em" }}>Project</td>
-                    <td className="content" style={{ width: "300px", textAlign: "right" }}>TVL($)</td>
-                    <td className="content" style={{ width: "300px", textAlign: "right" }}>1day</td>
-                    <td className="content" style={{ width: "300px", textAlign: "right" }}>7days</td>
+                    <td className="head" style={{ width: "300px", paddingLeft: "1em" }}>Project</td>
+                    <Td className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Td>
+                    <td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</td>
+                    <td className="content" style={{ width: "200px", textAlign: "right" }}>1day</td>
+                    <td className="content" style={{ width: "200px", textAlign: "right" }}>7days</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -174,7 +177,8 @@ function App() {
                     tvldata.data.map((tvld, index) => (
                       <tr style={{ height: "35px" }}>
                         <td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</td>
-                        <td className="head" style={{ width: "40px", paddingLeft: "1em" }}>{tvld.proj}</td>
+                        <td className="head" style={{ width: "300px", paddingLeft: "1em" }}>{tvld.proj}</td>
+                        <Td className="head" style={{ width: "200px", paddingLeft: "1em" }}>{tvld.cat}</Td>
                         {/* <td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td> */}
                         <td className="content" style={{ width: "300px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
                         {tvld.difftwo === null ? <td className="content" style={{ width: "300px", textAlign: "right", color: "gray" }}>-</td> :
@@ -204,9 +208,28 @@ function App() {
   );
 }
 
+// const Underline = styled.span`
+//   /* Adapt the colors based on primary prop */
+//   border-bottom: ${props => props.primary ? "1px solid black" : ""};
+//   color : ${props => props.primary ? "black" : "gray"};
+//   padding : 5px;
+//   font-weight : 900;
+//   @media screen and (max-width: 500px){
+//     font-size: 15px;
+//     border-bottom: 1px solid black;
+//   }
+
+// `;
+
+const Td = styled.td`
+
+@media screen and (max-width: 500px){
+  display:none
+`
+
 
 const TodoTemplateBlock = styled.div`
-  width: 512px;
+  width: 780px;
   max-height: 1024px;
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -248,7 +271,7 @@ const TodoTemplateBlock = styled.div`
 `;
 
 const TemplateBlock = styled.div`
-  width: 512px;
+  width: 780px;
   max-height: 768px;
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -257,7 +280,7 @@ const TemplateBlock = styled.div`
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   font-size: 25px;
 
-  margin-top: 32px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -290,7 +313,7 @@ const TemplateBlockinner = styled.div`
 
 
 const SubTemplateBlock = styled.div`
-  width: 512px;
+  width: 780px;
   max-height: 768px;
   margin: 0 auto;
   padding-bottom: 10px;
@@ -299,12 +322,12 @@ const SubTemplateBlock = styled.div`
 
   @media screen and (max-width: 500px){
     width: 350px;
-    font-size: 20px;
+    font-size: 12px;
   }
 `;
 
 const TemplateLastBlock = styled.div`
-  width: 512px;
+  width: 780px;
   max-height: 768px;
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -321,7 +344,7 @@ const TemplateLastBlock = styled.div`
 `;
 
 const Copyright = styled.div`
-  width: 512px;
+  width: 780px;
   max-height: 768px;
   padding-top: 10px;
   padding-bottom: 10px;
