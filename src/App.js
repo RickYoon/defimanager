@@ -10,7 +10,6 @@ import { AiFillTrophy } from "react-icons/ai";
 import ReactLoading from 'react-loading';
 import { LineChart, Line, YAxis, XAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-
 function App() {
   // const [subselection, setSubselection] = useState(true)
   const [isloading, setIsloading] = useState(true)
@@ -123,6 +122,19 @@ function App() {
 
   // }
 
+  const moveproject = e => {
+    console.log("clicked")
+    console.log(e.target.id)
+    console.log(tvldata.data)
+
+    tvldata.data.forEach((tvlda) => {
+      if (e.target.id === tvlda.proj) {
+        window.open(tvlda.site)
+      }
+    })
+
+  }
+
   return (
     <>
       <GlobalStyles />
@@ -151,7 +163,7 @@ function App() {
       <Chartcover>
         <TemplateBlockinner>Top 10 trends (M$) - 7days<span style={{ fontSize: "12px" }}><input type="checkbox" checked={checkklayswap} name="klayswapcheck" onClick={onshow} />klayswap 제외</span></TemplateBlockinner>
 
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={250}>
           <LineChart
             className="mx-auto"
             data={chartdata}
@@ -160,7 +172,7 @@ function App() {
             {checkklayswap === true ? <YAxis axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} /> :
               <YAxis domain={[0, 1300]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />}
             <Tooltip />
-            <Legend />
+            {/* <Legend /> */}
             {checkklayswap === true ? null : <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1.5} isAnimationActive={false} />}
             <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1.5} isAnimationActive={false} />
             <Line type="monotone" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1.5} isAnimationActive={false} />
@@ -189,7 +201,7 @@ function App() {
                   <tr style={{ height: "25px", borderBottom: "1px solid black " }}>
                     <Th className="head" style={{ width: "10px" }}>#</Th>
                     <Td className="head" style={{ width: "300px", paddingLeft: "1em" }}>Project</Td>
-                    <Tdc className="content" className="upper" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
+                    <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
                     <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
                     <Td className="content" style={{ width: "200px", textAlign: "right" }}>1day</Td>
                     <Td className="content" style={{ width: "200px", textAlign: "right" }}>7days</Td>
@@ -201,7 +213,7 @@ function App() {
                     tvldata.data.map((tvld, index) => (
                       <Tr style={{ height: "35px" }}>
                         <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
-                        <Td className="head" style={{ width: "300px", paddingLeft: "1em" }}>{tvld.proj}</Td>
+                        <Tdh className="head" style={{ width: "300px", paddingLeft: "1em", cursor: "pointer" }} onClick={moveproject} id={tvld.proj}>{tvld.proj}</Tdh>
                         <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>{tvld.cat}</Tdc>
                         {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
                         <Td className="content" style={{ width: "300px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td>
@@ -286,8 +298,6 @@ const Th = styled.th`
   vertical-align:middle;
 `;
 
-
-
 const Tdc = styled.td`
   @media screen and (max-width: 500px){
     display:none;
@@ -296,6 +306,16 @@ const Tdc = styled.td`
   height:25px;
   vertical-align:middle;
 `;
+
+const Tdh = styled.td`
+  height:25px;
+  vertical-align:middle;
+  &:hover {
+    text-decoration:underline;
+  }
+
+`;
+
 
 
 const TodoTemplateBlock = styled.div`
