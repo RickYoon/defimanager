@@ -140,7 +140,7 @@ function App() {
 
       <Uppercontainer>
         <Upperitem>
-          30 projects
+          {tvldata.data.length} projects
         </Upperitem>
         <Upperitem> {transnumber()} ({tvldata.total.diff}%/7days)
         </Upperitem>
