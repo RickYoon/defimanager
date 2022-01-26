@@ -17,7 +17,7 @@ function App() {
   const [checkklayswap, setCheckklayswap] = useState(true)
   const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
   const [tvldata, setTvldata] = useState({
-    refDate: "0000-00-00",
+    refDate: "2022-00-00",
     total: {
       tvl: 0,
       diff: 0
@@ -97,7 +97,7 @@ function App() {
       <>
         {tvldata.total.tvl > 10000000 ?
           <span> ${(tvldata.total.tvl / 1000000000).toFixed(1)}B</span> :
-          <span> under </span>
+          <span> - </span>
         }
       </>
     )
