@@ -126,7 +126,7 @@ function Detailpage() {
                     </tr>
                     <tr >
                       <td className="head" style={{ width: "100px", textAlign: "center", height: "30px" }}>address</td>
-                      <td className="head" style={{ width: "250px", paddingLeft: "1em", fontSize: "11px" }}>{detailinfo.proj.tokenContractAddress}</td>
+                      <td className="head" style={{ width: "250px", paddingLeft: "1em", fontSize: "10px" }}>{detailinfo.proj.tokenContractAddress}</td>
                     </tr>
                     <tr >
                       <td className="head" style={{ width: "100px", textAlign: "center", height: "30px" }}>home</td>
@@ -160,7 +160,7 @@ function Detailpage() {
               }}
               options={{
                 height: '500',
-                width: '300'
+                width: '350'
               }}
             />
           </Twitterbox>
@@ -220,7 +220,7 @@ const Downbox = styled.div`
 const Twitterbox = styled.div`
   float : right;
   margin-Top : 15px;
-  padding : 20px;
+  padding : 3px;
   background: white;
   border-radius: 16px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
