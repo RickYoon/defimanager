@@ -244,7 +244,7 @@ const Infobox = styled.div`
 `
 
 const TodoTemplateBlock = styled.div`
-  width: 420px;
+  width: 410px;
   /* max-height: 1024px; */
   /* display: flex;
   flex-wrap:wrap; */
