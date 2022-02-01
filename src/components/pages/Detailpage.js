@@ -35,6 +35,14 @@ function Detailpage() {
   // stable 3000 + klay 1200 = 4200
   // klayswap 27200
 
+  // 66 * 160 = 10560 neverland 1.30
+  // usdt solo 16700
+  // stable pair 27200 
+  // stable 3000 + klay 1200 = 4200
+  // kokoa 19033 
+  // Kronos 6 x 250 = 1300
+  // klay 854
+
   const loadDetailInfo = async () => {
     setIsloading(true)
     const url = `https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/detailInfo?proj=${id}`
