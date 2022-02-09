@@ -23,7 +23,7 @@ function Topnav() {
 }
 
 const TemplateBlock = styled.div`
-          width: 780px;
+          width: 850px;
           max-height: 768px;
         
           position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
