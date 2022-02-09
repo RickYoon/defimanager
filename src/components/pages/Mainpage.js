@@ -79,7 +79,7 @@ function Main() {
         component["MarketShare"] = component.tvl / tempTotal[0].tvl * 100
       })
       // console.log(tempTotal[0].tvl)
-      console.log("tempArr", tempArr)
+      // console.log("tempArr", tempArr)
 
       const responseObj = {
         refDate: response.data.body.refDate,
@@ -88,7 +88,7 @@ function Main() {
       }
 
       setTvldata(responseObj)
-      console.log(responseObj)
+      // console.log(responseObj)
       setIsloading(false)
     })
   }
@@ -181,7 +181,7 @@ function Main() {
                 <table>
                   <thead>
                     <tr style={{ height: "25px", borderBottom: "1px solid black " }}>
-                      <Th className="head" style={{ width: "10px" }}>#</Th>
+                      <Th className="head" style={{ width: "10px", textAlign: "left" }}>#</Th>
                       <Td className="head" style={{ width: "300px", paddingLeft: "1em" }}>Project</Td>
                       <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
@@ -196,13 +196,31 @@ function Main() {
                     {tvldata.data.length === 0 ? <div>Loading</div> :
                       tvldata.data.map((tvld, index) => (
                         <Tr style={{ height: "35px" }}>
-                          <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
+                          <Td className="head" style={{ width: "10px", textAlign: "left" }}>{index + 1}
+                            {tvld.rankdiff === 0 ? <span style={{ fontSize: "14px", color: "black" }}>(-)</span> :
+                              tvld.rankdiff > 0 ? <span style={{ fontSize: "14px", color: "red" }}>(&uarr;{tvld.rankdiff})</span> :
+                                <span style={{ fontSize: "14px", color: "blue" }}>(&darr;{Math.abs(Number(tvld.rankdiff))})</span>
+                            }
+                          </Td>
                           <Tdh className="head" style={{ width: "300px", paddingLeft: "1em", cursor: "pointer" }}>
                             <Link to={`/project/${tvld.proj}`}>{tvld.proj}</Link>
                           </Tdh>
                           <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>{tvld.cat}</Tdc>
                           {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
-                          <Td className="content" style={{ width: "300px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td>
+                          {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>
+                            {tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                          </Td> */}
+                          <Td className="content" style={{ width: "300px", textAlign: "right" }}>
+                            {tvld.tvl > 1000000000 ?
+                              <span> {Number(tvld.tvl / 1000000000).toFixed(1)}B </span> :
+                              tvld.tvl > 1000000 ?
+                                <span> {Number(tvld.tvl / 1000000).toFixed(0)}M </span> :
+                                tvld.tvl > 1000 ?
+                                  <span> {Number(tvld.tvl / 1000).toFixed(0)}K </span> :
+                                  <span> Number(tvld.tvl / 1000).toFixed(0)</span>
+                            }
+                          </Td>
+
                           {tvld.difftwo === null ? <Td className="content" style={{ width: "300px", textAlign: "right", color: "gray" }}>-</Td> :
                             tvld.difftwo > 0 ?
                               <Td className="content" style={{ width: "300px", textAlign: "right", color: "red" }}>+{tvld.difftwo}%</Td> :
