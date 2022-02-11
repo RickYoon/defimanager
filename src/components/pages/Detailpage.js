@@ -152,6 +152,10 @@ function Detailpage() {
                       <td className="head" style={{ width: "100px", textAlign: "center", height: "30px" }}>medium</td>
                       <Tdh className="head" style={{ width: "250px", paddingLeft: "1em" }} onClick={() => { window.location.href = `${detailinfo.proj.mediumUrl}` }}>{detailinfo.proj.mediumUrl}</Tdh>
                     </tr>
+                    <tr >
+                      <td className="head" style={{ width: "100px", textAlign: "center", height: "30px" }}>telegram</td>
+                      <Tdh className="head" style={{ width: "250px", paddingLeft: "1em" }} onClick={() => { window.location.href = `${detailinfo.proj.telegramUrl}` }}>{detailinfo.proj.telegramUrl}</Tdh>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -182,7 +186,7 @@ function Detailpage() {
 
 const Upperbox = styled.div`
   width : 100%;
-  height: 200px;
+  height: 300px;
   font-size : 15px;
   @media screen and (max-width: 500px){
     font-size : 12px;
