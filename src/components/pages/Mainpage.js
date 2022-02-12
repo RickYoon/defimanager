@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { AiFillTrophy } from "react-icons/ai";
+import { AiFillTrophy, AiOutlineProfile, AiOutlineInfoCircle } from "react-icons/ai";
 // AiOutlineInfoCircle
 import ReactLoading from 'react-loading';
 import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import icons from "../../assets/tokenIcons"
+import ReactTooltip from "react-tooltip"
 
 // hover
 //https://codesandbox.io/s/heuristic-curran-bddeu?fontsize=14&hidenavigation=1&theme=dark
@@ -131,9 +132,9 @@ function Main() {
   return (
     <>
       <SubTemplateBlock style={{ marginTop: "20px", marginBottom: "10px" }}>
-        <Underline primary><AiFillTrophy style={{ marginRight: "5px" }} />DefiRank</Underline>
-        {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>
-        <Underline style={{ marginLeft: "10px" }} primary={true}><AiFillDollarCircle style={{ marginRight: "5px" }} />Others</Underline> */}
+        <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
+        {/* <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline> */}
+        {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
       </SubTemplateBlock>
       <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
       <Uppercontainer>
@@ -192,8 +193,8 @@ function Main() {
                       <Tdp className="head">Project</Tdp>
                       <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
-                      {/* <Td className="content" style={{ width: "200px", textAlign: "right" }}></Td>
-                      <Td className="content" style={{ width: "200px", textAlign: "right" }}>Breakdown</Td> */}
+                      <Td className="content" style={{ width: "50px", textAlign: "right" }}></Td>
+                      {/* <Td className="content" style={{ width: "200px", textAlign: "right" }}>Breakdown</Td> */}
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>1day</Td>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>7days</Td>
                       <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>M/S</Tdc>
@@ -232,10 +233,20 @@ function Main() {
                                   <span> Number(tvld.tvl / 1000).toFixed(0)</span>
                             }
                           </Td>
-                          {/* <Td className="content" style={{ width: "50px", textAlign: "right" }}>
-                            <AiOutlineInfoCircle />
+                          <Td className="content" style={{ width: "50px", textAlign: "right" }}>
+                            {tvld.notification !== undefined ?
+                              <>
+                                <a href='#!' data-for={tvld.proj} data-tip={tvld.notification}><AiOutlineInfoCircle /></a>
+                                <ReactTooltip id={tvld.proj} border multiline={true} data-border={true} place="top" aria-haspopup='true' type="light" effect="solid">
+                                  <P>Why is the Number different?</P>
+                                  <P>{tvld.proj} : {tvld.notification.project} </P>
+                                  <P>Klaylabs : {tvld.notification.klaylabs} </P>
+                                </ReactTooltip>
+                              </> :
+                              <></>
+                            }
                           </Td>
-                          <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>
+                          {/* <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>
                             <svg width='100%' height='20px' style={{ paddingTop: "3px" }}>
                               <g class='bars'>
                                 <rect fill='#3d5599' width='100%' rx="10" ry="10" height='15px'></rect>
@@ -358,6 +369,18 @@ function Main() {
   );
 }
 
+
+const P = styled.p`
+  text-align: left !important;
+`
+
+const Span = styled.span`
+    &:hover {
+    color:black;
+  }
+ 
+`
+
 const Tdp = styled.td`
   height:25px;
   vertical-align:middle;
@@ -478,15 +501,15 @@ const Tdc = styled.td`
   vertical-align:middle;
 `;
 
-const Tdh = styled.td`
-  height:25px;
-  vertical-align:middle;
-  &:hover {
-    text-decoration:underline;
-    color:#3366cc;
-  }
+// const Tdh = styled.td`
+//   height:25px;
+//   vertical-align:middle;
+//   &:hover {
+//     text-decoration:underline;
+//     color:#3366cc;
+//   }
 
-`;
+// `;
 
 
 

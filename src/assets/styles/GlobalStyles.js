@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import myFont from 'assets/fonts/OpenSans-Semibold.woff'
+import opensansSemibold from 'assets/fonts/OpenSans-Semibold.woff'
+import opensansLight from 'assets/fonts/OpenSans-Light.woff'
+import opensansMedium from 'assets/fonts/OpenSans-Medium.woff'
+
 
 const GlobalStyles = createGlobalStyle` 
     ${reset}
@@ -13,12 +16,29 @@ const GlobalStyles = createGlobalStyle`
         
     }    
     body {
-        font-family: 'OpenSans-Semibold';
+        font-family: 'OpenSans-Medium';
+        font-family: 'SpoqaHanSansNeo-Regular';
         background: #e9ecef;
     }
     @font-face {
     font-family: 'OpenSans-Semibold';
-    src: local('OpenSans-Semibold'),url(${myFont}) format('woff');
+    src: local('OpenSans-Semibold'),url(${opensansSemibold}) format('woff');
+    unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+    }
+    @font-face {
+    font-family: 'OpenSans-Light';
+    src: local('OpenSans-Light'),url(${opensansLight}) format('woff');
+    unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+    }
+    @font-face {
+    font-family: 'OpenSans-Medium';
+    src: local('OpenSans-Medium'),url(${opensansMedium}) format('woff');
+    unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+    }
+    @font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: local('SpoqaHanSansNeo-Regular'),url(${opensansMedium}) format('woff');
+    unicode-range:U+AC00-U+D7A3;
     }
 `;
 

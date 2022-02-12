@@ -27,22 +27,6 @@ function Detailpage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [pathname])
 
-
-  // 108 + 59 = 167
-  // 167 * 250 = 41750
-  // 63 * 229 = 15000
-  // 총 41750 neverland
-  // stable 3000 + klay 1200 = 4200
-  // klayswap 27200
-
-  // 66 * 160 = 10560 neverland 1.30
-  // usdt solo 16700
-  // stable pair 27200 
-  // stable 3000 + klay 1200 = 4200
-  // kokoa 19033 
-  // Kronos 6 x 250 = 1300
-  // klay 854
-
   const loadDetailInfo = async () => {
     setIsloading(true)
     const url = `https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/detailInfo?proj=${id}`
@@ -66,7 +50,6 @@ function Detailpage() {
 
       setDetailinfo(serviceObject)
       setIsloading(false)
-      console.log(serviceObject.proj)
     })
   }
 
@@ -164,7 +147,7 @@ function Detailpage() {
         }
         {isloading ? <div style={{ height: "500px", width: "300px" }}><ReactLoading type="spin" color="gray" /></div> :
 
-          <Twitterbox>
+          <Twitterbox style={{ paddingTop: "20px" }}>
             <Timeline
               dataSource={{
                 sourceType: 'profile',
@@ -172,7 +155,8 @@ function Detailpage() {
               }}
               options={{
                 height: '500',
-                width: '350'
+                width: '350',
+                chrome: "noheader, nofooter, transparent"
               }}
             />
           </Twitterbox>
@@ -392,58 +376,4 @@ const Chartcover = styled.div`
   }
 `
 
-// const Infocover = styled.div`
-//   background-color: white;
-//   width: 780px;
-//   height: 200px;
-//   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
-//   border-radius: 10px;
-//   padding-top:15px;
-//   padding-bottom:15px;
-//   padding-right:20px;
-
-//   margin-top: 10px;
-//   @media screen and (max-width: 500px){
-//     width: 95%;
-//   }
-// `
-
 export default Detailpage;
-
-
-// {
-//   "description" : "",
-//   "information" : {
-    // "category": "",
-    // "symbol": "",
-    // "Name": "",
-    // "contractAddress": "",
-    // "auditCompany": "",
-    // "auditUrl": "",
-    // "homeUrl": "",
-    // "docsUrl": "",
-    // "twitterUrl": "",
-    // "mediumUrl": "",
-    // "telegramUrl": "",
-    // "twitterid": ""
-//   }
-// }
-
-
-
-// ,
-//      "TaalSwap":{
-//         "description":"이더리움기반 멀티체인 AMM 프로토콜로 수익을 향상을 위한 서비스를 제공합니다. 가버넌스 토큰인 TAL 토큰을 통해서 가버넌스에 투표와 제안을 할 수 있습니다.",
-//         "category": "DEX",
-//         "tokensymbol": "TAL",
-//         "tokenName": "TaalSwap Token",
-//         "tokenContractAddress": "0x90a4a420732907b3c38b11058f9aa02b3f4121df",
-//         "serviceAuditCompany": "-",
-//         "auditUrl": "-",
-//         "homeUrl": "https://taalswap.finance/",
-//         "docsUrl": "https://docs.taalswap.finance/taalswap-docs/",
-//         "twitterUrl": "https://twitter.com/taal_fi",
-//         "mediumUrl": "https://taalswap.medium.com/",
-//         "telegramUrl": "https://t.me/TaalSwapOfficial",
-//         "twitterid": "taal_fi"
-//     }
