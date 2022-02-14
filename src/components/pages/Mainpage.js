@@ -39,6 +39,7 @@ function Main() {
 
   const [hundredgroup, setHundredgroup] = useState(["Klayswap"])
   const [fiftygroup, setFiftygroup] = useState([])
+  const [tengroup, setTengroup] = useState([])
 
   useEffect(() => {
     loadtvl()
@@ -139,8 +140,16 @@ function Main() {
         tempfif.push(ele.proj)
       })
 
+      let tenClub = tempArr.filter((arr) => arr.tvl > 10000000 && arr.tvl < 50000000)
+      let tempten = []
+      tenClub.forEach((ele) => {
+        tempten.push(ele.proj)
+      })
+
+
       setHundredgroup(temphund)
       setFiftygroup(tempfif)
+      setTengroup(tempten)
 
       setTvldata(responseObj)
       // console.log(responseObj)
@@ -167,14 +176,14 @@ function Main() {
   const minusNumber = () => {
     let temp = number - 1;
     if (temp === 0) {
-      temp = 3
+      temp = 4
     }
     setNumber(temp)
   }
 
   const plusNumber = () => {
     let temp = number + 1;
-    if (temp === 4) {
+    if (temp === 5) {
       temp = 1
     }
 
@@ -214,7 +223,7 @@ function Main() {
         <TemplateBlockinner>TVL trends (M$)
             <Pagination>
             <PA href="#!" onClick={minusNumber}>&laquo;</PA>
-            <PC href="#!" style={{ width: "100px", textAlign: "center" }}>{number === 1 ? <>TOTAL</> : number === 2 ? <>OVER 100M</> : <>50~100M</>}</PC>
+            <PC href="#!" style={{ width: "100px", textAlign: "center" }}>{number === 1 ? <>TOTAL</> : number === 2 ? <>OVER 100M</> : number === 3 ? <>50~100M</> : <>10~50M</>}</PC>
             <PA href="#1" onClick={plusNumber}>&raquo;</PA>
           </Pagination>
         </TemplateBlockinner>
@@ -256,18 +265,19 @@ function Main() {
 
                   </>
                   :
-                  <>
-                    <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
-                    <Tooltip />
-                    <CartesianGrid strokeDasharray="3 3" />
-                    {
-                      fiftygroup.map((fifty, index) => {
-                        return <Line type="linear" stroke={colorarr[index]} dataKey={fifty} strokeWidth={1.5} isAnimationActive={false} />
-                      })
-                    }
+                  number === 3 ?
+                    <>
+                      <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
+                      <Tooltip />
+                      <CartesianGrid strokeDasharray="3 3" />
+                      {
+                        fiftygroup.map((fifty, index) => {
+                          return <Line type="linear" stroke={colorarr[index]} dataKey={fifty} strokeWidth={1.5} isAnimationActive={false} />
+                        })
+                      }
 
 
-                    {/* <Line type="linear" stroke={colorarr[0]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
+                      {/* <Line type="linear" stroke={colorarr[0]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
                     <Line type="linear" stroke={colorarr[1]} dataKey="PALA" strokeWidth={1.5} isAnimationActive={false} />
                     <Line type="linear" stroke={colorarr[2]} dataKey="Klaymore" strokeWidth={1.5} isAnimationActive={false} />
                     <Line type="linear" stroke={colorarr[3]} dataKey="Eklipse" strokeWidth={1.5} isAnimationActive={false} />
@@ -276,7 +286,27 @@ function Main() {
                     <Line type="linear" stroke={colorarr[6]} dataKey="i4i" strokeWidth={1.5} isAnimationActive={false} /> */} */}
                     <Legend wrapperStyle={{ fontSize: "12px" }} />
 
-                  </>
+                    </> :
+                    <>
+                      <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
+                      <Tooltip />
+                      <CartesianGrid strokeDasharray="3 3" />
+                      {
+                        tengroup.map((ten, index) => {
+                          return <Line type="linear" stroke={colorarr[index]} dataKey={ten} strokeWidth={1.5} isAnimationActive={false} />
+                        })
+                      }
+
+
+                      {/* <Line type="linear" stroke={colorarr[0]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[1]} dataKey="PALA" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[2]} dataKey="Klaymore" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[3]} dataKey="Eklipse" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[4]} dataKey="Klaybank" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[5]} dataKey="Claimswap" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[6]} dataKey="i4i" strokeWidth={1.5} isAnimationActive={false} /> */} */}
+                    <Legend wrapperStyle={{ fontSize: "12px" }} />
+                    </>
             }
 
 
