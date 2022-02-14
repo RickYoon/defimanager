@@ -33,6 +33,7 @@ import TaalSwap from './taalswap.png'
 import TurtleKing from './turking.png'
 import ORCA from './orca.png'
 import GRDSWAP from './GRDSWAP.svg'
+import Swapscanner from './Swapscanner.svg'
 
 const icons = {
     belt,
@@ -69,7 +70,8 @@ const icons = {
     TaalSwap,
     TurtleKing,
     ORCA,
-    GRDSWAP
+    GRDSWAP,
+    Swapscanner
 }
 
 export default icons;
