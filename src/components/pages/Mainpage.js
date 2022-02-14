@@ -51,11 +51,11 @@ function Main() {
 
   useEffect(() => {
     chartRebuild()
-    console.log("hundredgroup", hundredgroup)
+    // console.log("hundredgroup", hundredgroup)
   }, [number])
 
   const chartRebuild = async () => {
-    console.log(tempchart)
+    // console.log(tempchart)
   }
 
 
@@ -124,10 +124,10 @@ function Main() {
         total: tempTotal[0],
         data: tempArr
       }
-      console.log("tempArr", tempArr)
+      // console.log("tempArr", tempArr)
 
       let hundredClub = tempArr.filter((arr) => arr.tvl > 100000000)
-      console.log("hundredClub", hundredClub)
+      // console.log("hundredClub", hundredClub)
       let temphund = []
       hundredClub.forEach((ele) => {
         temphund.push(ele.proj)
