@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { AiFillTrophy, AiOutlineProfile, AiOutlineInfoCircle } from "react-icons/ai";
-// AiOutlineInfoCircle
+import { AiFillTrophy, AiOutlineInfoCircle } from "react-icons/ai";
+// AiOutlineInfoCircle,AiOutlineProfile
 import ReactLoading from 'react-loading';
-import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
 import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import icons from "../../assets/tokenIcons"
 import ReactTooltip from "react-tooltip"
@@ -16,8 +16,9 @@ import ReactTooltip from "react-tooltip"
 
 function Main() {
   const [subselection, setSubselection] = useState(true)
+  const [number, setNumber] = useState(1)
   const [isloading, setIsloading] = useState(true)
-  const [checkklayswap, setCheckklayswap] = useState(true)
+  // const [checkklayswap, setCheckklayswap] = useState(true)
   const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
   const [tvldata, setTvldata] = useState({
     refDate: "2022-00-00",
@@ -32,18 +33,35 @@ function Main() {
     "name": "-"
   }]);
 
+  const [tempchart, setTempchart] = useState([{
+    "name": "-"
+  }]);
+
+  const [hundredgroup, setHundredgroup] = useState(["Klayswap"])
+  const [fiftygroup, setFiftygroup] = useState([])
+
   useEffect(() => {
     loadtvl()
     loadchart()
   }, [])
 
+  // useEffect(() => {
+  //   loadchart()
+  // }, [checkklayswap])
+
   useEffect(() => {
-    loadchart()
-  }, [checkklayswap])
+    chartRebuild()
+    console.log("hundredgroup", hundredgroup)
+  }, [number])
+
+  const chartRebuild = async () => {
+    console.log(tempchart)
+  }
 
 
   const loadchart = async () => {
-    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlChart"
+    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/testapi"
+
     await axios.get(url).then(function (response) {
       // console.log("response", response)
       let tempArr = response.data.body.Items;
@@ -66,6 +84,18 @@ function Main() {
       // console.log("tempArr", tempArr)
 
       setChartdata(tempArr)
+
+      // let tempArray = []
+
+      // tempArr.forEach((arr)=>{
+      //   Object.keys(arr).forEach((kk)=>{
+      //     tempArray.push({
+      //       "proj": kk,
+      //       "TVL": arr[kk]
+      //     })
+      //   })
+      // })
+      setTempchart(tempArr)
     })
   }
 
@@ -94,6 +124,23 @@ function Main() {
         total: tempTotal[0],
         data: tempArr
       }
+      console.log("tempArr", tempArr)
+
+      let hundredClub = tempArr.filter((arr) => arr.tvl > 100000000)
+      console.log("hundredClub", hundredClub)
+      let temphund = []
+      hundredClub.forEach((ele) => {
+        temphund.push(ele.proj)
+      })
+
+      let fiftyClub = tempArr.filter((arr) => arr.tvl > 50000000 && arr.tvl < 100000000)
+      let tempfif = []
+      fiftyClub.forEach((ele) => {
+        tempfif.push(ele.proj)
+      })
+
+      setHundredgroup(temphund)
+      setFiftygroup(tempfif)
 
       setTvldata(responseObj)
       // console.log(responseObj)
@@ -113,8 +160,25 @@ function Main() {
     )
   }
 
-  const onshow = () => {
-    setCheckklayswap(!checkklayswap)
+  // const onshow = () => {
+  //   setCheckklayswap(!checkklayswap)
+  // }
+
+  const minusNumber = () => {
+    let temp = number - 1;
+    if (temp === 0) {
+      temp = 3
+    }
+    setNumber(temp)
+  }
+
+  const plusNumber = () => {
+    let temp = number + 1;
+    if (temp === 4) {
+      temp = 1
+    }
+
+    setNumber(temp)
   }
 
   // const changeinfo = e => {
@@ -147,28 +211,98 @@ function Main() {
       </Uppercontainer>
 
       <Chartcover>
-        <TemplateBlockinner>Top 10 trends (M$) - 7days<span style={{ fontSize: "12px" }}><input type="checkbox" checked={checkklayswap} name="klayswapcheck" onClick={onshow} />klayswap 제외</span></TemplateBlockinner>
+        <TemplateBlockinner>TVL trends (M$)
+            <Pagination>
+            <PA href="#!" onClick={minusNumber}>&laquo;</PA>
+            <PC href="#!" style={{ width: "100px", textAlign: "center" }}>{number === 1 ? <>TOTAL</> : number === 2 ? <>OVER 100M</> : <>50~100M</>}</PC>
+            <PA href="#1" onClick={plusNumber}>&raquo;</PA>
+          </Pagination>
+        </TemplateBlockinner>
 
         <ResponsiveContainer width="100%" height={250}>
           <LineChart
             className="mx-auto"
-            data={chartdata}
+            data={tempchart}
           >
-            <XAxis dataKey="date" hide={true} />
-            {checkklayswap === true ? <YAxis axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} /> :
-              <YAxis domain={[0, 1300]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />}
-            <Tooltip />
-            {/* <Legend /> */}
-            {checkklayswap === true ? null : <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1.5} isAnimationActive={false} />}
-            <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="monotone" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[3]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[4]} dataKey="Kokoa Finance" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[5]} dataKey="Kronosdao" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[6]} dataKey="Claimswap" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[7]} dataKey="PALA" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[8]} dataKey="Klaymore" strokeWidth={1.5} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[9]} dataKey="Donkey" strokeWidth={1.5} isAnimationActive={false} />
+            <XAxis dataKey="date" stroke="#efefef" tick={{ fontSize: 10, fill: '#000000' }} />
+
+            {
+              number === 1 ?
+                <>
+                  <YAxis domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
+                    return tick.toLocaleString();
+                  }} />
+                  <Tooltip />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <Line type="linear" stroke={colorarr[0]} dataKey="KCT-Total" strokeWidth={1.5} isAnimationActive={false} />
+                </> :
+                number === 2 ?
+                  <>
+                    <YAxis domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
+                      return tick.toLocaleString();
+                    }} />
+                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" />
+                    {/* <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[3]} dataKey="Kokoa" strokeWidth={1.5} isAnimationActive={false} /> */}
+                    <Legend wrapperStyle={{ fontSize: "12px" }} />
+                    {
+                      hundredgroup.map((hundred, index) => {
+                        return <Line type="linear" stroke={colorarr[index]} dataKey={hundred} strokeWidth={1.5} isAnimationActive={false} />
+                      })
+                    }
+
+                  </>
+                  :
+                  <>
+                    <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
+                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" />
+                    {
+                      fiftygroup.map((fifty, index) => {
+                        return <Line type="linear" stroke={colorarr[index]} dataKey={fifty} strokeWidth={1.5} isAnimationActive={false} />
+                      })
+                    }
+
+
+                    {/* <Line type="linear" stroke={colorarr[0]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[1]} dataKey="PALA" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[2]} dataKey="Klaymore" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[3]} dataKey="Eklipse" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[4]} dataKey="Klaybank" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[5]} dataKey="Claimswap" strokeWidth={1.5} isAnimationActive={false} />
+                    <Line type="linear" stroke={colorarr[6]} dataKey="i4i" strokeWidth={1.5} isAnimationActive={false} /> */} */}
+                    <Legend wrapperStyle={{ fontSize: "12px" }} />
+
+                  </>
+            }
+
+
+            {/* {checkklayswap === true ? <YAxis domain={[0, 100]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} /> :
+              <YAxis domain={[0, 100]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />} */}
+            {/* <YAxis domain={[0, 1500]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
+            <Tooltip /> */}
+            {/* <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1} isAnimationActive={false} />
+            <Line type="monotone" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[3]} dataKey="Kokoa" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[4]} dataKey="klayFi" strokeWidth={1} isAnimationActive={false} /> */}
+            {/* <Line type="linear" stroke={colorarr[1]} dataKey="klayFi" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[2]} dataKey="PALA" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[3]} dataKey="Klaymore" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[4]} dataKey="Eklipse" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[5]} dataKey="Klaybank" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[6]} dataKey="Claimswap" strokeWidth={1} isAnimationActive={false} />
+            <Line type="linear" stroke={colorarr[7]} dataKey="i4i" strokeWidth={1} isAnimationActive={false} /> */}
+            {/* <Line type="linear" stroke={colorarr[8]} dataKey="Kronosdao" strokeWidth={1} isAnimationActive={false} /> */}
+            {/* <Line type="linear" stroke={colorarr[7]} dataKey="KCT-Total" strokeWidth={1.5} isAnimationActive={false} /> */} */}
+
+
+
+
+
           </LineChart>
         </ResponsiveContainer>
       </Chartcover>
@@ -212,10 +346,10 @@ function Main() {
                                 <span style={{ fontSize: "14px", color: "blue", verticalAlign: "middle" }}>(&darr;{Math.abs(Number(tvld.rankdiff))})</span>
                             }
                           </Th>
-                          <Tdpd className="head">
+                          <Tdpd className="head" style={{ whiteSpace: "nowrap" }}>
                             <Link to={`/project/${tvld.proj}`}>
                               <img src={icons[tvld.proj]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                              <span style={{ padding: "7px" }}>{tvld.proj}</span>
+                              <span style={{ padding: "7px", whiteSpace: "nowrap" }}>{tvld.proj}</span>
                             </Link>
                           </Tdpd>
                           <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>{tvld.cat}</Tdc>
@@ -369,17 +503,42 @@ function Main() {
   );
 }
 
+const PC = styled.div`
+  color: black;
+  float: left;
+  padding: 4px 8px;
+  text-decoration: none;
+  font-size:14px;
+  border: 1px solid #ddd;
+`
+
+const PA = styled.div`
+  color: black;
+  float: left;
+  padding: 4px 8px;
+  text-decoration: none;
+  font-size:14px;
+  transition: background-color .3s;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background-color:#ddd;
+`
+
+const Pagination = styled.div`
+  display: inline-block;
+`
+
 
 const P = styled.p`
   text-align: left !important;
 `
 
-const Span = styled.span`
-    &:hover {
-    color:black;
-  }
- 
-`
+// const Span = styled.span`
+//     &:hover {
+//     color:black;
+//   }
+
+// `
 
 const Tdp = styled.td`
   height:25px;
@@ -457,7 +616,7 @@ const Underline = styled.span`
 `;
 
 const Uppercontainer = styled.span`
-  width: 850px;
+  width: 900px;
   display: flex;
   flex-direction: row;
   margin: 0 auto;
@@ -478,7 +637,7 @@ const Uppercontainer = styled.span`
 const Upperitem = styled.div`
   background-color:white;
   height:25px;
-  width:360px;
+  width:50%;
   padding-top:5px;
   text-align:center;
   @media screen and (max-width: 500px){
@@ -514,7 +673,7 @@ const Tdc = styled.td`
 
 
 const TodoTemplateBlock = styled.div`
-  width: 850px;
+  width: 900px;
   /* max-height: 1024px; */
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -588,7 +747,7 @@ const TemplateBlockinner = styled.div`
 
 
 const SubTemplateBlock = styled.div`
-  width: 850px;
+  width: 900px;
   max-height: 768px;
   margin: 0 auto;
   padding-bottom: 10px;
@@ -602,7 +761,7 @@ const SubTemplateBlock = styled.div`
 `;
 
 const TemplateLastBlock = styled.div`
-  width: 850px;
+  width: 900px;
   max-height: 768px;
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -621,7 +780,7 @@ const TemplateLastBlock = styled.div`
 `;
 
 const Copyright = styled.div`
-  width: 850px;
+  width: 900px;
   max-height: 768px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -637,7 +796,7 @@ const Copyright = styled.div`
 `;
 const Container = styled.div`
   position: relative;
-  width: 850px;
+  width: 900px;
   display: flex;
   margin: 0 auto;
   /* border: solid;
@@ -722,7 +881,7 @@ const Item = styled.div`
 
 const Chartcover = styled.div`
   background-color: white;
-  width: 850px;
+  width: 900px;
   max-height: 768px;
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   border-radius: 10px;
