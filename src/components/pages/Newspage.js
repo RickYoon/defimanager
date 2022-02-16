@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { AiFillTrophy, AiOutlineProfile } from "react-icons/ai";
-import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
+// import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import { Timeline } from 'react-twitter-widgets'
 import axios from 'axios';
 
@@ -15,33 +15,7 @@ import axios from 'axios';
 
 function Newspage() {
   const [subselection, setSubselection] = useState(true)
-  const mediumUrls = [
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klaytn",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klayswap",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40KLEVA_Protocol_official",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40orbitchain",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40jwon_do",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klayfi",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40attention.pala",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40eklipse.finance",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klaybank",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40john_klaymore",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40claimswap&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40KronosDAO&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40ian_99383&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40hashquark&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40fingerlabs&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40sixnetwork&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40neverlandfichef&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x",
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.medium.com%2Ffeed%2F%40kaiprotocol&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x"
-  ]
-  // const klaybankURL = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klayswap"
-  // const kkk = [1, 2, 3, 4, 5]
-  // const [profile, setProfile] = useState({
-  //   name: 'klaylabs',
-  //   profileImage: '',
-  //   profileUrl: ''
-  // })
+
   const [blog, setBlog] = useState({
     item: [],
     isLoading: true,
@@ -56,51 +30,27 @@ function Newspage() {
 
   const loadPostings = async () => {
 
-    const feedKlayswap = await axios.get('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fgithub.com%2Fdjango%2Fdjango%2Freleases.atom&api_key=mlhk1k4t0f4fauzwkvoclf6qfg1u0obtxkb6rv7x')
-    console.log(feedKlayswap)
+    const mediumUrls = await axios.get('https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/medium')
+    const mediumdata = mediumUrls.data.body.Items;
+
+    console.log("mediumdata", mediumdata)
 
     let tempObj = [];
-    let afterObj = [];
+    // let afterObj = [];
 
-    for (let i = 0; i < mediumUrls.length; i++) {
-      await axios.get(mediumUrls[i]).then(function (info) {
-        tempObj.push({
-          "image": info.data.feed.image,
-          "blogs": info.data.items
-        })
+    for (let i = 0; i < mediumdata.length; i++) {
+      tempObj.push({
+        "image": mediumdata[i].tokenimage,
+        "date": mediumdata[i].date,
+        "title": mediumdata[i].title,
+        "description": mediumdata[i].description,
       })
     }
 
-    for (let i = 0; i < tempObj.length; i++) {
-      tempObj[i].blogs.forEach((obj) => {
-        afterObj.push({
-          "title": obj.title,
-          "pubDate": obj.pubDate,
-          "img": tempObj[i].image
-        })
-      })
-    }
+    console.log(tempObj)
 
-    afterObj.sort(function (a, b) {
-      return a.pubDate > b.pubDate ? -1 : a.pubDate < b.pubDate ? 1 : 0;
-    })
+    setBlog({ item: tempObj, isLoading: false })
 
-    setBlog({ item: afterObj, isLoading: false })
-
-
-
-    // await axios.get(klaybankURL).then(function (info) {
-    //   const image = info.data.feed.image;
-    //   console.log(info.data.feed.image)
-    //   const link = info.data.feed.link;
-    //   const blogs = info.data.items;
-    //   const posts = blogs.filter(post => post.categories.length > 0)
-    //   console.log(blogs)
-    //   setProfile(p => ({ ...p, profileUrl: link, profileImage: image }))
-    //   setBlog({ item: blogs, img: image, isLoading: false })
-    // }).catch(err =>
-    //   setBlog({ error: err.message }
-    //   ))
   }
 
   return (
@@ -117,28 +67,32 @@ function Newspage() {
       </SubTemplateBlock>
 
       <Selcontainer>
-        <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}><BsFillSafeFill style={{ verticalAlign: "top" }} size="17" /><span style={{ fontSize: "20px", marginLeft: "5px" }}>TVL</span></Item>
-        <Item primary={!subselection} onClick={() => setSubselection(false)} style={{ cursor: "pointer" }}><BsCurrencyBitcoin style={{ verticalAlign: "top" }} size="20" /><span style={{ fontSize: "18px" }}>TOKEN</span></Item>
+        <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}>MEDIUM</Item>
+        <Item primary={!subselection} onClick={() => setSubselection(false)} style={{ cursor: "pointer" }}>TWITTER</Item>
       </Selcontainer>
+
+
+      {}
 
       <SubTemplateBlock>
         <Row>
           <Leftcolumn>
             <Topcard>
-              <Container>
-                <div style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> MEDIUM DAILY NEWS</div>
-              </Container>
+              <Containersub>
+                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> MEDIUM DAILY NEWS</Subtitle>
+              </Containersub>
             </Topcard>
             <Bottomcard>
               {
                 blog.item.map((blg) =>
                   <Card>
                     <Container>
-                      <Image src={blg.img}
+                      <Image src={blg.image}
                         alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
                       <Colum>
-                        <div style={{ paddingTop: "5px", paddingBottom: "10px" }}>{blg.pubDate.split(" ")[0]}</div>
-                        <div>{blg.title}</div>
+                        <Title>{blg.title}</Title>
+                        <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
+                        <Desc>{blg.description}</Desc>
                         <div></div>
                       </Colum>
                     </Container>
@@ -150,9 +104,9 @@ function Newspage() {
           </Leftcolumn>
           <Rightcolumn>
             <Topcard>
-              <Container>
-                <div style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> TWITTER REALTIME FEED</div>
-              </Container>
+              <Containersub>
+                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> TWITTER REALTIME FEED</Subtitle>
+              </Containersub>
             </Topcard>
             <Bottomcard>
 
@@ -180,6 +134,30 @@ function Newspage() {
   );
 }
 
+const Containersub = styled.div`
+@media screen and (max-width: 500px){
+  display : none;
+}
+`
+
+const Subtitle = styled.div`
+@media screen and (max-width: 500px){
+  display:none;
+}
+`
+
+const Desc = styled.div`
+  font-family: 'OpenSans-Medium';
+  display: block;
+  line-height: 1.5;
+`
+
+const Title = styled.div`
+  font-family: 'OpenSans-Semibold';
+  font-weight: bold;
+  font-size: 14px;
+`
+
 
 
 const Row = styled.div`
@@ -193,6 +171,7 @@ clear:both;
 const Leftcolumn = styled.div`
 float:left;
 width:60%;
+
   @media screen and (max-width: 500px){
   width: 100%;
   padding: 0;
@@ -219,6 +198,9 @@ const Topcard = styled.div`
 background-color:white;
 padding:10px;
 border-radius: 10px; 
+@media screen and (max-width: 500px){
+display:none;
+}
 `
 
 const Bottomcard = styled.div`
@@ -243,7 +225,6 @@ const Selcontainer = styled.div`
   width: 360px;
   box-shadow: 1px 0px 1px 0px gray;
   position: relative;
-  width: 850px;
   display: flex;
   margin: 0 auto;
   /* border: solid;
@@ -297,7 +278,7 @@ const Underline = styled.span`
 `;
 
 const SubTemplateBlock = styled.div`
-width: 850px;
+width: 900px;
 max-height: 768px;
 margin: 0 auto;
 padding-bottom: 10px;

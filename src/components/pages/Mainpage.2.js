@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { AiFillTrophy, AiOutlineInfoCircle, AiOutlineProfile } from "react-icons/ai";
-// AiOutlineInfoCircle,
+import { AiFillTrophy, AiOutlineInfoCircle } from "react-icons/ai";
+// AiOutlineInfoCircle,AiOutlineProfile
 import ReactLoading from 'react-loading';
 import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
 import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
@@ -28,9 +28,6 @@ function Main() {
     },
     data: []
   })
-  const [tokendata, setTokendata] = useState([
-    "", ""
-  ])
 
   const [chartdata, setChartdata] = useState([{
     "name": "-"
@@ -65,6 +62,7 @@ function Main() {
 
   const loadchart = async () => {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/testapi"
+
     await axios.get(url).then(function (response) {
       // console.log("response", response)
       let tempArr = response.data.body.Items;
@@ -103,41 +101,16 @@ function Main() {
   }
 
   const loadtvl = async () => {
-    // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
-    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlinfotest"
-
+    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
     await axios.get(url).then(function (response) {
-      console.log(response.data.body)
-      // tvl
+      // console.log(response.data.body.data)
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
-      // token
-      let tokenArr = response.data.body.token.filter(dat => dat.token !== "date")
-      tokenArr = tokenArr.filter(dat => dat.token !== "dataType")
+      // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
 
       tempArr.sort(function (a, b) {
         return a.tvl > b.tvl ? -1 : a.tvl < b.tvl ? 1 : 0;
       })
-
-      let tokenArrSort = [];
-
-      for (let i = 0; i < tempArr.length; i++) {
-        let temp = tokenArr.filter(dat => dat.project === tempArr[i].proj)
-        temp.forEach((comp) => {
-          tokenArrSort.push(comp)
-        })
-      }
-
-      console.log("tokenArr", tokenArrSort)
-      setTokendata(tokenArrSort)
-
-      // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
-
-
-
-
-
-
 
       tempArr.map((component) => {
         component["MarketShare"] = component.tvl / tempTotal[0].tvl * 100
@@ -483,8 +456,7 @@ function Main() {
                   <thead>
                     <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
                       <Th className="head" style={{ width: "10px", textAlign: "left" }}>#</Th>
-                      <Tdpp className="head">Token</Tdpp>
-                      {/* <Tdpp className="head">Project</Tdpp> */}
+                      <Tdpp className="head">Project</Tdpp>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>Price</Td>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>Holder</Td>
                       <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>Transfer</Tdc>
@@ -493,13 +465,13 @@ function Main() {
 
                   <tbody>
 
-                    {tokendata.length === 0 ? <div>Loading</div> :
-                      tokendata.map((tvld, index) => (
-                        tvld.price === 0 ?
+                    {tvldata.data.length === 0 ? <div>Loading</div> :
+                      tvldata.data.map((tvld, index) => (
+                        tvld.price.price === 0 ?
                           <Tr style={{ display: "none" }}>
                             <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
                             <Tdpd className="head">
-                              <Link to={`/project/${tvld.project}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.token}</span></Link>
+                              <Link to={`/project/${tvld.proj}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.proj}</span></Link>
                             </Tdpd>
                             <Td className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price.price).toFixed(2)}<br />-</Td>
                             {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
@@ -511,31 +483,27 @@ function Main() {
                           <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
                             <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
                             <Tdpdd>
-                              <img src={icons[tvld.project]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                              <Link to={`/project/${tvld.project}`}><span style={{ paddingLeft: "10px" }}>{tvld.token}</span><br />
-                                <span style={{ fontSize: "12px", color: "gray" }}>{tvld.project}</span>
-                              </Link>
+                              <img src={icons[tvld.proj]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+
+                              <Link to={`/project/${tvld.proj}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.proj}</span></Link>
                             </Tdpdd>
 
-                            {/* <Tdpdd>
-                            </Tdpdd> */}
 
-
-                            <Td className="head" style={{ height: "30px", width: "400px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price).toFixed(3)}
+                            <Td className="head" style={{ height: "30px", width: "400px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price.price).toFixed(2)}
                               <br />
                               {tvld.priceDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.priceDiff}%</span> :
                                 <span style={{ fontSize: "13px", color: "blue" }}>{tvld.priceDiff}%</span>
                               }
                             </Td>
                             <Td className="content" style={{ width: "400px", textAlign: "right" }}>
-                              {Number(tvld.holders).toLocaleString()}
+                              {Number(tvld.price.holders).toLocaleString()}
                               <br />
                               {tvld.holderDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.holderDiff}%</span> :
                                 <span style={{ fontSize: "13px", color: "blue" }}>{tvld.holderDiff}%</span>
                               }
                             </Td>
                             <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>
-                              {Number(tvld.transactions).toLocaleString()}
+                              {Number(tvld.price.transactions).toLocaleString()}
                               <br />
                               {tvld.transferDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.transferDiff}%</span> :
                                 <span style={{ fontSize: "13px", color: "blue" }}>{tvld.transferDiff}%</span>
@@ -595,11 +563,12 @@ const P = styled.p`
   text-align: left !important;
 `
 
-const Span = styled.span`
-    &:hover {
-    color:black;
-  }
-`
+// const Span = styled.span`
+//     &:hover {
+//     color:black;
+//   }
+
+// `
 
 const Tdp = styled.td`
   height:25px;
