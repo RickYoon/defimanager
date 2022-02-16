@@ -231,7 +231,7 @@ function Main() {
 
   return (
     <>
-      <SubTemplateBlock style={{ marginTop: "20px", marginBottom: "10px" }}>
+      <SubTemplateBlock style={{ marginTop: "40px", marginBottom: "10px" }}>
         <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
         <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
         {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
