@@ -6,6 +6,8 @@ import { AiFillTrophy, AiOutlineProfile } from "react-icons/ai";
 // import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import { Timeline } from 'react-twitter-widgets'
 import axios from 'axios';
+import ReactLoading from 'react-loading';
+
 
 //https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klaybank
 //https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klayswap
@@ -15,6 +17,7 @@ import axios from 'axios';
 
 function Newspage() {
   const [subselection, setSubselection] = useState(true)
+  const [isloading, setIsloading] = useState(true)
 
   const [blog, setBlog] = useState({
     item: [],
@@ -51,6 +54,8 @@ function Newspage() {
     // console.log(tempObj)
 
     setBlog({ item: tempObj, isLoading: false })
+    setIsloading(false)
+
 
   }
 
@@ -73,79 +78,79 @@ function Newspage() {
       </Selcontainer>
 
       <SubTemplateBlock>
-        <Row>
-          <Leftcolumn>
-            <Topcard>
-              <Containersub>
-                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> MEDIUM DAILY NEWS</Subtitle>
-              </Containersub>
-            </Topcard>
-            {subselection ?
+        {isloading ? <ReactLoading /> :
+          <Row>
+            <Leftcolumn>
+              <Topcard>
+                <Containersub>
+                  <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> MEDIUM DAILY NEWS</Subtitle>
+                </Containersub>
+              </Topcard>
+              {subselection ?
+                <Bottomcard>
+                  {
+                    blog.item.map((blg) =>
+                      <Card>
+                        <Container onClick={() => { handleClickAgain(blg.guid) }} style={{ cursor: "pointer" }}>
+                          <Image src={blg.image}
+                            alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
+                          <Colum>
+                            <Title>{blg.title}</Title>
+                            <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
+                            {blg.description.length > 300 ? <Desc>{blg.description.slice(0, 300)} ...</Desc> :
+                              <Desc>{blg.description}</Desc>
+                            }
+                          </Colum>
+                        </Container>
+                      </Card>
+                    )
+                  }
+                </Bottomcard> :
+                <MobileBottomcard>
+                  {
+                    blog.item.map((blg) =>
+                      <Card>
+                        <Container onClick={() => { handleClickAgain(blg.guid) }} style={{ cursor: "pointer" }}>
+                          <Image src={blg.image}
+                            alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
+                          <Colum>
+                            <Title>{blg.title}</Title>
+                            <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
+                            {blg.description.length > 300 ? <Desc>{blg.description.slice(0, 300)} ...</Desc> :
+                              <Desc>{blg.description}</Desc>
+                            }
+                          </Colum>
+                        </Container>
+                      </Card>
+                    )
+                  }
+                </MobileBottomcard>}
+
+            </Leftcolumn>
+            <Rightcolumn>
+              <Topcard>
+                <Containersub>
+                  <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> TWITTER REALTIME FEED</Subtitle>
+                </Containersub>
+              </Topcard>
               <Bottomcard>
-                {
-                  blog.item.map((blg) =>
-                    <Card>
-                      <Container onClick={() => { handleClickAgain(blg.guid) }} style={{ cursor: "pointer" }}>
-                        <Image src={blg.image}
-                          alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
-                        <Colum>
-                          <Title>{blg.title}</Title>
-                          <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
-                          {blg.description.length > 300 ? <Desc>{blg.description.slice(0, 300)} ...</Desc> :
-                            <Desc>{blg.description}</Desc>
-                          }
-                        </Colum>
-                      </Container>
-                    </Card>
-                  )
-                }
-              </Bottomcard> :
-              <MobileBottomcard>
-                {
-                  blog.item.map((blg) =>
-                    <Card>
-                      <Container onClick={() => { handleClickAgain(blg.guid) }} style={{ cursor: "pointer" }}>
-                        <Image src={blg.image}
-                          alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
-                        <Colum>
-                          <Title>{blg.title}</Title>
-                          <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
-                          {blg.description.length > 300 ? <Desc>{blg.description.slice(0, 300)} ...</Desc> :
-                            <Desc>{blg.description}</Desc>
-                          }
-                        </Colum>
-                      </Container>
-                    </Card>
-                  )
-                }
-              </MobileBottomcard>}
-
-          </Leftcolumn>
-          <Rightcolumn>
-            <Topcard>
-              <Containersub>
-                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> TWITTER REALTIME FEED</Subtitle>
-              </Containersub>
-            </Topcard>
-            <Bottomcard>
-              <Twittercard>
-                <Timeline
-                  dataSource={{
-                    sourceType: 'list',
-                    id: "1491952670558412804",
-                  }}
-                  options={{
-                    height: '800',
-                    width: '100%',
-                    chrome: "nofooter,noheader,transparent"
-                  }}
-                />
-              </Twittercard>
-            </Bottomcard>
-          </Rightcolumn>
-
-
-        </Row>
+                <Twittercard>
+                  <Timeline
+                    dataSource={{
+                      sourceType: 'list',
+                      id: "1491952670558412804",
+                    }}
+                    options={{
+                      height: '800',
+                      width: '100%',
+                      chrome: "nofooter,noheader,transparent"
+                    }}
+                  />
+                </Twittercard>
+              </Bottomcard>
+            </Rightcolumn>
+          </Row>
+        }
       </SubTemplateBlock>
 
     </>
@@ -154,32 +159,32 @@ function Newspage() {
 
 const Containersub = styled.div`
 @media screen and (max-width: 500px){
-  display : none;
-}
-`
+        display : none;
+    }
+    `
 
 const Subtitle = styled.div`
 @media screen and (max-width: 500px){
-  display:none;
-}
-`
+        display: none;
+    }
+    `
 
 const Desc = styled.div`
-  font-family: 'OpenSans-Medium';
-  display: block;
-  line-height: 1.5;
+      font-family: 'OpenSans-Medium';
+      display: block;
+      line-height: 1.5;
   @media screen and (max-width: 500px){
-  word-wrap: break-word;
-  width:250px;
-}
-
-`
+        word-wrap: break-word;
+      width:250px;
+    }
+    
+    `
 
 const Title = styled.div`
-  font-family: 'OpenSans-Semibold';
-  font-weight: bold;
-  font-size: 14px;
-`
+      font-family: 'OpenSans-Semibold';
+      font-weight: bold;
+      font-size: 14px;
+    `
 
 
 
@@ -196,39 +201,39 @@ float:left;
 width:60%;
 
 @media screen and (max-width: 500px){
-  width: 100%;
-  padding: 0;
-}
-`
+        width: 100%;
+      padding: 0;
+    }
+    `
 const Rightcolumn = styled.div`
-float:left;
-width:40%;
-padding-left:20px;
+    float:left;
+    width:40%;
+    padding-left:20px;
 @media screen and (max-width: 500px){
-  width: 100%;
-  padding: 0;
-}
-`
+        width: 100%;
+      padding: 0;
+    }
+    `
 
 const Titlecard = styled.div`
-padding-top:5px;
-`
+    padding-top:5px;
+    `
 
 
 const Topcard = styled.div`
-background-color:white;
-padding:10px;
-border-radius: 10px; 
+    background-color:white;
+    padding:10px;
+    border-radius: 10px;
 @media screen and (max-width: 500px){
-display:none;
-}
-`
+        display: none;
+      }
+      `
 
 const MobileBottomcard = styled.div`
-height:800px;
-overflow:auto;
-margin-top:10px;
-border-radius: 10px; 
+      height:800px;
+      overflow:auto;
+      margin-top:10px;
+      border-radius: 10px;
 @media screen and (max-width: 500px){
         display: none;
 }
@@ -239,13 +244,13 @@ const Bottomcard = styled.div`
 height:800px;
 overflow:auto;
 margin-top:10px;
-border-radius: 10px; 
+border-radius: 10px;
 `
 
 const Twittercard = styled.div`
 background-color:white;
 margin-bottom:8px;
-border-radius: 10px; 
+border-radius: 10px;
 `
 
 
@@ -254,46 +259,46 @@ background-color:white;
 padding:10px;
 margin-bottom:8px;
 font-size:13px;
-border-radius: 10px; 
+border-radius: 10px;
 
 `
 
 const Selcontainer = styled.div`
 
   @media screen and (max-width: 500px){
-  width: 360px;
-  position: relative;
-  display: flex;
-  margin: 0 auto;
-  border: solid;
-  border-color: gray;
-  justify-content: space-around;
-  border-radius: 8px;
-  margin-top: 5px;
-  border-width:0.01em;
-  flex-direction: row;
-}
-`
+        width: 360px;
+      position: relative;
+      display: flex;
+      margin: 0 auto;
+      border: solid;
+      border-color: gray;
+      justify-content: space-around;
+      border-radius: 8px;
+      margin-top: 5px;
+      border-width:0.01em;
+      flex-direction: row;
+    }
+    `
 
 
 const Container = styled.div`
-display: flex;
-width: 100%;
-padding:5px;
-`
+    display: flex;
+    width: 100%;
+    padding:5px;
+    `
 
 const Image = styled.img`
-  vertical-align: middle;
-  flex-shrink: 0;
-  height:50px;
-`
+      vertical-align: middle;
+      flex-shrink: 0;
+      height:50px;
+    `
 
 const Colum = styled.div`
-flex-direction: column;
-margin-right: 10px;
-padding-left: 10px;
-flex: 1;
-`
+    flex-direction: column;
+    margin-right: 10px;
+    padding-left: 10px;
+    flex: 1;
+    `
 
 const Span = styled.span`
     &:hover {
@@ -305,8 +310,8 @@ const Underline = styled.span`
 /* Adapt the colors based on primary prop */
   border-bottom: ${props => props.primary ? "2px solid black" : ""};
   color : ${props => props.primary ? "black" : "gray"};
-                    padding : 5px;
-                    font-weight : 900;
+                        padding : 5px;
+                        font-weight : 900;
   @media screen and (max-width: 500px){
         fontsize: 15px;
 }
@@ -321,47 +326,47 @@ padding-bottom: 10px;
 position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
 
   @media screen and (max-width: 500px){
-  width: 360px;
-  padding-bottom: 10px;
-  font-size: 15px;
-}
-`;
+        width: 360px;
+      padding-bottom: 10px;
+      font-size: 15px;
+    }
+    `;
 
 const SubTemplateBlock = styled.div`
-width: 900px;
-max-height: 768px;
-margin: 0 auto;
-padding-bottom: 10px;
-
-position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-
+    width: 900px;
+    max-height: 768px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    
+    position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+    
   @media screen and (max-width: 500px){
-  width: 360px;
-  font-size: 12px;
-}
-`;
+        width: 360px;
+      font-size: 12px;
+    }
+    `;
 
 const Item = styled.div`
-display:none;
-
+    display:none;
+    
   @media screen and (max-width: 500px){
-    background-color:${props => props.primary ? "white" : ""};
+        background-color: ${props => props.primary ? "white" : ""};
   color:${props => props.primary ? "#316395" : "gray"};
-  border-width: 4px;
-  border-radius: 8px;
+      border-width: 4px;
+      border-radius: 8px;
   border-color: ${props => props.primary ? "black" : ""};
-  flex-grow:1;
-  height: 40px;  
-  padding-top: 10px;
-  
-
-  display: table-cell;
-  vertical-align: middle;
-  text-align:center;
-  align-self: center;
-  width: 360px;
-  }
-`
+      flex-grow:1;
+      height: 40px;  
+      padding-top: 10px;
+      
+    
+      display: table-cell;
+      vertical-align: middle;
+      text-align:center;
+      align-self: center;
+      width: 360px;
+      }
+    `
 
 
 export default Newspage;
