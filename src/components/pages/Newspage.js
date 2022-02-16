@@ -338,7 +338,6 @@ position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 
   @media screen and (max-width: 500px){
   width: 360px;
   font-size: 12px;
-  padding: 5px;
 }
 `;
 
