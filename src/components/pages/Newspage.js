@@ -33,7 +33,7 @@ function Newspage() {
     const mediumUrls = await axios.get('https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/medium')
     const mediumdata = mediumUrls.data.body.Items;
 
-    console.log("mediumdata", mediumdata)
+    // console.log("mediumdata", mediumdata)
 
     let tempObj = [];
     // let afterObj = [];
@@ -44,35 +44,33 @@ function Newspage() {
         "date": mediumdata[i].date,
         "title": mediumdata[i].title,
         "description": mediumdata[i].description,
+        "guid": mediumdata[i].guid
       })
     }
 
-    console.log(tempObj)
+    // console.log(tempObj)
 
     setBlog({ item: tempObj, isLoading: false })
 
   }
 
+  const handleClickAgain = guid => {
+    window.location.href = `https://www.medium.com/p/${guid}`;
+    // console.log("hello " + guid);
+  };
+
   return (
     <>
-      <SubTemplateBlock style={{ marginTop: "20px", marginBottom: "10px" }}>
+      <SubTemplateBloc style={{ marginTop: "20px", marginBottom: "10px" }}>
         <Underline primary={false}><Link to="/"><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>DeFiRank</Span></Link></Underline>
         <Underline style={{ marginLeft: "10px" }} primary={true}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
-      </SubTemplateBlock>
-
-      <SubTemplateBlock>
-        <Titlecard>
-          * Integrated Klaytn DeFi project News
-        </Titlecard>
-      </SubTemplateBlock>
+      </SubTemplateBloc>
+      <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>* Yon can check the sns source list in the docs. </SubTemplateBlock>
 
       <Selcontainer>
         <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}>MEDIUM</Item>
         <Item primary={!subselection} onClick={() => setSubselection(false)} style={{ cursor: "pointer" }}>TWITTER</Item>
       </Selcontainer>
-
-
-      {}
 
       <SubTemplateBlock>
         <Row>
@@ -82,24 +80,45 @@ function Newspage() {
                 <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> MEDIUM DAILY NEWS</Subtitle>
               </Containersub>
             </Topcard>
-            <Bottomcard>
-              {
-                blog.item.map((blg) =>
-                  <Card>
-                    <Container>
-                      <Image src={blg.image}
-                        alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
-                      <Colum>
-                        <Title>{blg.title}</Title>
-                        <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
-                        <Desc>{blg.description}</Desc>
-                        <div></div>
-                      </Colum>
-                    </Container>
-                  </Card>
-                )
-              }
-            </Bottomcard>
+            {subselection ?
+              <Bottomcard>
+                {
+                  blog.item.map((blg) =>
+                    <Card>
+                      <Container onClick={() => { handleClickAgain(blg.guid) }} style={{ cursor: "pointer" }}>
+                        <Image src={blg.image}
+                          alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
+                        <Colum>
+                          <Title>{blg.title}</Title>
+                          <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
+                          {blg.description.length > 300 ? <Desc>{blg.description.slice(0, 300)} ...</Desc> :
+                            <Desc>{blg.description}</Desc>
+                          }
+                        </Colum>
+                      </Container>
+                    </Card>
+                  )
+                }
+              </Bottomcard> :
+              <MobileBottomcard>
+                {
+                  blog.item.map((blg) =>
+                    <Card>
+                      <Container onClick={() => { handleClickAgain(blg.guid) }} style={{ cursor: "pointer" }}>
+                        <Image src={blg.image}
+                          alt="logo" style={{ padding: "0px", verticalAlign: "center" }} />
+                        <Colum>
+                          <Title>{blg.title}</Title>
+                          <div style={{ paddingTop: "5px", paddingBottom: "15px" }}>{blg.date.split(" ")[0]}</div>
+                          {blg.description.length > 300 ? <Desc>{blg.description.slice(0, 300)} ...</Desc> :
+                            <Desc>{blg.description}</Desc>
+                          }
+                        </Colum>
+                      </Container>
+                    </Card>
+                  )
+                }
+              </MobileBottomcard>}
 
           </Leftcolumn>
           <Rightcolumn>
@@ -109,20 +128,19 @@ function Newspage() {
               </Containersub>
             </Topcard>
             <Bottomcard>
-
-              <Card>
+              <Twittercard>
                 <Timeline
                   dataSource={{
                     sourceType: 'list',
                     id: "1491952670558412804",
                   }}
                   options={{
-                    height: '600',
+                    height: '800',
                     width: '100%',
                     chrome: "nofooter,noheader,transparent"
                   }}
                 />
-              </Card>
+              </Twittercard>
             </Bottomcard>
           </Rightcolumn>
 
@@ -150,6 +168,11 @@ const Desc = styled.div`
   font-family: 'OpenSans-Medium';
   display: block;
   line-height: 1.5;
+  @media screen and (max-width: 500px){
+  word-wrap: break-word;
+  width:250px;
+}
+
 `
 
 const Title = styled.div`
@@ -172,7 +195,7 @@ const Leftcolumn = styled.div`
 float:left;
 width:60%;
 
-  @media screen and (max-width: 500px){
+@media screen and (max-width: 500px){
   width: 100%;
   padding: 0;
 }
@@ -180,12 +203,10 @@ width:60%;
 const Rightcolumn = styled.div`
 float:left;
 width:40%;
-background-color:#f1f1f1;
 padding-left:20px;
-  @media screen and (max-width: 500px){
-        width: 100%;
+@media screen and (max-width: 500px){
+  width: 100%;
   padding: 0;
-  margin-top: 20px;
 }
 `
 
@@ -203,13 +224,30 @@ display:none;
 }
 `
 
-const Bottomcard = styled.div`
-height:600px;
+const MobileBottomcard = styled.div`
+height:800px;
 overflow:auto;
 margin-top:10px;
 border-radius: 10px; 
+@media screen and (max-width: 500px){
+        display: none;
+}
 
 `
+
+const Bottomcard = styled.div`
+height:800px;
+overflow:auto;
+margin-top:10px;
+border-radius: 10px; 
+`
+
+const Twittercard = styled.div`
+background-color:white;
+margin-bottom:8px;
+border-radius: 10px; 
+`
+
 
 const Card = styled.div`
 background-color:white;
@@ -217,27 +255,23 @@ padding:10px;
 margin-bottom:8px;
 font-size:13px;
 border-radius: 10px; 
+
 `
 
 const Selcontainer = styled.div`
 
   @media screen and (max-width: 500px){
   width: 360px;
-  box-shadow: 1px 0px 1px 0px gray;
   position: relative;
   display: flex;
   margin: 0 auto;
-  /* border: solid;
-  border-color: gray; */
+  border: solid;
+  border-color: gray;
   justify-content: space-around;
   border-radius: 8px;
-  margin-top: 15px;
-  /* border-width:1px; */
-  box-shadow: 1px 1px 1px 1px gray;
-
-
+  margin-top: 5px;
+  border-width:0.01em;
   flex-direction: row;
-
 }
 `
 
@@ -245,6 +279,7 @@ const Selcontainer = styled.div`
 const Container = styled.div`
 display: flex;
 width: 100%;
+padding:5px;
 `
 
 const Image = styled.img`
@@ -277,6 +312,21 @@ const Underline = styled.span`
 }
 `;
 
+const SubTemplateBloc = styled.div`
+width: 900px;
+max-height: 768px;
+margin: 0 auto;
+padding-bottom: 10px;
+
+position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+
+  @media screen and (max-width: 500px){
+  width: 360px;
+  padding-bottom: 10px;
+  font-size: 15px;
+}
+`;
+
 const SubTemplateBlock = styled.div`
 width: 900px;
 max-height: 768px;
@@ -286,8 +336,9 @@ padding-bottom: 10px;
 position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
 
   @media screen and (max-width: 500px){
-        width: 360px;
-font-size: 12px;
+  width: 360px;
+  font-size: 12px;
+  padding: 5px;
 }
 `;
 

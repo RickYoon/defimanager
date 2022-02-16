@@ -107,7 +107,7 @@ function Main() {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlinfotest"
 
     await axios.get(url).then(function (response) {
-      console.log(response.data.body)
+      // console.log(response.data.body)
       // tvl
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
@@ -128,7 +128,7 @@ function Main() {
         })
       }
 
-      console.log("tokenArr", tokenArrSort)
+      // console.log("tokenArr", tokenArrSort)
       setTokendata(tokenArrSort)
 
       // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
@@ -233,7 +233,7 @@ function Main() {
     <>
       <SubTemplateBlock style={{ marginTop: "20px", marginBottom: "10px" }}>
         <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
-        {/* <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline> */}
+        <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
         {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
       </SubTemplateBlock>
       <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>

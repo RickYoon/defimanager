@@ -3,7 +3,7 @@ import GlobalStyles from './assets/styles/GlobalStyles';
 import Topnav from './components/layout/Topnav';
 import Mainpage from './components/pages/Mainpage'
 import Detailpage from './components/pages/Detailpage'
-// import Newspage from './components/pages/Newspage'
+import Newspage from './components/pages/Newspage'
 import {
   BrowserRouter as Router,
   Route,
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Mainpage />} />
         <Route exact path="/project/:id" element={<Detailpage />} />
-        {/* <Route exact path="/news" element={<Newspage />} /> */}
+        <Route exact path="/news" element={<Newspage />} />
       </Routes>
     </Router>
   );
