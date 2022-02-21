@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { BiBook } from "react-icons/bi";
+import { BsQuestionCircle } from "react-icons/bs";
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function Topnav() {
     const moveNotion = () => {
@@ -13,10 +15,12 @@ function Topnav() {
         <>
             <TemplateBlock>
                 <span onClick={moveMain} style={{ cursor: "pointer" }}>KlayLabs.net<span style={{
-                    marginLeft: "5px", fontSize: "15px", fontStyle: "oblique"
+                    marginLeft: "5px", fontSize: "12px", fontStyle: "oblique"
                 }}>- Beta.</span></span>
-                <span onClick={moveNotion} style={{ cursor: "pointer" }
-                } > <BiBook /></span>
+                <span>
+                    <Link to="/faq"><span style={{ fontSize: "23px", marginRight: "10px" }}><BsQuestionCircle /></span></Link>
+                    <span onClick={moveNotion} style={{ cursor: "pointer", verticalAlign: "bottom", fontSize: "25px" }}><BiBook /></span>
+                </span>
             </TemplateBlock>
         </>
     );
