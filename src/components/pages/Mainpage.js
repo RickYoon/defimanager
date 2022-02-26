@@ -10,7 +10,6 @@ import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, Ca
 import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import icons from "../../assets/tokenIcons"
 import ReactTooltip from "react-tooltip"
-import { red } from 'bn.js';
 
 // hover
 //https://codesandbox.io/s/heuristic-curran-bddeu?fontsize=14&hidenavigation=1&theme=dark
