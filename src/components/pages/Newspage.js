@@ -66,7 +66,7 @@ function Newspage() {
 
   return (
     <>
-      <SubTopNavBlock style={{ marginBottom: "10px" }}>
+      <SubTopNavBlock style={{ marginBottom: "10px", marginTop: "20px", fontSize: "18px" }}>
         <Underline primary={false}><Link to="/"><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>DeFiRank</Span></Link></Underline>
         <Underline style={{ marginLeft: "10px" }} primary={true}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
       </SubTopNavBlock>

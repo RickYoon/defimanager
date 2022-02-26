@@ -18,7 +18,7 @@ function Topnav() {
             <TemplateBlock>
                 <span onClick={moveMain} style={{ cursor: "pointer" }}><img src={logo} style={{ height: "40px" }} /><span style={{
                     marginLeft: "5px", fontSize: "12px", fontStyle: "oblique"
-                }}>- Beta.</span></span>
+                }}></span></span>
                 <span>
                     <Link to="/faq"><span style={{ fontSize: "27px", marginRight: "10px", height: "15px" }}><BsQuestionCircle /></span></Link>
                     <span onClick={moveNotion} style={{ cursor: "pointer", verticalAlign: "bottom", fontSize: "27px" }}><BiBook /></span>

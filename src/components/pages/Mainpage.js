@@ -108,8 +108,8 @@ function Main() {
   }
 
   const loadtvl = async () => {
-    // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
-    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlinfotest"
+    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
+    // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlinfotest"
 
     await axios.get(url).then(function (response) {
       // console.log(response.data.body)
@@ -248,11 +248,32 @@ function Main() {
 
   return (
     <>
-      <SubTopNavBlock style={{ marginBottom: "10px" }}>
+      <SubTopNavBlock style={{ marginBottom: "10px", marginTop: "20px", fontSize: "18px" }}>
         <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
         <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
         {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
       </SubTopNavBlock>
+
+      {/* <div style={{ width: "900px", margin: "0 auto" }}>
+        <Row>
+          <Leftcolumn>
+            <Topcard>
+              <Containersub>
+                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Total Value Locked (USD) <br />{transnumber()} ({tvldata.total.diff}%/7days)</Subtitle>
+              </Containersub>
+            </Topcard>
+          </Leftcolumn>
+
+          <Rightcolumn>
+            <Topcard>
+              <Containersub>
+                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Klayswap Dominance <br />{transnumber()} ({tvldata.total.diff}%/7days)</Subtitle>
+              </Containersub>
+            </Topcard>
+          </Rightcolumn>
+        </Row>
+      </div> */}
+
       <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
       <Uppercontainer>
         <Upperitem>
@@ -262,6 +283,7 @@ function Main() {
           {transnumber()} ({tvldata.total.diff}%/7days)
         </Upperitem>
       </Uppercontainer>
+
 
       <Chartcover>
         <TemplateBlockinner>TVL trends (M$)
@@ -562,6 +584,54 @@ function Main() {
     </>
   );
 }
+const Containersub = styled.div`
+@media screen and (max-width: 500px){
+        display : none;
+    }
+    `
+
+const Subtitle = styled.div`
+@media screen and (max-width: 500px){
+        display: none;
+    }
+    `
+
+const Topcard = styled.div`
+    background-color:white;
+    padding:10px;
+    border-radius: 10px;
+@media screen and (max-width: 500px){
+        display: none;
+      }
+      `
+
+const Row = styled.div`
+  &:after{
+        content: "";
+display:table;
+clear:both;
+}
+`
+
+const Leftcolumn = styled.div`
+float:left;
+width:50%;
+
+@media screen and (max-width: 500px){
+        width: 100%;
+      padding: 0;
+    }
+    `
+const Rightcolumn = styled.div`
+    float:left;
+    width:50%;
+    padding-left:20px;
+@media screen and (max-width: 500px){
+        width: 100%;
+      padding: 0;
+    }
+    `
+
 
 const PC = styled.div`
   color: black;

@@ -34,6 +34,7 @@ import TurtleKing from './turking.png'
 import ORCA from './orca.png'
 import GRDSWAP from './GRDSWAP.svg'
 import Swapscanner from './Swapscanner.svg'
+import Electrik from './Electrik.png'
 
 const icons = {
     belt,
@@ -71,7 +72,8 @@ const icons = {
     TurtleKing,
     ORCA,
     GRDSWAP,
-    Swapscanner
+    Swapscanner,
+    Electrik
 }
 
 export default icons;

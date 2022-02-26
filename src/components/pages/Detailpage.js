@@ -55,7 +55,7 @@ function Detailpage() {
 
   return (
     <>
-      <SubTemplateBlock style={{ marginTop: "20px", marginBottom: "10px" }}>
+      <SubTemplateBlock style={{ marginTop: "40px", marginBottom: "10px" }}>
         <Underline primary><Link to="/"><span style={{ color: "#254b87", fontWeight: "bold", fontSize: "13px" }}>DefiRank</span></Link> > {id}</Underline>
       </SubTemplateBlock>
 
@@ -155,7 +155,7 @@ function Detailpage() {
               }}
               options={{
                 height: '500',
-                width: '350',
+                width: '100%',
                 chrome: "noheader, nofooter, transparent"
               }}
             />
@@ -215,16 +215,25 @@ const Downbox = styled.div`
 
 const Twitterbox = styled.div`
   float : right;
+  width: 49%;
   margin-Top : 15px;
   padding : 3px;
   background: white;
   border-radius: 16px;
+  font-size: 13px;
+  font-family: 'OpenSans-Semibold';
+  font-weight: bold;
+  font-size: 14px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+  @media screen and (max-width: 500px){
+    width: 100%;
+  }
+
   
 `
 
 const Infobox = styled.div`
-  width: 780px;
+  width: 900px;
   margin : 0 auto;
   display : flex;
   flex-direction: row;
@@ -240,7 +249,7 @@ const Infobox = styled.div`
 `
 
 const TodoTemplateBlock = styled.div`
-  width: 410px;
+  width: 49%;
   /* max-height: 1024px; */
   /* display: flex;
   flex-wrap:wrap; */
@@ -304,7 +313,7 @@ const TemplateBlockinner = styled.div`
 
 
 const SubTemplateBlock = styled.div`
-  width: 780px;
+  width: 900px;
   max-height: 768px;
   margin: 0 auto;
   padding-bottom: 10px;
@@ -330,7 +339,7 @@ const Underline = styled.span`
 `;
 
 const Uppercontainer = styled.span`
-  width: 780px;
+  width: 900px;
   display: flex;
   flex-direction: row;
   margin: 0 auto;
@@ -360,7 +369,7 @@ const Upperitem = styled.div`
 
 const Chartcover = styled.div`
   background-color: white;
-  width: 780px;
+  width: 900px;
   height: 270px;
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   border-radius: 10px;
