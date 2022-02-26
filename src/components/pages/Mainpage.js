@@ -10,6 +10,7 @@ import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, Ca
 import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import icons from "../../assets/tokenIcons"
 import ReactTooltip from "react-tooltip"
+import { red } from 'bn.js';
 
 // hover
 //https://codesandbox.io/s/heuristic-curran-bddeu?fontsize=14&hidenavigation=1&theme=dark
@@ -20,6 +21,11 @@ function Main() {
   const [isloading, setIsloading] = useState(true)
   // const [checkklayswap, setCheckklayswap] = useState(true)
   const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
+  const colorObj = {
+    "stable": "#3366cc",
+    "klay": "#dc3912",
+    "other": "#6633cc"
+  }
   const [tvldata, setTvldata] = useState({
     refDate: "2022-00-00",
     total: {
@@ -132,13 +138,6 @@ function Main() {
       setTokendata(tokenArrSort)
 
       // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
-
-
-
-
-
-
-
       tempArr.map((component) => {
         component["MarketShare"] = component.tvl / tempTotal[0].tvl * 100
         return null
@@ -178,8 +177,35 @@ function Main() {
       setFiftygroup(tempfif)
       setTengroup(tempten)
 
+      console.log("responseObj", responseObj)
+      // let tempRatio = []
+
+      responseObj.data.forEach((ress) => {
+        if (ress.pool !== undefined) {
+          ress.pool.ratioTVL.sort((function (a, b) {
+            return b.ratio - a.ratio
+          }))
+        }
+      })
+
       setTvldata(responseObj)
-      // console.log(responseObj)
+
+
+
+      // console.log(Number(aa.poolRatio[i].ratio) + Number(aa.poolRatio[i - 1].ratio))
+
+      // for (let i = 1; i < tempRatio.length; i++) {
+      //   tempRatio[i].chartRatio = tempRatio[i - 1].poolRatio + tempRatio[i].poolRatio
+      // }
+
+      // console.log(tempRatio)
+
+      // tempRatio.forEach((aa) => {
+      //   aa.poolRatio.sort(function (a, b) {
+      //     return b.ratio - a.ratio
+      //   })
+      // })
+
       setIsloading(false)
     })
   }
@@ -217,25 +243,17 @@ function Main() {
     setNumber(temp)
   }
 
-  // const changeinfo = e => {
-  //   console.log("e.target.id", e.target)
+  function breakdown() {
 
-  //   if (e.target.id === "TVL") {
-  //     setSubselection(true)
-  //   } else if (e.target.id === "TOKEN") {
-  //     setSubselection(false)
-  //   }
-  //   console.log(subselection)
-
-  // }
+  }
 
   return (
     <>
-      <SubTemplateBlock style={{ marginTop: "40px", marginBottom: "10px" }}>
+      <SubTopNavBlock style={{ marginBottom: "10px" }}>
         <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
         <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
         {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
-      </SubTemplateBlock>
+      </SubTopNavBlock>
       <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
       <Uppercontainer>
         <Upperitem>
@@ -279,10 +297,6 @@ function Main() {
                     }} />
                     <Tooltip />
                     <CartesianGrid strokeDasharray="3 3" />
-                    {/* <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[3]} dataKey="Kokoa" strokeWidth={1.5} isAnimationActive={false} /> */}
                     <Legend wrapperStyle={{ fontSize: "12px" }} />
                     {
                       hundredgroup.map((hundred, index) => {
@@ -302,16 +316,7 @@ function Main() {
                           return <Line type="linear" stroke={colorarr[index]} dataKey={fifty} strokeWidth={1.5} isAnimationActive={false} />
                         })
                       }
-
-
-                      {/* <Line type="linear" stroke={colorarr[0]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[1]} dataKey="PALA" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[2]} dataKey="Klaymore" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[3]} dataKey="Eklipse" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[4]} dataKey="Klaybank" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[5]} dataKey="Claimswap" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[6]} dataKey="i4i" strokeWidth={1.5} isAnimationActive={false} /> */} */}
-                    <Legend wrapperStyle={{ fontSize: "12px" }} />
+                      <Legend wrapperStyle={{ fontSize: "12px" }} />
 
                     </> :
                     <>
@@ -323,41 +328,9 @@ function Main() {
                           return <Line type="linear" stroke={colorarr[index]} dataKey={ten} strokeWidth={1.5} isAnimationActive={false} />
                         })
                       }
-
-
-                      {/* <Line type="linear" stroke={colorarr[0]} dataKey="klayFi" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[1]} dataKey="PALA" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[2]} dataKey="Klaymore" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[3]} dataKey="Eklipse" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[4]} dataKey="Klaybank" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[5]} dataKey="Claimswap" strokeWidth={1.5} isAnimationActive={false} />
-                    <Line type="linear" stroke={colorarr[6]} dataKey="i4i" strokeWidth={1.5} isAnimationActive={false} /> */} */}
-                    <Legend wrapperStyle={{ fontSize: "12px" }} />
+                      <Legend wrapperStyle={{ fontSize: "12px" }} />
                     </>
             }
-
-
-            {/* {checkklayswap === true ? <YAxis domain={[0, 100]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} /> :
-              <YAxis domain={[0, 100]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />} */}
-            {/* <YAxis domain={[0, 1500]} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
-            <Tooltip /> */}
-            {/* <Line type="linear" stroke={colorarr[0]} dataKey="Klayswap" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[1]} dataKey="kleva" strokeWidth={1} isAnimationActive={false} />
-            <Line type="monotone" stroke={colorarr[2]} dataKey="Klaystation" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[3]} dataKey="Kokoa" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[4]} dataKey="klayFi" strokeWidth={1} isAnimationActive={false} /> */}
-            {/* <Line type="linear" stroke={colorarr[1]} dataKey="klayFi" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[2]} dataKey="PALA" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[3]} dataKey="Klaymore" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[4]} dataKey="Eklipse" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[5]} dataKey="Klaybank" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[6]} dataKey="Claimswap" strokeWidth={1} isAnimationActive={false} />
-            <Line type="linear" stroke={colorarr[7]} dataKey="i4i" strokeWidth={1} isAnimationActive={false} /> */}
-            {/* <Line type="linear" stroke={colorarr[8]} dataKey="Kronosdao" strokeWidth={1} isAnimationActive={false} /> */}
-            {/* <Line type="linear" stroke={colorarr[7]} dataKey="KCT-Total" strokeWidth={1.5} isAnimationActive={false} /> */} */}
-
-
-
 
 
           </LineChart>
@@ -385,10 +358,10 @@ function Main() {
                       <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
                       <Td className="content" style={{ width: "50px", textAlign: "right" }}></Td>
-                      {/* <Td className="content" style={{ width: "200px", textAlign: "right" }}>Breakdown</Td> */}
-                      <Td className="content" style={{ width: "200px", textAlign: "right" }}>1day</Td>
-                      <Td className="content" style={{ width: "200px", textAlign: "right" }}>7days</Td>
-                      <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>M/S</Tdc>
+                      {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>Breakdown</Td> */}
+                      <Td className="content" style={{ width: "100px", textAlign: "right" }}>1day</Td>
+                      <Td className="content" style={{ width: "100px", textAlign: "right" }}>7days</Td>
+                      <Tdc className="content" style={{ width: "100px", textAlign: "right" }}>M/S</Tdc>
 
                     </tr>
                   </thead>
@@ -437,29 +410,55 @@ function Main() {
                               <></>
                             }
                           </Td>
-                          {/* <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>
-                            <svg width='100%' height='20px' style={{ paddingTop: "3px" }}>
-                              <g class='bars'>
-                                <rect fill='#3d5599' width='100%' rx="10" ry="10" height='15px'></rect>
-                                <rect fill='#cb4d3e' width='70%' rx="10" ry="10" height='15px'></rect>
-                                <rect fill='red' width='50%' rx="10" ry="10" height='15px'></rect>
-                              </g>
-                            </svg>
+                          {/* <Tdc className="head" style={{ width: "300px", paddingLeft: "1em" }}>
+                            {tvld.pool !== undefined ?
+                              <>
+                                <svg data-tip data-for={tvld.proj} width='100%' height='25px' style={{ paddingTop: "3px" }}>
+                                  <g class='bars' >
+                                    {
+                                      tvld.pool.chartData.map(ele => ele.tokenName === "stable" || ele.tokenName === "klay" || ele.tokenName === "other" ?
+                                        <rect fill={colorObj[ele.tokenName]} width={ele.ratio + "%"} rx="4" ry="4" height='20px'></rect> :
+                                        <rect fill="#ff9900" width={ele.ratio + "%"} rx="4" ry="4" height='20px'></rect>
+                                      )
+                                    }
+                                  </g>
+                                </svg>
+                                <ReactTooltip id={tvld.proj} border multiline={true} data-border={true} place="top" aria-haspopup='true' type="light" effect="solid">
+                                  {
+                                    tvld.pool.ratioTVL.map(ele => Number(ele.ratio) !== 0 ?
+                                      <div>{ele.tokenName} : {ele.ratio}%</div> :
+                                      <></>
+                                    )
+                                  }
+
+                                </ReactTooltip>
+
+
+
+                                {/* <ReactTooltip id="foo" border multiline={true} data-border={true} place="top" aria-haspopup='true' type="light" effect="solid">
+                                  <P>Why is the Number different?</P>
+                                  <P>{tvld.proj} : {tvld.notification.project} </P>
+                                  <P>Klaylabs : {tvld.notification.klaylabs} </P>
+                                </ReactTooltip>
+                              </> :
+                              <></>
+                            }
+
                           </Tdc> */}
 
 
-                          {tvld.difftwo === null ? <Td className="content" style={{ width: "300px", textAlign: "right", color: "gray" }}>-</Td> :
+                          {tvld.difftwo === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
                             tvld.difftwo > 0 ?
-                              <Td className="content" style={{ width: "300px", textAlign: "right", color: "red" }}>+{tvld.difftwo}%</Td> :
-                              <Td className="content" style={{ width: "300px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</Td>
+                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo}%</Td> :
+                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</Td>
                           }
-                          {tvld.diff === null ? <Td className="content" style={{ width: "300px", textAlign: "right", color: "gray" }}>-</Td> :
+                          {tvld.diff === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
                             tvld.diff > 0 ?
-                              <Td className="content" style={{ width: "300px", textAlign: "right", color: "red" }}>+{tvld.diff}%</Td> :
-                              <Td className="content" style={{ width: "300px", textAlign: "right", color: "blue" }}>{tvld.diff}%</Td>
+                              <Td className="content" style={{ width: "200px", textAlign: "right", color: "red" }}>+{tvld.diff}%</Td> :
+                              <Td className="content" style={{ width: "200px", textAlign: "right", color: "blue" }}>{tvld.diff}%</Td>
                           }
-                          {tvld.MarketShare === null ? <Tdc className="content" style={{ width: "300px", textAlign: "right", color: "gray" }}>-</Tdc> :
-                            <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>{tvld.MarketShare.toFixed(2)}%</Tdc>
+                          {tvld.MarketShare === null ? <Tdc className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Tdc> :
+                            <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>{tvld.MarketShare.toFixed(2)}%</Tdc>
                           }
 
                         </Tr>
@@ -688,10 +687,32 @@ const Uppercontainer = styled.span`
   border-radius: 8px;
   box-shadow: 1px 1px 1px gray;
 
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
 
   @media screen and (max-width: 500px){
   width: 360px;
+  border-radius: 8px;
   box-shadow: 1px 1px 1px gray;
+
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
 
 }
 `
@@ -752,6 +773,17 @@ const TodoTemplateBlock = styled.div`
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
+
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
   
   .loader {
     margin-left:200px;
@@ -761,7 +793,19 @@ const TodoTemplateBlock = styled.div`
     width: 360px;
     padding-left:0px;
     padding-right:0px;
-    box-shadow: 1px 1px 1px gray;
+    border-radius: 8px;
+  box-shadow: 1px 1px 1px gray;
+
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
 
     .loader {
       margin-left:135px;
@@ -806,13 +850,26 @@ const TemplateBlockinner = styled.div`
   }
 `;
 
+const SubTopNavBlock = styled.div`
+  width: 900px;
+  max-height: 768px;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+
+  @media screen and (max-width: 500px){
+    width: 360px;
+    font-size: 12px;
+  }
+`;
+
 
 const SubTemplateBlock = styled.div`
   width: 900px;
   max-height: 768px;
   margin: 0 auto;
   padding-bottom: 10px;
-
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
 
   @media screen and (max-width: 500px){
@@ -866,13 +923,31 @@ const Container = styled.div`
   border-radius: 8px;
   margin-top: 15px;
   /* border-width:1px; */
-  box-shadow: 1px 1px 1px 1px gray;
-
-
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
   flex-direction: row;
+
+
+  /* background-color:white;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px gray;
+
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  overflow: visible; */
+
+
+
+
+  
   @media screen and (max-width: 500px){
   width: 360px;
-  box-shadow: 1px 0px 1px 0px gray;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
 
 }
 `
@@ -945,18 +1020,29 @@ const Chartcover = styled.div`
   width: 900px;
   max-height: 768px;
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
-  border-radius: 10px;
   padding-top:15px;
   padding-bottom:15px;
   padding-left:20px;
   padding-right:20px;
-
   margin-top: 10px;
+
+  background-color:white;
+  border-radius: 8px;
   box-shadow: 1px 1px 1px gray;
 
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
   @media screen and (max-width: 500px){
     width: 100%;
-    box-shadow: 1px 1px 1px gray;
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
 
   }
 `

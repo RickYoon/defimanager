@@ -66,10 +66,10 @@ function Newspage() {
 
   return (
     <>
-      <SubTemplateBloc style={{ marginTop: "40px", marginBottom: "10px" }}>
+      <SubTopNavBlock style={{ marginBottom: "10px" }}>
         <Underline primary={false}><Link to="/"><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>DeFiRank</Span></Link></Underline>
         <Underline style={{ marginLeft: "10px" }} primary={true}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
-      </SubTemplateBloc>
+      </SubTopNavBlock>
       <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>* Yon can check the sns source list in the docs. </SubTemplateBlock>
 
       <Selcontainer>
@@ -177,15 +177,27 @@ const Desc = styled.div`
         word-wrap: break-word;
       width:250px;
     }
-    
-    `
+`
 
 const Title = styled.div`
-      font-family: 'OpenSans-Semibold';
-      font-weight: bold;
-      font-size: 14px;
-    `
+  font-family: 'OpenSans-Semibold';
+  font-weight: bold;
+  font-size: 14px;
+`
+const SubTopNavBlock = styled.div`
+width: 900px;
+max-height: 768px;
+margin: 0 auto;
+padding-bottom: 10px;
+padding-top: 30px;
 
+position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+
+@media screen and (max-width: 500px){
+  width: 360px;
+  font-size: 12px;
+}
+`;
 
 
 const Row = styled.div`

@@ -3,6 +3,8 @@ import { BiBook } from "react-icons/bi";
 import { BsQuestionCircle } from "react-icons/bs";
 import React from 'react';
 import { Link } from "react-router-dom";
+import logo from "../../assets/CI/modified.svg"
+
 
 function Topnav() {
     const moveNotion = () => {
@@ -14,12 +16,12 @@ function Topnav() {
     return (
         <>
             <TemplateBlock>
-                <span onClick={moveMain} style={{ cursor: "pointer" }}>KlayLabs.net<span style={{
+                <span onClick={moveMain} style={{ cursor: "pointer" }}><img src={logo} style={{ height: "40px" }} /><span style={{
                     marginLeft: "5px", fontSize: "12px", fontStyle: "oblique"
                 }}>- Beta.</span></span>
                 <span>
-                    <Link to="/faq"><span style={{ fontSize: "23px", marginRight: "10px" }}><BsQuestionCircle /></span></Link>
-                    <span onClick={moveNotion} style={{ cursor: "pointer", verticalAlign: "bottom", fontSize: "25px" }}><BiBook /></span>
+                    <Link to="/faq"><span style={{ fontSize: "27px", marginRight: "10px", height: "15px" }}><BsQuestionCircle /></span></Link>
+                    <span onClick={moveNotion} style={{ cursor: "pointer", verticalAlign: "bottom", fontSize: "27px" }}><BiBook /></span>
                 </span>
             </TemplateBlock>
         </>
