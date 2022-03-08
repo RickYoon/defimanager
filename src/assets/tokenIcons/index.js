@@ -35,6 +35,8 @@ import ORCA from './orca.png'
 import GRDSWAP from './GRDSWAP.svg'
 import Swapscanner from './Swapscanner.svg'
 import Electrik from './Electrik.png'
+import KairosCash from './KairosCash.png'
+import RHEA from './RHEA.svg'
 
 const icons = {
     belt,
@@ -73,7 +75,9 @@ const icons = {
     ORCA,
     GRDSWAP,
     Swapscanner,
-    Electrik
+    Electrik,
+    KairosCash,
+    RHEA
 }
 
 export default icons;

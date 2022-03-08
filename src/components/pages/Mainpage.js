@@ -248,13 +248,13 @@ function Main() {
 
   return (
     <>
-      <SubTopNavBlock style={{ marginBottom: "10px", marginTop: "20px", fontSize: "18px" }}>
+      <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "18px" }}>
         <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
         <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
         {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
       </SubTopNavBlock>
 
-      {/* <div style={{ width: "900px", margin: "0 auto" }}>
+      {/* <Topdash>
         <Row>
           <Leftcolumn>
             <Topcard>
@@ -263,16 +263,24 @@ function Main() {
               </Containersub>
             </Topcard>
           </Leftcolumn>
+          <Leftcolumn>
+            <Topcard>
+              <Containersub>
+                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Klayswap Dominance <br />32.5%</Subtitle>
+
+              </Containersub>
+            </Topcard>
+          </Leftcolumn>
 
           <Rightcolumn>
             <Topcard>
               <Containersub>
-                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Klayswap Dominance <br />{transnumber()} ({tvldata.total.diff}%/7days)</Subtitle>
+                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Klaytn DeFi Projects <br />35</Subtitle>
               </Containersub>
             </Topcard>
           </Rightcolumn>
         </Row>
-      </div> */}
+      </Topdash> */}
 
       <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
       <Uppercontainer>
@@ -584,15 +592,23 @@ function Main() {
     </>
   );
 }
+
+const Topdash = styled.div`
+ width: 900px;
+ margin: 0 auto;
+ @media screen and (max-width: 500px){
+  width: 350px;
+ 
+ }
+`
+
 const Containersub = styled.div`
 @media screen and (max-width: 500px){
-        display : none;
     }
     `
 
 const Subtitle = styled.div`
 @media screen and (max-width: 500px){
-        display: none;
     }
     `
 
@@ -601,36 +617,62 @@ const Topcard = styled.div`
     padding:10px;
     border-radius: 10px;
 @media screen and (max-width: 500px){
-        display: none;
       }
       `
 
 const Row = styled.div`
-  &:after{
-        content: "";
-display:table;
-clear:both;
-}
+display:flex;
+flex-direction:row;
+width:100%;
+justify-content:space-between;
+@media screen and (max-width: 500px){
+  width:380px;
+  display:flex;
+  flex-direction:column;
+
+      }
 `
 
 const Leftcolumn = styled.div`
-float:left;
-width:50%;
+  width:32.5%;
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
 
-@media screen and (max-width: 500px){
-        width: 100%;
-      padding: 0;
-    }
-    `
+
+  @media screen and (max-width: 500px){
+  width:350px;
+  padding: 0;
+  margin-bottom:10px;
+  }
+`
+
 const Rightcolumn = styled.div`
-    float:left;
-    width:50%;
-    padding-left:20px;
-@media screen and (max-width: 500px){
-        width: 100%;
-      padding: 0;
-    }
-    `
+  width:32.5%;
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
+
+
+  @media screen and (max-width: 500px){
+    width:350px;
+    padding: 0;
+  }
+`
 
 
 const PC = styled.div`
