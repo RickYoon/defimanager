@@ -248,9 +248,19 @@ function Main() {
 
   return (
     <>
-      <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "18px" }}>
-        <Underline primary><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank</Underline>
-        <Underline style={{ marginLeft: "10px" }} primary={false}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
+      <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px"}}>
+        <Underline primary>
+          <AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank
+        </Underline>
+        {/* <Underline style={{ marginLeft: "10px" }} primary={false}>
+          <AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />NFTMint
+        </Underline> */}
+        <Underline style={{ marginLeft: "10px" }} primary={false}>
+          <Link to="/news">
+            <AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} />
+            <Span style={{ paddingBottom: "10px" }}>News</Span>
+          </Link>
+        </Underline>
         {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
       </SubTopNavBlock>
 
