@@ -480,8 +480,8 @@ function Main() {
 
                           {tvld.difftwo === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
                             tvld.difftwo > 0 ?
-                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo}%</Td> :
-                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo}%</Td>
+                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo.toFixed(0)}%</Td> :
+                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo.toFixed(0)}%</Td>
                           }
                           {tvld.diff === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
                             tvld.diff > 0 ?
