@@ -261,7 +261,7 @@ function Main() {
               <Containersub style={{ margin: "15px" }}>
                 <div>
                   <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Total Value Locked (USD) </span>
-                  <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}> {transnumber()} </span>
+                  <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "#316395" }}> {transnumber()} </span>
                 </div>
               </Containersub>
             </Topcard>
@@ -272,10 +272,9 @@ function Main() {
                 <div>
                   <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Change (24h) </span>
                   <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}>
-                    {tvldata.data.length !== 0 ?
-                      <span>{tvldata.total.difftwo}%</span> :
-                      <span>- %</span>
-                    }
+                    {tvldata.total.difftwo > 0 ?
+                      <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "red" }}>+{tvldata.total.difftwo}%</span> :
+                      <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "blue" }}>{tvldata.total.difftwo}%</span>}
                   </span>
                 </div>
               </Containersub>
@@ -371,7 +370,7 @@ function Main() {
 
 
       <Container>
-        <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}><BsFillSafeFill style={{ verticalAlign: "top" }} size="17" /><span style={{ fontSize: "20px" }}>TVL</span></Item>
+        <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}><BsFillSafeFill style={{ verticalAlign: "top" }} size="17" /><span style={{ fontSize: "20px" }}>{" "}TVL</span></Item>
         <Item primary={!subselection} onClick={() => setSubselection(false)} style={{ cursor: "pointer" }}><BsCurrencyBitcoin style={{ verticalAlign: "top" }} size="20" /><span style={{ fontSize: "18px" }}>TOKEN</span></Item>
       </Container>
 
