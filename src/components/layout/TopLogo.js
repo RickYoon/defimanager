@@ -26,27 +26,6 @@ function Topnav() {
                 </span>
             </TemplateBlock>
 
-            <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
-                <Underline primary={pathname === "/"}>
-                    <Link to="/">
-                        {pathname === "/" ?
-                            <span style={{ color: "black" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank </span> :
-                            <span style={{ color: "gray" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> DeFiRank </span>
-                        }
-                    </Link>
-                </Underline>
-                <Underline style={{ marginLeft: "10px" }} primary={pathname === "/news"}>
-                    <Link to="/news">
-                        {pathname === "/news" ?
-                            <span style={{ color: "black" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} />News </span> :
-                            <span style={{ color: "gray" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /> News </span>
-                        }
-                    </Link>
-                </Underline>
-                {/* <Underline style={{ marginLeft: "10px" }} primary={false}>
-                    <BsFillPeopleFill style={{ marginRight: "5px", verticalAlign: "middle" }} />Community
-                </Underline> */}
-            </SubTopNavBlock>
         </>
     );
 }

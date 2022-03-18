@@ -8,7 +8,6 @@ import { Timeline } from 'react-twitter-widgets'
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 
-
 //https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klaybank
 //https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klayswap
 //https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40klaytn
@@ -66,19 +65,22 @@ function Newspage() {
 
   return (
     <>
-      <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "15px" }}>
+      {/* <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "15px" }}>
         <Underline primary={false}><Link to="/"><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>DeFiRank</Span></Link></Underline>
         <Underline style={{ marginLeft: "10px" }} primary={true}><Link to="/news"><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /><Span style={{ paddingBottom: "10px" }}>News</Span></Link></Underline>
       </SubTopNavBlock>
-      <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>* Yon can check the sns source list in the docs. </SubTemplateBlock>
+      <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>* Yon can check the sns source list in the docs. </SubTemplateBlock> */}
 
       <Selcontainer>
         <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}>MEDIUM</Item>
         <Item primary={!subselection} onClick={() => setSubselection(false)} style={{ cursor: "pointer" }}>TWITTER</Item>
       </Selcontainer>
 
-      <SubTemplateBlock>
-        {isloading ? <ReactLoading /> :
+      <SubSnsBlock>
+        {isloading ?
+          <Box>
+            <ReactLoading />
+          </Box> :
           <Row>
             <Leftcolumn>
               <Topcard>
@@ -151,7 +153,7 @@ function Newspage() {
             </Rightcolumn>
           </Row>
         }
-      </SubTemplateBlock>
+      </SubSnsBlock>
 
     </>
   );
@@ -168,6 +170,11 @@ const Subtitle = styled.div`
         display: none;
     }
     `
+
+
+const Box = styled.div`
+height:800px;
+`
 
 const Desc = styled.div`
       font-family: 'OpenSans-Medium';
@@ -192,6 +199,7 @@ padding-bottom: 10px;
 padding-top: 30px;
 
 position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+font-size: 18px;
 
 @media screen and (max-width: 500px){
   width: 360px;
@@ -256,6 +264,7 @@ const Bottomcard = styled.div`
 height:800px;
 overflow:auto;
 margin-top:10px;
+margin-bottom:25px;
 border-radius: 10px;
 `
 
@@ -275,29 +284,25 @@ border-radius: 10px;
 
 `
 
-const Selcontainer = styled.div`
+// const Selcontainer = styled.div`
 
-  @media screen and (max-width: 500px){
-        width: 360px;
-      position: relative;
-      display: flex;
-      margin: 0 auto;
-      border: solid;
-      border-color: gray;
-      justify-content: space-around;
-      border-radius: 8px;
-      margin-top: 5px;
-      border-width:0.01em;
-      flex-direction: row;
-    }
-    `
+//   @media screen and (max-width: 500px){
+//         width: 360px;
+//       position: relative;
+//       display: flex;
+//       margin: 0 auto;
+//       border: solid;
+//       border-color: gray;
+//       justify-content: space-around;
+//       border-radius: 8px;
+//       margin-top: 5px;
+//       border-width:0.01em;
+//       flex-direction: row;
+//     }
+//     `
 
 
-const Container = styled.div`
-    display: flex;
-    width: 100%;
-    padding:5px;
-    `
+
 
 const Image = styled.img`
       vertical-align: middle;
@@ -329,6 +334,21 @@ const Underline = styled.span`
 }
 `;
 
+
+
+
+const SubSnsBlock = styled.div`
+    width: 900px;
+    max-height: 768px;
+    margin: 0 auto;
+    position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+    
+  @media screen and (max-width: 500px){
+        width: 360px;
+      font-size: 12px;
+    }
+    `;
+
 const SubTemplateBloc = styled.div`
 width: 900px;
 max-height: 768px;
@@ -347,7 +367,7 @@ position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 
 const SubTemplateBlock = styled.div`
     width: 900px;
     max-height: 768px;
-    margin: 0 auto;
+    margin: 0 auto 0 auto;
     padding-bottom: 10px;
     
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -358,27 +378,73 @@ const SubTemplateBlock = styled.div`
     }
     `;
 
-const Item = styled.div`
-    display:none;
-    
-  @media screen and (max-width: 500px){
-        background-color: ${props => props.primary ? "white" : ""};
-  color:${props => props.primary ? "#316395" : "gray"};
-      border-width: 4px;
-      border-radius: 8px;
-  border-color: ${props => props.primary ? "black" : ""};
-      flex-grow:1;
-      height: 40px;  
-      padding-top: 10px;
-      
-    
-      display: table-cell;
-      vertical-align: middle;
-      text-align:center;
-      align-self: center;
-      width: 360px;
-      }
-    `
+const Container = styled.div`
+display: flex;
+width: 100%;
+padding:5px;
+`
 
+// const Item = styled.div`
+//     display:none;
+
+//   @media screen and (max-width: 500px){
+//         background-color: ${props => props.primary ? "white" : ""};
+//   color:${props => props.primary ? "#316395" : "gray"};
+//       border-width: 4px;
+//       border-radius: 8px;
+//   border-color: ${props => props.primary ? "black" : ""};
+//       flex-grow:1;
+//       height: 40px;  
+//       padding-top: 10px;
+
+
+//       display: table-cell;
+//       vertical-align: middle;
+//       text-align:center;
+//       align-self: center;
+//       width: 360px;
+//       }
+//     `
+
+
+const Selcontainer = styled.div`
+  display:none;
+
+  @media screen and (max-width: 500px){
+    position: relative;
+  width: 360px;
+  display: flex;
+  margin: 0 auto;
+  /* border: solid;
+  border-color: gray; */
+  justify-content: space-enenly;
+  border-radius: 8px;
+  margin-top: 15px;
+  /* border-width:1px; */
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  flex-direction: row;
+/*   
+  width: 360px;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem; */
+
+}
+`
+const Item = styled.div`
+  background-color:${props => props.primary ? "white" : ""};
+  color:${props => props.primary ? "#316395" : "gray"};
+  border-width: 4px;
+  border-radius: 8px;
+  border-color: ${props => props.primary ? "black" : ""};
+  flex-basis: 50%;
+  height: 40px;  
+  padding-top: 10px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align:center;
+  align-self: center;
+  @media screen and (max-width: 500px){
+  width: 360px;
+  }
+`
 
 export default Newspage;

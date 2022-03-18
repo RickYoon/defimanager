@@ -4,10 +4,10 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { AiFillTrophy, AiOutlineInfoCircle, AiOutlineProfile } from "react-icons/ai";
+import { BsFillSafeFill, BsCurrencyBitcoin, BsFillPeopleFill } from "react-icons/bs";
 // AiOutlineInfoCircle,
 import ReactLoading from 'react-loading';
 import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
-import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import icons from "../../assets/tokenIcons"
 import ReactTooltip from "react-tooltip"
 
@@ -20,11 +20,11 @@ function Main() {
   const [isloading, setIsloading] = useState(true)
   // const [checkklayswap, setCheckklayswap] = useState(true)
   const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
-  const colorObj = {
-    "stable": "#3366cc",
-    "klay": "#dc3912",
-    "other": "#6633cc"
-  }
+  // const colorObj = {
+  //   "stable": "#3366cc",
+  //   "klay": "#dc3912",
+  //   "other": "#6633cc"
+  // }
   const [tvldata, setTvldata] = useState({
     refDate: "2022-00-00",
     total: {
@@ -37,9 +37,9 @@ function Main() {
     "", ""
   ])
 
-  const [chartdata, setChartdata] = useState([{
-    "name": "-"
-  }]);
+  // const [chartdata, setChartdata] = useState([{
+  //   "name": "-"
+  // }]);
 
   const [tempchart, setTempchart] = useState([{
     "name": "-"
@@ -52,7 +52,14 @@ function Main() {
   useEffect(() => {
     loadtvl()
     loadchart()
+    // loadWallet()
   }, [])
+
+  // const loadWallet = async () => {
+  //   const accounts = await window.klaytn.enable()
+  //   const account = accounts[0]
+  //   console.log(account)
+  // }
 
   // useEffect(() => {
   //   loadchart()
@@ -91,7 +98,7 @@ function Main() {
 
       // console.log("tempArr", tempArr)
 
-      setChartdata(tempArr)
+      // setChartdata(tempArr)
 
       // let tempArray = []
 
@@ -214,7 +221,7 @@ function Main() {
     return (
       <>
         {tvldata.total.tvl > 10000000 ?
-          <span> ${(tvldata.total.tvl / 1000000000).toFixed(1)}B</span> :
+          <span> ${(tvldata.total.tvl / 1000000000).toFixed(2)}B</span> :
           <span> - </span>
         }
       </>
@@ -242,57 +249,38 @@ function Main() {
     setNumber(temp)
   }
 
-  function breakdown() {
-
-  }
 
   return (
     <>
-      <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px"}}>
-        <Underline primary>
-          <AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank
-        </Underline>
-        {/* <Underline style={{ marginLeft: "10px" }} primary={false}>
-          <AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />NFTMint
-        </Underline> */}
-        <Underline style={{ marginLeft: "10px" }} primary={false}>
-          <Link to="/news">
-            <AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} />
-            <Span style={{ paddingBottom: "10px" }}>News</Span>
-          </Link>
-        </Underline>
-        {/* <Underline style={{ marginLeft: "10px" }}><AiFillDollarCircle style={{ verticalAlign: "middle", marginRight: "5px" }} />Stables</Underline>*/}
-      </SubTopNavBlock>
 
-      {/* <Topdash>
+
+      <Topdash>
         <Row>
           <Leftcolumn>
             <Topcard>
-              <Containersub>
-                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Total Value Locked (USD) <br />{transnumber()} ({tvldata.total.diff}%/7days)</Subtitle>
+              <Containersub style={{ margin: "15px" }}>
+                <Subtitle style={{ textAlign: "left", fontFamily: "OpenSans-Medium" }}> Total Value Locked (USD) </Subtitle>
+                <Subtitle style={{ textAlign: "right", fontFamily: "OpenSans-Semibold", marginTop: "10px", fontSize: "25px" }}> {transnumber()} </Subtitle>
               </Containersub>
             </Topcard>
           </Leftcolumn>
-          <Leftcolumn>
-            <Topcard>
-              <Containersub>
-                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Klayswap Dominance <br />32.5%</Subtitle>
-
-              </Containersub>
-            </Topcard>
-          </Leftcolumn>
-
           <Rightcolumn>
             <Topcard>
-              <Containersub>
-                <Subtitle style={{ textAlign: "center", color: "#3d5599", fontFamily: "OpenSans-Semibold" }}> Klaytn DeFi Projects <br />35</Subtitle>
+              <Containersub style={{ margin: "15px" }}>
+                <Subtitle style={{ textAlign: "left", fontFamily: "OpenSans-Medium" }}> Klayswap Dominance </Subtitle>
+                <Subtitle style={{ textAlign: "right", fontFamily: "OpenSans-Semibold", marginTop: "10px", fontSize: "25px" }}>
+                  {tvldata.data.length !== 0 ?
+                    <div>{tvldata.data[0].MarketShare.toFixed(2)}%</div> :
+                    <div>39 %</div>
+                  }</Subtitle>
               </Containersub>
             </Topcard>
           </Rightcolumn>
-        </Row>
-      </Topdash> */}
 
-      <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
+        </Row>
+      </Topdash>
+
+      {/* <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
       <Uppercontainer>
         <Upperitem>
           {tvldata.data.length} projects
@@ -300,7 +288,7 @@ function Main() {
         <Upperitem>
           {transnumber()} ({tvldata.total.diff}%/7days)
         </Upperitem>
-      </Uppercontainer>
+      </Uppercontainer> */}
 
 
       <Chartcover>
@@ -378,7 +366,7 @@ function Main() {
 
 
       <Container>
-        <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}><BsFillSafeFill style={{ verticalAlign: "top" }} size="17" /><span style={{ fontSize: "20px", marginLeft: "5px" }}>TVL</span></Item>
+        <Item primary={subselection} onClick={() => setSubselection(true)} style={{ cursor: "pointer" }}><BsFillSafeFill style={{ verticalAlign: "top" }} size="17" /><span style={{ fontSize: "20px" }}>TVL</span></Item>
         <Item primary={!subselection} onClick={() => setSubselection(false)} style={{ cursor: "pointer" }}><BsCurrencyBitcoin style={{ verticalAlign: "top" }} size="20" /><span style={{ fontSize: "18px" }}>TOKEN</span></Item>
       </Container>
 
@@ -593,12 +581,6 @@ function Main() {
           }
         </TodoTemplateBlock>
       }
-      <TemplateLastBlock>- 수집시간 차이로 인한 오차로 추이를 보는 용도를 권합니다.</TemplateLastBlock>
-      <TemplateLastBlock>- 멀티체인 프로젝트는 klaytn 체인 TVL 만 합산했습니다.</TemplateLastBlock>
-      <TemplateLastBlock>- 수치는 매일 한번 업데이트 됩니다.</TemplateLastBlock>
-      <TemplateLastBlock></TemplateLastBlock>
-
-      <Copyright>Copyright 2022. KLAYlabs. All rights reserved.</Copyright>
     </>
   );
 }
@@ -608,7 +590,7 @@ const Topdash = styled.div`
  margin: 0 auto;
  @media screen and (max-width: 500px){
   width: 350px;
- 
+
  }
 `
 
@@ -644,7 +626,7 @@ justify-content:space-between;
 `
 
 const Leftcolumn = styled.div`
-  width:32.5%;
+  width:50%;
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   min-width: 0px;
@@ -655,17 +637,20 @@ const Leftcolumn = styled.div`
   border-radius: 0.75rem;
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
   overflow: visible;
+  margin-right: 5px;
 
 
   @media screen and (max-width: 500px){
   width:350px;
   padding: 0;
   margin-bottom:10px;
+  margin-right: 0px;
+
   }
 `
 
 const Rightcolumn = styled.div`
-  width:32.5%;
+  width:50%;
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   min-width: 0px;
@@ -676,11 +661,15 @@ const Rightcolumn = styled.div`
   border-radius: 0.75rem;
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
   overflow: visible;
+  margin-left: 5px;
 
 
   @media screen and (max-width: 500px){
-    width:350px;
-    padding: 0;
+  width:350px;
+  padding: 0;
+  margin-bottom:10px;
+  margin-left: 0px;
+
   }
 `
 
@@ -978,6 +967,7 @@ const SubTopNavBlock = styled.div`
   padding-top: 30px;
   padding-bottom: 10px;
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+  font-size: 15px;
 
   @media screen and (max-width: 500px){
     width: 360px;
@@ -1018,21 +1008,7 @@ const TemplateLastBlock = styled.div`
   }
 `;
 
-const Copyright = styled.div`
-  width: 900px;
-  max-height: 768px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align:center;
 
-  margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
-  font-size: 12px;
-  color: gray;
-
-  @media screen and (max-width: 500px){
-    width: 360px;
-  }
-`;
 const Container = styled.div`
   position: relative;
   width: 900px;
@@ -1040,31 +1016,12 @@ const Container = styled.div`
   margin: 0 auto;
   /* border: solid;
   border-color: gray; */
-  justify-content: space-around;
+  justify-content: space-enenly;
   border-radius: 8px;
   margin-top: 15px;
   /* border-width:1px; */
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
   flex-direction: row;
-
-
-  /* background-color:white;
-  border-radius: 8px;
-  box-shadow: 1px 1px 1px gray;
-
-  color: rgba(0, 0, 0, 0.87);
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  min-width: 0px;
-  overflow-wrap: break-word;
-  background-color: rgb(255, 255, 255);
-  background-clip: border-box;
-  border: 0px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.75rem;
-  overflow: visible; */
-
-
-
-
   
   @media screen and (max-width: 500px){
   width: 360px;
@@ -1078,11 +1035,9 @@ const Item = styled.div`
   border-width: 4px;
   border-radius: 8px;
   border-color: ${props => props.primary ? "black" : ""};
-  flex-grow:1;
+  flex-basis: 50%;
   height: 40px;  
   padding-top: 10px;
-  
-
   display: table-cell;
   vertical-align: middle;
   text-align:center;
@@ -1091,50 +1046,6 @@ const Item = styled.div`
   width: 360px;
   }
 `
-
-// const TodoHeadBlock = styled.div`
-//   padding-top: 15px;
-//   padding-left: 16px;
-//   h1 {
-//     margin: 0;
-//     font-size: 36px;
-//     color: #343a40;
-//   }
-//   .day {
-//     margin-top: 4px;
-//     color: #868e96;
-//     font-size: 13px;
-//     float: right;
-//   }
-//   .dayy {
-//     margin-top: 4px;
-//     font-size: 15px;
-//   }
-//   .tasks-left {
-//     font-size: 25px;
-//     margin-top: 10px;
-//     font-weight: bold;
-//     padding-left: 10px;
-//   }
-//   @media screen and (max-width: 500px){
-//     h1 {
-//     margin: 0;
-//     font-size: 36px;
-//     color: #343a40;
-//   }
-
-//     .tasks-left {
-//       font-size: 15px;
-//       margin-top: 10px;
-//       font-weight: bold;
-//       margin-left: -8px;
-//     }
-//     .dayy {
-//       margin-top: 4px;
-//       font-size: 12px;
-//     }
-//   }
-// `;
 
 const Chartcover = styled.div`
   background-color: white;
@@ -1162,7 +1073,9 @@ const Chartcover = styled.div`
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
   overflow: visible;
   @media screen and (max-width: 500px){
-    width: 100%;
+    /* width: 100%; */
+    width: 360px;
+
     box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
 
   }
