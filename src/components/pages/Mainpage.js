@@ -119,7 +119,7 @@ function Main() {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlinfotest"
 
     await axios.get(url).then(function (response) {
-      // console.log(response.data.body)
+      console.log(response.data.body)
       // tvl
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
@@ -259,20 +259,25 @@ function Main() {
           <Leftcolumn>
             <Topcard>
               <Containersub style={{ margin: "15px" }}>
-                <Subtitle style={{ textAlign: "left", fontFamily: "OpenSans-Medium" }}> Total Value Locked (USD) </Subtitle>
-                <Subtitle style={{ textAlign: "right", fontFamily: "OpenSans-Semibold", marginTop: "10px", fontSize: "25px" }}> {transnumber()} </Subtitle>
+                <div>
+                  <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Total Value Locked (USD) </span>
+                  <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}> {transnumber()} </span>
+                </div>
               </Containersub>
             </Topcard>
           </Leftcolumn>
           <Rightcolumn>
             <Topcard>
               <Containersub style={{ margin: "15px" }}>
-                <Subtitle style={{ textAlign: "left", fontFamily: "OpenSans-Medium" }}> Klayswap Dominance </Subtitle>
-                <Subtitle style={{ textAlign: "right", fontFamily: "OpenSans-Semibold", marginTop: "10px", fontSize: "25px" }}>
-                  {tvldata.data.length !== 0 ?
-                    <div>{tvldata.data[0].MarketShare.toFixed(2)}%</div> :
-                    <div>39 %</div>
-                  }</Subtitle>
+                <div>
+                  <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Change (24h) </span>
+                  <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}>
+                    {tvldata.data.length !== 0 ?
+                      <span>{tvldata.total.difftwo}%</span> :
+                      <span>- %</span>
+                    }
+                  </span>
+                </div>
               </Containersub>
             </Topcard>
           </Rightcolumn>
@@ -589,7 +594,7 @@ const Topdash = styled.div`
  width: 900px;
  margin: 0 auto;
  @media screen and (max-width: 500px){
-  width: 350px;
+  width: 360px;
 
  }
 `
@@ -606,7 +611,7 @@ const Subtitle = styled.div`
 
 const Topcard = styled.div`
     background-color:white;
-    padding:10px;
+    padding:5px;
     border-radius: 10px;
 @media screen and (max-width: 500px){
       }
@@ -641,7 +646,7 @@ const Leftcolumn = styled.div`
 
 
   @media screen and (max-width: 500px){
-  width:350px;
+  width:360px;
   padding: 0;
   margin-bottom:10px;
   margin-right: 0px;
@@ -665,7 +670,7 @@ const Rightcolumn = styled.div`
 
 
   @media screen and (max-width: 500px){
-  width:350px;
+  width:360px;
   padding: 0;
   margin-bottom:10px;
   margin-left: 0px;
@@ -1075,6 +1080,8 @@ const Chartcover = styled.div`
   @media screen and (max-width: 500px){
     /* width: 100%; */
     width: 360px;
+    margin-top: 0px;
+
 
     box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
 
