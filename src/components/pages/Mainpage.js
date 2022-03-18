@@ -594,7 +594,7 @@ const Topdash = styled.div`
  width: 900px;
  margin: 0 auto;
  @media screen and (max-width: 500px){
-  width: 350px;
+  width: 360px;
 
  }
 `
@@ -646,7 +646,7 @@ const Leftcolumn = styled.div`
 
 
   @media screen and (max-width: 500px){
-  width:350px;
+  width:360px;
   padding: 0;
   margin-bottom:10px;
   margin-right: 0px;
@@ -670,7 +670,7 @@ const Rightcolumn = styled.div`
 
 
   @media screen and (max-width: 500px){
-  width:350px;
+  width:360px;
   padding: 0;
   margin-bottom:10px;
   margin-left: 0px;
@@ -814,7 +814,7 @@ const Uppercontainer = styled.span`
   overflow: visible;
 
   @media screen and (max-width: 500px){
-  width: 350px;
+  width: 360px;
   border-radius: 8px;
   box-shadow: 1px 1px 1px gray;
 
@@ -838,7 +838,7 @@ const Upperitem = styled.div`
   padding-top:5px;
   text-align:center;
   @media screen and (max-width: 500px){
-  width: 350px;
+  width: 360px;
   text-align:left;
 }
 `
@@ -905,7 +905,7 @@ const TodoTemplateBlock = styled.div`
   }
   
   @media screen and (max-width: 500px){
-    width: 350px;
+    width: 360px;
     padding-left:0px;
     padding-right:0px;
     border-radius: 8px;
@@ -975,7 +975,7 @@ const SubTopNavBlock = styled.div`
   font-size: 15px;
 
   @media screen and (max-width: 500px){
-    width: 350px;
+    width: 360px;
     font-size: 12px;
   }
 `;
@@ -989,7 +989,7 @@ const SubTemplateBlock = styled.div`
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
 
   @media screen and (max-width: 500px){
-    width: 350px;
+    width: 360px;
     font-size: 12px;
   }
 `;
@@ -1008,7 +1008,7 @@ const TemplateLastBlock = styled.div`
   color: gray;
 
   @media screen and (max-width: 500px){
-    width: 350px;
+    width: 360px;
     font-size:8px;
   }
 `;
@@ -1029,7 +1029,7 @@ const Container = styled.div`
   flex-direction: row;
   
   @media screen and (max-width: 500px){
-  width: 350px;
+  width: 360px;
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
 
 }
@@ -1048,7 +1048,7 @@ const Item = styled.div`
   text-align:center;
   align-self: center;
   @media screen and (max-width: 500px){
-  width: 350px;
+  width: 360px;
   }
 `
 
@@ -1079,7 +1079,7 @@ const Chartcover = styled.div`
   overflow: visible;
   @media screen and (max-width: 500px){
     /* width: 100%; */
-    width: 350px;
+    width: 360px;
     margin-top: 0px;
 
 

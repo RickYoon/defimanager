@@ -19,6 +19,12 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'OpenSans-Medium', 'SpoqaHanSansNeo-Regular';
         background: #e9ecef;
     }
+
+    html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    }
+
     @font-face {
     font-family: 'OpenSans-Semibold';
     src: local('OpenSans-Semibold'),url(${opensansSemibold}) format('woff');
