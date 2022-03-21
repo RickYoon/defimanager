@@ -386,7 +386,7 @@ function Main() {
                 <table>
                   <thead>
                     <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
-                      <Th className="head" style={{ width: "10px", textAlign: "left" }}>#</Th>
+                      <Th className="head" style={{ width: "30px", textAlign: "left" }}>#</Th>
                       <Tdp className="head">Project</Tdp>
                       <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
                       <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
@@ -403,7 +403,7 @@ function Main() {
                     {tvldata.data.length === 0 ? <div>Loading</div> :
                       tvldata.data.map((tvld, index) => (
                         <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
-                          <Th className="head" style={{ width: "10px", textAlign: "left" }}>{index + 1}
+                          <Th className="head" style={{ width: "30px", textAlign: "left" }}>{index + 1}
                             {tvld.rankdiff === 0 ? <span style={{ fontSize: "14px", color: "black" }}>(-)</span> :
                               tvld.rankdiff > 0 ? <span style={{ fontSize: "14px", color: "red" }}>(&uarr;{tvld.rankdiff})</span> :
                                 <span style={{ fontSize: "14px", color: "blue", verticalAlign: "middle" }}>(&darr;{Math.abs(Number(tvld.rankdiff))})</span>
@@ -529,7 +529,7 @@ function Main() {
                       tokendata.map((tvld, index) => (
                         tvld.price === 0 ?
                           <Tr style={{ display: "none" }}>
-                            <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
+                            <Td className="head" style={{ width: "20px", textAlign: "center" }}>{index + 1}</Td>
                             <Tdpd className="head">
                               <Link to={`/project/${tvld.project}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.token}</span></Link>
                             </Tdpd>
@@ -721,6 +721,7 @@ const Tdp = styled.td`
   padding-left: 2em;
   @media screen and (max-width: 500px){
     padding-left: 1em;
+    width: 250px;
   }
 `
 const Tdpp = styled.td`
@@ -730,6 +731,8 @@ const Tdpp = styled.td`
   padding-left: 3em;
   @media screen and (max-width: 500px){
     padding-left: 30px;
+    width: 250px;
+
   }
 `
 const Tdpd = styled.td`
@@ -844,13 +847,12 @@ const Upperitem = styled.div`
 const Th = styled.th`
   height:25px;
   vertical-align:middle;
-  padding-left:10px;
+  padding-left:5px;
 `;
 
 const Tdc = styled.td`
   @media screen and (max-width: 500px){
     display:none;
-    
   }
   height:25px;
   vertical-align:middle;
