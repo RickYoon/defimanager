@@ -7,7 +7,8 @@ import { AiFillTrophy, AiOutlineInfoCircle, AiOutlineProfile } from "react-icons
 import { BsFillSafeFill, BsCurrencyBitcoin, BsFillPeopleFill } from "react-icons/bs";
 // AiOutlineInfoCircle,
 import ReactLoading from 'react-loading';
-import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
+// import { AreaChart, Area, LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
+import { AreaChart, Area, LineChart, Line, BarChart, CartesianGrid, Bar, Legend, YAxis, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import icons from "../../assets/tokenIcons"
 import ReactTooltip from "react-tooltip"
 
@@ -78,7 +79,7 @@ function Main() {
   const loadchart = async () => {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/testapi"
     await axios.get(url).then(function (response) {
-      // console.log("response", response)
+      // console.log("chart", response)
       let tempArr = response.data.body.Items;
       let tempKeys = Object.keys(tempArr[0]);
 
@@ -110,6 +111,7 @@ function Main() {
       //     })
       //   })
       // })
+      console.log("tempArr", tempArr)
       setTempchart(tempArr)
     })
   }
@@ -280,7 +282,6 @@ function Main() {
               </Containersub>
             </Topcard>
           </Rightcolumn>
-
         </Row>
       </Topdash>
 
@@ -296,7 +297,7 @@ function Main() {
 
 
       <Chartcover>
-        <TemplateBlockinner>TVL trend (M$)
+        <TemplateBlockinner>2 weeks trend
             <Pagination>
             <PA href="#!" onClick={minusNumber}>&laquo;</PA>
             <PC href="#!" style={{ width: "100px", textAlign: "center" }}>{number === 1 ? <>TOTAL</> : number === 2 ? <>OVER 100M</> : number === 3 ? <>50~100M</> : <>10~50M</>}</PC>
@@ -304,70 +305,101 @@ function Main() {
           </Pagination>
         </TemplateBlockinner>
 
-        <div style={{ marginLeft: "7px", marginRight: "7px", paddingTop: "5px" }}>
-          <ResponsiveContainer width="100%" height={250}>
-            <LineChart
-              className="mx-auto"
-              data={tempchart}
-            >
-              <XAxis dataKey="date" stroke="#efefef" tick={{ fontSize: 10, fill: '#000000' }} />
+        <ResponsiveContainer width="100%" height={250}>
+          <AreaChart width="100%" height={250} data={tempchart}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="colorAv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="red" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="red" stopOpacity={0} />
+              </linearGradient>
 
-              {
-                number === 1 ?
-                  <>
+            </defs>
+            <CartesianGrid width="10" vertical={false} />
+            <XAxis tick={{ fontSize: 10 }} dataKey="date" axisLine={false} tickLine={false} hide={true} />
+            <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
+            <Tooltip />
+            <Area type="monotone" dataKey="KCT-Total" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+
+          </AreaChart>
+          {/* 
+          {
+            number === 1 ?
+              <>
+
+
+              </> :
+              number === 2 ?
+                <>
+                  <LineChart
+                    className="mx-auto"
+                    data={tempchart}
+                  >
+                    <XAxis dataKey="date" stroke="#efefef" tick={{ fontSize: 10, fill: '#000000' }} />
+
                     <YAxis domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
                       return tick.toLocaleString();
                     }} />
                     <Tooltip />
                     <CartesianGrid strokeDasharray="3 3" />
-                    <Line type="linear" stroke={colorarr[0]} dataKey="KCT-Total" strokeWidth={1.5} isAnimationActive={false} />
-                  </> :
-                  number === 2 ?
-                    <>
-                      <YAxis domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
-                        return tick.toLocaleString();
-                      }} />
+                    <Legend wrapperStyle={{ fontSize: "12px" }} />
+                    {
+                      hundredgroup.map((hundred, index) => {
+                        return <Line type="linear" stroke={colorarr[index]} dataKey={hundred} strokeWidth={1.5} isAnimationActive={false} />
+                      })
+                    }
+                  </LineChart>
+
+
+                </>
+                :
+                number === 3 ?
+                  <>
+                    <LineChart
+                      className="mx-auto"
+                      data={tempchart}
+                    >
+                      <XAxis dataKey="date" stroke="#efefef" tick={{ fontSize: 10, fill: '#000000' }} />
+
+                      <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
                       <Tooltip />
                       <CartesianGrid strokeDasharray="3 3" />
-                      <Legend wrapperStyle={{ fontSize: "12px" }} />
                       {
-                        hundredgroup.map((hundred, index) => {
-                          return <Line type="linear" stroke={colorarr[index]} dataKey={hundred} strokeWidth={1.5} isAnimationActive={false} />
+                        fiftygroup.map((fifty, index) => {
+                          return <Line type="linear" stroke={colorarr[index]} dataKey={fifty} strokeWidth={1.5} isAnimationActive={false} />
                         })
                       }
-
-                    </>
-                    :
-                    number === 3 ?
-                      <>
-                        <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
-                        <Tooltip />
-                        <CartesianGrid strokeDasharray="3 3" />
-                        {
-                          fiftygroup.map((fifty, index) => {
-                            return <Line type="linear" stroke={colorarr[index]} dataKey={fifty} strokeWidth={1.5} isAnimationActive={false} />
-                          })
-                        }
-                        <Legend wrapperStyle={{ fontSize: "12px" }} />
-
-                      </> :
-                      <>
-                        <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
-                        <Tooltip />
-                        <CartesianGrid strokeDasharray="3 3" />
-                        {
-                          tengroup.map((ten, index) => {
-                            return <Line type="linear" stroke={colorarr[index]} dataKey={ten} strokeWidth={1.5} isAnimationActive={false} />
-                          })
-                        }
-                        <Legend wrapperStyle={{ fontSize: "12px" }} />
-                      </>
-              }
+                      <Legend wrapperStyle={{ fontSize: "12px" }} />
+                    </LineChart>
 
 
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+                  </> :
+                  <>
+                    <LineChart
+                      className="mx-auto"
+                      data={tempchart}
+                    >
+                      <XAxis dataKey="date" stroke="#efefef" tick={{ fontSize: 10, fill: '#000000' }} />
+
+                      <YAxis domain={['dataMin - 20', 'dataMax + 10']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} />
+                      <Tooltip />
+                      <CartesianGrid strokeDasharray="3 3" />
+                      {
+                        tengroup.map((ten, index) => {
+                          return <Line type="linear" stroke={colorarr[index]} dataKey={ten} strokeWidth={1.5} isAnimationActive={false} />
+                        })
+                      }
+                      <Legend wrapperStyle={{ fontSize: "12px" }} />
+                    </LineChart>
+
+                  </>
+          } */}
+
+
+        </ResponsiveContainer>
       </Chartcover>
 
 
@@ -952,6 +984,7 @@ const TemplateBlockinner = styled.div`
   padding-top: 5px;
   padding-left: 10px;
   padding-right:10px;
+  font-family:"OpenSans-Medium";
 
   @media screen and (max-width: 500px){
     display: flex;
@@ -1057,9 +1090,9 @@ const Chartcover = styled.div`
   max-height: 768px;
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   padding-top:15px;
-  padding-bottom:5px;
-  padding-left:10px;
-  padding-right:10px;
+  padding-bottom:15px;
+  padding-left:20px;
+  padding-right:20px;
   margin-top: 10px;
 
   background-color:white;

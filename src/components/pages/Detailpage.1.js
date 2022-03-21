@@ -35,62 +35,32 @@ function Detailpage() {
     const url = `https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/detailInfo?proj=${id}`
 
     await axios.get(url).then(function (response) {
-      console.log(response)
+      // console.log(response)
       let tempArr = [];
       let priceArr = [];
 
 
       response.data.chart.Items.forEach((item) => {
-        if (item[id] > 1000000) {
-          tempArr.push({
-            date: item.date.slice(5, 10),
-            tvl: Number(item[id] / 1000000).toFixed(2),
-            scale: "M$"
-          })
-        } else if (item[id] > 1000) {
-          tempArr.push({
-            date: item.date.slice(5, 10),
-            tvl: Number(item[id] / 1000).toFixed(2),
-            scale: "K$"
-          })
-        }
+        tempArr.push({
+          date: item.date.slice(5, 10),
+          tvl: Number(item[id] / 1000000).toFixed(0)
+        })
       })
 
       response.data.price.forEach((item) => {
-        if (item.price > 1) {
-          priceArr.push({
-            date: item.date.slice(5, 10),
-            dateRaw: item.date,
-            price: item[id],
-            TokenPrice: item.price.toFixed(1)
-          })
-        } else {
-          priceArr.push({
-            date: item.date.slice(5, 10),
-            dateRaw: item.date,
-            price: item[id],
-            TokenPrice: item.price.toFixed(5)
-          })
-        }
+        priceArr.push({
+          date: item.date.slice(5, 10),
+          price: item[id],
+          priceOne: item.price
+        })
       })
 
       let serviceObject = {
         "chart": tempArr,
         "price": priceArr,
-        "lastTvl": Number(response.data.chart.Items[0][id].toFixed(0)),
+        "lastTvl": response.data.chart.Items[0][id],
         "proj": response.data.proj
       }
-
-      // kairosCash price data update need (KASH, KREDIT)
-      // electrik price data update need (BTRY)
-      // RHEA token 없음 (RHEA, SRHEA)
-
-      // klayportal 처럼 토큰 없는애들 처리 필요
-      // bifi have no token
-      // taalswap not working
-      // 1M 이하 프로젝트 klaymeta TVL 먹혀버림...
-
-
 
       serviceObject.chart.sort(function (a, b) {
         return a.date < b.date ? -1 : a.date < b.date ? 1 : 0;
@@ -99,57 +69,6 @@ function Detailpage() {
       serviceObject.price.sort(function (a, b) {
         return a.date < b.date ? -1 : a.date < b.date ? 1 : 0;
       })
-
-      let tvlLength = serviceObject.chart.length;
-
-      if (serviceObject.chart.length > 13) {
-        const lastDayTvl = Number(serviceObject.chart[13].tvl)
-        const beforeDayTvl = Number(serviceObject.chart[6].tvl)
-        let tokenOneName = ""
-        if (priceArr.length === 0) {
-          // const tokenOneName = priceArr[0].price[0].tokenName
-          tokenOneName = "-"
-          serviceObject.startChart = serviceObject.chart[0].date
-          serviceObject.endChart = serviceObject.chart[13].date
-
-        } else {
-          tokenOneName = priceArr[0].price[0].tokenName
-          serviceObject.startChart = serviceObject.price[0].dateRaw
-          serviceObject.endChart = serviceObject.price[13].dateRaw
-        }
-        // const tokenOneName = "kokoa"
-        // console.log("tokenOneName", tokenOneName)
-
-        serviceObject.tvlDiff = ((((lastDayTvl - beforeDayTvl) / (beforeDayTvl))) * 100).toFixed(2)
-        serviceObject.tokenOneName = tokenOneName
-        // serviceObject.startChart = "2022-11-11"
-        // serviceObject.endChart = "2022-11-11"
-
-        console.log("serviceObject", serviceObject)
-      } else if (serviceObject.chart.length > 6) {
-        const lastDayTvl = Number(serviceObject.chart[tvlLength - 1].tvl)
-        const beforeDayTvl = Number(serviceObject.chart[tvlLength - 8].tvl)
-        serviceObject.tvlDiff = ((((lastDayTvl - beforeDayTvl) / (beforeDayTvl))) * 100).toFixed(2)
-
-        // const lastDayTvl = 123
-        // const beforeDayTvl = 456
-        let tokenOneName = ""
-        if (priceArr.length === 0) {
-          // const tokenOneName = priceArr[0].price[0].tokenName
-          tokenOneName = "-"
-        } else {
-          tokenOneName = priceArr[0].price[0].tokenName
-        }
-        // console.log("tokenOneName", tokenOneName)
-
-        serviceObject.tokenOneName = tokenOneName
-        serviceObject.startChart = serviceObject.price[0].dateRaw
-        serviceObject.endChart = serviceObject.price[13].dateRaw
-        // serviceObject.startChart = "2022-11-11"
-        // serviceObject.endChart = "2022-11-11"
-
-        console.log("serviceObject", serviceObject)
-      }
 
 
       setDetailinfo(serviceObject)
@@ -179,8 +98,7 @@ function Detailpage() {
               <Containersub style={{ margin: "15px" }}>
                 <div>
                   <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Total Value Locked (USD) </span>
-                  {isloading ? <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "#316395" }}> - </span> :
-                    <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "#316395" }}> {detailinfo.lastTvl.toLocaleString()} </span>}
+                  <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "#316395" }}> 23,321,213 </span>
                 </div>
               </Containersub>
             </Topcard>
@@ -189,14 +107,12 @@ function Detailpage() {
             <Topcard>
               <Containersub style={{ margin: "15px" }}>
                 <div>
-                  <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Change (7days) </span>
-                  {isloading ? <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}> - %</span> :
-                    <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}>
-                      {detailinfo.tvlDiff > 0 ?
-                        <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "red" }}>+{detailinfo.tvlDiff}%</span> :
-                        <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "blue" }}>{detailinfo.tvlDiff}%</span>}
-                    </span>
-                  }
+                  <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "16px" }}> Change (24h) </span>
+                  <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px" }}>
+                    {1 > 0 ?
+                      <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "red" }}>+3%</span> :
+                      <span style={{ float: "right", fontFamily: "OpenSans-Semibold", fontSize: "20px", color: "blue" }}>2%</span>}
+                  </span>
                 </div>
               </Containersub>
             </Topcard>
@@ -204,16 +120,62 @@ function Detailpage() {
         </Row>
       </Topdash>
 
+      <Chartcover>
+        <TemplateBlockinner style={{ padding: "10px", textAlign: "center" }}>
+          TVL trend
+      </TemplateBlockinner>
+        <ResponsiveContainer width="100%" height={220}>
+          <AreaChart width="100%" height={250} data={detailinfo.chart}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+
+            <XAxis tick={{ fontSize: 10 }} dataKey="date" />
+            <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
+            <Tooltip />
+            <Area type="monotone" dataKey="tvl" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+          </AreaChart>
+        </ResponsiveContainer>
+      </Chartcover>
 
       <Chartcover>
+        <TemplateBlockinner style={{ padding: "10px", textAlign: "center" }}>
+          TVL trend
+      </TemplateBlockinner>
+        <ResponsiveContainer width="100%" height={220}>
+          <AreaChart width="100%" height={250} data={detailinfo.chart}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+
+            <XAxis tick={{ fontSize: 10 }} dataKey="date" />
+            <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
+            <Tooltip />
+            <Area type="monotone" dataKey="tvl" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+          </AreaChart>
+        </ResponsiveContainer>
+      </Chartcover>
+
+
+      <TopInfobox>
         {isloading ? <ReactLoading type="spin" color="gray" /> :
-          <>
-            <div style={{ paddingRight: "10px", paddingTop: "10px", textAlign: "right" }}>{detailinfo.startChart} ~ {detailinfo.endChart}</div>
-            <TemplateBlockinner style={{ padding: "10px" }}>
-              TVL({detailinfo.chart[0].scale})
-            </TemplateBlockinner>
-            <ResponsiveContainer width="100%" height={200}>
-              <AreaChart width="100%" height={200} data={detailinfo.chart}>
+
+          <TopTodoTemplateBlock style={{ padding: "10px" }}>
+            {/* <TemplateBlockinner>
+              {
+                detailinfo.price === undefined ?
+                  <div>-</div> :
+                  <div style={{ alignItems: "center" }}>{detailinfo.price[0].price[0].tokenName}</div>
+              }
+            </TemplateBlockinner> */}
+            {/* <ResponsiveContainer width="100%" height={220}>
+              <AreaChart width="100%" height={250} data={detailinfo.chart}>
                 <defs>
                   <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#8884d8" stopOpacity={0.5} />
@@ -222,57 +184,61 @@ function Detailpage() {
                 </defs>
 
                 <XAxis tick={{ fontSize: 10 }} dataKey="date" />
-                {/* <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> */}
-                {id === "Kokoa" ?
-                  <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 10']} /> :
-                  id === "Qubit" ?
-                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 150', 'dataMax+500']} /> :
-                    id === "kai" ?
-                      <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 1', 'dataMax + 2']} /> :
-                      id === "Electrik" ?
-                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> :
-                        id === "RoundRobin" ?
-                          <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> :
-                          id === "BiFi" ?
-                            <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> :
-                            id === "Fletaconnect" ?
-                              <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> :
-                              <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 1', 'dataMax + 1']} />
-                }
-
-                {/* <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 10']} /> */}
+                <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
                 <Tooltip />
-                <Area type="monotone" dataKey="tvl" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" isAnimationActive={false} />
+                <Area type="monotone" dataKey="tvl" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
               </AreaChart>
-            </ResponsiveContainer>
+            </ResponsiveContainer> */}
 
-            {
-              detailinfo.tokenOneName !== "-" ?
-                <>
-                  <TemplateBlockinner style={{ padding: "10px", paddingBottom: "10px" }}>
-                    {detailinfo.tokenOneName} price($)
-                   </TemplateBlockinner>
-                  <ResponsiveContainer width="100%" height={200}>
-                    <AreaChart width="100%" height={200} data={detailinfo.price}>
-                      <defs>
-                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#488A99" stopOpacity={0.5} />
-                          <stop offset="95%" stopColor="#488A99" stopOpacity={0} />
-                        </linearGradient>
-                      </defs>
-
-                      <XAxis tick={{ fontSize: 10 }} dataKey="date" />
-                      <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="TokenPrice" stroke="#488A99" fillOpacity={1} fill="url(#colorPv)" isAnimationActive={false} />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </> :
-                <></>
+            {isloading ? <ReactLoading type="spin" color="gray" /> :
+              <>
+                <ResponsiveContainer width="100%" height={200}>
+                  <LineChart style={{ marginLeft: "-10px" }} width="100%" height={200} data={detailinfo.chart}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" tick={{ fontSize: 10 }} />
+                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
+                    <Tooltip />
+                    <Line dataKey="tvl" fill="#254b87" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </>
             }
-          </>
+
+          </TopTodoTemplateBlock>
         }
-      </Chartcover>
+        {isloading ? <div style={{ height: "500px", width: "300px" }}><ReactLoading type="spin" color="gray" /></div> :
+
+          <TopTwitterbox style={{ paddingTop: "20px" }}>
+            <Timeline
+              dataSource={{
+                sourceType: 'profile',
+                screenName: detailinfo.proj.twitterid
+              }}
+              options={{
+                height: '500',
+                width: '100%',
+                chrome: "noheader, nofooter, transparent"
+              }}
+            />
+          </TopTwitterbox>
+        }
+
+      </TopInfobox>
+
+
+      {/* <Uppercontainer>
+        <Upperitem>
+          {id}
+        </Upperitem>
+        <Upperitem>
+          $ {detailinfo.lastTvl.toLocaleString()}
+        </Upperitem>
+      </Uppercontainer> */}
+
+
+
+
+
 
 
 
@@ -369,6 +335,10 @@ const Containersub = styled.div`
     }
     `
 
+const Subtitle = styled.div`
+@media screen and (max-width: 500px){
+    }
+    `
 
 const Topcard = styled.div`
     background-color:white;
@@ -483,6 +453,84 @@ const Downbox = styled.div`
 
 `;
 
+const TopInfobox = styled.div`
+  width: 900px;
+  margin : 0 auto;
+  display : flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height:500px;
+
+  @media screen and (max-width: 500px){
+    flex-direction: column;
+    width: 360px;
+    height:100%;
+  }
+`
+
+const TopTodoTemplateBlock = styled.div`
+  width: 65%;
+  /* max-height: 1024px; */
+  /* display: flex;
+  flex-wrap:wrap; */
+  font-family:"OpenSans-Semibold";
+
+
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+
+  margin-top: 16px;
+  margin-bottom: 5px;
+  padding-bottom:10px;
+  .loader {
+    margin-left:200px;
+  }
+  
+  @media screen and (max-width: 500px){
+    width: 360px;
+    padding-left:0px;
+    padding-right:0px;
+
+    .loader {
+      margin-left:135px;
+    }
+    .mobtrans{
+      display:none;
+    }
+    .tablecss{
+      font-size:15px;
+      
+    }
+    /* .head{
+    }
+    .headcol:before {
+      content: 'Row ';
+    }
+  .content {
+    background: #8cdba3;
+} */
+  }
+`;
+
+const TopTwitterbox = styled.div`
+  float : right;
+  width: 33%;
+  margin-Top : 15px;
+  padding : 3px;
+  background: white;
+  border-radius: 16px;
+  font-family: 'OpenSans-Semibold';
+  font-weight: bold;
+  font-size: 12px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+  @media screen and (max-width: 500px){
+    width: 100%;
+  }
+`
+
+
 const Infobox = styled.div`
   width: 900px;
   margin : 0 auto;
@@ -500,7 +548,7 @@ const Infobox = styled.div`
 `
 
 const TodoTemplateBlock = styled.div`
-  width: 59%;
+  width: 49%;
   /* max-height: 1024px; */
   /* display: flex;
   flex-wrap:wrap; */
@@ -544,7 +592,7 @@ const TodoTemplateBlock = styled.div`
 
 const Twitterbox = styled.div`
   float : right;
-  width: 39%;
+  width: 49%;
   margin-Top : 15px;
   padding : 3px;
   background: white;
@@ -587,23 +635,18 @@ const SubTemplateBlock = styled.div`
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
 
-  
-
   @media screen and (max-width: 500px){
     width: 360px;
     font-size: 12px;
   }
 `;
 
-
 const Chartcover = styled.div`
   width: 900px;
   /* height: 270px; */
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
-  padding:10px;
+  padding:15px;
   margin-top: 10px;
-  max-height:520px;
-
 
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -626,10 +669,6 @@ const Chartcover = styled.div`
   }
   @media screen and (max-width: 500px){
     width: 95%;
-    margin-top: 0px;
-    width: 360px;
-
-
   }
 `
 
