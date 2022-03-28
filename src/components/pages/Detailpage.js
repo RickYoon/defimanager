@@ -224,7 +224,7 @@ function Detailpage() {
                 <XAxis tick={{ fontSize: 10 }} dataKey="date" />
                 {/* <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> */}
                 {id === "Kokoa" ?
-                  <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 20']} /> :
+                  <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 30']} /> :
                   id === "Qubit" ?
                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 150', 'dataMax+500']} /> :
                     id === "kai" ?

@@ -966,20 +966,6 @@ const TemplateBlockinner = styled.div`
   }
 `;
 
-const SubTopNavBlock = styled.div`
-  width: 900px;
-  max-height: 768px;
-  margin: 0 auto;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-  font-size: 15px;
-
-  @media screen and (max-width: 500px){
-    width: 360px;
-    font-size: 12px;
-  }
-`;
 
 
 const SubTemplateBlock = styled.div`
