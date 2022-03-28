@@ -1,4 +1,4 @@
-
+import NewsTicker, { Directions } from "react-advanced-news-ticker";
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -249,9 +249,75 @@ function Main() {
     setNumber(temp)
   }
 
+  const goKromeSite = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "anonymous",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "krome",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://krome.finance/"
+
+    });
+  }
+
+  const goSwapSite = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "anonymous",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "swapscanner",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://swapscanner.io/ko/event/swap-competition"
+
+    });
+  }
+
+  // const goSwapSite = (e) => {
+  //   
+  // }
+
 
   return (
     <>
+
+
+      <Topdash>
+        <EventCard>
+          <NewsTicker
+            rowHeight={15}
+            maxRows={1}
+            speed={600}
+            direction={Directions.UP}
+            duration={4000}>
+            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={goKromeSite}> Launch > Krome finance (03/29 7PM)</div>
+            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={goSwapSite}> Event > Swapscanner compitition (~ 04/01)</div>
+          </NewsTicker>
+
+          {/* <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "13px", color: "#316395" }}>&nbsp;</span>
+          <Spanright>  upcomings - Krome finance launch 22/03/29 7PM  &nbsp;> </Spanright> */}
+
+        </EventCard>
+      </Topdash >
+
 
 
       <Topdash>
@@ -283,17 +349,6 @@ function Main() {
 
         </Row>
       </Topdash>
-
-      {/* <SubTemplateBlock style={{ fontSize: "12px", color: "gray" }}>refdate: {tvldata.refDate}</SubTemplateBlock>
-      <Uppercontainer>
-        <Upperitem>
-          {tvldata.data.length} projects
-        </Upperitem>
-        <Upperitem>
-          {transnumber()} ({tvldata.total.diff}%/7days)
-        </Upperitem>
-      </Uppercontainer> */}
-
 
       <Chartcover>
         <TemplateBlockinner>TVL trend (M$)
@@ -377,73 +432,74 @@ function Main() {
       </Container>
 
 
-      {subselection ?
+      {
+        subselection ?
 
-        <TodoTemplateBlock>
-          {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height={'20%'} width={'20%'} className="loader" /> :
-            <>
-              <div className="tablecss" style={{ margin: "20px" }}>
-                <table>
-                  <thead>
-                    <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
-                      <Th className="head" style={{ width: "30px", textAlign: "left" }}>#</Th>
-                      <Tdp className="head">Project</Tdp>
-                      <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
-                      <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
-                      <Td className="content" style={{ width: "50px", textAlign: "right" }}></Td>
-                      {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>Breakdown</Td> */}
-                      <Td className="content" style={{ width: "100px", textAlign: "right" }}>1day</Td>
-                      <Td className="content" style={{ width: "100px", textAlign: "right" }}>7days</Td>
-                      <Tdc className="content" style={{ width: "100px", textAlign: "right" }}>M/S</Tdc>
+          <TodoTemplateBlock>
+            {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height={'20%'} width={'20%'} className="loader" /> :
+              <>
+                <div className="tablecss" style={{ margin: "20px" }}>
+                  <table>
+                    <thead>
+                      <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
+                        <Th className="head" style={{ width: "30px", textAlign: "left" }}>#</Th>
+                        <Tdp className="head">Project</Tdp>
+                        <Tdc className="content" style={{ width: "200px", paddingLeft: "1em" }}>Category</Tdc>
+                        <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
+                        <Td className="content" style={{ width: "50px", textAlign: "right" }}></Td>
+                        {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>Breakdown</Td> */}
+                        <Td className="content" style={{ width: "100px", textAlign: "right" }}>1day</Td>
+                        <Td className="content" style={{ width: "100px", textAlign: "right" }}>7days</Td>
+                        <Tdc className="content" style={{ width: "100px", textAlign: "right" }}>M/S</Tdc>
 
-                    </tr>
-                  </thead>
-                  <tbody>
+                      </tr>
+                    </thead>
+                    <tbody>
 
-                    {tvldata.data.length === 0 ? <div>Loading</div> :
-                      tvldata.data.map((tvld, index) => (
-                        <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
-                          <Th className="head" style={{ width: "30px", textAlign: "left" }}>{index + 1}
-                            {tvld.rankdiff === 0 ? <span style={{ fontSize: "14px", color: "black" }}>(-)</span> :
-                              tvld.rankdiff > 0 ? <span style={{ fontSize: "14px", color: "red" }}>(&uarr;{tvld.rankdiff})</span> :
-                                <span style={{ fontSize: "14px", color: "blue", verticalAlign: "middle" }}>(&darr;{Math.abs(Number(tvld.rankdiff))})</span>
-                            }
-                          </Th>
-                          <Tdpd className="head" style={{ whiteSpace: "nowrap" }}>
-                            <Link to={`/project/${tvld.proj}`}>
-                              <img src={icons[tvld.proj]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                              <span style={{ padding: "7px", whiteSpace: "nowrap" }}>{tvld.proj}</span>
-                            </Link>
-                          </Tdpd>
-                          <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>{tvld.cat}</Tdc>
-                          {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
-                          {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>
+                      {tvldata.data.length === 0 ? <div>Loading</div> :
+                        tvldata.data.map((tvld, index) => (
+                          <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
+                            <Th className="head" style={{ width: "30px", textAlign: "left" }}>{index + 1}
+                              {tvld.rankdiff === 0 ? <span style={{ fontSize: "14px", color: "black" }}>(-)</span> :
+                                tvld.rankdiff > 0 ? <span style={{ fontSize: "14px", color: "red" }}>(&uarr;{tvld.rankdiff})</span> :
+                                  <span style={{ fontSize: "14px", color: "blue", verticalAlign: "middle" }}>(&darr;{Math.abs(Number(tvld.rankdiff))})</span>
+                              }
+                            </Th>
+                            <Tdpd className="head" style={{ whiteSpace: "nowrap" }}>
+                              <Link to={`/project/${tvld.proj}`}>
+                                <img src={icons[tvld.proj]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                <span style={{ padding: "7px", whiteSpace: "nowrap" }}>{tvld.proj}</span>
+                              </Link>
+                            </Tdpd>
+                            <Tdc className="head" style={{ width: "200px", paddingLeft: "1em" }}>{tvld.cat}</Tdc>
+                            {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
+                            {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>
                             {tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                           </Td> */}
-                          <Td className="content" style={{ width: "200px", textAlign: "right" }}>
-                            {tvld.tvl > 1000000000 ?
-                              <span> {Number(tvld.tvl / 1000000000).toFixed(1)}B </span> :
-                              tvld.tvl > 1000000 ?
-                                <span> {Number(tvld.tvl / 1000000).toFixed(0)}M </span> :
-                                tvld.tvl > 1000 ?
-                                  <span> {Number(tvld.tvl / 1000).toFixed(0)}K </span> :
-                                  <span> Number(tvld.tvl / 1000).toFixed(0)</span>
-                            }
-                          </Td>
-                          <Td className="content" style={{ width: "50px", textAlign: "right" }}>
-                            {tvld.notification !== undefined ?
-                              <>
-                                <a href='#!' data-for={tvld.proj} data-tip={tvld.notification}><AiOutlineInfoCircle /></a>
-                                <ReactTooltip id={tvld.proj} border multiline={true} data-border={true} place="top" aria-haspopup='true' type="light" effect="solid">
-                                  <P>Why is the Number different?</P>
-                                  <P>{tvld.proj} : {tvld.notification.project} </P>
-                                  <P>Klaylabs : {tvld.notification.klaylabs} </P>
-                                </ReactTooltip>
-                              </> :
-                              <></>
-                            }
-                          </Td>
-                          {/* <Tdc className="head" style={{ width: "300px", paddingLeft: "1em" }}>
+                            <Td className="content" style={{ width: "200px", textAlign: "right" }}>
+                              {tvld.tvl > 1000000000 ?
+                                <span> {Number(tvld.tvl / 1000000000).toFixed(1)}B </span> :
+                                tvld.tvl > 1000000 ?
+                                  <span> {Number(tvld.tvl / 1000000).toFixed(0)}M </span> :
+                                  tvld.tvl > 1000 ?
+                                    <span> {Number(tvld.tvl / 1000).toFixed(0)}K </span> :
+                                    <span> Number(tvld.tvl / 1000).toFixed(0)</span>
+                              }
+                            </Td>
+                            <Td className="content" style={{ width: "50px", textAlign: "right" }}>
+                              {tvld.notification !== undefined ?
+                                <>
+                                  <a href='#!' data-for={tvld.proj} data-tip={tvld.notification}><AiOutlineInfoCircle /></a>
+                                  <ReactTooltip id={tvld.proj} border multiline={true} data-border={true} place="top" aria-haspopup='true' type="light" effect="solid">
+                                    <P>Why is the Number different?</P>
+                                    <P>{tvld.proj} : {tvld.notification.project} </P>
+                                    <P>Klaylabs : {tvld.notification.klaylabs} </P>
+                                  </ReactTooltip>
+                                </> :
+                                <></>
+                              }
+                            </Td>
+                            {/* <Tdc className="head" style={{ width: "300px", paddingLeft: "1em" }}>
                             {tvld.pool !== undefined ?
                               <>
                                 <svg data-tip data-for={tvld.proj} width='100%' height='25px' style={{ paddingTop: "3px" }}>
@@ -480,116 +536,128 @@ function Main() {
                           </Tdc> */}
 
 
-                          {tvld.difftwo === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
-                            tvld.difftwo > 0 ?
-                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo.toFixed(0)}%</Td> :
-                              <Td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo.toFixed(0)}%</Td>
-                          }
-                          {tvld.diff === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
-                            tvld.diff > 0 ?
-                              <Td className="content" style={{ width: "200px", textAlign: "right", color: "red" }}>+{tvld.diff}%</Td> :
-                              <Td className="content" style={{ width: "200px", textAlign: "right", color: "blue" }}>{tvld.diff}%</Td>
-                          }
-                          {tvld.MarketShare === null ? <Tdc className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Tdc> :
-                            <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>{tvld.MarketShare.toFixed(2)}%</Tdc>
-                          }
+                            {tvld.difftwo === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
+                              tvld.difftwo > 0 ?
+                                <Td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo.toFixed(0)}%</Td> :
+                                <Td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo.toFixed(0)}%</Td>
+                            }
+                            {tvld.diff === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
+                              tvld.diff > 0 ?
+                                <Td className="content" style={{ width: "200px", textAlign: "right", color: "red" }}>+{tvld.diff}%</Td> :
+                                <Td className="content" style={{ width: "200px", textAlign: "right", color: "blue" }}>{tvld.diff}%</Td>
+                            }
+                            {tvld.MarketShare === null ? <Tdc className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Tdc> :
+                              <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>{tvld.MarketShare.toFixed(2)}%</Tdc>
+                            }
 
-                        </Tr>
-                      ))
-                    }
-                  </tbody>
-                </table>
-              </div>
-            </>
-          }
-        </TodoTemplateBlock> :
-        <TodoTemplateBlock>
-          <TemplateLastBlock style={{ paddingLeft: "20px", clear: "both", display: "inline-block", float: "right" }}>
-            * DATA : Yesterday ({tvldata.refDate}) 10PM
+                          </Tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            }
+          </TodoTemplateBlock> :
+          <TodoTemplateBlock>
+            <TemplateLastBlock style={{ paddingLeft: "20px", clear: "both", display: "inline-block", float: "right" }}>
+              * DATA : Yesterday ({tvldata.refDate}) 10PM
           </TemplateLastBlock>
 
-          {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height={'20%'} width={'20%'} className="loader" /> :
-            <>
-              <div className="tablecss" style={{ margin: "20px" }}>
-                <table>
-                  <thead>
-                    <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
-                      <Th className="head" style={{ width: "10px", textAlign: "left" }}>#</Th>
-                      <Tdpp className="head">Token</Tdpp>
-                      {/* <Tdpp className="head">Project</Tdpp> */}
-                      <Td className="content" style={{ width: "200px", textAlign: "right" }}>Price</Td>
-                      <Td className="content" style={{ width: "200px", textAlign: "right" }}>Holder</Td>
-                      <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>Transfer</Tdc>
-                    </tr>
-                  </thead>
+            {isloading ? <ReactLoading type="cubes" color="#F0E9D2" height={'20%'} width={'20%'} className="loader" /> :
+              <>
+                <div className="tablecss" style={{ margin: "20px" }}>
+                  <table>
+                    <thead>
+                      <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
+                        <Th className="head" style={{ width: "10px", textAlign: "left" }}>#</Th>
+                        <Tdpp className="head">Token</Tdpp>
+                        {/* <Tdpp className="head">Project</Tdpp> */}
+                        <Td className="content" style={{ width: "200px", textAlign: "right" }}>Price</Td>
+                        <Td className="content" style={{ width: "200px", textAlign: "right" }}>Holder</Td>
+                        <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>Transfer</Tdc>
+                      </tr>
+                    </thead>
 
-                  <tbody>
+                    <tbody>
 
-                    {tokendata.length === 0 ? <div>Loading</div> :
-                      tokendata.map((tvld, index) => (
-                        tvld.price === 0 ?
-                          <Tr style={{ display: "none" }}>
-                            <Td className="head" style={{ width: "20px", textAlign: "center" }}>{index + 1}</Td>
-                            <Tdpd className="head">
-                              <Link to={`/project/${tvld.project}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.token}</span></Link>
-                            </Tdpd>
-                            <Td className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price.price).toFixed(2)}<br />-</Td>
-                            {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
-                            <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>{Number(tvld.price.holders).toLocaleString()}</Tdc>
-                            <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>{Number(tvld.price.transactions).toLocaleString()}</Tdc>
-                            <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc>
-                            <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.price * tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc>
-                          </Tr> :
-                          <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
-                            <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
-                            <Tdpdd>
-                              <img src={icons[tvld.project]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                              <Link to={`/project/${tvld.project}`}><span style={{ paddingLeft: "10px" }}>{tvld.token}</span><br />
-                                <span style={{ fontSize: "12px", color: "gray" }}>{tvld.project}</span>
-                              </Link>
-                            </Tdpdd>
+                      {tokendata.length === 0 ? <div>Loading</div> :
+                        tokendata.map((tvld, index) => (
+                          tvld.price === 0 ?
+                            <Tr style={{ display: "none" }}>
+                              <Td className="head" style={{ width: "20px", textAlign: "center" }}>{index + 1}</Td>
+                              <Tdpd className="head">
+                                <Link to={`/project/${tvld.project}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.token}</span></Link>
+                              </Tdpd>
+                              <Td className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price.price).toFixed(2)}<br />-</Td>
+                              {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
+                              <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>{Number(tvld.price.holders).toLocaleString()}</Tdc>
+                              <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>{Number(tvld.price.transactions).toLocaleString()}</Tdc>
+                              <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc>
+                              <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.price * tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc>
+                            </Tr> :
+                            <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
+                              <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
+                              <Tdpdd>
+                                <img src={icons[tvld.project]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                <Link to={`/project/${tvld.project}`}><span style={{ paddingLeft: "10px" }}>{tvld.token}</span><br />
+                                  <span style={{ fontSize: "12px", color: "gray" }}>{tvld.project}</span>
+                                </Link>
+                              </Tdpdd>
 
-                            {/* <Tdpdd>
+                              {/* <Tdpdd>
                             </Tdpdd> */}
 
 
-                            <Td className="head" style={{ height: "30px", width: "400px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price).toFixed(3)}
-                              <br />
-                              {tvld.priceDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.priceDiff}%</span> :
-                                <span style={{ fontSize: "13px", color: "blue" }}>{tvld.priceDiff}%</span>
-                              }
-                            </Td>
-                            <Td className="content" style={{ width: "400px", textAlign: "right" }}>
-                              {Number(tvld.holders).toLocaleString()}
-                              <br />
-                              {tvld.holderDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.holderDiff}%</span> :
-                                <span style={{ fontSize: "13px", color: "blue" }}>{tvld.holderDiff}%</span>
-                              }
-                            </Td>
-                            <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>
-                              {Number(tvld.transactions).toLocaleString()}
-                              <br />
-                              {tvld.transferDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.transferDiff}%</span> :
-                                <span style={{ fontSize: "13px", color: "blue" }}>{tvld.transferDiff}%</span>
-                              }
-                            </Tdc>
-                            {/* <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc> */}
-                            {/* <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.price * tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc> */}
-                            {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
-                          </Tr>
+                              <Td className="head" style={{ height: "30px", width: "400px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price).toFixed(3)}
+                                <br />
+                                {tvld.priceDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.priceDiff}%</span> :
+                                  <span style={{ fontSize: "13px", color: "blue" }}>{tvld.priceDiff}%</span>
+                                }
+                              </Td>
+                              <Td className="content" style={{ width: "400px", textAlign: "right" }}>
+                                {Number(tvld.holders).toLocaleString()}
+                                <br />
+                                {tvld.holderDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.holderDiff}%</span> :
+                                  <span style={{ fontSize: "13px", color: "blue" }}>{tvld.holderDiff}%</span>
+                                }
+                              </Td>
+                              <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>
+                                {Number(tvld.transactions).toLocaleString()}
+                                <br />
+                                {tvld.transferDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.transferDiff}%</span> :
+                                  <span style={{ fontSize: "13px", color: "blue" }}>{tvld.transferDiff}%</span>
+                                }
+                              </Tdc>
+                              {/* <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc> */}
+                              {/* <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.price * tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc> */}
+                              {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
+                            </Tr>
 
-                      ))
-                    }
-                  </tbody>
-                </table>
-              </div>
-            </>
-          }
-        </TodoTemplateBlock>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            }
+          </TodoTemplateBlock>
       }
     </>
   );
 }
+
+const Spanright = styled.div`
+ float: right;
+ text-align: right;
+ font-family: OpenSans-Semibold;
+ font-size: 15px;
+ color: #316395;
+ @media screen and (max-width: 500px){
+  font-size: 12px;
+ }
+`
+
 
 const Topdash = styled.div`
  width: 900px;
@@ -609,6 +677,41 @@ const Subtitle = styled.div`
 @media screen and (max-width: 500px){
     }
     `
+
+const EventCard = styled.div`
+  width:100%;
+  margin-bottom:10px;
+  margin-top:10px;
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background-color: #f6f6f5;
+  background-clip: border-box;
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
+  margin-right: 5px;
+  
+  padding:15px;
+  border-radius: 10px;
+
+  &:hover {
+    text-decoration:underline;
+    color:#3366cc;
+  }
+  cursor: pointer;
+
+
+
+  @media screen and (max-width: 500px){
+    padding-top:15px;
+    padding-bottom:10px;
+    vertical-align:bottom;
+  }
+  `
+
 
 const Topcard = styled.div`
     background-color:white;
@@ -740,11 +843,11 @@ const Tdpd = styled.td`
     text-decoration:underline;
     color:#3366cc;
   }
+  cursor: pointer;
   height:25px;
   vertical-align:middle;
   width: 400px;
   padding-left: 2em;
-  cursor: pointer;
   @media screen and (max-width: 500px){
     padding-left: 10px;
     font-size:13px;
