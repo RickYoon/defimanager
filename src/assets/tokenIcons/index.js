@@ -37,6 +37,7 @@ import Swapscanner from './Swapscanner.svg'
 import Electrik from './Electrik.png'
 import KairosCash from './KairosCash.png'
 import RHEA from './RHEA.svg'
+import KROME from './KROME.jpeg'
 
 const icons = {
     belt,
@@ -77,7 +78,8 @@ const icons = {
     Swapscanner,
     Electrik,
     KairosCash,
-    RHEA
+    RHEA,
+    KROME
 }
 
 export default icons;
