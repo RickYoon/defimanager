@@ -249,7 +249,7 @@ function Main() {
     setNumber(temp)
   }
 
-  const goKlaybankSite = async (e) => {
+  const peterFarm = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -257,39 +257,19 @@ function Main() {
       },
       url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
       data: {
-        user: "anonymous",
+        user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "klaybank",
+        country: "peterFarm",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://medium.com/klaybank/%EB%8B%B9%EC%8B%A0%EC%9D%98-cls%EB%A1%9C-klaybank%EC%9D%98-%EC%98%81%EA%B5%AC-%EB%A7%88%EC%9D%B4%EB%8B%9D%EB%A0%88%EC%9D%B4%ED%8A%B8%EC%97%90-%ED%88%AC%ED%91%9C%ED%95%98%EC%84%B8%EC%9A%94-ee8616c9f9ee"
+      window.location.href = "https://medium.com/@neverlandfichef/introducing-neverlands-new-project-c6f0d74de080"
 
     });
   }
 
-  const goSwapSite = async (e) => {
-    await axios({
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
-      data: {
-        user: "anonymous",
-        datetime: "2021-10-12T10:33:111Z",
-        country: "swapscanner",
-        price: 1,
-        weight: 1,
-      },
-    }).then((res) => {
-      console.log(res);
-      window.location.href = "https://swapscanner.io/ko/event/swap-competition"
-
-    });
-  }
 
   return (
     <>
@@ -303,8 +283,7 @@ function Main() {
             speed={600}
             direction={Directions.UP}
             duration={4000}>
-            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={goSwapSite}> Event > Swapscanner compitition (~ 04/01)</div>
-            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={goKlaybankSite}> Event > KlayBank incentive voting (~04/01)</div>
+            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/13) </div>
           </NewsTicker>
 
           {/* <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "13px", color: "#316395" }}>&nbsp;</span>
