@@ -42,11 +42,19 @@ function Detailpage() {
 
       response.data.chart.Items.forEach((item) => {
         if (item[id] > 1000000) {
-          tempArr.push({
-            date: item.date.slice(5, 10),
-            tvl: Number(item[id] / 1000000).toFixed(2),
-            scale: "M$"
-          })
+          if (id !== "RHEA") {
+            tempArr.push({
+              date: item.date.slice(5, 10),
+              tvl: Number(item[id] / 1000000).toFixed(2),
+              scale: "M$"
+            })
+          } else {
+            tempArr.push({
+              date: item.date.slice(5, 10),
+              tvl: Number(item[id] / 1000).toFixed(2),
+              scale: "K$"
+            })
+          }
         } else if (item[id] > 1000) {
           tempArr.push({
             date: item.date.slice(5, 10),
@@ -239,7 +247,11 @@ function Detailpage() {
                               <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> :
                               id === "Klayswap" ?
                                 <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 150', 'dataMax + 80']} /> :
-                                <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 1', 'dataMax + 1']} />
+                                id === "KROME" ?
+                                  <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-2', 'dataMax+3']} /> :
+                                  id === "RHEA" ?
+                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-400', 'dataMax+300']} /> :
+                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 1', 'dataMax + 1']} />
                 }
 
                 {/* <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 10']} /> */}
@@ -264,7 +276,10 @@ function Detailpage() {
                       </defs>
 
                       <XAxis tick={{ fontSize: 10 }} dataKey="date" />
-                      <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
+                      {id === "Kronosdao" ?
+                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 70', 'dataMax + 50']} /> :
+                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
+                      }
                       <Tooltip />
                       <Area type="monotone" dataKey="TokenPrice" stroke="#488A99" fillOpacity={1} fill="url(#colorPv)" isAnimationActive={false} />
                     </AreaChart>
