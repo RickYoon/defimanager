@@ -270,6 +270,48 @@ function Main() {
     });
   }
 
+  const WTFrogMinting = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "klaylabs",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "WTFrogMinting",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://www.wtfrog.com/"
+
+    });
+  }
+
+  const WTFrogAirdrop = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "klaylabs",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "WTFrogAirdrop",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://bit.ly/PalaSquare_WTFrog_Event "
+
+    });
+  }
+
 
   return (
     <>
@@ -283,12 +325,10 @@ function Main() {
             speed={600}
             direction={Directions.UP}
             duration={4000}>
+            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={WTFrogMinting}> Minting ) WTFrog NFT (04/08 21PM) </div>
+            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={WTFrogAirdrop}> Airdrop ) Alap/MOKSHA Holder (~04/08 3PM) </div>
             <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/13) </div>
           </NewsTicker>
-
-          {/* <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "13px", color: "#316395" }}>&nbsp;</span>
-          <Spanright>  upcomings - Krome finance launch 22/03/29 7PM  &nbsp;> </Spanright> */}
-
         </EventCard>
       </Topdash >
 

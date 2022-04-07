@@ -22,7 +22,7 @@ function Topnav() {
                     <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
                 <span>
-                    {/* <Link to="/faq"><span><Button>Connect</Button></span></Link> */}
+                    {/* <Link to="/wallet"><span><Button>Connect</Button></span></Link> */}
                 </span>
             </TemplateBlock>
 
