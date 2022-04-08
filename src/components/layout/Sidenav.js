@@ -3,11 +3,26 @@ import { BiBook } from "react-icons/bi";
 import { BsQuestionCircle } from "react-icons/bs";
 import React from 'react';
 import { Link } from "react-router-dom";
+import logo from "../../assets/CI/modified.svg"
+
 
 function Sidenav() {
+    const moveMain = () => {
+        window.location.href = "https://www.klaylabs.net"
+    }
+
     return (
         <>
             <SideBar>
+                <span onClick={moveMain} style={{ cursor: "pointer" }}>
+                    <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle", color: "white" }} />
+                    <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
+                </span>
+                <span>
+                    {/* <Link to="/faq"><span><Button>Connect</Button></span></Link> */}
+                </span>
+
+                {/* <div style={{ paddingLeft: "32px", paddingRight: "32px", paddingTop: "24px", paddingBottom: "8px", fontSize: "13px", textAlign: "center", color: "rgb(255, 255, 255)" }}>KLAYLABS</div> */}
                 <div style={{ paddingLeft: "32px", paddingRight: "32px", paddingTop: "24px", paddingBottom: "8px", fontSize: "13px", textAlign: "center", color: "rgb(255, 255, 255)" }}>KLAYLABS</div>
                 <HR />
                 <UL>
@@ -29,12 +44,12 @@ const UL = styled.div`
 `
 
 const SideBar = styled.div`
-  margin: 16px;
+  /* margin: 16px; */
   padding: 0;
   width: 250px;
   background: rgb(66, 66, 74);
-  border-radius: 0.75rem;
-  height: calc(100vh - 2rem);
+  /* border-radius: 0.75rem; */
+  height: 100vh;
   background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
   position: fixed;
   overflow: auto;

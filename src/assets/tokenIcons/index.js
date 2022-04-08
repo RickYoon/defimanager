@@ -38,6 +38,8 @@ import Electrik from './Electrik.png'
 import KairosCash from './KairosCash.png'
 import RHEA from './RHEA.svg'
 import KROME from './KROME.svg'
+import Zombie from './Zombie.svg'
+import Ignite from './Ignite.svg'
 
 const icons = {
     belt,
@@ -79,7 +81,9 @@ const icons = {
     Electrik,
     KairosCash,
     RHEA,
-    KROME
+    KROME,
+    Zombie,
+    Ignite
 }
 
 export default icons;

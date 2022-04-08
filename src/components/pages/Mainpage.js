@@ -196,7 +196,11 @@ function Main() {
 
       setTvldata(responseObj)
 
+      // 리스트뷰로 upcoming events 를 나열한다.
+      // upcoming 
 
+
+      // schedule upload
 
       // console.log(Number(aa.poolRatio[i].ratio) + Number(aa.poolRatio[i - 1].ratio))
 
@@ -265,12 +269,12 @@ function Main() {
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://medium.com/@neverlandfichef/introducing-neverlands-new-project-c6f0d74de080"
+      window.location.href = "https://neverland-finance.gitbook.io/peterfarm/"
 
     });
   }
 
-  const WTFrogMinting = async (e) => {
+  const PirateNFT = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -280,13 +284,13 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "WTFrogMinting",
+        country: "pirateNFT",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://www.wtfrog.com/"
+      window.location.href = "https://medium.com/@neverlandfichef/neverland-pirate-ship-nft-details-70ee4758521d"
 
     });
   }
@@ -316,21 +320,21 @@ function Main() {
   return (
     <>
 
-
-      <Topdash>
-        <EventCard>
-          <NewsTicker
-            rowHeight={15}
-            maxRows={1}
-            speed={600}
-            direction={Directions.UP}
-            duration={4000}>
-            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={WTFrogMinting}> Minting ) WTFrog NFT (04/08 21PM) </div>
-            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={WTFrogAirdrop}> Airdrop ) Alap/MOKSHA Holder (~04/08 3PM) </div>
-            <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/13) </div>
-          </NewsTicker>
-        </EventCard>
-      </Topdash >
+      <div style={{ marginTop: "0px", paddingTop: "0px" }}>
+        <Topdash>
+          <EventCard>
+            <NewsTicker
+              rowHeight={18}
+              maxRows={1}
+              speed={600}
+              direction={Directions.UP}
+              duration={4000}>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={PirateNFT}> Minting ) Neverland Pirate Ship NFT (04/12) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/14 6PM) </div>
+            </NewsTicker>
+          </EventCard>
+        </Topdash >
+      </div>
 
 
 
@@ -695,7 +699,7 @@ const Subtitle = styled.div`
 const EventCard = styled.div`
   width:100%;
   margin-bottom:10px;
-  margin-top:10px;
+  /* padding-top:10px; */
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   min-width: 0px;
