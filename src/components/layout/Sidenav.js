@@ -14,20 +14,19 @@ function Sidenav() {
     return (
         <>
             <SideBar>
-                <span onClick={moveMain} style={{ cursor: "pointer" }}>
+                <div onClick={moveMain} style={{ cursor: "pointer", marginTop: "20px", marginLeft: "20px" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle", color: "white" }} />
-                    <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
-                </span>
-                <span>
-                    {/* <Link to="/faq"><span><Button>Connect</Button></span></Link> */}
-                </span>
+                    <div style={{ marginTop: "5px", marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}>DefiManager  (beta)</div>
+                </div>
 
-                {/* <div style={{ paddingLeft: "32px", paddingRight: "32px", paddingTop: "24px", paddingBottom: "8px", fontSize: "13px", textAlign: "center", color: "rgb(255, 255, 255)" }}>KLAYLABS</div> */}
-                <div style={{ paddingLeft: "32px", paddingRight: "32px", paddingTop: "24px", paddingBottom: "8px", fontSize: "13px", textAlign: "center", color: "rgb(255, 255, 255)" }}>KLAYLABS</div>
-                <HR />
-                <UL>
-                    <li></li>
-                </UL>
+                <div style={{ marginTop: "20px", marginLeft: "20px" }}>
+                    connect Wallet
+                </div>
+
+                <div style={{ marginTop: "20px", marginLeft: "20px" }}>
+                    Dashboard
+                </div>
+
             </SideBar>
         </>
     );
@@ -47,12 +46,18 @@ const SideBar = styled.div`
   /* margin: 16px; */
   padding: 0;
   width: 250px;
+  border-right: solid;  
   background: rgb(66, 66, 74);
   /* border-radius: 0.75rem; */
   height: 100vh;
-  background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+  background: #fff;
   position: fixed;
   overflow: auto;
+
+  @media screen and (max-width: 500px){
+        display: none;
+    }
+
 `
 
 const HR = styled.hr`

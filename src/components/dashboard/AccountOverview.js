@@ -6,22 +6,17 @@ import axios from 'axios';
 import ReactLoading from 'react-loading';
 import Swal from 'sweetalert2'
 import icons from "../../assets/tokenIcons"
-import { prepare, request, getResult, getCardList } from 'klip-sdk'
-import QRCode from "qrcode.react";
-import ReactModal from 'react-modal';
 
-function Walletpage() {
+
+function AccountOverview() {
 
     const [assets, setAssets] = useState({})
-    const [address, setAddress] = useState("")
     const [isconnected, setIsconnected] = useState(true)
     const [isloading, setIsloading] = useState(false)
     const [walletaddress, setWalletaddress] = useState("")
-    // const [walletmodal, setWalletmodal] = useSta()
 
     useEffect(() => {
-        // loadAssets()
-        loadAccountInfo()
+        loadAssets()
         // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [])
 
@@ -76,142 +71,18 @@ function Walletpage() {
         }
 
     }
-    const [url, setUrl] = useState("");
-    const bappName = "TEST KLIP";
-    const loadAccountInfo = async () => {
-
-        // const { klaytn } = window
-        // console.log("klaytn", klaytn)
-
-        // if (klaytn) {
-        //     try {
-        //         await klaytn.enable()
-        //         await setAccountInfo(klaytn)
-        //         klaytn.on('accountsChanged', () => setAccountInfo(klaytn))
-        //     } catch (error) {
-        //         console.log('User denied account access')
-        //     }
-        // } else {
-        //     console.log('Non-Kaikas browser detected. You should consider trying Kaikas!')
-        // }
-
-        try {
-            const res = await prepare.auth({ bappName });
-            if (res.err) {
-                // 에러 처리
-            } else if (res.request_key) {
-                // request_key 보관
-                console.log(res);
-                setUrl(
-                    `https://klipwallet.com/?target=/a2a?request_key=${res.request_key}`
-                );
-
-                console.log("hello");
-            }
-        } catch (e) {
-            console.log(e);
-        }
-
-    }
-
-    const setAccountInfo = async () => {
-        const { klaytn } = window
-        if (klaytn === undefined) return
-        setAddress(klaytn.selectedAddress)
-        // const balance = await caver.klay.getBalance(account)
-        // this.setState({
-        //     account,
-        //     balance: caver.utils.fromPeb(balance, 'KLAY'),
-        // })
-    }
 
     const onChangeWalletaddress = (e) => {
         setWalletaddress(e.target.value)
         console.log(walletaddress)
     }
 
-    const disconnect = async () => {
-        const { klaytn } = window
-        // const accounts = await klaytn.enable()
-        // console.log(accounts)
-        setAddress("")
-    }
-
-    const styles = {
-        overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.75)'
-        },
-        content: {
-            position: 'absolute',
-            top: '40px',
-            left: '400px',
-            right: '400px',
-            bottom: '40px',
-            border: '1px solid #ccc',
-            background: '#fff',
-            overflow: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            borderRadius: '4px',
-            outline: 'none',
-            padding: '20px'
-        }
-    }
-
-    const stylesMobile = {
-        overlay: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.75)'
-        },
-        content: {
-            position: 'absolute',
-            top: '40px',
-            left: '40px',
-            right: '40px',
-            bottom: '40px',
-            border: '1px solid #ccc',
-            background: '#fff',
-            overflow: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            borderRadius: '4px',
-            outline: 'none',
-            padding: '20px'
-        }
-    }
-
-    // window.screen.width;
-
     return (
         <Toplayer>
 
-            <ReactModal style={stylesMobile} isOpen={false}>
-                <p>select wallet</p>
-                <p>Kaikas</p>
-                <p>Klip</p>
-                <p>MetaMask</p>
-            </ReactModal>
-
-            <SubTemplateBlockVertical>
-                <QRCode value={url} />
-            </SubTemplateBlockVertical>
-
-            <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Address</div>
-                <button style={{ fontSize: "12px" }} onClick={disconnect}>discon</button>
-            </SubTemplateBlockVertical>
-
-
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                <div style={{ fontSize: "24px" }}>$ 0</div>
+                <div style={{ fontSize: "24px" }}>$ 12321.22</div>
             </SubTemplateBlockVertical>
 
             <SubTemplateBlockVertical>
@@ -223,16 +94,50 @@ function Walletpage() {
                             Tokens
                         </Name>
                         <Value>
-                            $ 0
+                            $ 1312.22
                         </Value>
                     </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "16px" }} />
+                            Liquidity Pools
+                        </Name>
+                        <Value>
+                            $ 1312.22
+                        </Value>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "16px" }} />
+                            Staking
+                        </Name>
+                        <Value>
+                            $ 1312.22
+                        </Value>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "16px" }} />
+                            Claimable
+                        </Name>
+                        <Value>
+                            $ 1312.22
+                        </Value>
+                    </InnerBox>
+                </Innercontainer>
+
+            </SubTemplateBlockVertical>
+
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "10px", fontSize: "20px" }}>Protocols</div>
+                <Innercontainer>
                     <InnerBox>
                         <Name>
                             <img src={icons["Klayswap"]} style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             klayswap
                         </Name>
                         <Value>
-                            $ 0
+                            $ 1312.22
                         </Value>
                     </InnerBox>
                     <InnerBox>
@@ -241,21 +146,25 @@ function Walletpage() {
                             klaystation
                         </Name>
                         <Value>
-                            $ 0
+                            $ 1312.22
                         </Value>
                     </InnerBox>
+
                 </Innercontainer>
 
             </SubTemplateBlockVertical>
+
+
+
+
 
         </Toplayer>
     );
 }
 
 const Toplayer = styled.div`
-
-    margin-top:50px;
-
+    margin-left:250px;
+    
     @media screen and (max-width: 500px){
         margin-left:0px;
     }
@@ -295,7 +204,7 @@ const InnerBox = styled.div`
     align-items: flex-start;
     border-radius: 8px;
     flex-direction: column;
-    width: 22%;
+    width: 23%;
     margin: 12px;
     flex-grow:0;
 
@@ -320,8 +229,8 @@ const Panel = styled.div`
 
 
 const SubTemplateBlockVertical = styled.div`
-     width: 900px;
-    margin: 10px auto;
+    width: 80%;
+    margin: 20px auto;
     padding-bottom: 10px;
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
     background-color:white;
@@ -358,4 +267,4 @@ const SubTemplateBlock = styled.div`
     }
     `;
 
-export default Walletpage;
+export default AccountOverview;

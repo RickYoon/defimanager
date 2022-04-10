@@ -14,6 +14,10 @@ function Topnav() {
     const moveMain = () => {
         window.location.href = "https://www.klaylabs.net"
     }
+
+    const moveWallet = () => {
+        window.location.href = "/wallet"
+    }
     return (
         <>
             <TemplateBlock>
@@ -21,9 +25,9 @@ function Topnav() {
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
                     <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
-                <span>
-                    {/* <Link to="/wallet"><span><Button>Connect</Button></span></Link> */}
-                </span>
+                {/* <span>
+                    <Wallet onClick={moveWallet}>Wallet</Wallet>
+                </span> */}
             </TemplateBlock>
 
             <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
@@ -50,6 +54,21 @@ function Topnav() {
         </>
     );
 }
+
+const Wallet = styled.div`
+    align-items: center;
+    background: #fff;
+    border: 1px solid gray;
+    border-radius: 6px;
+    color: gray;
+    cursor: pointer;
+    display: flex!important;
+    font-weight: 500;
+    gap: 8px;
+    margin-left: 36px;
+    padding: 10px 14px;
+    font-size:18px;
+`
 
 const Button = styled.button`
   display: inline-block;

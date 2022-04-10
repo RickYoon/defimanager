@@ -44,7 +44,7 @@ function Eventpage() {
                         <Topcard>
                             <Containersub style={{ margin: "15px" }}>
                                 <Daybox>14</Daybox>
-                                <Daybox>Mon</Daybox>
+                                <Daybox>Tue</Daybox>
                                 <Catbox>Launching</Catbox>
                                 <Catbox>PeterFarm</Catbox>
                                 {/* <span style={{ textAlign: "left", fontFamily: "OpenSans-Medium", fontSize: "20px" }}> 08 </span>

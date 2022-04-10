@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalStyles from './assets/styles/GlobalStyles';
 import Topnav from './components/layout/Topnav';
 import Sidenav from './components/layout/Sidenav';
+import AccountOverview from './components/dashboard/AccountOverview';
 import TopLogo from './components/layout/TopLogo';
 import TopLogoWallet from './components/layout/TopLogoWallet';
 import Footer from './components/layout/Footer';
@@ -10,7 +11,7 @@ import Detailpage from './components/pages/Detailpage'
 import Newspage from './components/pages/Newspage'
 // import Eventpage from './components/pages/Eventpage'
 import Faqpage from './components/pages/Faqpage'
-import Walletpage from './components/pages/Walletpage'
+import Walletpages from './components/pages/WalletPages'
 import {
   BrowserRouter as Router,
   Route,
@@ -24,19 +25,20 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Topnav />} />
+        <Route exact path="/dashboard" element={<Sidenav />} />
         <Route exact path="/news" element={<Topnav />} />
         <Route exact path="/faq" element={<Topnav />} />
         <Route exact path="/project/:id" element={<Topnav />} />
         <Route exact path="/event" element={<Topnav />} />
-        <Route exact path="/wallet" element={<TopLogoWallet />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Mainpage />} />
+        <Route exact path="/dashboard" element={<AccountOverview />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/faq" element={<Faqpage />} />
         {/* <Route exact path="/event" element={<Eventpage />} /> */}
         <Route exact path="/project/:id" element={<Detailpage />} />
-        <Route exact path="/wallet" element={<Walletpage />} />
+        <Route exact path="/wallet" element={<Walletpages />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Footer />} />

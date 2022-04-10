@@ -19,13 +19,30 @@ function Topnav() {
       <TemplateBlock>
         <span onClick={moveMain} style={{ cursor: "pointer" }}>
           <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
-          <span style={{ marginLeft: "10px", fontSize: "20px", verticalAlign: "bottom" }}>DeFi wallet</span>
+        </span>
+        <span>
+          <Wallet>Connect</Wallet>
         </span>
       </TemplateBlock>
 
     </>
   );
 }
+
+const Wallet = styled.div`
+    align-items: center;
+    background: #fff;
+    border: 1px solid gray;
+    border-radius: 6px;
+    color: gray;
+    cursor: pointer;
+    display: flex!important;
+    font-weight: 500;
+    gap: 8px;
+    margin-left: 36px;
+    padding: 10px 14px;
+    font-size:18px;
+`
 
 const Button = styled.button`
   display: inline-block;
