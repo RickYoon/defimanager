@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from "../../assets/CI/modified.svg"
 import ReactModal from 'react-modal';
+import icons from "../../assets/tokenIcons"
 
 
 function Topnav() {
@@ -67,14 +68,58 @@ function Topnav() {
 
     return (
         <>
-            <TemplateBlock>
+            <TemplateBlock style={{ marginBottom: "50px" }}>
                 <span onClick={moveMain} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
+                    <div style={{ height: "15px", marginTop: "5px", marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}>DeFi-Wallet  (beta)</div>
                 </span>
                 <span>
-                    <Wallet onClick={openModal}>Connect</Wallet>
+                    <Wallet onClick={openModal}>
+                        <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "5px" }} />
+                        <span>Connect</span>
+                    </Wallet>
                 </span>
             </TemplateBlock>
+
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
+                <div style={{ fontSize: "24px" }}>$ 0</div>
+            </SubTemplateBlockVertical>
+
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "10px", fontSize: "20px" }}>Account Overview</div>
+                <Innercontainer>
+                    <InnerBox>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "16px" }} />
+                            Tokens
+                        </Name>
+                        <Value>
+                            $ 0
+                        </Value>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            <img src={icons["Klayswap"]} style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            klayswap
+                        </Name>
+                        <Value>
+                            $ 0
+                        </Value>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            <img src={icons["Klaystation"]} style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            klaystation
+                        </Name>
+                        <Value>
+                            $ 0
+                        </Value>
+                    </InnerBox>
+                </Innercontainer>
+
+            </SubTemplateBlockVertical>
+
 
             <ReactModal style={stylesPc} isOpen={modalstate}>
                 <p style={{ fontSize: "20px", paddingBottom: "20px" }}>Select Wallet
@@ -97,6 +142,85 @@ function Topnav() {
         </>
     );
 }
+
+const Name = styled.div`
+    color: #050f19;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 16px;
+    justify-content: flex-start;
+    font-size:16px;
+    margin-bottom: 20px;
+
+    align-items:center;
+`
+const Value = styled.div`
+    color: #050f19;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    font-size:20px;
+    align-items:center;
+`
+
+// </Innercontainer>
+const InnerBox = styled.div`
+    
+    border: 1px solid #edeff1;
+    display: flex;
+    padding: 16px;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    border-radius: 8px;
+    flex-direction: column;
+    width: 22%;
+    margin: 12px;
+    flex-grow:0;
+
+    @media screen and (max-width: 500px){
+        width: 100%;
+    }
+`
+
+const Innercontainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content:space-around;
+`
+
+const SubTemplateBlockVertical = styled.div`
+     width: 900px;
+    margin: 10px auto;
+    padding-bottom: 10px;
+    position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+
+    padding: 20px 25px !important;
+    background: #fff;
+
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    min-width: 0px;
+    overflow-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+  overflow: visible;
+    
+  @media screen and (max-width: 500px){
+      width: 360px;
+      font-size: 12px;
+    }
+`;
 
 const Box = styled.div`
     width: 100%;
