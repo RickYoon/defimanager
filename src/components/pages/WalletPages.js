@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import logo from "../../assets/CI/modified.svg"
@@ -6,25 +6,41 @@ import ReactModal from 'react-modal';
 import icons from "../../assets/tokenIcons"
 import klaytnLogo from "../../assets/uiux/klaytnLogo.png"
 import walletIcon from "../../assets/uiux/wallet.png"
+import kliplogo from "../../assets/uiux/kliplogo.svg"
 import close from "../../assets/uiux/close.png"
+import { prepare, getResult } from 'klip-sdk'
+import QRCode from "qrcode.react";
+import ReactLoading from 'react-loading';
+// import { useWeb3Context } from 'web3'
 
 function Topnav() {
     const [modalstate, setModalstate] = useState(false)
+    const [klipmodalstate, setKlipmodalstate] = useState(false)
     const [walletaddress, setWalletaddress] = useState("")
     const [klaybalances, setKlayBalances] = useState(0)
     const [totalbalance, setTotalbalance] = useState(0)
+    const [url, setUrl] = useState("");
+    const [klipRequestKey, setKlipRequestKey] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+    const bappName = "KLAYLABS";
+
 
     useEffect(() => {
         loadAssets()
+        
         // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [walletaddress])
 
     const loadAssets = async () => {
+        if (walletaddress.length > 0) {
+            setIsLoading(true)
             const response = await axios.get(`http://54.180.32.252:1515/wallet/klay/${walletaddress}`).then((res) => { return res.data })
             console.log(response)
             let sliceValue = Number(response).toFixed(3)
             setKlayBalances(sliceValue)
             setTotalbalance(Number(sliceValue))
+            setIsLoading(false)
+        }
 
         // wallet address 를 입력하고 조회를 누르면
         // 백앤드에서 자산정보를 불러오고, 화면에 출력을 시작한다.
@@ -45,14 +61,19 @@ function Topnav() {
         setModalstate(false)
     }
 
+    const closeKlipModal = () => {
+        setKlipmodalstate(false)
+    }
+
     const disconnect = () => {
         setWalletaddress("")
         setKlayBalances(0)
         setTotalbalance(0)
+        setIsLoading(false)
     }
 
     const connectKaikas = async () => {
-
+        setIsLoading(true)
         const { klaytn } = window
         // console.log("klaytn", klaytn)
 
@@ -62,9 +83,61 @@ function Topnav() {
                 await scanKlaybalance(klaytn)
                 closeModal()
                 // klaytn.on('accountsChanged', () => setAccountInfo(klaytn))
+                setIsLoading(false)
+
             } catch (error) {
                 console.log('User denied account access')
             }
+        } else {
+            console.log('Non-Kaikas browser detected. You should consider trying Kaikas!')
+        }
+
+    }
+
+    const connectMetamask = async () => {
+
+        const provider = window.ethereum;
+        const account = await provider.request({method:'eth_requestAccounts'})
+        console.log(account)
+
+        await scanKlaybalance(account[0])
+        closeModal()
+        setWalletaddress(account[0])
+        setIsLoading(false)
+
+    }
+
+    
+
+    const isMobile = () => { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) }
+
+    const connectKlip = async () => {
+
+        const checker = isMobile()
+        // const { klaytn } = window
+        // console.log("klaytn", klaytn)
+
+        if (!checker) {
+            try {
+                const res = await prepare.auth({ bappName });
+
+                if (res.err) {
+                    // 에러 처리
+                } else if (res.request_key) {
+                    // request_key 보관
+                    console.log(res);
+                    setUrl(
+                        `https://klipwallet.com/?target=/a2a?request_key=${res.request_key}`
+                    );
+                    setKlipRequestKey(res.request_key)
+                    console.log(url);
+                }
+            } catch (error) {
+                console.log('User denied account access')
+            }
+            setModalstate(false)
+            setKlipmodalstate(true)
+
         } else {
             console.log('Non-Kaikas browser detected. You should consider trying Kaikas!')
         }
@@ -75,7 +148,6 @@ function Topnav() {
         const { klaytn } = window
         if (klaytn === undefined) return
         setWalletaddress(klaytn.selectedAddress)
-        // const balance = await caver.klay.getBalance(account)
     }
 
     const modalStyle = {
@@ -100,6 +172,18 @@ function Topnav() {
         }
     }
 
+    const check = async () => {
+        if (klipRequestKey === null) return;
+        const res = await getResult(klipRequestKey);
+        if (res.status === "completed") {
+            const UserAddress = res.result.klaytn_address;
+            console.log(UserAddress)
+        }
+    };
+
+    // polling 1sec
+    // https://a2a-api.klipwallet.com/v2/a2a/result?request_key=6d55d3db-312a-4d37-a94f-87d00b9574bc
+
     return (
         <>
             <TemplateBlock style={{ marginBottom: "50px" }}>
@@ -108,6 +192,7 @@ function Topnav() {
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
                     <div style={{ height: "15px", marginTop: "5px", marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}>DeFi-Manager  (beta)</div>
                 </span>
+
                 <span>
                     <Wallet onClick={openModal}>
                         <img src={walletIcon} alt="" style={{ marginRight: "5px", height: "30px", width: "30px" }} />
@@ -124,7 +209,10 @@ function Topnav() {
 
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                <div style={{ fontSize: "24px" }}>$ {totalbalance}</div>
+                {isLoading ?
+                    <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
+                    <div style={{ fontSize: "24px" }}>$ {totalbalance}</div>
+                }
             </SubTemplateBlockVertical>
 
             <SubTemplateBlockVertical>
@@ -132,7 +220,7 @@ function Topnav() {
                 <Innercontainer>
                     <InnerBox>
                         <Name>
-                            <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }}  />
+                            <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             Klay
                         </Name>
                         <Value>
@@ -176,18 +264,32 @@ function Topnav() {
                         <button style={{ float: "right" }} onClick={closeModal} > x</button>
                 </p>
                 <Box onClick={connectKaikas}>
-                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-kaikas-wh.svg" alt=""  />
-                    <span style={{ color: "white" }}>Kaikas</span>
+                    <img style={{ marginRight: "10px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-kaikas-wh.svg" alt="" />
+                    <span style={{ color: "white" }}>connect Kaikas</span>
                 </Box>
-                <Box style={{ backgroundColor: "rgb(254, 229, 0)" }}>
-                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-klip-bk.svg" alt=""  />
-                    <span>Kakaotalk klip</span>
+                <Box onClick={connectKlip} style={{ backgroundColor: "#216FEA", paddingTop: "20px", }}>
+                    <img style={{ marginRight: "10px", height: "18px", verticalAlign: "middle" }} src={kliplogo} alt="" />
+                    <span style={{ color: "white" }}>connect klip</span>
                 </Box>
-                <Box style={{ backgroundColor: "rgb(250, 240, 252)" }}>
-                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-metamask.svg" alt=""  />
-                    <span>Metamask</span>
+                <Box onClick={connectMetamask} style={{ backgroundColor: "rgb(250, 240, 252)" }}>
+                    <img style={{ marginRight: "10px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-metamask.svg" alt="" />
+                    <span>connect Metamask</span>
                 </Box>
             </ReactModal>
+
+            <ReactModal style={modalStyle} isOpen={klipmodalstate}>
+                <p style={{ fontSize: "20px", paddingBottom: "20px" }}>Select Wallet
+                        <button style={{ float: "right" }} onClick={closeKlipModal} > x</button>
+                </p>
+                <button onClick={check}>확인</button>
+
+                {klipRequestKey !== null ? (
+                    <QRCode
+                        value={`https://klipwallet.com/?target=/a2a?request_key=${klipRequestKey}`}
+                    />
+                ) : null}
+            </ReactModal>
+
 
         </>
     );
@@ -232,6 +334,7 @@ const InnerBox = styled.div`
 
     @media screen and (max-width: 500px){
         width: 100%;
+        margin: 10px auto;
     }
 `
 
@@ -280,7 +383,7 @@ const Box = styled.div`
     text-align:center;
     padding-top:15px;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 4px;
     background-color: rgb(111, 101, 88);    
     inset: 0px;
 `
