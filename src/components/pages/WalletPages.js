@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from "axios";
 import styled from 'styled-components';
 import logo from "../../assets/CI/modified.svg"
 import ReactModal from 'react-modal';
 import icons from "../../assets/tokenIcons"
-
+import klaytnLogo from "../../assets/uiux/klaytnLogo.png"
+import walletIcon from "../../assets/uiux/wallet.png"
+import close from "../../assets/uiux/close.png"
 
 function Topnav() {
     const [modalstate, setModalstate] = useState(false)
-    const [clienttype, setClienttype] = useState("PC")
+    const [walletaddress, setWalletaddress] = useState("")
+    const [klaybalances, setKlayBalances] = useState(0)
+    const [totalbalance, setTotalbalance] = useState(0)
+
+    useEffect(() => {
+        loadAssets()
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
+    }, [walletaddress])
+
+    const loadAssets = async () => {
+            const response = await axios.get(`http://54.180.32.252:1515/wallet/klay/${walletaddress}`).then((res) => { return res.data })
+            console.log(response)
+            let sliceValue = Number(response).toFixed(3)
+            setKlayBalances(sliceValue)
+            setTotalbalance(Number(sliceValue))
+
+        // wallet address 를 입력하고 조회를 누르면
+        // 백앤드에서 자산정보를 불러오고, 화면에 출력을 시작한다.
+    }
 
     const moveMain = () => {
         window.location.href = "https://www.klaylabs.net"
     }
 
     const openModal = () => {
-        setModalstate(true)
-        if (window.screen.width < 500) {
-            setClienttype("Mobile")
+        if (walletaddress.length > 0) {
+        } else {
+            setModalstate(true)
         }
     }
 
@@ -24,15 +45,22 @@ function Topnav() {
         setModalstate(false)
     }
 
+    const disconnect = () => {
+        setWalletaddress("")
+        setKlayBalances(0)
+        setTotalbalance(0)
+    }
+
     const connectKaikas = async () => {
 
         const { klaytn } = window
-        console.log("klaytn", klaytn)
+        // console.log("klaytn", klaytn)
 
         if (klaytn) {
             try {
                 await klaytn.enable()
-                // await setAccountInfo(klaytn)
+                await scanKlaybalance(klaytn)
+                closeModal()
                 // klaytn.on('accountsChanged', () => setAccountInfo(klaytn))
             } catch (error) {
                 console.log('User denied account access')
@@ -43,8 +71,14 @@ function Topnav() {
 
     }
 
+    const scanKlaybalance = async () => {
+        const { klaytn } = window
+        if (klaytn === undefined) return
+        setWalletaddress(klaytn.selectedAddress)
+        // const balance = await caver.klay.getBalance(account)
+    }
 
-    const stylesPc = {
+    const modalStyle = {
         overlay: {
             position: 'fixed',
             top: 0,
@@ -69,21 +103,28 @@ function Topnav() {
     return (
         <>
             <TemplateBlock style={{ marginBottom: "50px" }}>
+
                 <span onClick={moveMain} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
-                    <div style={{ height: "15px", marginTop: "5px", marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}>DeFi-Wallet  (beta)</div>
+                    <div style={{ height: "15px", marginTop: "5px", marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}>DeFi-Manager  (beta)</div>
                 </span>
                 <span>
                     <Wallet onClick={openModal}>
-                        <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "5px" }} />
-                        <span>Connect</span>
+                        <img src={walletIcon} alt="" style={{ marginRight: "5px", height: "30px", width: "30px" }} />
+                        {walletaddress.length > 0 ?
+                            <>
+                                <span style={{ fontSize: "15px" }}>{walletaddress.slice(0, 7)}...</span>
+                                <img src={close} alt="" onClick={disconnect} style={{ height: "20px", width: "20px" }} />
+                            </> :
+                            <span>Connect</span>
+                        }
                     </Wallet>
                 </span>
             </TemplateBlock>
 
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                <div style={{ fontSize: "24px" }}>$ 0</div>
+                <div style={{ fontSize: "24px" }}>$ {totalbalance}</div>
             </SubTemplateBlockVertical>
 
             <SubTemplateBlockVertical>
@@ -91,7 +132,16 @@ function Topnav() {
                 <Innercontainer>
                     <InnerBox>
                         <Name>
-                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" style={{ marginRight: "16px" }} />
+                            <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }}  />
+                            Klay
+                        </Name>
+                        <Value>
+                            $ {klaybalances}
+                        </Value>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             Tokens
                         </Name>
                         <Value>
@@ -100,7 +150,7 @@ function Topnav() {
                     </InnerBox>
                     <InnerBox>
                         <Name>
-                            <img src={icons["Klayswap"]} style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            <img src={icons["Klayswap"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             klayswap
                         </Name>
                         <Value>
@@ -109,7 +159,7 @@ function Topnav() {
                     </InnerBox>
                     <InnerBox>
                         <Name>
-                            <img src={icons["Klaystation"]} style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            <img src={icons["Klaystation"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             klaystation
                         </Name>
                         <Value>
@@ -121,20 +171,20 @@ function Topnav() {
             </SubTemplateBlockVertical>
 
 
-            <ReactModal style={stylesPc} isOpen={modalstate}>
+            <ReactModal style={modalStyle} isOpen={modalstate}>
                 <p style={{ fontSize: "20px", paddingBottom: "20px" }}>Select Wallet
                         <button style={{ float: "right" }} onClick={closeModal} > x</button>
                 </p>
                 <Box onClick={connectKaikas}>
-                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-kaikas-wh.svg" />
+                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-kaikas-wh.svg" alt=""  />
                     <span style={{ color: "white" }}>Kaikas</span>
                 </Box>
                 <Box style={{ backgroundColor: "rgb(254, 229, 0)" }}>
-                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-klip-bk.svg" />
+                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-klip-bk.svg" alt=""  />
                     <span>Kakaotalk klip</span>
                 </Box>
                 <Box style={{ backgroundColor: "rgb(250, 240, 252)" }}>
-                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-metamask.svg" />
+                    <img style={{ marginRight: "5px", height: "30px", verticalAlign: "middle" }} src="https://klayswap.com/img/icon/ic-service-metamask.svg" alt=""  />
                     <span>Metamask</span>
                 </Box>
             </ReactModal>
