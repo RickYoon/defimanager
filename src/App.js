@@ -12,6 +12,7 @@ import Newspage from './components/pages/Newspage'
 // import Eventpage from './components/pages/Eventpage'
 import Faqpage from './components/pages/Faqpage'
 import Walletpages from './components/pages/WalletPages'
+import Defimananger from './components/pages/Defimanager'
 import {
   BrowserRouter as Router,
   Route,
@@ -36,7 +37,6 @@ function App() {
         <Route exact path="/dashboard" element={<AccountOverview />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/faq" element={<Faqpage />} />
-        {/* <Route exact path="/event" element={<Eventpage />} /> */}
         <Route exact path="/project/:id" element={<Detailpage />} />
         <Route exact path="/wallet" element={<Walletpages />} />
       </Routes>

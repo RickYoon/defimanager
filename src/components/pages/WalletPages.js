@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import logo from "../../assets/CI/modified.svg"
+import walletIcon from "../../assets/uiux/wallet.png"
 import ReactModal from 'react-modal';
 import icons from "../../assets/tokenIcons"
 import klaytnLogo from "../../assets/uiux/klaytnLogo.png"
-import walletIcon from "../../assets/uiux/wallet.png"
 import kliplogo from "../../assets/uiux/kliplogo.svg"
 import close from "../../assets/uiux/close.png"
 import { prepare, getResult } from 'klip-sdk'
@@ -26,8 +26,7 @@ function Topnav() {
 
 
     useEffect(() => {
-        loadAssets()
-        
+        loadAssets()        
         // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [walletaddress])
 
