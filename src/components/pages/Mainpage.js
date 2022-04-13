@@ -286,7 +286,7 @@ function Main() {
             <NewsTicker
               rowHeight={18}
               maxRows={1}
-              speed={600}
+              speed={300}
               direction={Directions.UP}
               duration={4000}>
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/18 7PM) </div>
