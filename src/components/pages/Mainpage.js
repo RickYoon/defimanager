@@ -18,6 +18,7 @@ function Main() {
   const [subselection, setSubselection] = useState(true)
   const [number, setNumber] = useState(1)
   const [isloading, setIsloading] = useState(true)
+  const [events, setEvents] = useState([])
   // const [checkklayswap, setCheckklayswap] = useState(true)
   const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
   // const colorObj = {
@@ -73,6 +74,7 @@ function Main() {
   const chartRebuild = async () => {
     // console.log(tempchart)
   }
+
 
 
   const loadchart = async () => {
@@ -274,48 +276,6 @@ function Main() {
     });
   }
 
-  const PirateNFT = async (e) => {
-    await axios({
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
-      data: {
-        user: "klaylabs",
-        datetime: "2021-10-12T10:33:111Z",
-        country: "pirateNFT",
-        price: 1,
-        weight: 1,
-      },
-    }).then((res) => {
-      console.log(res);
-      window.location.href = "https://medium.com/@neverlandfichef/neverland-pirate-ship-nft-details-70ee4758521d"
-
-    });
-  }
-
-  const WTFrogAirdrop = async (e) => {
-    await axios({
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
-      data: {
-        user: "klaylabs",
-        datetime: "2021-10-12T10:33:111Z",
-        country: "WTFrogAirdrop",
-        price: 1,
-        weight: 1,
-      },
-    }).then((res) => {
-      console.log(res);
-      window.location.href = "https://bit.ly/PalaSquare_WTFrog_Event "
-
-    });
-  }
-
 
   return (
     <>
@@ -329,8 +289,7 @@ function Main() {
               speed={600}
               direction={Directions.UP}
               duration={4000}>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={PirateNFT}> Minting ) Neverland Pirate Ship NFT (04/12) </div>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/14 6PM) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/18 7PM) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >

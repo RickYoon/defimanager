@@ -40,7 +40,7 @@ const WalletOverview = () => {
                             Tokens
                         </Name>
                         <Value>
-                            $ 0
+                            $ {assetState.tokenBalance}
                         </Value>
                     </InnerBox>
                     <InnerBox>

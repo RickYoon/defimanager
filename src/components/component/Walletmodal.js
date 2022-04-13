@@ -19,7 +19,6 @@ const Walletmodal = () => {
     // const [modalstate, setModalstate] = useState(false)
     const [klipmodalstate, setKlipmodalstate] = useState(false)
     const [klipRequestKey, setKlipRequestKey] = useState("")
-
     const [url, setUrl] = useState("");
     const bappName = "KLAYLABS";
 
@@ -31,11 +30,8 @@ const Walletmodal = () => {
 
     const closeKlipModal = () => {
         setKlipmodalstate(false)
+        setUrl("")
     }
-
-    // const closeKlipModal = () => {
-    //     setKlipmodalstate(false)
-    // }
 
     const connectKaikas = async () => {
         const { klaytn } = window
@@ -69,17 +65,21 @@ const Walletmodal = () => {
 
     const isMobile = () => { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) }
 
-    const check = async () => {
-        console.log(url)
+    const autoLogin = async (key) => {
+
         const wait = (timeToDelay) => new Promise((resolve) => setTimeout(resolve, timeToDelay)) //이와 같이 선언 후
-        for (let i=0;i<500;i++){
-            let resss = await axios.get(`https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${klipRequestKey}`)
-            console.log(resss)
-            await wait(1500)
-            if(resss.data.status !== "prepared"){
+
+        for (let i=0;i<20;i++){
+
+            let authCheck = await axios.get(`https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${key}`)
+            console.log(authCheck)
+            await wait(1000)
+
+            if(authCheck.data.status !== "prepared"){
+                console.log(i)
                 setKlipmodalstate(false)
-                setWalletaddress(resss.data.result.klaytn_address)
-                i=500
+                setWalletaddress(authCheck.data.result.klaytn_address)
+                i=20
             }
         }
     }
@@ -88,7 +88,7 @@ const Walletmodal = () => {
 
         const mobileTure = isMobile()
 
-        if (!mobileTure) {
+        if (!mobileTure) { // PC client
 
             try {
 
@@ -104,31 +104,30 @@ const Walletmodal = () => {
                     );
                     setKlipRequestKey(res.request_key)
                     console.log(url);
+                    setModalstate(false)
+                    setKlipmodalstate(true)        
+                    autoLogin(res.request_key)
                 }
             } catch (error) {
                 console.log('User denied account access')
             }
-            setModalstate(false)
-            setKlipmodalstate(true)
+    
 
         } else {
 
             try {
 
                 const res = await prepare.auth({ bappName });
-
                     if (res.err) {
-                        // 에러 처리
+                        // err handling
                     } else if (res.request_key) {
-                        // request_key 보관
+                        // key management
                         console.log(res);
                         window.location.href = `kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${res.request_key}`
-                        // kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=9892...4aeb
-                        // setUrl(
-                        //     `https://klipwallet.com/?target=/a2a?request_key=${res.request_key}`
-                        // );
-                        // setKlipRequestKey(res.request_key)
-                        // console.log(url);
+                        setKlipRequestKey(res.request_key)
+                        console.log(url);
+                        autoLogin(res.request_key)
+                        setModalstate(false)
                     }
 
                 } catch (error) {
@@ -189,15 +188,24 @@ const Walletmodal = () => {
             </ReactModal>
 
             <ReactModal style={modalStyle} isOpen={klipmodalstate}>
-                <p style={{ fontSize: "20px", paddingBottom: "20px" }}>Select Wallet
+                <p style={{ fontSize: "20px", paddingBottom: "20px" }}>klip QR connection
                         <button style={{ float: "right" }} onClick={closeKlipModal} > x</button>
                 </p>
-                <button onClick={check}>확인</button>
-
                 {klipRequestKey !== null ? (
-                    <QRCode
+                    <>
+                    <div style={{marginTop:"15px"}}>
+                    <QRCode 
+                        renderAs="svg"
                         value={`https://klipwallet.com/?target=/a2a?request_key=${klipRequestKey}`}
+                        style={{margin: "auto", display: "block"}}
                     />
+                    </div>
+                    <ul style={{marginTop:"20px", textAlign:"center"}}>
+                        <li style={{marginTop:"10px"}}>1) kakaotalk 실행</li>
+                        <li style={{marginTop:"10px"}}>2) 상단 검색창 클릭</li>
+                        <li style={{marginTop:"10px"}}>3) 코드 스캔 후 로그인</li>
+                    </ul>
+                    </>
                 ) : null}
             </ReactModal>
 
