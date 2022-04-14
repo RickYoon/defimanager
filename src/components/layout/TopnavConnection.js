@@ -7,7 +7,7 @@ import { WalletContext } from 'components/context/WalletContext';
 
 const TopnavConnection = () => {
 
-    const {walletaddress, setWalletaddress, setModalstate,setAssetState} = useContext(WalletContext);
+    const {walletaddress, setWalletaddress, setModalstate,setAssetState,setServiceState} = useContext(WalletContext);
     
     console.log("walletaddress",walletaddress)
 
@@ -30,6 +30,7 @@ const TopnavConnection = () => {
             totalBalance : 0,
             klayBalance : 0
         })
+        setServiceState("overview")
         // setAssetState({
         //     totalBalance : 0,
         //     klayBalance : 0

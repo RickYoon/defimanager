@@ -8,8 +8,19 @@ import { WalletContext } from 'components/context/WalletContext';
 const WalletOverview = () => {
 
     const [isLoading, setIsLoading] = useState(false)
-    const {assetState} = useContext(WalletContext);
-    console.log(assetState)
+    const {assetState,serviceState,setServiceState} = useContext(WalletContext);
+    // console.log("assetState",assetState)
+
+    const tokenDetail = () => {
+        // console.log("clicked")
+        setServiceState("tokenDetail")
+    }
+
+    const klayswapDetail = () => {
+        // console.log("clicked")
+        setServiceState("klayswapDetail")
+    }
+
 
     return (
         <>
@@ -18,7 +29,7 @@ const WalletOverview = () => {
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
                 {isLoading ?
                     <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
-                    <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance}</div>
+                    <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance.toFixed(2)}</div>
                 }
             </SubTemplateBlockVertical>
 
@@ -28,13 +39,13 @@ const WalletOverview = () => {
                     <InnerBox>
                         <Name>
                             <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            Klay
+                            {assetState.klayBalance.toFixed(1)}{"  "}Klay
                         </Name>
                         <Value>
-                            $ {assetState.klayBalance}
+                            $ {assetState.klayValue}
                         </Value>
                     </InnerBox>
-                    <InnerBox>
+                    <InnerBox onClick={tokenDetail}>
                         <Name>
                             <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             Tokens
@@ -43,13 +54,13 @@ const WalletOverview = () => {
                             $ {assetState.tokenBalance}
                         </Value>
                     </InnerBox>
-                    <InnerBox>
+                    <InnerBox onClick={klayswapDetail}>
                         <Name>
                             <img src={icons["Klayswap"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             klayswap
                         </Name>
                         <Value>
-                            $ 0
+                            $ {assetState.klayswap.klayswapTotalBalance.toFixed(2)}
                         </Value>
                     </InnerBox>
                     <InnerBox>
@@ -92,7 +103,11 @@ const Value = styled.div`
 
 // </Innercontainer>
 const InnerBox = styled.div`
-    
+
+&:hover{  
+    border: 1px solid blue;
+  }
+    cursor: pointer;
     border: 1px solid #edeff1;
     display: flex;
     padding: 16px;

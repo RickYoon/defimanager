@@ -15,7 +15,7 @@ import QRCode from "qrcode.react";
 
 const Walletmodal = () => {
     
-    const {setWalletaddress, modalstate, setModalstate} = useContext(WalletContext);
+    const {walletaddress,setWalletaddress, modalstate, setModalstate} = useContext(WalletContext);
     // const [modalstate, setModalstate] = useState(false)
     const [klipmodalstate, setKlipmodalstate] = useState(false)
     const [klipRequestKey, setKlipRequestKey] = useState("")
@@ -24,8 +24,8 @@ const Walletmodal = () => {
 
     const closeModal = () => {
         setModalstate(false)
-        console.log(klipmodalstate)
-        console.log(klipRequestKey)
+        // console.log(klipmodalstate)
+        // console.log(klipRequestKey)
     }
 
     const closeKlipModal = () => {
@@ -56,7 +56,7 @@ const Walletmodal = () => {
     const connectMetamask = async () => {
         const provider = window.ethereum;
         const account = await provider.request({method:'eth_requestAccounts'})
-        console.log(account)
+        // console.log(account)
 
         await scanKlaybalance(account[0])
         closeModal()
@@ -72,11 +72,11 @@ const Walletmodal = () => {
         for (let i=0;i<20;i++){
 
             let authCheck = await axios.get(`https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${key}`)
-            console.log(authCheck)
+            // console.log(authCheck)
             await wait(1000)
 
             if(authCheck.data.status !== "prepared"){
-                console.log(i)
+                // console.log(i)
                 setKlipmodalstate(false)
                 setWalletaddress(authCheck.data.result.klaytn_address)
                 i=20
@@ -103,7 +103,7 @@ const Walletmodal = () => {
                         `https://klipwallet.com/?target=/a2a?request_key=${res.request_key}`
                     );
                     setKlipRequestKey(res.request_key)
-                    console.log(url);
+                    // console.log(url);
                     setModalstate(false)
                     setKlipmodalstate(true)        
                     autoLogin(res.request_key)
@@ -122,10 +122,10 @@ const Walletmodal = () => {
                         // err handling
                     } else if (res.request_key) {
                         // key management
-                        console.log(res);
+                        // console.log(res);
                         window.location.href = `kakaotalk://klipwallet/open?url=https://klipwallet.com/?target=/a2a?request_key=${res.request_key}`
                         setKlipRequestKey(res.request_key)
-                        console.log(url);
+                        // console.log(url);
                         autoLogin(res.request_key)
                         setModalstate(false)
                     }
@@ -141,6 +141,7 @@ const Walletmodal = () => {
         const { klaytn } = window
         if (klaytn === undefined) return
         setWalletaddress(klaytn.selectedAddress)
+        // console.log("walletaddress",walletaddress)
     }
 
     const modalStyle = {
