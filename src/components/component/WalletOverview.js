@@ -21,6 +21,11 @@ const WalletOverview = () => {
         setServiceState("klayswapDetail")
     }
 
+    const klaystationDetail = () => {
+        // console.log("clicked")
+        setServiceState("klaystationDetail")
+    }
+
 
     return (
         <>
@@ -60,16 +65,16 @@ const WalletOverview = () => {
                             klayswap
                         </Name>
                         <Value>
-                            $ {assetState.klayswap.klayswapTotalBalance.toFixed(2)}
+                            $ {assetState.klayswap.klayswapTotalBalance}
                         </Value>
                     </InnerBox>
-                    <InnerBox>
+                    <InnerBox onClick={klaystationDetail}>
                         <Name>
                             <img src={icons["Klaystation"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             klaystation
                         </Name>
                         <Value>
-                            $ 0
+                        $ {assetState.klaystation.value}
                         </Value>
                     </InnerBox>
                 </Innercontainer>

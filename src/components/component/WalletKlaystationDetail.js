@@ -7,7 +7,7 @@ import { WalletContext } from 'components/context/WalletContext';
 import arrowBack from '../../assets/uiux/arrowBack.svg'
 
 
-const WalletKlayswapDetail = () => {
+const WalletKlaystationDetail = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const {assetState,serviceState,setServiceState} = useContext(WalletContext);
@@ -24,93 +24,45 @@ const WalletKlayswapDetail = () => {
         </Topguide>
 
         <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Klayswap total Value</div>
+                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Klaystation total Value</div>
                 {isLoading ?
                     <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
-                    <div style={{ fontSize: "24px" }}>$ {assetState.klayswap.klayswapTotalBalance.toFixed(2)}</div>
+                    <div style={{ fontSize: "24px" }}>$ {assetState.klaystation.value.toFixed(2)}</div>
                 }
             </SubTemplateBlockVertical>
 
             <MobileTemplate>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Governance Token</div>
+            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Staking Node</div>
                 <Innercontainer>
                     <InnerBox>
                         <Name>
-                            <img src={icons["Klayswap"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px",borderRadius: "15px" }} />
-                            Staking KSP
+                            HashedOzys
                         </Name>
                         <Value>
-                            $ {(assetState.klayswap.stakingKSP * assetState.klayswap.KSPprice).toFixed(2)}
+                            $ {assetState.klaystation.HashedOzysValue.toFixed(2)}
                         </Value>
-                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> token price : {assetState.klayswap.KSPprice.toFixed(2)}$</div>
-                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> Amount : {assetState.klayswap.stakingKSP}</div>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.klaystation.HashedOzysNumber.toFixed(2)} KLAY</div>
                     </InnerBox>
                     <InnerBox>
                         <Name>
-                            <img src={icons["Klayswap"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px",borderRadius: "15px" }} />
-                            vKSP
+                            KoreaEconomicDaily
                         </Name>
                         <Value>
-                            $ -
+                            $ {assetState.klaystation.KoreaEconomicValue.toFixed(2)}
                         </Value>
-                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> token price : - $</div>
-                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> Amout : {assetState.klayswap.vKSPbalance}</div>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.klaystation.KoreaEconomicNumber.toFixed(2)} KLAY</div>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            FSN
+                        </Name>
+                        <Value>
+                            $ {assetState.klaystation.FSNValue.toFixed(2)}
+                        </Value>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.klaystation.FSNNumber.toFixed(2)} KLAY</div>
                     </InnerBox>
                     </Innercontainer>
             </MobileTemplate>
-            <MobileTemplate>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Single Pool</div>
-                <Innercontainer>
-                    {assetState.klayswap.SinglePoolList.map((singlePool)=>
-                        <InnerBox>
-                            <Name>
-                                {singlePool.tokenName}
-                            </Name>
-                            <Value>
-                                $ {singlePool.value.toFixed(2)}
-                            </Value>
-                    </InnerBox>
-                    )}
-                    </Innercontainer>
-            </MobileTemplate>            
-            <MobileTemplate>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Pair Pool</div>
-                <Innercontainer>
-                    {assetState.klayswap.PairPoolList.map((pairPool)=>
-                        <InnerBox>
-                            <Name>
-                                {pairPool.tokenAname}-{pairPool.tokenBname}
-                            </Name>
-                            <Value>
-                                $ {pairPool.value.toFixed(2)}
-                            </Value>
-                            <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {pairPool.tokenAnumber.toFixed(2)} {pairPool.tokenAname} </div>
-                            <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {pairPool.tokenBnumber.toFixed(2)} {pairPool.tokenBname} </div>
-                    </InnerBox>
-                    )}
-                    </Innercontainer>
-            </MobileTemplate>      
-
-            <MobileTemplate>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Plus Pool</div>
-                <Innercontainer>
-                    {assetState.klayswap.PlusPoolList.map((plusPool)=>
-                        <InnerBox>
-                            <Name>
-                                {plusPool.tokenAname}-{plusPool.tokenBname}
-                            </Name>
-                            <Value>
-                                $ {(plusPool.valueOfLP * (100 - plusPool.ltv)/100).toFixed(2)}
-                            </Value>
-                            <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> ltv : {plusPool.ltv.toFixed(2)} % </div>
-                            <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {plusPool.tokenApure.toFixed(2)} {plusPool.tokenAname} </div>
-                            <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {plusPool.tokenBpure.toFixed(2)} {plusPool.tokenBname} </div>
-
-                    </InnerBox>
-                    )}
-                    </Innercontainer>
-            </MobileTemplate>      
-
         </>
     )
 }
@@ -313,4 +265,4 @@ const SubTemplateBlockVertical = styled.div`
 `;
 
 
-export default WalletKlayswapDetail;
+export default WalletKlaystationDetail;
