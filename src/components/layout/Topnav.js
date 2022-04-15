@@ -25,9 +25,9 @@ function Topnav() {
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
                     <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
-                <span>
+                {/* <span>
                     <Wallet onClick={moveWallet}>DeFi Manager</Wallet>
-                </span>
+                </span> */}
             </TemplateBlock>
 
             <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
