@@ -27,7 +27,7 @@ const WalletOverview = () => {
     }
 
     const goFeedback = () => {
-        window.location.href="https://forms.gle/VUFktp7zuUp4d1Rs5"
+        window.location.href="https://forms.gle/rhRN2vtxnYM1AYcA7"
     }
 
 

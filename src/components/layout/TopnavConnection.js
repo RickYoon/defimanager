@@ -16,6 +16,7 @@ const TopnavConnection = () => {
     }
 
     const openModal = () => {
+        console.log("walletaddress",walletaddress)
         if (walletaddress.length > 0) {
 
         } else {

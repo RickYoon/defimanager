@@ -50,6 +50,17 @@ const Defimanager = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [walletaddress])
 
+    async function sendPriceData(jsondata) {
+        try {
+            return await axios.post("https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/walletInsert", jsondata).then(function (response) {
+                console.log(response)
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
+
     const loadAssets = async () => {
         if (walletaddress.length > 0) {
             console.log("wallet : ", walletaddress)
@@ -182,6 +193,14 @@ const Defimanager = () => {
         console.log("tempObject",tempObject)
 
         setAssetState({...tempObject})
+        let tempRes = {
+            "data" : {
+                address : walletaddress,
+                assetDetail : tempObject,
+                assetTotal : tempObject.totalBalance
+            }
+        }
+        await sendPriceData(tempRes)
         setIsloading(false)
     }
 

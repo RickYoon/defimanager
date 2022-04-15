@@ -25,9 +25,9 @@ function Topnav() {
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
                     <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
-                {/* <span>
-                    <Wallet onClick={moveWallet}>Wallet</Wallet>
-                </span> */}
+                <span>
+                    <Wallet onClick={moveWallet}>DeFi Manager</Wallet>
+                </span>
             </TemplateBlock>
 
             <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
@@ -56,6 +56,12 @@ function Topnav() {
 }
 
 const Wallet = styled.div`
+
+&:hover {
+    background : #3366cc;
+    color : white;
+  }
+
     align-items: center;
     background: #fff;
     border: 1px solid gray;
@@ -68,6 +74,15 @@ const Wallet = styled.div`
     margin-left: 36px;
     padding: 10px 14px;
     font-size:18px;
+
+
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    overflow-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    overflow: visible;
 `
 
 const Button = styled.button`

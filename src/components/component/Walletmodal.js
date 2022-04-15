@@ -140,9 +140,7 @@ const Walletmodal = () => {
 
     const scanKlaybalance = async () => {
         const { klaytn } = window
-        if (klaytn === undefined) return
         setWalletaddress(klaytn.selectedAddress)
-        // console.log("walletaddress",walletaddress)
     }
 
     const modalStyle = {
