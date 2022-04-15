@@ -276,6 +276,27 @@ function Main() {
     });
   }
 
+  const vedi = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "klaylabs",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "palavdvr",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://vdvr.pala.io/"
+
+    });
+  }
+
 
   return (
     <>
@@ -290,6 +311,7 @@ function Main() {
               direction={Directions.UP}
               duration={4000}>
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/18 7PM) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vedi}> Minting ) Vedi Vero NFT (pala, 04/20 7PM) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >
