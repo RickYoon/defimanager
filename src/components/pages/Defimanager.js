@@ -12,6 +12,7 @@ const Defimanager = () => {
 
     const [walletaddress, setWalletaddress] = useState("")
     const [serviceState,setServiceState] = useState("overview")
+    const [isloading, setIsloading] = useState(false)
     const [modalstate, setModalstate] = useState(false)
     const [assetState, setAssetState] = useState({
         totalBalance : 0,
@@ -51,6 +52,10 @@ const Defimanager = () => {
 
     const loadAssets = async () => {
         if (walletaddress.length > 0) {
+            console.log("wallet : ", walletaddress)
+
+            try {
+            setIsloading(true)
             const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/klay/${walletaddress}`).then((res) => { return res.data })
 
             let klayBalance = Number(Number(response.klayBalance).toFixed(2))
@@ -124,10 +129,16 @@ const Defimanager = () => {
                     ]}
             })
         }
+        catch (err) {
+            console.log(err)
+        }
+        }
+        
 
     }
 
     const loadTokens = async (klayObject) => {
+        console.log(klayObject)
         const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/tokens/${walletaddress}`).then((res) => { return res.data })
         // const response = {"totalValue":"76.43","tokenList":[{"tokenName":"USDK","tokenBalance":0.01909095105877624,"tokenPrice":1.0011572417755967,"tokenValue":0.01911304390487733},{"tokenName":"BTRY","tokenBalance":0.018283118456317825,"tokenPrice":25.125282617637602,"tokenValue":0.4593685183467315},{"tokenName":"KSP","tokenBalance":1.6903260229022554,"tokenPrice":4.726680890713025,"tokenValue":7.989631711527038},{"tokenName":"KLEVA","tokenBalance":0.006113431322155328,"tokenPrice":0.7732911249962086,"tokenValue":0.004727462184696552},{"tokenName":"KFI","tokenBalance":2.180638470599352,"tokenPrice":0.09045368456567841,"tokenValue":0.1972467843713772},{"tokenName":"HOUSE","tokenBalance":5.8031896494728406,"tokenPrice":0.032208578352420754,"tokenValue":0.1869124885190031},{"tokenName":"META","tokenBalance":0.1749733919587016,"tokenPrice":0.3514455209532349,"tokenValue":0.06149361488988044},{"tokenName":"KOKOA","tokenBalance":0.00773100370665,"tokenPrice":0.04383486847205331,"tokenValue":0.00033888753063795936},{"tokenName":"UFO","tokenBalance":547.2049845236141,"tokenPrice":0.05282869623815537,"tokenValue":28.90812590740252},{"tokenName":"EYE","tokenBalance":50.128604516227945,"tokenPrice":0.7701764703432482,"tokenValue":38.60787168954105}]}
         // console.log("tokenResponse : ", response)
@@ -171,6 +182,7 @@ const Defimanager = () => {
         console.log("tempObject",tempObject)
 
         setAssetState({...tempObject})
+        setIsloading(false)
     }
 
 
@@ -178,7 +190,7 @@ const Defimanager = () => {
 
     return (
         <>
-            <WalletContext.Provider value={{walletaddress,setWalletaddress,modalstate,setModalstate,assetState,setAssetState,setServiceState}}>
+            <WalletContext.Provider value={{walletaddress,setWalletaddress,modalstate,setModalstate,assetState,setAssetState,setServiceState,isloading}}>
                 <TopnavConnection />
                 <Walletmodal />
                 {serviceState === "overview" ? 

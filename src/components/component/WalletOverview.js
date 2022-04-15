@@ -7,8 +7,7 @@ import { WalletContext } from 'components/context/WalletContext';
 
 const WalletOverview = () => {
 
-    const [isLoading, setIsLoading] = useState(false)
-    const {assetState,serviceState,setServiceState} = useContext(WalletContext);
+    const {walletaddress, assetState,serviceState,setServiceState,isloading} = useContext(WalletContext);
     // console.log("assetState",assetState)
 
     const tokenDetail = () => {
@@ -18,6 +17,7 @@ const WalletOverview = () => {
 
     const klayswapDetail = () => {
         // console.log("clicked")
+
         setServiceState("klayswapDetail")
     }
 
@@ -26,13 +26,123 @@ const WalletOverview = () => {
         setServiceState("klaystationDetail")
     }
 
+    const goFeedback = () => {
+        window.location.href="https://forms.gle/VUFktp7zuUp4d1Rs5"
+    }
+
 
     return (
         <>
+            <FeedbackBox>
+                <Bar></Bar>
+                <div style={{marginLeft:"10px", width:"78%"}}> Beta service open  <br/>Feedback is welcome! </div>
+                <Button onClick={goFeedback}>Feedback</Button>
+            </FeedbackBox>
 
-        <SubTemplateBlockVertical>
+            {walletaddress.length === 0 ? 
+            <>
+            <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                {isLoading ?
+                <div style={{ fontSize: "24px" }}>$ -</div>
+            </SubTemplateBlockVertical>
+
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "10px", fontSize: "20px" }}>Account Overview</div>
+                <Innercontainer>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            - Klay
+                        </Name>
+                        <Value>
+                            $ - 
+                        </Value>
+                    </InnerBoxNoclick>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            Tokens
+                        </Name>
+                        <Value>
+                            $ -
+                        </Value>
+                    </InnerBoxNoclick>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src={icons["Klayswap"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            klayswap
+                        </Name>
+                        <Value>
+                            $ -
+                        </Value>
+                    </InnerBoxNoclick>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src={icons["Klaystation"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            klaystation
+                        </Name>
+                        <Value>
+                        $ -
+                        </Value>
+                    </InnerBoxNoclick>
+                </Innercontainer>
+
+            </SubTemplateBlockVertical>  
+            </> : 
+            isloading ? 
+            <>
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
+                    <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/>
+            </SubTemplateBlockVertical>
+
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "10px", fontSize: "20px" }}>Account Overview</div>
+                <Innercontainer>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            {assetState.klayBalance.toFixed(1)}{"  "}Klay
+                        </Name>
+                        <Value>
+                            $ {assetState.klayValue} <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/>
+                        </Value>
+                    </InnerBoxNoclick>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            Tokens
+                        </Name>
+                        <Value>
+                            $ {assetState.tokenBalance} <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/>
+                        </Value>
+                    </InnerBoxNoclick>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src={icons["Klayswap"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            klayswap
+                        </Name>
+                        <Value>
+                            $ {assetState.klayswap.klayswapTotalBalance} <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/>
+                        </Value>
+                    </InnerBoxNoclick>
+                    <InnerBoxNoclick>
+                        <Name>
+                            <img src={icons["Klaystation"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
+                            klaystation
+                        </Name>
+                        <Value>
+                        $ {assetState.klaystation.value} <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/>
+                        </Value>
+                    </InnerBoxNoclick>
+                </Innercontainer>
+
+            </SubTemplateBlockVertical>  
+            </> :
+            <>
+            <SubTemplateBlockVertical>
+                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
+                {isloading ?
                     <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
                     <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance.toFixed(2)}</div>
                 }
@@ -41,7 +151,7 @@ const WalletOverview = () => {
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "10px", fontSize: "20px" }}>Account Overview</div>
                 <Innercontainer>
-                    <InnerBox>
+                    <InnerBoxNoclick>
                         <Name>
                             <img src={klaytnLogo} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                             {assetState.klayBalance.toFixed(1)}{"  "}Klay
@@ -49,7 +159,7 @@ const WalletOverview = () => {
                         <Value>
                             $ {assetState.klayValue}
                         </Value>
-                    </InnerBox>
+                    </InnerBoxNoclick>
                     <InnerBox onClick={tokenDetail}>
                         <Name>
                             <img src="https://defiyield.app/static/media/WalletIcon.7586b0487b455e29c9a997698bda2ed7.svg" alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
@@ -79,10 +189,73 @@ const WalletOverview = () => {
                     </InnerBox>
                 </Innercontainer>
 
-            </SubTemplateBlockVertical>        
+            </SubTemplateBlockVertical>  
+            </>
+            }  
         </>
     )
 }
+
+const Button = styled.button`
+  /* Adapt the colors based on primary prop */
+  background: ${props => props.primary ? "#3366cc" : "white"};
+  color: ${props => props.primary ? "white" : "#3366cc"};
+
+  &:hover {
+    background : #3366cc;
+    color : white;
+  }
+
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid #3366cc;
+  border-radius: 3px;
+  float:right;
+  width:20%;
+  height: 35px;
+  @media screen and (max-width: 500px){
+    width:40%;
+    }
+`;
+
+const FeedbackBox = styled.div`
+     width: 900px;
+    margin: 20px auto;
+    padding-bottom: 10px;
+    position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+    padding:15px;
+    display:flex;
+    flex-direction:row;
+    -webkit-box-align: center;
+    align-items: center;
+
+    padding: 20px 25px !important;
+    background: #fff;
+
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    min-width: 0px;
+    overflow-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+    overflow: visible;
+
+    @media screen and (max-width: 500px){
+      width: 360px;
+      font-size: 15px;
+    }
+`
+
+
+const Bar = styled.div`
+    width: 6px;
+    height: 30px;
+    background: #3366cc;
+`
 
 const Name = styled.div`
     color: #050f19;
@@ -107,6 +280,27 @@ const Value = styled.div`
 `
 
 // </Innercontainer>
+
+const InnerBoxNoclick = styled.div`
+
+    border: 1px solid #edeff1;
+    display: flex;
+    padding: 16px;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    border-radius: 8px;
+    flex-direction: column;
+    width: 22%;
+    margin: 12px;
+    flex-grow:0;
+
+    @media screen and (max-width: 500px){
+        width: 100%;
+        margin: 10px auto;
+    }
+`
+
 const InnerBox = styled.div`
 
 &:hover{  
@@ -141,7 +335,7 @@ const Innercontainer = styled.div`
 
 const SubTemplateBlockVertical = styled.div`
      width: 900px;
-    margin: 10px auto;
+    margin: 20px auto;
     padding-bottom: 10px;
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
     padding:15px;

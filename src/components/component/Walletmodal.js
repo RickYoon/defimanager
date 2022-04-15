@@ -58,9 +58,10 @@ const Walletmodal = () => {
         const account = await provider.request({method:'eth_requestAccounts'})
         // console.log(account)
 
-        await scanKlaybalance(account[0])
-        closeModal()
+        // await scanKlaybalance(account[0])
         setWalletaddress(account[0])
+        console.log(account[0])
+        closeModal()
     }
 
     const isMobile = () => { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) }

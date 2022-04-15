@@ -11,6 +11,7 @@ import Detailpage from './components/pages/Detailpage'
 import Newspage from './components/pages/Newspage'
 // import Eventpage from './components/pages/Eventpage'
 import Faqpage from './components/pages/Faqpage'
+import WalletTokenDetail from './components/component/WalletTokenDetail'
 // import Walletpages from './components/pages/WalletPages'
 import Defimananger from './components/pages/Defimanager'
 import {
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/faq" element={<Faqpage />} />
         <Route exact path="/project/:id" element={<Detailpage />} />
         <Route exact path="/wallet" element={<Defimananger />} />
+        <Route exact path="/wallet/token" element={<WalletTokenDetail />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Footer />} />
