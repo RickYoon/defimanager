@@ -1,4 +1,4 @@
-import React,{useContext,useState} from "react";
+import React,{useContext,useState,useEffect} from "react";
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import { WalletContext } from 'components/context/WalletContext';
@@ -21,6 +21,12 @@ const Walletmodal = () => {
     const [klipRequestKey, setKlipRequestKey] = useState("")
     const [url, setUrl] = useState("");
     const bappName = "KLAYLABS";
+
+    useEffect(()=>{
+        window.onfocus = () => {
+            window.location.reload();
+        }    
+    },[])
 
     const closeModal = () => {
         setModalstate(false)
