@@ -57,7 +57,7 @@ const TopnavConnection = () => {
                 <span>
                     <Wallet onClick={openModal}>
                         <img src={walletIcon} alt="" style={{ marginRight: "5px", height: "30px", width: "30px" }} />
-                        {walletaddress.length > 0 ?
+                        {walletaddress !== "" | undefined ?
                             <>
                             <span style={{ fontSize: "15px" }}>{walletaddress.slice(0, 7)}...</span>
                             <img src={close} alt="" onClick={disconnect} style={{ height: "20px", width: "20px" }} />
