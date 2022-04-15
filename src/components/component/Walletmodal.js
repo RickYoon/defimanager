@@ -22,12 +22,6 @@ const Walletmodal = () => {
     const [url, setUrl] = useState("");
     const bappName = "KLAYLABS";
 
-    useEffect(()=>{
-        window.onfocus = () => {
-            window.location.reload();
-        }    
-    },[])
-
     const closeModal = () => {
         setModalstate(false)
         // console.log(klipmodalstate)
