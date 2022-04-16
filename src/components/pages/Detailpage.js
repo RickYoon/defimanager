@@ -152,7 +152,7 @@ function Detailpage() {
 
         serviceObject.tokenOneName = tokenOneName
         serviceObject.startChart = serviceObject.price[0].dateRaw
-        serviceObject.endChart = serviceObject.price[13].dateRaw
+        // serviceObject.endChart = serviceObject.price[13].dateRaw
         // serviceObject.startChart = "2022-11-11"
         // serviceObject.endChart = "2022-11-11"
 
