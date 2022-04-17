@@ -22,6 +22,13 @@ const Walletmodal = () => {
     const [url, setUrl] = useState("");
     const bappName = "KLAYLABS";
 
+    useEffect(()=>{
+
+        if (window.klaytn.selectedAddress !== undefined) { // 조건문 추가
+            setWalletaddress(window.klaytn.selectedAddress)
+          }
+    },[])
+
     const closeModal = () => {
         setModalstate(false)
         // console.log(klipmodalstate)
@@ -33,30 +40,40 @@ const Walletmodal = () => {
         setUrl("")
     }
 
+
     const connectKaikas = async () => {
-        const { klaytn } = window
-        // console.log("klaytn", klaytn)
 
-        if (klaytn) {
-            try {
-                await klaytn.enable()
-                await scanKlaybalance(klaytn)
-                closeModal()
-                // klaytn.on('accountsChanged', () => setAccountInfo(klaytn))
+        const { klaytn } = window;
+        if (klaytn === undefined) return;
+        await klaytn.enable();
+        const klaytnAddress = await klaytn.selectedAddress;
 
-            } catch (error) {
-                console.log('User denied account access')
-            }
-        } else {
-            console.log('Non-Kaikas browser detected. You should consider trying Kaikas!')
+        if(klaytnAddress === undefined){
+            window.location.reload();
+        }
+
+       if (klaytnAddress > 0) { // 조건문 추가
+          setWalletaddress(klaytnAddress)
+          closeModal()
         }
 
     }
 
     const connectMetamask = async () => {
-        const provider = window.ethereum;
-        const account = await provider.request({method:'eth_requestAccounts'})
+        // const provider = window.ethereum;
+        const { ethereum } = window;
+        if(ethereum.chainId === null){
+            window.location.reload();
+        }
+        console.log("provider", ethereum.chainId)
+        const account = await ethereum.request({method:'eth_requestAccounts'})
+        console.log("account", account)
         // console.log(account)
+
+        // if(klaytnAddress === undefined){
+        //     window.location.reload();
+        // }
+
 
         // await scanKlaybalance(account[0])
         setWalletaddress(account[0])
@@ -136,16 +153,6 @@ const Walletmodal = () => {
                 }
         }
 
-    }
-
-    const scanKlaybalance = async () => {
-        const { klaytn } = window
-        console.log(klaytn.selectedAddress)
-        if(klaytn.selectedAddress !== undefined){
-            setWalletaddress(klaytn.selectedAddress)
-        } else {
-            setWalletaddress("")
-        }
     }
 
     const modalStyle = {

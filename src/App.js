@@ -39,8 +39,8 @@ function App() {
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/faq" element={<Faqpage />} />
         <Route exact path="/project/:id" element={<Detailpage />} />
-        {/* <Route exact path="/wallet" element={<Defimananger />} /> */}
-        {/* <Route exact path="/wallet/token" element={<WalletTokenDetail />} /> */}
+        <Route exact path="/wallet" element={<Defimananger />} />
+        <Route exact path="/wallet/token" element={<WalletTokenDetail />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Footer />} />
