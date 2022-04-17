@@ -15,18 +15,23 @@ import QRCode from "qrcode.react";
 
 const Walletmodal = () => {
     
-    const {walletaddress,setWalletaddress, modalstate, setModalstate} = useContext(WalletContext);
+    const {setWalletaddress, modalstate, setModalstate} = useContext(WalletContext);
     // const [modalstate, setModalstate] = useState(false)
     const [klipmodalstate, setKlipmodalstate] = useState(false)
     const [klipRequestKey, setKlipRequestKey] = useState("")
-    const [url, setUrl] = useState("");
+    const [setUrl] = useState("");
     const bappName = "KLAYLABS";
 
-    useEffect(()=>{
+    const isMobile = () => { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) }
 
+    useEffect(()=>{
+        const mobileTure = isMobile()
+        if (!mobileTure) { // PC client
         if (window.klaytn.selectedAddress !== undefined) { // 조건문 추가
             setWalletaddress(window.klaytn.selectedAddress)
           }
+        }
+        // eslint-disable-next-line
     },[])
 
     const closeModal = () => {
@@ -81,7 +86,6 @@ const Walletmodal = () => {
         closeModal()
     }
 
-    const isMobile = () => { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) }
 
     const autoLogin = async (key) => {
 
