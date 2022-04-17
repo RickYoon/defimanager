@@ -189,18 +189,18 @@ const Walletmodal = () => {
                 <p style={{ fontSize: "20px", paddingBottom: "20px" }}>Select Wallet
                         <button style={{ float: "right" }} onClick={closeModal} > x</button>
                 </p>
-                <Box onClick={connectKaikas}>
+                <BoxKaikas onClick={connectKaikas}>
                     <img style={{ marginRight: "10px", height: "30px", verticalAlign: "middle" }} src={kaikas} alt="" />
-                    <span style={{ color: "white" }}>connect Kaikas</span>
-                </Box>
+                    <span style={{ color: "white" }}>connect Kaikas (pc)</span>
+                </BoxKaikas>
                 <Box onClick={connectKlip} style={{ backgroundColor: "#216FEA", paddingTop: "20px", }}>
                     <img style={{ marginRight: "10px", height: "18px", verticalAlign: "middle" }} src={kliplogo} alt="" />
-                    <span style={{ color: "white" }}>connect klip</span>
+                    <span style={{ color: "white" }}>connect klip (pc,mob)</span>
                 </Box>
-                <Box onClick={connectMetamask} style={{ backgroundColor: "rgb(250, 240, 252)" }}>
+                <BoxMetamask onClick={connectMetamask} style={{ backgroundColor: "rgb(250, 240, 252)" }}>
                     <img style={{ marginRight: "10px", height: "30px", verticalAlign: "middle" }} src={metamask} alt="" />
-                    <span>connect Metamask</span>
-                </Box>
+                    <span>connect Metamask (pc)</span>
+                </BoxMetamask>
             </ReactModal>
 
             <ReactModal style={modalStyle} isOpen={klipmodalstate}>
@@ -240,7 +240,32 @@ const Box = styled.div`
     padding-top:15px;
     cursor: pointer;
     border-radius: 4px;
+    inset: 0px;
+`
+
+const BoxKaikas = styled.div`
+    width: 100%;
+    margin-top:20px;
+    margin-bottom:20px;
+    height: 60px;
+    text-align:center;
+    padding-top:15px;
+    cursor: pointer;
+    border-radius: 4px;
     background-color: rgb(111, 101, 88);    
+    inset: 0px;
+`
+
+const BoxMetamask = styled.div`
+    width: 100%;
+    margin-top:20px;
+    margin-bottom:20px;
+    height: 60px;
+    text-align:center;
+    padding-top:15px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: rgb(250, 240, 252);
     inset: 0px;
 `
 
