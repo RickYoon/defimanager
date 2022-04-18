@@ -40,6 +40,8 @@ import RHEA from './RHEA.svg'
 import KROME from './KROME.svg'
 import Zombie from './Zombie.svg'
 import Ignite from './Ignite.svg'
+import clubrare from './clubrare.png'
+import popkorn from './popkorn.png'
 
 const icons = {
     belt,
@@ -83,7 +85,9 @@ const icons = {
     RHEA,
     KROME,
     Zombie,
-    Ignite
+    Ignite,
+    clubrare,
+    popkorn
 }
 
 export default icons;
