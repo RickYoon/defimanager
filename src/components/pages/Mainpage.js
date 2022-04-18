@@ -255,27 +255,6 @@ function Main() {
     setNumber(temp)
   }
 
-  const peterFarm = async (e) => {
-    await axios({
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
-      data: {
-        user: "klaylabs",
-        datetime: "2021-10-12T10:33:111Z",
-        country: "peterFarm",
-        price: 1,
-        weight: 1,
-      },
-    }).then((res) => {
-      console.log(res);
-      window.location.href = "https://neverland-finance.gitbook.io/peterfarm/"
-
-    });
-  }
-
   const vedi = async (e) => {
     await axios({
       method: "post",
@@ -297,6 +276,27 @@ function Main() {
     });
   }
 
+  const flora = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "klaylabs",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "flora",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://flora-finance.gitbook.io/flora.finance/ido/ido-information"
+
+    });
+  }
+
 
   return (
     <>
@@ -310,8 +310,8 @@ function Main() {
               speed={300}
               direction={Directions.UP}
               duration={4000}>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={peterFarm}> Launching ) PeterFarm Project (04/18 7PM) </div>
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vedi}> Minting ) Vedi Vero NFT (pala, 04/20 7PM) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={flora}> IDO ) Flora finance (04/22 8PM) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >

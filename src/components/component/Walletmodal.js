@@ -197,7 +197,7 @@ const Walletmodal = () => {
                     <img style={{ marginRight: "10px", height: "18px", verticalAlign: "middle" }} src={kliplogo} alt="" />
                     <span style={{ color: "white" }}>connect klip (pc,mob)</span>
                 </Box>
-                <BoxMetamask onClick={connectMetamask} style={{ backgroundColor: "rgb(250, 240, 252)" }}>
+                <BoxMetamask onClick={connectMetamask}>
                     <img style={{ marginRight: "10px", height: "30px", verticalAlign: "middle" }} src={metamask} alt="" />
                     <span>connect Metamask (pc)</span>
                 </BoxMetamask>
