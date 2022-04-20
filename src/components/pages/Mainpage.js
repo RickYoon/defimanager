@@ -646,18 +646,6 @@ function Main() {
   );
 }
 
-const Spanright = styled.div`
- float: right;
- text-align: right;
- font-family: OpenSans-Semibold;
- font-size: 15px;
- color: #316395;
- @media screen and (max-width: 500px){
-  font-size: 12px;
- }
-`
-
-
 const Topdash = styled.div`
  width: 900px;
  margin: 0 auto;
@@ -672,10 +660,6 @@ const Containersub = styled.div`
     }
     `
 
-const Subtitle = styled.div`
-@media screen and (max-width: 500px){
-    }
-    `
 
 const EventCard = styled.div`
   width:100%;

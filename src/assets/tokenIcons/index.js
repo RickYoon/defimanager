@@ -42,8 +42,12 @@ import Zombie from './Zombie.svg'
 import Ignite from './Ignite.svg'
 import clubrare from './clubrare.png'
 import popkorn from './popkorn.png'
+import symbiotik from './symbiotik.svg'
+import peterfarm from './peterfarm.png'
 
 const icons = {
+    symbiotik,
+    peterfarm,
     belt,
     cherry,
     Klayswap,
