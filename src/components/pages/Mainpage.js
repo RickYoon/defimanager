@@ -255,7 +255,9 @@ function Main() {
     setNumber(temp)
   }
 
-  const vedi = async (e) => {
+
+
+  const flex = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -265,18 +267,18 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "palavdvr",
+        country: "flex",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://vdvr.pala.io/"
+      window.location.href = "https://flex-protocol.medium.com/%EC%82%AC%EC%A0%84-%EB%AF%BC%ED%8C%85%EC%9D%B4-%EA%B3%A7-%EC%8B%9C%EC%9E%91%EB%90%A9%EB%8B%88%EB%8B%A4-89337f8a3bd"
 
     });
   }
 
-  const flora = async (e) => {
+    const klaybank = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -286,16 +288,17 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "flora",
+        country: "klaybank",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://flora-finance.gitbook.io/flora.finance/ido/ido-information"
+      window.location.href = "https://medium.com/klaybank/%ED%81%B4%EB%A0%88%EC%9D%B4%EB%B1%85%ED%81%AC-1%EC%B0%A8-%EC%9C%A0%EC%A0%80-%EC%97%A0%EB%B2%A0%EC%84%9C%EB%8D%94-%EB%B0%94%EC%9A%B4%ED%8B%B0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EA%B3%B5%EC%A7%80-6aeb8bada343"
 
     });
   }
+  
 
 
   return (
@@ -310,8 +313,8 @@ function Main() {
               speed={300}
               direction={Directions.UP}
               duration={4000}>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vedi}> Minting ) Vedi Vero NFT (pala, 04/20 7PM) </div>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={flora}> IDO ) Flora finance (04/22 8PM) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={flex}> pre-Minting ) Flex protocol (04/29 7PM) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={klaybank}> bounty ) klaybank user Ambassador (~04/29) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >
