@@ -40,7 +40,9 @@ function Detailpage() {
       let priceArr = [];
 
 
+      
       response.data.chart.Items.forEach((item) => {
+        console.log(item)
         if (item[id] > 1000000) {
           if (id !== "RHEA") {
             tempArr.push({
@@ -109,6 +111,8 @@ function Detailpage() {
       })
 
       let tvlLength = serviceObject.chart.length;
+      console.log("serviceObject : ", serviceObject)
+
 
       if (serviceObject.chart.length > 13) {
         const lastDayTvl = Number(serviceObject.chart[13].tvl)
@@ -134,7 +138,8 @@ function Detailpage() {
         // serviceObject.endChart = "2022-11-11"
 
         console.log("serviceObject", serviceObject)
-      } else if (serviceObject.chart.length > 6) {
+      } else if (serviceObject.chart.length > 7) {
+        console.log("serviceObject", serviceObject)
         const lastDayTvl = Number(serviceObject.chart[tvlLength - 1].tvl)
         const beforeDayTvl = Number(serviceObject.chart[tvlLength - 8].tvl)
         serviceObject.tvlDiff = ((((lastDayTvl - beforeDayTvl) / (beforeDayTvl))) * 100).toFixed(2)
@@ -142,6 +147,7 @@ function Detailpage() {
         // const lastDayTvl = 123
         // const beforeDayTvl = 456
         let tokenOneName = ""
+        console.log("priceArr : ", priceArr)
         if (priceArr.length === 0) {
           // const tokenOneName = priceArr[0].price[0].tokenName
           tokenOneName = "-"
@@ -157,6 +163,19 @@ function Detailpage() {
         // serviceObject.endChart = "2022-11-11"
 
         console.log("serviceObject", serviceObject)
+      } else {
+
+        let tokenOneName = ""
+     
+        if (priceArr.length === 0) {
+          // const tokenOneName = priceArr[0].price[0].tokenName
+          tokenOneName = "-"
+        } else {
+          tokenOneName = priceArr[0].price[0].tokenName
+        }
+        serviceObject.tokenOneName = tokenOneName
+
+
       }
 
 
@@ -251,6 +270,10 @@ function Detailpage() {
                                   <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-2', 'dataMax+3']} /> :
                                   id === "RHEA" ?
                                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-400', 'dataMax+300']} /> :
+                                    id === "PALA" ?
+                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-10', 'dataMax+20']} /> :
+                                    id === "peterfarm" ?
+                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-15', 'dataMax+20']} /> :
                                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 1', 'dataMax + 1']} />
                 }
 
@@ -277,7 +300,7 @@ function Detailpage() {
 
                       <XAxis tick={{ fontSize: 10 }} dataKey="date" />
                       {id === "Kronosdao" ?
-                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 70', 'dataMax + 50']} /> :
+                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 5', 'dataMax + 5']} /> :
                         <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} />
                       }
                       <Tooltip />
