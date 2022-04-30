@@ -7,16 +7,15 @@ import { WalletContext } from 'components/context/WalletContext';
 import arrowBack from '../../assets/uiux/arrowBack.svg'
 
 
-const WalletTokenDetail = () => {
+const WalletKairoscashDetail = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const {assetState,serviceState,setServiceState} = useContext(WalletContext);
-    // console.log(assetState)
+    console.log(assetState)
 
     const backToOverview = () => {
         setServiceState("overview")
     }
-
 
     return (
         <>
@@ -25,56 +24,64 @@ const WalletTokenDetail = () => {
         </Topguide>
 
         <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Token Value</div>
+                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Kairoscash total Value</div>
                 {isLoading ?
                     <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
-                    <div style={{ fontSize: "24px" }}>$ {assetState.tokenBalance}</div>
+                    <div style={{ fontSize: "24px" }}>$ {Number(assetState.kairoscash.value).toLocaleString()}</div>
                 }
             </SubTemplateBlockVertical>
 
             <MobileTemplate>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Token List</div>
+            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Borrow Info</div>
                 <Innercontainer>
-                {assetState.tokenList.map((token) => (
+
                     <InnerBox>
                         <Name>
-                            <img src={icons[token.project]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px",borderRadius: "15px" }} />
-                            {token.tokenBalance.toFixed(3)}{"  "}{token.tokenName}
+                            wsKRNO Collateral
                         </Name>
                         <Value>
-                            $ {token.tokenValue.toFixed(3)}
+                            $ {assetState.kairoscash.collateralValue.toLocaleString()}
                         </Value>
-                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> token price : {token.tokenPrice.toFixed(3)}</div>
-
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.kairoscash.collateralWSKRNO.toFixed(3)} wsKRNO</div>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.kairoscash.WSKRNOprice.toFixed(3)} $ / wsKRNO</div>
                     </InnerBox>
-                ))}
+                    <InnerBox>
+                        <Name>
+                            Borrow KASH
+                        </Name>
+                        <Value>
+                            $ {assetState.kairoscash.borrowedValue.toLocaleString()}
+                        </Value>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.kairoscash.borrowedKASH.toFixed(3)} KASH</div>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.kairoscash.KASHprice.toFixed(3)} $ / KASH</div>
+                    </InnerBox>
+                    <InnerBox>
+                        <Name>
+                            LTV
+                        </Name>
+                        <Value>
+                        {assetState.kairoscash.LTV} %
+                        </Value>
+                    </InnerBox>
+
+
                     </Innercontainer>
-            </MobileTemplate>      
-
-            {/* <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "10px", fontSize: "20px" }}>List view</div>
-                <Table>
-                    <Thead>
-                        <Th styled={{textAlign:"left"}}>Token</Th>
-                        <Th styled={{textAlign:"right"}}>project</Th>
-                        <Thr styled={{textAlign:"right"}}>Price</Thr>
-                        <Thr>Balance</Thr>
-                        <Thr>value ($)</Thr>
-                    </Thead>
-                    {assetState.tokenList.map((token) => (
-                    <tbody>
-                        <Tr>
-                            <Td><img src={icons[token.tokenName]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />{token.tokenName}</Td>
-                            <Td>{token.project}</Td>
-                            <Tdr>{token.tokenPrice.toFixed(3)}</Tdr>
-                            <Tdr>{token.tokenBalance.toFixed(3)}</Tdr>
-                            <Tdr>{token.tokenValue.toFixed(3)}</Tdr>
-                        </Tr>
-                    </tbody>
-                    ))}
-                </Table>
-            </SubTemplateBlockVertical> */}
-
+            </MobileTemplate>
+            <MobileTemplate>
+            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Staking Info</div>
+                <Innercontainer>
+                    <InnerBox>
+                        <Name>
+                            KREDIT staking
+                        </Name>
+                        <Value>
+                            $ {assetState.kairoscash.stakedKREDITValue.toLocaleString()}
+                        </Value>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.kairoscash.stakedKREDITbalance.toFixed(2)} KREDIT </div>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> {assetState.kairoscash.KREDITprice.toFixed(6)}$ / KREDIT</div>
+                    </InnerBox>
+                    </Innercontainer>
+            </MobileTemplate>
         </>
     )
 }
@@ -277,4 +284,4 @@ const SubTemplateBlockVertical = styled.div`
 `;
 
 
-export default WalletTokenDetail;
+export default WalletKairoscashDetail;

@@ -257,7 +257,7 @@ function Main() {
 
 
 
-  const flex = async (e) => {
+  const mesherTime = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -267,18 +267,18 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "flex",
+        country: "mesherTime",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://flex-protocol.medium.com/%EC%82%AC%EC%A0%84-%EB%AF%BC%ED%8C%85%EC%9D%B4-%EA%B3%A7-%EC%8B%9C%EC%9E%91%EB%90%A9%EB%8B%88%EB%8B%A4-89337f8a3bd"
+      window.location.href = "https://medium.com/mesher/mesher-%EC%83%88%EB%A1%9C%EC%9A%B4-%EB%A9%94%ED%83%80%EB%B2%84%EC%8A%A4-a099fdfcf0c3"
 
     });
   }
 
-    const klaybank = async (e) => {
+    const Meshswap = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -288,16 +288,60 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "klaybank",
+        country: "Meshswap",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://medium.com/klaybank/%ED%81%B4%EB%A0%88%EC%9D%B4%EB%B1%85%ED%81%AC-1%EC%B0%A8-%EC%9C%A0%EC%A0%80-%EC%97%A0%EB%B2%A0%EC%84%9C%EB%8D%94-%EB%B0%94%EC%9A%B4%ED%8B%B0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EA%B3%B5%EC%A7%80-6aeb8bada343"
+      window.location.href = "https://medium.com/meshswap/meshswap-will-go-live-on-polygon-2adcabb25188"
 
     });
   }
+
+      const vevefinance = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "klaylabs",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "vevefinance",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://docs.veve.finance/"
+
+    });
+  }
+  
+
+  const KLAYDICE = async (e) => {
+    await axios({
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+      data: {
+        user: "klaylabs",
+        datetime: "2021-10-12T10:33:111Z",
+        country: "KLAYDICE",
+        price: 1,
+        weight: 1,
+      },
+    }).then((res) => {
+      console.log(res);
+      window.location.href = "https://www.klaydice.io/"
+
+    });
+  }
+  
   
 
 
@@ -313,8 +357,10 @@ function Main() {
               speed={300}
               direction={Directions.UP}
               duration={4000}>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={flex}> pre-Minting ) Flex protocol (04/29 7PM) </div>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={klaybank}> bounty ) klaybank user Ambassador (~04/29) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher time capsule (May, TBA) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={Meshswap}> Launching ) Meshswap (TBA) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Launching ) VEVE finance (TBA) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={KLAYDICE}> IDO ) KLAYDICE ( TBA ) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >

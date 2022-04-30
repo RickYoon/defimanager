@@ -1,18 +1,24 @@
 import belt from "./belt.png";
 import cherry from "./cherry.png";
 import Klayswap from './Klayswap.svg';
+import KSP from './Klayswap.svg';
 import kleva from './kleva.svg';
+import KLEVA from './kleva.svg';
 import Klaystation from './Klaystation.svg'
 import Kokoa from './kokoa.png'
 import klayFi from './klayfi.png'
 import PALA from './pala.svg'
 import Klaymore from './ic-house.png'
+import HOUSE from './ic-house.png'
 import Claimswap from './claimswap.png'
 import Kronosdao from "./kronos.svg"
+import SKRNO from "./kronos.svg"
+import KRNO from "./kronos.svg"
 import i4i from "./i4i.png"
 import KLAYportal from './HaskQuark.svg'
 import definix from './FINIX.png'
 import Eklipse from './eklipse.png'
+import EKL from './eklipse.png'
 import neverland from './neverland.png'
 import kai from './kai.png'
 import Bluewhale from './bluewhale.png'
@@ -34,8 +40,10 @@ import TurtleKing from './turking.png'
 import ORCA from './orca.png'
 import GRDSWAP from './GRDSWAP.svg'
 import Swapscanner from './Swapscanner.svg'
+import BTRY from './Electrik.png'
 import Electrik from './Electrik.png'
 import KairosCash from './KairosCash.png'
+import KASH from './KairosCash.png'
 import RHEA from './RHEA.svg'
 import KROME from './KROME.svg'
 import Zombie from './Zombie.svg'
@@ -44,8 +52,21 @@ import clubrare from './clubrare.png'
 import popkorn from './popkorn.png'
 import symbiotik from './symbiotik.svg'
 import peterfarm from './peterfarm.png'
+import PAN from './peterfarm.png'
+
+import KXRP from "./kxrp.svg"
 
 const icons = {
+    HOUSE,
+    PAN,
+    KASH,
+    BTRY,
+    EKL,
+    KRNO,
+    SKRNO,
+    KXRP,
+    KSP,
+    KLEVA,
     symbiotik,
     peterfarm,
     belt,

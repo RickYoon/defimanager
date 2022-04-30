@@ -1,6 +1,7 @@
 import React from 'react';
 import GlobalStyles from './assets/styles/GlobalStyles';
 import Topnav from './components/layout/Topnav';
+import TopnavDetail from './components/layout/TopnavDetail';
 import Sidenav from './components/layout/Sidenav';
 import AccountOverview from './components/dashboard/AccountOverview';
 import TopLogo from './components/layout/TopLogo';
@@ -14,6 +15,7 @@ import Faqpage from './components/pages/Faqpage'
 import WalletTokenDetail from './components/component/WalletTokenDetail'
 // import Walletpages from './components/pages/WalletPages'
 import Defimananger from './components/pages/Defimanager'
+import DefimanagerNew from './components/pages/DefimanagerNew'
 import {
   BrowserRouter as Router,
   Route,
@@ -27,20 +29,22 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Topnav />} />
-        <Route exact path="/dashboard" element={<Sidenav />} />
+        {/* <Route exact path="/dashboard" element={<Sidenav />} /> */}
         <Route exact path="/news" element={<Topnav />} />
         <Route exact path="/faq" element={<Topnav />} />
-        <Route exact path="/project/:id" element={<Topnav />} />
+        <Route exact path="/project/:id" element={<TopnavDetail />} />
         <Route exact path="/event" element={<Topnav />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Mainpage />} />
-        <Route exact path="/dashboard" element={<AccountOverview />} />
+        <Route exact path="/dashboard" element={<Defimananger />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/faq" element={<Faqpage />} />
         <Route exact path="/project/:id" element={<Detailpage />} />
         <Route exact path="/wallet" element={<Defimananger />} />
         <Route exact path="/wallet/token" element={<WalletTokenDetail />} />
+        <Route exact path="/defimanager" element={<DefimanagerNew />} />
+
       </Routes>
       <Routes>
         <Route path="/" element={<Footer />} />

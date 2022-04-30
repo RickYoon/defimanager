@@ -7,7 +7,7 @@ import { WalletContext } from 'components/context/WalletContext';
 import arrowBack from '../../assets/uiux/arrowBack.svg'
 
 
-const WalletTokenDetail = () => {
+const WalletTokenDetailTable = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const {assetState,serviceState,setServiceState} = useContext(WalletContext);
@@ -20,39 +20,15 @@ const WalletTokenDetail = () => {
 
     return (
         <>
-        <Topguide onClick={backToOverview}>
-            <img style={{width:"30px"}} alt="" src={arrowBack} />
-        </Topguide>
 
-        <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Token Value</div>
+        <SubTemplateBlockVertical style={{marginTop:"50px"}}>
+                <div style={{ fontSize: "18px", color: "#657795" }}>Tokens
                 {isLoading ?
                     <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
-                    <div style={{ fontSize: "24px" }}>$ {assetState.tokenBalance}</div>
+                    <span style={{ fontSize: "24px" }}> : $ {assetState.tokenBalance}</span>
                 }
-            </SubTemplateBlockVertical>
+                </div>
 
-            <MobileTemplate>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Token List</div>
-                <Innercontainer>
-                {assetState.tokenList.map((token) => (
-                    <InnerBox>
-                        <Name>
-                            <img src={icons[token.project]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px",borderRadius: "15px" }} />
-                            {token.tokenBalance.toFixed(3)}{"  "}{token.tokenName}
-                        </Name>
-                        <Value>
-                            $ {token.tokenValue.toFixed(3)}
-                        </Value>
-                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}> token price : {token.tokenPrice.toFixed(3)}</div>
-
-                    </InnerBox>
-                ))}
-                    </Innercontainer>
-            </MobileTemplate>      
-
-            {/* <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "10px", fontSize: "20px" }}>List view</div>
                 <Table>
                     <Thead>
                         <Th styled={{textAlign:"left"}}>Token</Th>
@@ -73,7 +49,9 @@ const WalletTokenDetail = () => {
                     </tbody>
                     ))}
                 </Table>
-            </SubTemplateBlockVertical> */}
+
+                
+            </SubTemplateBlockVertical>
 
         </>
     )
@@ -277,4 +255,4 @@ const SubTemplateBlockVertical = styled.div`
 `;
 
 
-export default WalletTokenDetail;
+export default WalletTokenDetailTable;

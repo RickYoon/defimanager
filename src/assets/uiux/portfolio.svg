@@ -1,0 +1,20 @@
+<svg id="그룹_20379" data-name="그룹 20379" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_21692" data-name="사각형 21692" width="24" height="24" transform="translate(0 0)" fill="none" stroke="#474747" stroke-linecap="round" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="그룹_19257" data-name="그룹 19257">
+    <g id="그룹_19310" data-name="그룹 19310">
+      <path id="패스_18485" data-name="패스 18485" d="M5.755,3V1H23V23H5.755V20" fill="none" stroke="#474747" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+  <line id="선_4517" data-name="선 4517" x2="4.408" transform="translate(14.81 5.267)" fill="none" stroke="#474747" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  <line id="선_4518" data-name="선 4518" x2="4.408" transform="translate(14.81 9.359)" fill="none" stroke="#474747" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  <rect id="사각형_21691" data-name="사각형 21691" width="4.408" height="4.408" transform="translate(14.81 14.138)" fill="none" stroke="#474747" stroke-linecap="round" stroke-width="1"/>
+  <g id="그룹_19259" data-name="그룹 19259">
+    <g id="그룹_19258" data-name="그룹 19258" clip-path="url(#clip-path)">
+      <path id="패스_18486" data-name="패스 18486" d="M6,5.729a6,6,0,1,0,6,6,6,6,0,0,0-6-6m0,7.4a1.4,1.4,0,0,0,1.32-.934l1.885.668a3.4,3.4,0,1,1,0-2.269l-1.885.669A1.4,1.4,0,1,0,6,13.129" fill="none" stroke="#474747" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

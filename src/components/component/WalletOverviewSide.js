@@ -5,12 +5,56 @@ import klaytnLogo from "../../assets/uiux/klaytnLogo.png"
 import icons from "../../assets/tokenIcons"
 import { WalletContext } from 'components/context/WalletContext';
 import CountUp, { useCountUp } from 'react-countup';
+import arrowBack from '../../assets/uiux/arrowBack.svg'
+import WalletTokenDetailTable from "./WalletTokenDetailTable";
+import Connector from "../layout/TopnavConnection"
+import walletIcon from "../../assets/uiux/wallet.png";
+import close from "../../assets/uiux/close.png"
+import WalletKlayswapDetail from "./WalletKlayswapDetail";
 
 
 const WalletOverview = () => {
 
-    const {walletaddress, assetState, setServiceState,isloading} = useContext(WalletContext);
+    const {walletaddress, assetState, setServiceState,isloading, setWalletaddress, setModalstate,setAssetState} = useContext(WalletContext);
     console.log("assetState",assetState)
+
+    const moveMain = () => {
+        window.location.href = "https://www.klaylabs.net"
+    }
+
+    const openModal = () => {
+        console.log("walletaddress",walletaddress)
+        if (walletaddress.length > 0) {
+
+        } else {
+            setModalstate(true)
+        }
+    }
+
+    const disconnect = () => {
+        setWalletaddress("")
+        console.log("disconnect")
+        setAssetState({
+            totalBalance : 0,
+            klayBalance : 0,
+            klayValue : 0,
+            tokenBalance: 0,
+            klayswap: {
+                klayswapTotalBalance :0
+            },
+            klaystation:{
+                value: 0
+            }
+        })
+        setServiceState("overview")
+        // setAssetState({
+        //     totalBalance : 0,
+        //     klayBalance : 0
+        // })
+    }
+
+
+
 
     const tokenDetail = () => {
         // console.log("clicked")
@@ -46,10 +90,23 @@ const WalletOverview = () => {
 
     return (
         <>
+            <Container>
+
             <FeedbackBox>
                 <Bar></Bar>
-                <div style={{marginLeft:"10px", width:"78%"}}> Beta service open  <br/>Feedback is welcome! </div>
-                <Button onClick={goFeedback}>Feedback</Button>
+                <div style={{marginLeft:"10px", width:"78%", fontSize:"20px", fontWeight:"bold"}}> Portfolio </div>
+                <span>
+                    <Wallet onClick={openModal}>
+                        <img src={walletIcon} alt="" style={{ marginRight: "5px", height: "30px", width: "30px" }} />
+                        {walletaddress !== "" | undefined ?
+                            <>
+                            <span style={{ fontSize: "15px" }}>{walletaddress.slice(0, 7)}...</span>
+                            <img src={close} alt="" onClick={disconnect} style={{ height: "20px", width: "20px" }} />
+                            </> :
+                            <span>Connect</span>
+                        }
+                    </Wallet>
+                </span>
             </FeedbackBox>
 
             {walletaddress.length === 0 ? 
@@ -260,9 +317,33 @@ const WalletOverview = () => {
             </SubTemplateBlockVertical>  
             </>
             }  
+            {/* <WalletTokenDetailTable /> */}
+            {/* <WalletKlayswapDetail /> */}
+            </Container>
         </>
     )
 }
+
+
+const Wallet = styled.div`
+    align-items: center;
+    background: #fff;
+    border: 1px solid gray;
+    border-radius: 6px;
+    color: gray;
+    cursor: pointer;
+    display: flex!important;
+    font-weight: 500;
+    gap: 8px;
+    margin-left: 36px;
+    padding: 10px 14px;
+    font-size:18px;
+`
+
+const Container = styled.div`
+    margin-top:30px;
+    padding-left:100px;
+`
 
 const Button = styled.button`
   /* Adapt the colors based on primary prop */
@@ -288,8 +369,8 @@ const Button = styled.button`
 `;
 
 const FeedbackBox = styled.div`
-     width: 900px;
-    margin: 20px auto;
+    width: 900px;
+    margin: 0px auto;
     padding-bottom: 10px;
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
     padding:15px;

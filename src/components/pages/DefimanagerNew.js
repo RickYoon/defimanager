@@ -1,20 +1,24 @@
 import React, {useState,useEffect} from 'react';
 import axios from "axios";
 import TopnavConnection from "../layout/TopnavConnection"
+import SideNav from "../layout/Sidenav"
 import { WalletContext } from "../context/WalletContext"
 import Walletmodal from "../component/Walletmodal"
-import WalletOverview from "../component/WalletOverview"
+import WalletOverview from "../component/WalletOverviewSide"
+import Defigroups from "../component/Defigroups"
+import Settings from "../component/Settings"
 import WalletTokenDetail from 'components/component/WalletTokenDetail';
 import WalletKlayswapDetail from 'components/component/WalletKlayswapDetail';
 import WalletKlaystationDetail from 'components/component/WalletKlaystationDetail';
 import WalletKronosDetail from 'components/component/WalletKronosDetail';
 import WalletKairoscashDetail from 'components/component/WalletKairoscashDetail';
+import styled from "styled-components";
 
 
-const Defimanager = () => {
+const DefimanagerNew = () => {
 
     const [walletaddress, setWalletaddress] = useState("")
-    const [serviceState,setServiceState] = useState("overview")
+    const [serviceState,setServiceState] = useState("portfolio")
     const [isloading, setIsloading] = useState(false)
     const [modalstate, setModalstate] = useState(false)
     const [assetState, setAssetState] = useState({
@@ -244,11 +248,7 @@ const Defimanager = () => {
 
     const loadKronos = async (innerObject) => {
         let tempObject = innerObject;
-        // const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/kronos/0x4560c752a315b76ff55c0d409a57f617cb123f1b`).then((res) => { return res.data })
         const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/kronos/${walletaddress}`).then((res) => { return res.data })
-        // console.log("kronos", response)
-        // const response = {"PairPoolList":[{"poolType":"pairPool","poolName":"KlaySwap LP KLAY-HOUSE","tokenAname":"KLAY","tokenBname":"HOUSE","tokenAnumber":0.005131565942928991,"tokenBnumber":0.16164126101876955,"value":0.010508182699058295,"tokenArray":[{"KLAY":0.005131565942928991},{"HOUSE":0.16164126101876955}]},{"poolType":"pairPool","poolName":"KlaySwap LP KLAY-AKLAY","tokenAname":"KLAY","tokenBname":"AKLAY","tokenAnumber":0.001705988750061263,"tokenBnumber":0.0017206598536553654,"value":0.0034937994985513353,"tokenArray":[{"KLAY":0.001705988750061263},{"AKLAY":0.0017206598536553654}]}],"SinglePoolList":[{"poolType":"singlePool","tokenName":"KLAY","value":0.0000019442669787827275},{"poolType":"singlePool","tokenName":"KSP","value":1.1865691436863746},{"poolType":"singlePool","tokenName":"BORA","value":5.14238465758798e-7},{"poolType":"singlePool","tokenName":"KDAI","value":1.7296944873329134}],"PlusPoolList":[{"poolType":"plusPool","balanceOfLP":3.1970555726618417,"oracleOfLP":4.305660652060585,"valueOfLP":13.765436381661111,"tokenAaddress":"0x0000000000000000000000000000000000000000","tokenBaddress":"0xceE8FAF64bB97a73bb51E115Aa89C17FfA8dD167","lpTokenAddress":"0xD83f1B074D81869EFf2C46C530D7308FFEC18036","pluspoolAddress":"0xc2b8d94c14fa461d85319ad518e56f669c9b15d7","tokenAname":"KLAY","tokenBname":"KUSDT","tokenAtotalNumber":6.71745415176306,"tokenBtotalNumber":6.893696521461696,"tokentotalValue":13.765436381661113,"tokenAborrow":2.0645761878921447,"tokenBborrw":2.520409,"tokenApure":4.652877963870916,"tokenBpure":4.373287521461696,"ltv":33.647785269511225},{"poolType":"plusPool","balanceOfLP":5.501673373196856,"oracleOfLP":1.0646492449620717,"valueOfLP":5.857352402801967,"tokenAaddress":"0x0000000000000000000000000000000000000000","tokenBaddress":"0xC6a2Ad8cC6e4A7E08FC37cC5954be07d499E7654","lpTokenAddress":"0x34cF46c21539e03dEb26E4FA406618650766f3b9","pluspoolAddress":"0x31a96bad29fc3eb46e4543176462e12d5293bce5","tokenAname":"KLAY","tokenBname":"KSP","tokenAtotalNumber":2.866262665986776,"tokenBtotalNumber":0.6240798901623363,"tokentotalValue":5.857352402801967,"tokenAborrow":2.0385352724848604,"tokenBborrw":0.395315386630918,"tokenApure":0.8277273935019154,"tokenBpure":0.22876450353141836,"ltv":67.23271685520658}],"stakingKSP":90,"vKSPbalance":720,"klayswapTotalBalance":15}
-        // console.log("klayswap : ", response)
 
         tempObject["totalBalance"] = Number(tempObject["totalBalance"]) + Number(response.value)
         tempObject["kronosdao"] = response
@@ -270,7 +270,7 @@ const Defimanager = () => {
         loadKlayswap(tempObject)
     }
 
-    
+
     const loadKlayswap = async (innerObject) => {
         let tempObject = innerObject;
         const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/klayswap/${walletaddress}`).then((res) => { return res.data })
@@ -296,26 +296,26 @@ const Defimanager = () => {
 
     return (
         <>
-            <WalletContext.Provider value={{walletaddress,setWalletaddress,modalstate,setModalstate,assetState,setAssetState,setServiceState,isloading}}>
-                <TopnavConnection />
+            <WalletContext.Provider value={{walletaddress,setWalletaddress,modalstate,setModalstate,assetState,setAssetState,setServiceState,isloading,serviceState}}>
+                <Container>
                 <Walletmodal />
-                {serviceState === "overview" ? 
-                    <WalletOverview /> :
-                    serviceState === "tokenDetail" ?
-                    <WalletTokenDetail /> :
-                        serviceState === "klayswapDetail" ?
-                        <WalletKlayswapDetail /> :
-                            serviceState === "klaystationDetail" ?
-                            <WalletKlaystationDetail /> :
-                                serviceState === "kronosDetail" ?
-                                <WalletKronosDetail /> :
-                                    serviceState === "kairoscashDetail" ?
-                                    <WalletKairoscashDetail /> :
-                                    <>Null</>
-                }
+
+                    <SideNav />
+                    {serviceState === "portfolio" ? 
+                        <WalletOverview /> :
+                            serviceState === "groups" ? 
+                            <Defigroups /> :
+                            <Settings />
+                        }
+                </Container>
             </WalletContext.Provider>
         </>
     )
 }
 
-export default Defimanager;
+const Container = styled.div`
+    width: 1200px;
+    margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
+`
+
+export default DefimanagerNew;
