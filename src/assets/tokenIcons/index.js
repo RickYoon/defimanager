@@ -53,10 +53,11 @@ import popkorn from './popkorn.png'
 import symbiotik from './symbiotik.svg'
 import peterfarm from './peterfarm.png'
 import PAN from './peterfarm.png'
-
+import flexprotocol from './flexprotocol.png'
 import KXRP from "./kxrp.svg"
 
 const icons = {
+    flexprotocol,
     HOUSE,
     PAN,
     KASH,

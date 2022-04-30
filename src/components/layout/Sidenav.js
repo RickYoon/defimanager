@@ -22,7 +22,7 @@ function Sidenav() {
         setServiceState("portfolio")
     }
     const setGroups = () => {
-        setServiceState("groups")
+        setServiceState("analytics")
     }
     const setSettings = () => {
         setServiceState("settings")
@@ -51,14 +51,14 @@ function Sidenav() {
                 </Name>
                 }
 
-                {serviceState === "groups" ?
+                {serviceState === "analytics" ?
                 <Name style={{ marginTop: "24px"}} onClick={setGroups}>
                 <img src={setRanks} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                    <span style={{color:"#3366cc",fontWeight:"bold"}}>Groups</span>
+                    <span style={{color:"#3366cc",fontWeight:"bold"}}>Analytics</span>
                 </Name> :
                 <Name style={{ marginTop: "24px"}} onClick={setGroups}>
                 <img src={ranks} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                    Groups
+                    Analytics
                 </Name>
                 }
 

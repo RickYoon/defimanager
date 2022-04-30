@@ -5,7 +5,7 @@ import SideNav from "../layout/Sidenav"
 import { WalletContext } from "../context/WalletContext"
 import Walletmodal from "../component/Walletmodal"
 import WalletOverview from "../component/WalletOverviewSide"
-import Defigroups from "../component/Defigroups"
+import Analytics from "../component/Analytics"
 import Settings from "../component/Settings"
 import WalletTokenDetail from 'components/component/WalletTokenDetail';
 import WalletKlayswapDetail from 'components/component/WalletKlayswapDetail';
@@ -303,8 +303,8 @@ const DefimanagerNew = () => {
                     <SideNav />
                     {serviceState === "portfolio" ? 
                         <WalletOverview /> :
-                            serviceState === "groups" ? 
-                            <Defigroups /> :
+                            serviceState === "analytics" ? 
+                            <Analytics /> :
                             <Settings />
                         }
                 </Container>

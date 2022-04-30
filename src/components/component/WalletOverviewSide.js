@@ -10,7 +10,8 @@ import WalletTokenDetailTable from "./WalletTokenDetailTable";
 import Connector from "../layout/TopnavConnection"
 import walletIcon from "../../assets/uiux/wallet.png";
 import close from "../../assets/uiux/close.png"
-import WalletKlayswapDetail from "./WalletKlayswapDetail";
+import WalletKlayswapDetailTable from "./WalletKlayswapDetailTable";
+
 
 
 const WalletOverview = () => {
@@ -246,6 +247,8 @@ const WalletOverview = () => {
                 </Innercontainer>
 
             </SubTemplateBlockVertical>  
+            <WalletTokenDetailTable />  
+
             </> :
             <>
             <SubTemplateBlockVertical>
@@ -314,11 +317,11 @@ const WalletOverview = () => {
                         </Value>
                     </InnerBox>
                 </Innercontainer>
-            </SubTemplateBlockVertical>  
+            </SubTemplateBlockVertical>
+            <WalletTokenDetailTable />  
             </>
             }  
-            {/* <WalletTokenDetailTable /> */}
-            {/* <WalletKlayswapDetail /> */}
+            {/* <WalletKlayswapDetailTable /> */}
             </Container>
         </>
     )

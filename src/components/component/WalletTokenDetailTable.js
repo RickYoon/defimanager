@@ -20,13 +20,12 @@ const WalletTokenDetailTable = () => {
 
     return (
         <>
+        {isLoading ?
+            <></> :
 
-        <SubTemplateBlockVertical style={{marginTop:"50px"}}>
+            <SubTemplateBlockVertical style={{marginTop:"50px"}}>
                 <div style={{ fontSize: "18px", color: "#657795" }}>Tokens
-                {isLoading ?
-                    <><span><ReactLoading type="spin" color="black" height={24} width={24} /></span> </> :
                     <span style={{ fontSize: "24px" }}> : $ {assetState.tokenBalance}</span>
-                }
                 </div>
 
                 <Table>
@@ -52,6 +51,7 @@ const WalletTokenDetailTable = () => {
 
                 
             </SubTemplateBlockVertical>
+        }
 
         </>
     )
