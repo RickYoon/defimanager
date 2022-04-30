@@ -32,7 +32,7 @@ function App() {
         {/* <Route exact path="/dashboard" element={<Sidenav />} /> */}
         <Route exact path="/news" element={<Topnav />} />
         <Route exact path="/faq" element={<Topnav />} />
-        <Route exact path="/project/:id" element={<TopnavDetail />} />
+        <Route exact path="/project/:id" element={<Topnav />} />
         <Route exact path="/event" element={<Topnav />} />
       </Routes>
       <Routes>
