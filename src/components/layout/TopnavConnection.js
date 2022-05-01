@@ -85,6 +85,7 @@ const Wallet = styled.div`
     margin-left: 36px;
     padding: 10px 14px;
     font-size:18px;
+    
 `
 
 const TemplateBlock = styled.div`

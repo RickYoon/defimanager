@@ -58,13 +58,13 @@ function Topnav() {
 const Wallet = styled.div`
 
 &:hover {
-    background : #3366cc;
+    background : gray;
     color : white;
   }
 
     align-items: center;
     background: #fff;
-    border: 1px solid gray;
+    border: 0.1px solid gray;
     border-radius: 6px;
     color: gray;
     cursor: pointer;
@@ -75,14 +75,15 @@ const Wallet = styled.div`
     padding: 10px 14px;
     font-size:18px;
 
-
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     overflow-wrap: break-word;
     background-color: rgb(255, 255, 255);
     background-clip: border-box;
-    border: 1px solid black;
-    border-radius: 0.3rem;
+    /* border: 0.1px gray gray; */
+    border-radius: 0.5rem;
     overflow: visible;
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+
 `
 
 const Button = styled.button`
