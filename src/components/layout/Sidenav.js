@@ -22,7 +22,7 @@ function Sidenav() {
         setServiceState("portfolio")
     }
     const setGroups = () => {
-        setServiceState("analytics")
+        setServiceState("LTVmonitor")
     }
     const setSettings = () => {
         setServiceState("settings")
@@ -51,14 +51,14 @@ function Sidenav() {
                 </Name>
                 }
 
-                {serviceState === "analytics" ?
+                {serviceState === "LTVmonitor" ?
                 <Name style={{ marginTop: "24px"}} onClick={setGroups}>
                 <img src={setRanks} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                    <span style={{color:"#3366cc",fontWeight:"bold"}}>Analytics</span>
+                    <span style={{color:"#3366cc",fontWeight:"bold"}}>LTVmonitor</span>
                 </Name> :
                 <Name style={{ marginTop: "24px"}} onClick={setGroups}>
                 <img src={ranks} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                    Analytics
+                   LTVmonitor
                 </Name>
                 }
 
@@ -101,7 +101,7 @@ const SideBar = styled.div`
 
   @media screen and (max-width: 500px){
         display: none;
-    }
+}
 
 `
 

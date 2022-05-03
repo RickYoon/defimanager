@@ -335,41 +335,25 @@ const Wallet = styled.div`
     border-radius: 6px;
     color: gray;
     cursor: pointer;
-    display: flex!important;
+    display: flex;
     font-weight: 500;
     gap: 8px;
     margin-left: 36px;
     padding: 10px 14px;
     font-size:18px;
+    @media screen and (max-width: 500px){        
+        display: none;
+    }
 `
 
 const Container = styled.div`
     margin-top:30px;
     padding-left:100px;
-`
-
-const Button = styled.button`
-  /* Adapt the colors based on primary prop */
-  background: ${props => props.primary ? "#3366cc" : "white"};
-  color: ${props => props.primary ? "white" : "#3366cc"};
-
-  &:hover {
-    background : #3366cc;
-    color : white;
-  }
-
-  cursor: pointer;
-  font-size: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid #3366cc;
-  border-radius: 3px;
-  float:right;
-  width:20%;
-  height: 35px;
-  @media screen and (max-width: 500px){
-    width:40%;
+    @media screen and (max-width: 500px){
+        margin-top:0px;
+        padding-left:0px;
     }
-`;
+`
 
 const FeedbackBox = styled.div`
     width: 900px;
@@ -397,8 +381,28 @@ const FeedbackBox = styled.div`
     overflow: visible;
 
     @media screen and (max-width: 500px){
-      width: 360px;
-      font-size: 15px;
+        width: 360px;
+        margin: 10px 10px;
+        padding-bottom: 10px;
+        /* position: relative; 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
+        display:flex;
+        flex-direction:row;
+        -webkit-box-align: center;
+        align-items: center;
+
+        background: #fff;
+
+        color: rgba(0, 0, 0, 0.87);
+        transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        min-width: 0px;
+        overflow-wrap: break-word;
+        background-color: rgb(255, 255, 255);
+        background-clip: border-box;
+        border: 0px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.75rem;
+        box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+        overflow: visible;
+
     }
 `
 
@@ -505,13 +509,14 @@ const SubTemplateBlockVertical = styled.div`
     background-clip: border-box;
     border: 0px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.75rem;
-  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
-  overflow: visible;
-    
-  @media screen and (max-width: 500px){
-      width: 360px;
-      font-size: 12px;
-    }
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+    overflow: visible;
+        
+    @media screen and (max-width: 500px){
+        width: 360px;
+        margin: 10px 10px;
+        font-size: 12px;
+        }
 `;
 
 

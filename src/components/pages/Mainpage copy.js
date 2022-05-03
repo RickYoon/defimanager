@@ -499,8 +499,8 @@ function Main() {
                                 <span style={{ padding: "7px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{tvld.proj}</span>
                               </Link>
                             </Tdpd>
-                            <Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.chain}</Tdc>
                             <Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.cat}</Tdc>
+                            <Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.chain}</Tdc>
                             {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
                             {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>
                             {tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
@@ -601,10 +601,10 @@ function Main() {
                       <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
                         <Th className="head" style={{ width: "10px", textAlign: "left" }}>#</Th>
                         <Tdpp className="head">Token</Tdpp>
-                        <Tdc className="head" style={{paddingLeft:"20px"}}>Project</Tdc>
+                        {/* <Tdpp className="head">Project</Tdpp> */}
                         <Td className="content" style={{ width: "200px", textAlign: "right" }}>Price</Td>
-                        <Td className="content" style={{ width: "200px", textAlign: "right" }}>1day</Td>
-                        <Td className="content" style={{ width: "200px", textAlign: "right" }}>7days</Td>
+                        <Td className="content" style={{ width: "200px", textAlign: "right" }}>Holder</Td>
+                        <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>Transfer</Tdc>
                       </tr>
                     </thead>
 
@@ -628,24 +628,36 @@ function Main() {
                             <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
                               <Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Td>
                               <Tdpdd>
-                                <img src={icons[tvld.project]} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <Link to={`/project/${tvld.project}`}><span style={{ paddingLeft: "10px" }}>{tvld.token}</span>
+                                <img src={icons[tvld.project]} alt="logo" height="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                <Link to={`/project/${tvld.project}`}><span style={{ paddingLeft: "10px" }}>{tvld.token}</span><br />
+                                  <span style={{ fontSize: "12px", color: "gray" }}>{tvld.project}</span>
                                 </Link>
                               </Tdpdd>
 
-                              <Tdc><span style={{ fontSize: "14px", color: "gray",paddingLeft:"20px" }}>{tvld.project}</span></Tdc>
+                              {/* <Tdpdd>
+                            </Tdpdd> */}
+
+
                               <Td className="head" style={{ height: "30px", width: "400px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price).toFixed(3)}
+                                <br />
+                                {tvld.priceDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.priceDiff}%</span> :
+                                  <span style={{ fontSize: "13px", color: "blue" }}>{tvld.priceDiff}%</span>
+                                }
                               </Td>
                               <Td className="content" style={{ width: "400px", textAlign: "right" }}>
-                                {tvld.priceDiff > 0 ? <TextRedspan>+{tvld.priceDiff}%</TextRedspan> :
-                                  <TextBluespan>{tvld.priceDiff}%</TextBluespan>
+                                {Number(tvld.holders).toLocaleString()}
+                                <br />
+                                {tvld.holderDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.holderDiff}%</span> :
+                                  <span style={{ fontSize: "13px", color: "blue" }}>{tvld.holderDiff}%</span>
                                 }
                               </Td>
-                              <Td className="content" style={{ width: "300px", textAlign: "right" }}>
-                                {tvld.sevenPriceDiff > 0 ? <TextRedspan>+{tvld.sevenPriceDiff}%</TextRedspan> :
-                                  <TextBluespan>{tvld.sevenPriceDiff}%</TextBluespan>
+                              <Tdc className="content" style={{ width: "300px", textAlign: "right" }}>
+                                {Number(tvld.transactions).toLocaleString()}
+                                <br />
+                                {tvld.transferDiff > 0 ? <span style={{ fontSize: "13px", color: "red" }}>+{tvld.transferDiff}%</span> :
+                                  <span style={{ fontSize: "13px", color: "blue" }}>{tvld.transferDiff}%</span>
                                 }
-                              </Td>
+                              </Tdc>
                               {/* <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc> */}
                               {/* <Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.price * tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Tdc> */}
                               {/* <Td style={{ width: "100px", textAlign: "right" }}>{tvld.tvl.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</Td> */}
@@ -663,22 +675,6 @@ function Main() {
     </>
   );
 }
-
-const TextRedspan = styled.span`
-  font-size: 15px;
-  color: red;
-  @media screen and (max-width: 500px){
-    font-size: 13px;
-  }
-`
-
-const TextBluespan = styled.span`
-  font-size: 15px;
-  color: blue;
-  @media screen and (max-width: 500px){
-    font-size: 13px;
-  }
-`
 
 const Topdash = styled.div`
  width: 900px;

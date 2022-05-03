@@ -4,7 +4,6 @@ import ReactLoading from 'react-loading';
 import klaytnLogo from "../../assets/uiux/klaytnLogo.png"
 import icons from "../../assets/tokenIcons"
 import { WalletContext } from 'components/context/WalletContext';
-import CountUp, { useCountUp } from 'react-countup';
 
 
 const WalletOverview = () => {
@@ -155,8 +154,7 @@ const WalletOverview = () => {
                             klayswap
                         </Name>
                         <Value>
-                            <span style={{ color: "#657795" }}> (<CountUp end={100} duration={32}  /> %)</span>
-                            <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/>
+                            $ {assetState.klayswap.klayswapTotalBalance} <ReactLoading type="spinningBubbles" color="gray" height={20} width={20}/> 
                         </Value>
                     </InnerBoxNoclick>
                     <InnerBoxNoclick>

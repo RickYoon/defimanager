@@ -67,8 +67,7 @@ const Defimanager = () => {
         } catch (error) {
             console.error(error);
         }
-    }
-    
+    }    
 
     const loadAssets = async () => {
         if (walletaddress.length > 0) {

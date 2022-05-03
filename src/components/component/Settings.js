@@ -57,8 +57,10 @@ const Settings = () => {
 
 
             <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Currency</div>
-                <div style={{ fontSize: "24px" }}>$ -</div>
+                <div>
+                <span style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Currency</span>
+                <span style={{ fontSize: "24px", float:"right" }}><combobox>ss</combobox></span>                
+                </div>
             </SubTemplateBlockVertical>
             </Container>
         </>

@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import axios from "axios";
-import TopnavConnection from "../layout/TopnavConnection"
+import TopnavManagerMobile from "../layout/TopnavManagerMobile"
 import SideNav from "../layout/Sidenav"
 import { WalletContext } from "../context/WalletContext"
 import Walletmodal from "../component/Walletmodal"
@@ -298,8 +298,8 @@ const DefimanagerNew = () => {
         <>
             <WalletContext.Provider value={{walletaddress,setWalletaddress,modalstate,setModalstate,assetState,setAssetState,setServiceState,isloading,serviceState}}>
                 <Container>
+                <TopnavManagerMobile />
                 <Walletmodal />
-
                     <SideNav />
                     {serviceState === "portfolio" ? 
                         <WalletOverview /> :

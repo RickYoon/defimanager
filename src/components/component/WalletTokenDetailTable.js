@@ -57,54 +57,6 @@ const WalletTokenDetailTable = () => {
     )
 }
 
-const Name = styled.div`
-    color: #050f19;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    margin-bottom: 16px;
-    justify-content: flex-start;
-    font-size:16px;
-    margin-bottom: 20px;
-
-    align-items:center;
-`
-const Value = styled.div`
-    color: #050f19;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    justify-content: flex-start;
-    font-size:20px;
-    align-items:center;
-`
-
-// </Innercontainer>
-const InnerBox = styled.div`
-
-    border: 1px solid #edeff1;
-    padding: 16px;
-    position: relative;
-    align-items: flex-start;
-    border-radius: 8px;
-    flex-direction: column;
-    width: 22%;
-    margin: 12px;
-    flex-grow:0;
-
-    @media screen and (max-width: 500px){
-        width: 100%;
-        margin: 10px auto;
-    }
-`
-
-const Innercontainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content:space-around;
-`
 
 const Tr = styled.tr`
     height: 45px;
@@ -169,9 +121,7 @@ const Thead = styled.thead`
     text-transform: uppercase!important;
 `
 
-const Table =styled.table`
-
-
+const Table = styled.table`
     width: 100%;
     background: #fff;
     margin: 1em 0;
@@ -182,22 +132,17 @@ const Table =styled.table`
     color: rgba(0,0,0,.87);
     border-collapse: separate;
     border-spacing: 0;
+    
+        
+  @media screen and (max-width: 500px){
+      width: 360px;
+      font-size: 12px;
+    }
 
 `
 
-const Topguide = styled.div`
+const SubTemplateBlockVertical = styled.div`
      width: 900px;
-    margin: 10px auto;
-    padding-bottom: 10px;
-    position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-    padding:15px;
-    display:flex;
-    flex-direction:row;
-
-`
-
-const MobileTemplate = styled.div`
-    width: 900px;
     margin: 10px auto;
     padding-bottom: 10px;
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -220,37 +165,10 @@ const MobileTemplate = styled.div`
     overflow: visible;
     
   @media screen and (max-width: 500px){
-      width: 360px;
+      width: 370px;
+      margin: 10px 10px;
       font-size: 12px;
-    }
-`;
-
-const SubTemplateBlockVertical = styled.div`
-     width: 900px;
-    margin: 10px auto;
-    padding-bottom: 10px;
-    position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-    padding:15px;
-    display:flex;
-    flex-direction:column;
-
-    padding: 20px 25px !important;
-    background: #fff;
-
-    color: rgba(0, 0, 0, 0.87);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    min-width: 0px;
-    overflow-wrap: break-word;
-    background-color: rgb(255, 255, 255);
-    background-clip: border-box;
-    border: 0px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.75rem;
-  box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
-  overflow: visible;
-    
-  @media screen and (max-width: 500px){
-      width: 360px;
-      font-size: 12px;
+      display: none;
     }
 `;
 
