@@ -38,8 +38,6 @@ function Detailpage() {
       console.log(response)
       let tempArr = [];
       let priceArr = [];
-
-
       
       response.data.chart.Items.forEach((item) => {
         console.log(item)
@@ -197,7 +195,12 @@ function Detailpage() {
             <span style={{ fontWeight: "bold", fontFamily: "OpenSans-Semibold", fontSize: "30px" }}>{id}</span>
           }
         </span>
+        {/* <div style={{float:"right"}}>
+          <Prev href="#" id="prev">1</Prev>
+          <Next href="#" id="next">3</Next>
+        </div> */}
       </SubTemplateBlock>
+
 
       <Topdash>
         <Row>
@@ -271,10 +274,14 @@ function Detailpage() {
                                   id === "RHEA" ?
                                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-400', 'dataMax+300']} /> :
                                     id === "PALA" ?
-                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-10', 'dataMax+20']} /> :
+                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-40', 'dataMax+20']} /> :
                                     id === "peterfarm" ?
                                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-15', 'dataMax+20']} /> :
-                                    <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 1', 'dataMax + 1']} />
+                                      id === "KairosCash" ?
+                                      <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-5', 'dataMax+10']} /> :
+                                        id === "Swapscanner" ?
+                                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-5', 'dataMax+5']} /> :
+                                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 5', 'dataMax + 5']} />
                 }
 
                 {/* <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 10']} /> */}
@@ -394,6 +401,150 @@ function Detailpage() {
   );
 }
 //https://github.com/KlaySwap/klayswap/blob/master/audit/Smart_Contract_Audit_Report_KlaySwap_ver_2.0.pdf
+
+const Next = styled.a`
+  & {
+    color: #7e7e7e;
+    display: inline-block;
+    font: normal bold 1.5em Arial,sans-serif;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    width: auto;
+    padding: 0.5em 1.5em;
+  }
+
+  &:hover {
+    color: #316395;
+  }
+
+  &:hover:after,
+  &:hover:before {
+    background: #316395;
+  }
+
+
+  &:before{
+    background: #7e7e7e;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    content: "";
+    display: block;
+    height: 0.4em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1em;
+    margin-top: -.36em;
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+  }
+  &:after {
+    background: #7e7e7e;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    content: "";
+    display: block;
+    height: 0.4em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1em;
+    -moz-transform: rotate(-40deg);
+    -ms-transform: rotate(-40deg);
+    -o-transform: rotate(-40deg);
+    -webkit-transform: rotate(-40deg);
+    transform: rotate(-40deg);
+    /* -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg); */
+  }
+
+  &:before {
+    /* -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg); */
+  }
+
+  
+
+`
+
+const Prev = styled.a`
+  & {
+    color: #7e7e7e;
+    display: inline-block;
+    font: normal bold 1.5em Arial,sans-serif;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    width: auto;
+    padding: 0.5em 1.5em;
+  }
+
+  &:hover {
+    color: #316395;
+  }
+
+  &:hover:after,
+  &:hover:before {
+    background: #316395;
+  }
+
+
+  &:before {
+    background: #7e7e7e;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    content: "";
+    display: block;
+    height: 0.4em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1em;
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+    left: 0;
+  }
+
+  &:after {
+    background: #7e7e7e;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    content: "";
+    display: block;
+    height: 0.4em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1em;
+    -moz-transform: rotate(-40deg);
+    -ms-transform: rotate(-40deg);
+    -o-transform: rotate(-40deg);
+    -webkit-transform: rotate(-40deg);
+    transform: rotate(-40deg);
+    margin-top: -.36em;
+    left: 0;
+  }
+
+
+
+`
 
 const Topdash = styled.div`
  width: 900px;

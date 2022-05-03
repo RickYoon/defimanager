@@ -55,8 +55,10 @@ import peterfarm from './peterfarm.png'
 import PAN from './peterfarm.png'
 import flexprotocol from './flexprotocol.png'
 import KXRP from "./kxrp.svg"
+import meshswap from "./meshswap.svg"
 
 const icons = {
+    meshswap,
     flexprotocol,
     HOUSE,
     PAN,

@@ -589,7 +589,7 @@ function Main() {
             }
           </TodoTemplateBlock> :
           <TodoTemplateBlock>
-            <TemplateLastBlock style={{ paddingLeft: "20px", clear: "both", display: "inline-block", float: "right" }}>
+            <TemplateLastBlock style={{ paddingLeft: "20px",clear: "both", display: "inline-block", float: "right" }}>
               * DATA : Yesterday ({tvldata.refDate}) 10PM
           </TemplateLastBlock>
 
