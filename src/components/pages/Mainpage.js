@@ -317,7 +317,7 @@ function Main() {
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://www.klaydice.io/"
+      window.location.href = "https://docs.google.com/spreadsheets/d/14XfTmISBBATimDljH1HZGRIn2CypPEIFKc8t8eOqZH4/edit#gid=1600533832"
 
     });
   }
@@ -337,9 +337,9 @@ function Main() {
               speed={300}
               direction={Directions.UP}
               duration={4000}>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={KLAYDICE}> Minting ) KLAYDICE ( 5/11 8PM KST ) </div>
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher time capsule (May, TBA) </div>
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Launching ) VEVE finance (TBA) </div>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={KLAYDICE}> IDO ) KLAYDICE ( TBA ) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >
