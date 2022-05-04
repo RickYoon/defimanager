@@ -570,7 +570,7 @@ function Main() {
                                 <Td className="content" style={{ width: "100px", textAlign: "right", color: "red" }}>+{tvld.difftwo.toFixed(0)}%</Td> :
                                 <Td className="content" style={{ width: "100px", textAlign: "right", color: "blue" }}>{tvld.difftwo.toFixed(0)}%</Td>
                             }
-                            {tvld.diff === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Td> :
+                            {tvld.diff === null ? <Td className="content" style={{ width: "100px", textAlign: "right", color: "#E8720C" }}>new</Td> :
                               tvld.diff > 0 ?
                                 <Td className="content" style={{ width: "200px", textAlign: "right", color: "red" }}>+{tvld.diff}%</Td> :
                                 <Td className="content" style={{ width: "200px", textAlign: "right", color: "blue" }}>{tvld.diff}%</Td>
@@ -642,7 +642,8 @@ function Main() {
                                 }
                               </Td>
                               <Td className="content" style={{ width: "300px", textAlign: "right" }}>
-                                {tvld.sevenPriceDiff > 0 ? <TextRedspan>+{tvld.sevenPriceDiff}%</TextRedspan> :
+                                {tvld.sevenPriceDiff === "0.0" ? <TextNewspan>new</TextNewspan> :
+                                  tvld.sevenPriceDiff > 0 ? <TextRedspan>+{tvld.sevenPriceDiff}%</TextRedspan> :
                                   <TextBluespan>{tvld.sevenPriceDiff}%</TextBluespan>
                                 }
                               </Td>
@@ -663,6 +664,14 @@ function Main() {
     </>
   );
 }
+
+const TextNewspan = styled.span`
+  font-size: 15px;
+  color: #E8720C;
+  @media screen and (max-width: 500px){
+    font-size: 13px;
+  }
+`
 
 const TextRedspan = styled.span`
   font-size: 15px;

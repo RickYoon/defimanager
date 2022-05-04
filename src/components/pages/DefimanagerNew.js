@@ -59,7 +59,10 @@ const DefimanagerNew = () => {
     })
 
     useEffect(() => {
-        loadAssets()  
+
+        if (walletaddress.length > 0) {
+            startWalletScanning()
+        } 
         // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [walletaddress])
 
@@ -72,143 +75,120 @@ const DefimanagerNew = () => {
             console.error(error);
         }
     }
-    
 
+    async function startWalletScanning() {
+        let lastdata = await checkLastData("0xc847d70d3ceb7e543e7ede2ad0ac596e2ffbcec8")
+        console.log(lastdata)
+        if(lastdata.data.Count > 0){
+            loadAssets()
+        }
+    }
+
+    async function checkLastData(address) {
+        try {
+            let lastData = await axios.get(`https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/checkAddressExist?address=${address}`)
+            // console.log(kk.data.Items)
+            // console.log(kk.data.Count)
+            return lastData
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
     const loadAssets = async () => {
-        if (walletaddress.length > 0) {
+
             console.log("wallet : ", walletaddress)
 
             try {
-            setIsloading(true)
-            const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/klay/${walletaddress}`).then((res) => { return res.data })
+                setIsloading(true)
+                const response = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/klay/${walletaddress}`).then((res) => { return res.data })
 
-            let klayBalance = Number(Number(response.klayBalance).toFixed(2))
-            // let klayPrice = response.klayPrice
-            let klayValue = Number(Number(response.klayValue).toFixed(2))
+                let klayBalance = Number(Number(response.klayBalance).toFixed(2))
+                // let klayPrice = response.klayPrice
+                let klayValue = Number(Number(response.klayValue).toFixed(2))
 
-            // console.log("klayBalance",klayBalance)
-            // console.log("klayValue",klayValue)
+                // console.log("klayBalance",klayBalance)
+                // console.log("klayValue",klayValue)
 
-            // console.log(response)
-            // let sliceValue = Number(response).toFixed(3)
-            setAssetState({
-                totalBalance: klayValue,
-                klayBalance: klayBalance,
-                klayValue: klayValue,
-                tokenBalance: 0,
-                tokenList:[],
-                kronosdao: {
-                    value : 0
-                },
-                klaystation: {
-                    value : 0
-                },
-                kairoscash: {
-                    value : 0
-                },        
-                klayswap:{
-                    klayswapTotalBalance:0,
-                    PairPoolList : [
-                        {
-                            "poolType": "",
-                            "poolName": "",
-                            "tokenAname": "",
-                            "tokenBname": "",
-                            "tokenAnumber": 0,
-                            "tokenBnumber": 0,
-                            "value": 0,
-                            "tokenArray": [
-                                {
-                                    "KLAY": 0
-                                },
-                                {
-                                    "HOUSE": 0
-                                }
-                            ]
-                        }
-                    ]}
-            })
-            loadTokens({
-                totalBalance: klayValue,
-                klayBalance: klayBalance,
-                klayValue: klayValue,
-                tokenList:[],
-                klaystation: {
-                    value : 0
-                },     
-                kronosdao: {
-                    value : 0
-                },   
-                kairoscash: {
-                    value : 0
-                },        
-                klayswap:{
-                    klayswapTotalBalance:0,
-                    PairPoolList : [
-                        {
-                            "poolType": "",
-                            "poolName": "",
-                            "tokenAname": "",
-                            "tokenBname": "",
-                            "tokenAnumber": 0,
-                            "tokenBnumber": 0,
-                            "value": 0,
-                            "tokenArray": [
-                                {
-                                    "KLAY": 0
-                                },
-                                {
-                                    "HOUSE": 0
-                                }
-                            ]
-                        }
-                    ]}
-            })
-        }
-        catch (err) {
-            console.log(err)
-        }
-        } else {
-            setAssetState({
-                totalBalance: 0,
-                klayBalance: 0,
-                klayValue: 0,
-                tokenBalance: 0,
-                tokenList:[],
-                kronosdao: {
-                    value : 0
-                },
-                klaystation: {
-                    value : 0
-                },
-                kairoscash: {
-                    value : 0
-                },        
-                klayswap:{
-                    klayswapTotalBalance:0,
-                    PairPoolList : [
-                        {
-                            "poolType": "",
-                            "poolName": "",
-                            "tokenAname": "",
-                            "tokenBname": "",
-                            "tokenAnumber": 0,
-                            "tokenBnumber": 0,
-                            "value": 0,
-                            "tokenArray": [
-                                {
-                                    "KLAY": 0
-                                },
-                                {
-                                    "HOUSE": 0
-                                }
-                            ]
-                        }
-                    ]}
-            })
-        }
-        
-
+                // console.log(response)
+                // let sliceValue = Number(response).toFixed(3)
+                setAssetState({
+                    totalBalance: klayValue,
+                    klayBalance: klayBalance,
+                    klayValue: klayValue,
+                    tokenBalance: 0,
+                    tokenList:[],
+                    kronosdao: {
+                        value : 0
+                    },
+                    klaystation: {
+                        value : 0
+                    },
+                    kairoscash: {
+                        value : 0
+                    },        
+                    klayswap:{
+                        klayswapTotalBalance:0,
+                        PairPoolList : [
+                            {
+                                "poolType": "",
+                                "poolName": "",
+                                "tokenAname": "",
+                                "tokenBname": "",
+                                "tokenAnumber": 0,
+                                "tokenBnumber": 0,
+                                "value": 0,
+                                "tokenArray": [
+                                    {
+                                        "KLAY": 0
+                                    },
+                                    {
+                                        "HOUSE": 0
+                                    }
+                                ]
+                            }
+                        ]}
+                })
+                loadTokens({
+                    totalBalance: klayValue,
+                    klayBalance: klayBalance,
+                    klayValue: klayValue,
+                    tokenList:[],
+                    klaystation: {
+                        value : 0
+                    },     
+                    kronosdao: {
+                        value : 0
+                    },   
+                    kairoscash: {
+                        value : 0
+                    },        
+                    klayswap:{
+                        klayswapTotalBalance:0,
+                        PairPoolList : [
+                            {
+                                "poolType": "",
+                                "poolName": "",
+                                "tokenAname": "",
+                                "tokenBname": "",
+                                "tokenAnumber": 0,
+                                "tokenBnumber": 0,
+                                "value": 0,
+                                "tokenArray": [
+                                    {
+                                        "KLAY": 0
+                                    },
+                                    {
+                                        "HOUSE": 0
+                                    }
+                                ]
+                            }
+                        ]}
+                })
+            }
+            catch (err) {
+                console.log(err)
+            }
     }
 
     const loadTokens = async (klayObject) => {
@@ -282,14 +262,25 @@ const DefimanagerNew = () => {
         // console.log("tempObject",tempObject)
 
         setAssetState({...tempObject})
+        const latestInfo = await axios.get(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/wallet/blockInfos/${walletaddress}`).then((res) => { return res.data })
+
+
         let tempRes = {
             "data" : {
                 address : walletaddress,
                 assetDetail : tempObject,
-                assetTotal : tempObject.totalBalance
+                assetTotal : tempObject.totalBalance,
+                txCount : latestInfo.txCount,
+                blockNumber : latestInfo.blockNumber,
+                lastPairList : response.lastPairList,
+                pairPoolId : response.pairPoolId
             }
         }
         await sendPriceData(tempRes)
+
+
+        
+        // await updateLatest(tempRes)
         setIsloading(false)
     }
 
