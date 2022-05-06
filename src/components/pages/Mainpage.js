@@ -474,7 +474,7 @@ function Main() {
                         <Tdc className="content" style={{ width: "200px" }}>Chain</Tdc>
                         <Tdc className="content" style={{ width: "200px" }}>Category</Tdc>
                         <Td className="content" style={{ width: "200px", textAlign: "right" }}>TVL($)</Td>
-                        {/* <Td className="content" style={{ width: "50px", textAlign: "right" }}></Td> */}
+                        <Td className="content" style={{ width: "50px", textAlign: "right" }}></Td>
                         {/* <Td className="content" style={{ width: "300px", textAlign: "right" }}>Breakdown</Td> */}
                         <Td className="content" style={{ width: "200px", textAlign: "right" }}>1day</Td>
                         <Td className="content" style={{ width: "200px", textAlign: "right" }}>7days</Td>
@@ -515,19 +515,19 @@ function Main() {
                                     <span> Number(tvld.tvl / 1000).toFixed(0)</span>
                               }
                             </Td>
-                            {/* <Td className="content" style={{ width: "50px", textAlign: "right" }}>
+                            <Td className="content" style={{ width: "50px", textAlign: "right" }}>
                               {tvld.notification !== undefined ?
                                 <>
                                   <a href='#!' data-for={tvld.proj} data-tip={tvld.notification}><AiOutlineInfoCircle /></a>
                                   <ReactTooltip id={tvld.proj} border multiline={true} data-border={true} place="top" aria-haspopup='true' type="light" effect="solid">
-                                    <P>Why is the Number different?</P>
-                                    <P>{tvld.proj} : {tvld.notification.project} </P>
-                                    <P>Klaylabs : {tvld.notification.klaylabs} </P>
+                                    <P>Notification : </P>
+                                    <P>{tvld.notification.lineOne}</P>
+                                    <P>{tvld.notification.lineTwo}</P>
                                   </ReactTooltip>
                                 </> :
                                 <></>
                               }
-                            </Td> */}
+                            </Td>
                             {/* <Tdc className="head" style={{ width: "300px", paddingLeft: "1em" }}>
                             {tvld.pool !== undefined ?
                               <>
