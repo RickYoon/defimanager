@@ -195,7 +195,7 @@ const DefimanagerNew = () => {
 
     const getklayswapQuick = async () => {
 
-        const temp = await axios.post(`http://3.39.23.205:1515/klayswapQuick`,{
+        const temp = await axios.post(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/klayswapQuick`,{
             "address" : walletaddress,
             "pairPoolId" : [22,76,77],
         },{headers: {

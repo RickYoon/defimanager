@@ -16,7 +16,7 @@ function Topnav() {
     }
 
     const moveWallet = () => {
-        window.location.href = "/defimanager"
+        window.location.href = "/wallet"
     }
     return (
         <>
