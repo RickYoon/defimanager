@@ -59,7 +59,7 @@ const DefimanagerNew = () => {
             console.log(lastdata.data.Items[0].txCount)
             if(lastdata.data.Items[0].txCount === blockInfo.txCount){
                 // no transactions after latest query
-                console.log("here")
+                // console.log("here")
                 setIsloading(true)
                 await getKlay()
                 await getKlaystation()
@@ -72,22 +72,14 @@ const DefimanagerNew = () => {
 
             } else {
                 // yes transactions after latest query
-                console.log("here1")
-                const temp = await axios.post(`http://3.39.23.205:1515/userasset`,{
-                    // body: JSON.stringify(returnData),
-                    lastData: lastdata.data.Items[0],
-                    currentInfo: blockInfo
-                },{headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-                    "Access-Control-Allow-Origin": "*"
-                }}
-                ).then((res) => {
-                    console.log("response received: ", res);
-                })
-                .catch((err) => {
-                    console.log("axios error: ", err);
-                })
+                // console.log("here1")
+                setIsloading(true)
+                await getKlay()
+                await getKlaystation()
+                await getKronos()
+                await getKairoscash()
+                await getToken()
+                await getklayswap()    
             }
         } else {
             // full scanning
@@ -279,9 +271,19 @@ const DefimanagerNew = () => {
                     {serviceState === "portfolio" ? 
                         <WalletOverview /> :
                             serviceState === "History" ? 
-                            <History /> :
-                            <Settings />
-                        }
+                            <History /> : 
+                            serviceState === "tokenDetail" ?
+                            <WalletTokenDetail /> :
+                                serviceState === "klayswapDetail" ?
+                                <WalletKlayswapDetail /> :
+                                    serviceState === "klaystationDetail" ?
+                                    <WalletKlaystationDetail /> :
+                                        serviceState === "kronosDetail" ?
+                                        <WalletKronosDetail /> :
+                                            serviceState === "kairoscashDetail" ?
+                                            <WalletKairoscashDetail /> :
+                                            <Settings />
+                    }
                 </Container>
             </WalletContext.Provider>
         </>

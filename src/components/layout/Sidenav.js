@@ -51,7 +51,7 @@ function Sidenav() {
                 </Name>
                 }
 
-                {serviceState === "History" ?
+                {/* {serviceState === "History" ?
                 <Name style={{ marginTop: "24px"}} onClick={setGroups}>
                 <img src={setRanks} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                     <span style={{color:"#3366cc",fontWeight:"bold"}}>History</span>
@@ -60,7 +60,7 @@ function Sidenav() {
                 <img src={ranks} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
                     History
                 </Name>
-                }
+                } */}
 
                 {serviceState === "settings" ?
                 <Name style={{ marginTop: "24px"}} onClick={setSettings}>

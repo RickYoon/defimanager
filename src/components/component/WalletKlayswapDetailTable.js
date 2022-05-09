@@ -32,6 +32,7 @@ const WalletKlayswapDetailTable = () => {
                     <Thead>
                         <Th styled={{textAlign:"left"}}>Type</Th>
                         <Th styled={{textAlign:"right"}}>Name</Th>
+                        <Thr styled={{textAlign:"right"}}>LTV(%)</Thr>
                         <Thr styled={{textAlign:"right"}}>Price ($)</Thr>
                         <Thr>Balance</Thr>
                         <Thr>value ($)</Thr>
@@ -40,6 +41,7 @@ const WalletKlayswapDetailTable = () => {
                         <Tr>
                             <Td>Gov.</Td>
                             <Td>Staking KSP</Td>
+                            <Tdr>-</Tdr>
                             <Tdr>{assetState.klayswap.KSPprice.toFixed(2)}</Tdr>
                             <Tdr>{assetState.klayswap.stakingKSP}</Tdr>
                             <Tdr>{(assetState.klayswap.stakingKSP * assetState.klayswap.KSPprice).toFixed(2)}</Tdr>
@@ -49,6 +51,8 @@ const WalletKlayswapDetailTable = () => {
                         <Tr>
                             <Td>Gov.</Td>
                             <Td>vKSP</Td>
+                            <Tdr>-</Tdr>
+                            <Tdr>-</Tdr>
                             <Tdr>-</Tdr>
                             <Tdr>{assetState.klayswap.vKSPbalance}</Tdr>
                             <Tdr>-</Tdr>

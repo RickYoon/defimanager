@@ -250,7 +250,7 @@ const WalletOverview = () => {
                 </Innercontainer>
 
             </SubTemplateBlockVertical>  
-            <WalletTokenDetailTable />  
+            {/* <WalletTokenDetailTable />   */}
 
             </> :
             <>
@@ -321,10 +321,10 @@ const WalletOverview = () => {
                     </InnerBox>
                 </Innercontainer>
             </SubTemplateBlockVertical>
-            <WalletTokenDetailTable />  
             </>
             }  
-            {/* <WalletKlayswapDetailTable /> */}
+            {/* <WalletTokenDetailTable />  
+            <WalletKlayswapDetailTable /> */}
             </Container>
         </>
     )

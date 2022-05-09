@@ -114,8 +114,7 @@ const History = () => {
                             KairosCash
                         </Name>
                 </InnerBoxNoclick>
-
-                </Innercontainer>
+            </Innercontainer>
             </SubTemplateBlockVertical>
 
 

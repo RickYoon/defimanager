@@ -168,7 +168,6 @@ const SubTemplateBlockVertical = styled.div`
       width: 370px;
       margin: 10px 10px;
       font-size: 12px;
-      display: none;
     }
 `;
 

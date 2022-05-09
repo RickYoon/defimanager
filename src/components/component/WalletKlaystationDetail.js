@@ -14,11 +14,12 @@ const WalletKlaystationDetail = () => {
     console.log(assetState)
 
     const backToOverview = () => {
-        setServiceState("overview")
+        setServiceState("portfolio")
     }
 
     return (
         <>
+        <Container>
         <Topguide onClick={backToOverview}>
             <img style={{width:"30px"}} alt="" src={arrowBack} />
         </Topguide>
@@ -63,9 +64,20 @@ const WalletKlaystationDetail = () => {
                     </InnerBox>
                     </Innercontainer>
             </MobileTemplate>
+            </Container>
         </>
     )
 }
+
+const Container = styled.div`
+    margin-top:30px;
+    padding-left:100px;
+    @media screen and (max-width: 500px){
+    margin-top:10px;
+    padding-left:15px;
+    width: 360px;
+    }
+`
 
 const Name = styled.div`
     color: #050f19;

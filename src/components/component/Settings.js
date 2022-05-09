@@ -54,12 +54,15 @@ const Settings = () => {
                 <div style={{marginLeft:"10px", width:"78%", fontSize:"20px", fontWeight:"bold"}}> Settings </div>
             </FeedbackBox>
 
-
+            <FeedbackBox style={{marginTop:"20px"}}>
+                <div style={{marginLeft:"10px", width:"78%", fontSize: "18px"}}> Feedback is welcome! </div>
+                <Button onClick={goFeedback}>go Feedback!</Button>
+            </FeedbackBox>
 
             <SubTemplateBlockVertical>
                 <div>
-                <span style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Currency</span>
-                <span style={{ fontSize: "24px", float:"right" }}><combobox>ss</combobox></span>                
+                <span style={{ marginLeft:"10px", marginBottom: "30px", fontSize: "18px" }}>Currency</span>
+                <span style={{ fontSize: "20px", float:"right" }}><combobox>USD</combobox></span>                
                 </div>
             </SubTemplateBlockVertical>
             </Container>
