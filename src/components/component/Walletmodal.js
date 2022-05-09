@@ -52,6 +52,7 @@ const Walletmodal = () => {
         if (klaytn === undefined) return;
         await klaytn.enable();
         const klaytnAddress = await klaytn.selectedAddress;
+        // const klaytnAddress = "0x1B776916Fe2E50A8DEd99c595482D072EDDaE12e"
 
         if(klaytnAddress === undefined){
             window.location.reload();

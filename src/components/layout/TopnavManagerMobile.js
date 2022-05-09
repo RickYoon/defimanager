@@ -9,14 +9,14 @@ const TopnavManagerMobile = () => {
 
     const {walletaddress, setWalletaddress, setModalstate,setAssetState,setServiceState} = useContext(WalletContext);
     
-    console.log("walletaddress",walletaddress)
+    // console.log("walletaddress",walletaddress)
 
     const moveMain = () => {
         window.location.href = "https://www.klaylabs.net"
     }
 
     const openModal = () => {
-        console.log("walletaddress",walletaddress)
+        // console.log("walletaddress",walletaddress)
         if (walletaddress.length > 0) {
 
         } else {

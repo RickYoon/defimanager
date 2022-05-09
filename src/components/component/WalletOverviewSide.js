@@ -17,14 +17,14 @@ import WalletKlayswapDetailTable from "./WalletKlayswapDetailTable";
 const WalletOverview = () => {
 
     const {walletaddress, assetState, setServiceState,isloading, setWalletaddress, setModalstate,setAssetState} = useContext(WalletContext);
-    console.log("assetState",assetState)
+    // console.log("assetState",assetState)
 
     const moveMain = () => {
         window.location.href = "https://www.klaylabs.net"
     }
 
     const openModal = () => {
-        console.log("walletaddress",walletaddress)
+        // console.log("walletaddress",walletaddress)
         if (walletaddress.length > 0) {
 
         } else {
@@ -40,18 +40,21 @@ const WalletOverview = () => {
             klayBalance : 0,
             klayValue : 0,
             tokenBalance: 0,
+            tokenList: [],
             klayswap: {
                 klayswapTotalBalance :0
             },
             klaystation:{
                 value: 0
+            },
+            kronosdao: {
+                value : 0
+            },
+            kairoscash: {
+                value : 0
             }
         })
-        setServiceState("overview")
-        // setAssetState({
-        //     totalBalance : 0,
-        //     klayBalance : 0
-        // })
+        setServiceState("portfolio")
     }
 
 

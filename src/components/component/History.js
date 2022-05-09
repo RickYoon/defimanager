@@ -11,7 +11,7 @@ import close from "../../assets/uiux/close.png"
 import WalletKlayswapDetail from "./WalletKlayswapDetail";
 
 
-const Analytics = () => {
+const History = () => {
 
     const {walletaddress, assetState, setServiceState,isloading,setWalletaddress, setModalstate,setAssetState} = useContext(WalletContext);
 
@@ -85,7 +85,7 @@ const Analytics = () => {
 
             <FeedbackBox>
                 <Bar></Bar>
-                <div style={{marginLeft:"10px", width:"78%", fontSize:"20px", fontWeight:"bold"}}> Market Trend </div>
+                <div style={{marginLeft:"10px", width:"78%", fontSize:"20px", fontWeight:"bold"}}> History </div>
                 <span>
                     <Wallet onClick={openModal}>
                         <img src={walletIcon} alt="" style={{ marginRight: "5px", height: "30px", width: "30px" }} />
@@ -114,50 +114,9 @@ const Analytics = () => {
                             KairosCash
                         </Name>
                 </InnerBoxNoclick>
-                <InnerBoxNoclick>
-                        <Name style={{ marginRight: "16px", height: "30px", width: "30px" }}></Name>
-                        <Name>
-                            <img src={icons["Kronosdao"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            KronosDao
-                        </Name>
-                        <Name>
-                            <img src={icons["KairosCash"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            KairosCash
-                        </Name>
-                </InnerBoxNoclick>
+
                 </Innercontainer>
             </SubTemplateBlockVertical>
-
-            <SubTemplateBlockVertical>
-            <div style={{ marginBottom: "10px", fontSize: "20px" }}>Top losers</div>
-            <Innercontainer>
-                <InnerBoxNoclick>
-                        <Name style={{ marginRight: "16px", height: "30px", width: "30px" }}></Name>
-                        <Name>
-                            <img src={icons["Kronosdao"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            KronosDao
-                        </Name>
-                        <Name>
-                            <img src={icons["KairosCash"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            KairosCash
-                        </Name>
-                </InnerBoxNoclick>
-                <InnerBoxNoclick>
-                        <Name style={{ marginRight: "16px", height: "30px", width: "30px" }}></Name>
-                        <Name>
-                            <img src={icons["Kronosdao"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            KronosDao
-                        </Name>
-                        <Name>
-                            <img src={icons["KairosCash"]} alt="" style={{ marginRight: "16px", height: "30px", width: "30px" }} />
-                            KairosCash
-                        </Name>
-                </InnerBoxNoclick>
-                </Innercontainer>
-            </SubTemplateBlockVertical>
-
-            
-
 
 
             </Container>
@@ -433,4 +392,4 @@ const Table =styled.table`
 `
 
 
-export default Analytics;
+export default History;

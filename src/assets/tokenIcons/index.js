@@ -56,8 +56,10 @@ import PAN from './peterfarm.png'
 import flexprotocol from './flexprotocol.png'
 import KXRP from "./kxrp.svg"
 import meshswap from "./meshswap.svg"
+import moneta from "./moneta.svg"
 
 const icons = {
+    moneta,
     meshswap,
     flexprotocol,
     HOUSE,
