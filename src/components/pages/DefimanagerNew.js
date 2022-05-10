@@ -60,11 +60,11 @@ const DefimanagerNew = () => {
             if(lastdata.data.Items[0].txCount === blockInfo.txCount){
                 // no transactions after latest query
                 setIsloading(true)
-                await getKlay()
-                await getKlaystation()
-                await getKronos()
-                await getKairoscash()
-                await getToken()
+                // await getKlay()
+                // await getKlaystation()
+                // await getKronos()
+                // await getKairoscash()
+                // await getToken()
                 await getklayswapQuick(lastdata.data.Items[0])
                 // await sendLatest()
                 // setIsloading(false)
