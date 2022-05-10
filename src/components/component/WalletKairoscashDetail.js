@@ -96,7 +96,6 @@ const Container = styled.div`
     padding-left:15px;
     width: 360px;
     }
-
 `
 
 

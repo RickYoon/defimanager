@@ -59,20 +59,18 @@ const DefimanagerNew = () => {
             console.log(lastdata.data.Items[0].txCount)
             if(lastdata.data.Items[0].txCount === blockInfo.txCount){
                 // no transactions after latest query
-                // console.log("here")
                 setIsloading(true)
                 await getKlay()
                 await getKlaystation()
                 await getKronos()
                 await getKairoscash()
                 await getToken()
-                await getklayswapQuick()
+                await getklayswapQuick(lastdata.data.Items[0])
                 // await sendLatest()
                 // setIsloading(false)
 
             } else {
                 // yes transactions after latest query
-                // console.log("here1")
                 setIsloading(true)
                 await getKlay()
                 await getKlaystation()
@@ -193,11 +191,12 @@ const DefimanagerNew = () => {
         })
     }
 
-    const getklayswapQuick = async () => {
+    const getklayswapQuick = async (lastdata) => {
 
-        const temp = await axios.post(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/klayswapQuick`,{
-            "address" : walletaddress,
-            "pairPoolId" : [22,76,77],
+        console.log("lastdata",lastdata)
+        const temp = await axios.post(`/klayswapQuick`,{
+            "address" : lastdata.address,
+            "pairPoolId" : lastdata.pairPoolId,
         },{headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
