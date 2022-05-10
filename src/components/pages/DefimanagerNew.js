@@ -194,14 +194,10 @@ const DefimanagerNew = () => {
     const getklayswapQuick = async (lastdata) => {
 
         console.log("lastdata",lastdata)
-        const temp = await axios.post(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/klayswapQuick`,{
+        const temp = await axios.post(`http://3.39.23.205:1515/klayswapQuick`,{
             "address" : lastdata.address,
             "pairPoolId" : lastdata.pairPoolId,
-        },{headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-            "Access-Control-Allow-Origin": "*"
-        }}
+        }
         ).then((res) => {
             console.log("response received: ", res);
             setAssetState((prevState)=>{
