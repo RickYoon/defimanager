@@ -4,7 +4,8 @@
   "private": true,
   "proxy": {
     "/klayswapQuick": {
-      "target" : "https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com"
+      "target" : "https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com",
+        "changeOrigin": true
   }},
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
