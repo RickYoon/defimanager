@@ -2,7 +2,10 @@
   "name": "klaylabs",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com",
+  "proxy": {
+    "/klayswapQuick": {
+      "target" : "https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com"
+  }},
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
