@@ -64,8 +64,11 @@ const DefimanagerNew = () => {
                 await getKlaystation()
                 await getKronos()
                 await getKairoscash()
-                await getTokensQuick(lastdata.data.Items[0])
-                await getklayswapQuick(lastdata.data.Items[0])
+                await getToken()
+                await getklayswap()    
+
+                // await getTokensQuick(lastdata.data.Items[0])
+                // await getklayswapQuick(lastdata.data.Items[0])
                 // await sendLatest()
                 // setIsloading(false)
 
