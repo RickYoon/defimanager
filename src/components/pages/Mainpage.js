@@ -397,7 +397,7 @@ function Main() {
               {
                 number === 1 ?
                   <>
-                    <YAxis domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
+                    <YAxis domain={['dataMin - 500', 'dataMax + 1000']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
                       return tick.toLocaleString();
                     }} />
                     <Tooltip />
