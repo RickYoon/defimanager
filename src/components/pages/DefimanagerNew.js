@@ -60,11 +60,11 @@ const DefimanagerNew = () => {
             if(lastdata.data.Items[0].txCount === blockInfo.txCount){
                 // no transactions after latest query
                 setIsloading(true)
-                // await getKlay()
-                // await getKlaystation()
-                // await getKronos()
-                // await getKairoscash()
-                // await getToken()
+                await getKlay()
+                await getKlaystation()
+                await getKronos()
+                await getKairoscash()
+                await getTokensQuick(lastdata.data.Items[0])
                 await getklayswapQuick(lastdata.data.Items[0])
                 // await sendLatest()
                 // setIsloading(false)
@@ -115,7 +115,6 @@ const DefimanagerNew = () => {
             let klayValue = Number(Number(response.klayValue).toFixed(2))
             // let klayPrice = response.klayPrice
             
-
             setAssetState((prevState)=>{
                 return { ...prevState, 
                     totalBalance: klayValue,
@@ -194,9 +193,9 @@ const DefimanagerNew = () => {
     const getklayswapQuick = async (lastdata) => {
 
         console.log("lastdata",lastdata)
-        const temp = await axios.post(`http://3.39.23.205:1515/klayswapQuick`,{
+        const temp = await axios.post(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/klayswapQuick`,{
             "address" : lastdata.address,
-            "pairPoolId" : lastdata.pairPoolId,
+            "pairPoolId" : lastdata.pairPoolId
         }
         ).then((res) => {
             console.log("response received: ", res);
@@ -214,9 +213,46 @@ const DefimanagerNew = () => {
         .catch((err) => {
             console.log("axios error: ", err);
         })      
+    }
 
+    const getTokensQuick = async (lastdata) => {
 
+        console.log("lastdata",lastdata)
 
+        let address = lastdata.address
+        let tokenList = lastdata.assetDetail.tokenList || []
+
+        const temp = await axios.post(`https://3xfqfa63j5.execute-api.ap-northeast-2.amazonaws.com/tokenQuick`,{
+            "address" : address,
+            "tokenList" : tokenList
+        }
+        ).then((res) => {
+            console.log("response received for tokens : ", res);
+
+            if(tokenList.length > 0 ){
+                setAssetState((prevState)=>{
+                    return { ...prevState, 
+                        totalBalance: Number(prevState.totalBalance) + Number(res.data.totalValue),
+                        tokenBalance: res.data.totalValue,
+                        tokenList: tokenList
+                    }
+                })
+            } else {
+                setAssetState((prevState)=>{
+                    return { ...prevState, 
+                        totalBalance: Number(prevState.totalBalance) + 0,
+                        tokenBalance: 0,
+                        tokenList: 0
+                    }
+                })                
+            }
+
+            // setIsloading(false)
+            // setFullload(true)
+        })
+        .catch((err) => {
+            console.log("axios error: ", err);
+        })      
     }
 
     const getklayswap = async () => {

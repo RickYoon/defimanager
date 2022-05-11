@@ -63,7 +63,7 @@ const Settings = () => {
                 <div>
                 <span style={{ marginLeft:"10px", marginBottom: "30px", fontSize: "18px" }}>Currency</span>
                 <span style={{ fontSize: "20px", float:"right" }}><combobox>USD</combobox></span>                
-                </div>뭐 어챂
+                </div>
             </SubTemplateBlockVertical>
             </Container>
         </>
