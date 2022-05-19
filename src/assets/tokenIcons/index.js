@@ -57,8 +57,10 @@ import flexprotocol from './flexprotocol.png'
 import KXRP from "./kxrp.svg"
 import meshswap from "./meshswap.svg"
 import moneta from "./moneta.svg"
+import mesher from "./mesher.png"
 
 const icons = {
+    mesher,
     moneta,
     meshswap,
     flexprotocol,

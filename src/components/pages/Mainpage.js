@@ -279,7 +279,7 @@ function Main() {
   }
 
 
-      const vevefinance = async (e) => {
+  const vevefinance = async (e) => {
     await axios({
       method: "post",
       headers: {
@@ -315,7 +315,7 @@ function Main() {
               speed={300}
               direction={Directions.UP}
               duration={4000}>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher 환승예치 (May 18) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher 환승예치 (~May 25) </div>
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Launching ) VEVE finance (TBA) </div>
             </NewsTicker>
           </EventCard>
