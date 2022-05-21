@@ -58,8 +58,10 @@ import KXRP from "./kxrp.svg"
 import meshswap from "./meshswap.svg"
 import moneta from "./moneta.svg"
 import mesher from "./mesher.png"
+import florafinance from "./florafinance.png"
 
 const icons = {
+    florafinance,
     mesher,
     moneta,
     meshswap,
