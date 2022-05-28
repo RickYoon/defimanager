@@ -6,7 +6,7 @@ import ReactLoading from 'react-loading';
 import { AreaChart, Area, LineChart, Line, BarChart, CartesianGrid, Bar, YAxis, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Timeline } from 'react-twitter-widgets'
 import icons from "../../assets/tokenIcons"
-import {setCookie, getCookie} from "../../assets/util/cookie"
+// import {setCookie, getCookie} from "../../assets/util/cookie"
 
 
 function Detailpage() {
