@@ -6,6 +6,7 @@ import ReactLoading from 'react-loading';
 import { AreaChart, Area, LineChart, Line, BarChart, CartesianGrid, Bar, YAxis, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Timeline } from 'react-twitter-widgets'
 import icons from "../../assets/tokenIcons"
+import {setCookie, getCookie} from "../../assets/util/cookie"
 
 
 function Detailpage() {
@@ -35,12 +36,15 @@ function Detailpage() {
     const url = `https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/detailInfo?proj=${id}`
 
     await axios.get(url).then(function (response) {
-      console.log(response)
+      console.log("response",response)
+
       let tempArr = [];
       let priceArr = [];
+
+      console.log(response.data.chart.Items[0])
       
       response.data.chart.Items.forEach((item) => {
-        console.log(item)
+        // console.log(item)
         if (item[id] > 1000000) {
           if (id !== "RHEA") {
             tempArr.push({
@@ -82,6 +86,8 @@ function Detailpage() {
         }
       })
 
+      
+
       let serviceObject = {
         "chart": tempArr,
         "price": priceArr,
@@ -109,7 +115,7 @@ function Detailpage() {
       })
 
       let tvlLength = serviceObject.chart.length;
-      console.log("serviceObject : ", serviceObject)
+      // console.log("serviceObject : ", serviceObject)
 
 
       if (serviceObject.chart.length > 13) {
@@ -135,9 +141,9 @@ function Detailpage() {
         // serviceObject.startChart = "2022-11-11"
         // serviceObject.endChart = "2022-11-11"
 
-        console.log("serviceObject", serviceObject)
+        // console.log("serviceObject", serviceObject)
       } else if (serviceObject.chart.length > 7) {
-        console.log("serviceObject", serviceObject)
+        // console.log("serviceObject", serviceObject)
         const lastDayTvl = Number(serviceObject.chart[tvlLength - 1].tvl)
         const beforeDayTvl = Number(serviceObject.chart[tvlLength - 8].tvl)
         serviceObject.tvlDiff = ((((lastDayTvl - beforeDayTvl) / (beforeDayTvl))) * 100).toFixed(2)
@@ -145,7 +151,7 @@ function Detailpage() {
         // const lastDayTvl = 123
         // const beforeDayTvl = 456
         let tokenOneName = ""
-        console.log("priceArr : ", priceArr)
+        // console.log("priceArr : ", priceArr)
         if (priceArr.length === 0) {
           // const tokenOneName = priceArr[0].price[0].tokenName
           tokenOneName = "-"
@@ -160,7 +166,7 @@ function Detailpage() {
         // serviceObject.startChart = "2022-11-11"
         // serviceObject.endChart = "2022-11-11"
 
-        console.log("serviceObject", serviceObject)
+        // console.log("serviceObject", serviceObject)
       } else {
 
         let tokenOneName = ""
@@ -176,12 +182,29 @@ function Detailpage() {
 
       }
 
-
       setDetailinfo(serviceObject)
       setIsloading(false)
 
-      console.log(serviceObject)
-      // console.log("detail", detailinfo.price[0].price[0].tokenName)
+      // console.log(serviceObject)
+
+
+      // if(getCookie("projectRank")){
+      //   console.log(getCookie("projectRank"))
+      // } else {
+      //   setCookie('projectRank',
+      //   {"lastDate" : serviceObject.endChart,
+      //    "rankList": ["klayswap","kleva"]
+      //   },{})
+      // }
+
+      
+      // setCookie('projectRank',{"aa":"bb","bb":"cc"},{
+      //   path:"/",
+      //   secure: true,
+      //   sameSite:"none"
+      // })
+
+      // console.log(getCookie("projectRank"))
     })
   }
 
@@ -195,7 +218,7 @@ function Detailpage() {
             <span style={{ fontWeight: "bold", fontFamily: "OpenSans-Semibold", fontSize: "30px" }}>{id}</span>
           }
         </span>
-        {/* <div style={{float:"right"}}>
+        {/* <div style={{float:"right", paddingTop:"15px"}}>
           <Prev href="#" id="prev">1</Prev>
           <Next href="#" id="next">3</Next>
         </div> */}
@@ -406,7 +429,7 @@ const Next = styled.a`
   & {
     color: #7e7e7e;
     display: inline-block;
-    font: normal bold 1.5em Arial,sans-serif;
+    font: normal bold 1.0em Arial,sans-serif;
     overflow: hidden;
     position: relative;
     text-decoration: none;
@@ -483,7 +506,7 @@ const Prev = styled.a`
   & {
     color: #7e7e7e;
     display: inline-block;
-    font: normal bold 1.5em Arial,sans-serif;
+    font: normal bold 1.0em Arial,sans-serif;
     overflow: hidden;
     position: relative;
     text-decoration: none;

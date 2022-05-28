@@ -257,26 +257,26 @@ function Main() {
 
 
 
-  const mesherTime = async (e) => {
-    await axios({
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
-      data: {
-        user: "klaylabs",
-        datetime: "2021-10-12T10:33:111Z",
-        country: "mesherTime",
-        price: 1,
-        weight: 1,
-      },
-    }).then((res) => {
-      console.log(res);
-      window.location.href = "https://medium.com/mesher/%ED%99%98%EC%8A%B9%EC%98%88%EC%B9%98-%EC%95%88%EC%A0%84%ED%95%9C-%EB%A9%94%EC%85%94%EC%84%BC%ED%84%B0%EB%A1%9C-%EC%9D%B4%EC%A0%84-69d4ef104fcc"
+  // const mesherTime = async (e) => {
+  //   await axios({
+  //     method: "post",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
+  //     data: {
+  //       user: "klaylabs",
+  //       datetime: "2021-10-12T10:33:111Z",
+  //       country: "mesherTime",
+  //       price: 1,
+  //       weight: 1,
+  //     },
+  //   }).then((res) => {
+  //     console.log(res);
+  //     window.location.href = "https://medium.com/mesher/%ED%99%98%EC%8A%B9%EC%98%88%EC%B9%98-%EC%95%88%EC%A0%84%ED%95%9C-%EB%A9%94%EC%85%94%EC%84%BC%ED%84%B0%EB%A1%9C-%EC%9D%B4%EC%A0%84-69d4ef104fcc"
 
-    });
-  }
+  //   });
+  // }
 
 
   const vevefinance = async (e) => {
@@ -315,7 +315,7 @@ function Main() {
               speed={300}
               direction={Directions.UP}
               duration={4000}>
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher 환승예치 (~May 25) </div>
+              {/* <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher 환승예치 (~May 25) </div> */}
               <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Launching ) VEVE finance (TBA) </div>
             </NewsTicker>
           </EventCard>
