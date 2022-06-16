@@ -59,6 +59,7 @@ import meshswap from "./meshswap.svg"
 import moneta from "./moneta.svg"
 import mesher from "./mesher.png"
 import florafinance from "./florafinance.png"
+import Kokonutswap from "./Kokonutswap.jpeg"
 
 const icons = {
     florafinance,
@@ -121,7 +122,8 @@ const icons = {
     Zombie,
     Ignite,
     clubrare,
-    popkorn
+    popkorn,
+    Kokonutswap
 }
 
 export default icons;

@@ -289,13 +289,13 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "vevefinance",
+        country: "kokonutswap",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://docs.veve.finance/"
+      window.location.href = "https://medium.com/i4i-finance/event-timeline-update-notice-kr-97706101a177"
 
     });
   }
@@ -316,7 +316,7 @@ function Main() {
               direction={Directions.UP}
               duration={4000}>
               {/* <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher 환승예치 (~May 25) </div> */}
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Launching ) VEVE finance (TBA) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Event ) Kokonutswap migration (~07/02) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >
@@ -374,7 +374,7 @@ function Main() {
               {
                 number === 1 ?
                   <>
-                    <YAxis domain={['dataMin - 500', 'dataMax + 1000']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
+                    <YAxis domain={['dataMin - 200', 'dataMax + 200']} axisLine={false} tickLine={false} mirror={true} style={{ fontSize: "12px" }} tickFormatter={tick => {
                       return tick.toLocaleString();
                     }} />
                     <Tooltip />
