@@ -59,7 +59,7 @@ import meshswap from "./meshswap.svg"
 import moneta from "./moneta.svg"
 import mesher from "./mesher.png"
 import florafinance from "./florafinance.png"
-import Kokonutswap from "./Kokonutswap.jpeg"
+import Kokonutswap from "./Kokonutswap.svg"
 
 const icons = {
     florafinance,
