@@ -125,6 +125,7 @@ function Main() {
       // tvl
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
+
       // token
       let tokenArr = response.data.body.token.filter(dat => dat.token !== "date")
       tokenArr = tokenArr.filter(dat => dat.token !== "dataType")

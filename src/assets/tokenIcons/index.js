@@ -60,6 +60,7 @@ import moneta from "./moneta.svg"
 import mesher from "./mesher.png"
 import florafinance from "./florafinance.png"
 import Kokonutswap from "./Kokonutswap.svg"
+import vevefinance from "./vevefinance.svg"
 
 const icons = {
     florafinance,
@@ -123,7 +124,8 @@ const icons = {
     Ignite,
     clubrare,
     popkorn,
-    Kokonutswap
+    Kokonutswap,
+    vevefinance
 }
 
 export default icons;
