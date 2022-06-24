@@ -62,6 +62,7 @@ import florafinance from "./florafinance.png"
 import Kokonutswap from "./Kokonutswap.svg"
 import vevefinance from "./vevefinance.svg"
 import sigmaProtocol from "./sigmaprotocol.svg"
+import klapfinance from "./klapfinance.svg"
 
 const icons = {
     florafinance,
@@ -127,7 +128,8 @@ const icons = {
     popkorn,
     Kokonutswap,
     vevefinance,
-    sigmaProtocol
+    sigmaProtocol,
+    klapfinance
 }
 
 export default icons;
