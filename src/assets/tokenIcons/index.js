@@ -61,6 +61,7 @@ import mesher from "./mesher.png"
 import florafinance from "./florafinance.png"
 import Kokonutswap from "./Kokonutswap.svg"
 import vevefinance from "./vevefinance.svg"
+import sigmaProtocol from "./sigmaprotocol.svg"
 
 const icons = {
     florafinance,
@@ -125,7 +126,8 @@ const icons = {
     clubrare,
     popkorn,
     Kokonutswap,
-    vevefinance
+    vevefinance,
+    sigmaProtocol
 }
 
 export default icons;
