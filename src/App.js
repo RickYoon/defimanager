@@ -29,7 +29,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Topnav />} />
-        {/* <Route exact path="/dashboard" element={<Sidenav />} /> */}
+        <Route exact path="/dashboard" element={<Sidenav />} />
         <Route exact path="/news" element={<Topnav />} />
         <Route exact path="/faq" element={<Topnav />} />
         <Route exact path="/project/:id" element={<Topnav />} />

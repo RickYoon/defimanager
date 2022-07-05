@@ -11,6 +11,7 @@ import ranks from "../../assets/uiux/ranks.svg"
 import setRanks from "../../assets/uiux/setRanks.svg"
 import gear from '../../assets/uiux/gear.svg'
 import setGear from '../../assets/uiux/setGear.svg'
+import Mainpage from '../pages/Mainpage'
 
 
 

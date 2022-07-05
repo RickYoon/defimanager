@@ -290,13 +290,13 @@ function Main() {
       data: {
         user: "klaylabs",
         datetime: "2021-10-12T10:33:111Z",
-        country: "kokonutswap",
+        country: "mesher",
         price: 1,
         weight: 1,
       },
     }).then((res) => {
       console.log(res);
-      window.location.href = "https://medium.com/i4i-finance/event-timeline-update-notice-kr-97706101a177"
+      window.location.href = "https://medium.com/mesher/%EB%A9%94%EC%85%94-3%EB%B6%84%EA%B8%B0-%EB%A1%9C%EB%93%9C%EB%A7%B5-c24e252d4b92"
 
     });
   }
@@ -317,7 +317,7 @@ function Main() {
               direction={Directions.UP}
               duration={4000}>
               {/* <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={mesherTime}> Launching ) Mesher 환승예치 (~May 25) </div> */}
-              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Event ) Kokonutswap migration (~07/02) </div>
+              <div style={{ fontFamily: "OpenSans-Medium", fontSize: "15px", color: "#316395", height: "20px" }} onClick={vevefinance}> Launching ) Mesher timecapsule (07/18) </div>
             </NewsTicker>
           </EventCard>
         </Topdash >
