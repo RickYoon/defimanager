@@ -278,7 +278,7 @@ function Detailpage() {
                 <XAxis tick={{ fontSize: 10 }} dataKey="date" />
                 {/* <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['auto', 'auto']} /> */}
                 {id === "Kokoa" ?
-                  <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 10', 'dataMax + 30']} /> :
+                  <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 5', 'dataMax + 5']} /> :
                   id === "Qubit" ?
                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 150', 'dataMax+500']} /> :
                     id === "kai" ?
@@ -303,8 +303,8 @@ function Detailpage() {
                                     <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-15', 'dataMax+20']} /> :
                                       id === "KairosCash" ?
                                       <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-5', 'dataMax+10']} /> :
-                                        id === "Swapscanner" ?
-                                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-5', 'dataMax+5']} /> :
+                                        id === "klapfinance" ?
+                                        <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin-25', 'dataMax+100']} /> :
                                         <YAxis tick={{ fontSize: 10 }} axisLine={false} tickLine={false} mirror={true} domain={['dataMin - 5', 'dataMax + 5']} />
                 }
 
