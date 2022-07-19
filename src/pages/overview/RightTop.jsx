@@ -39,7 +39,7 @@ function RightTop() {
                             <tr>
                                 <th style={{width:"30px"}}>{index+1}</th>
                                 <td style={{width:"45px"}}><Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
-                                <td style={{width:"90px"}}>
+                                <td style={{width:"80px"}}>
                                     <Link to={`/project/${toptvlElement.proj}`}>
                                         {toptvlElement.proj}
                                     </Link>
@@ -73,6 +73,8 @@ function RightTop() {
                     )          
               : 
               toptoken.map((TopTokenElement,index) => 
+
+              
                         <Styled.ProjectBox>
                             <tr>
                                 <th style={{width:"30px"}}>{index+1}</th>
