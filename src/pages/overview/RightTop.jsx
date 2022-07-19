@@ -1,15 +1,15 @@
-import React, {useContext,useState} from "react";
+import React, {useContext} from "react";
 import * as Styled from "./RightTop.style"
 import { OverviewContext } from 'components/context/OverviewContext';
 import icons from "../../assets/tokenIcons"
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 function RightTop() {
 
   const skeletonArray = [0,0,0];
 
-  const { tvldata,isloading,toptvl,toptoken } = useContext(OverviewContext);
+  const { isloading,toptvl,toptoken } = useContext(OverviewContext);
   // console.log("tvldata : ", tvldata.total.tvl)
   // console.log("tvldata : ", tvldata.total.difftwo)
 //   console.log("toptoken", toptoken)
@@ -25,11 +25,11 @@ function RightTop() {
                 skeletonArray.map((arr)=>
                    <Styled.ProjectBox>
                        <tr>
-                            <th style={{width:"10%"}}><Styled.ProductSkeleton /></th>
-                            <td style={{width:"15%"}}><Styled.IconSkeleton /></td>
-                            <td style={{width:"30%"}}><Styled.ProductSkeleton style={{width:"80%"}} /></td>
-                            <td style={{width:"20%", fontSize:"13px", textAlign:"center", color:"red"}}><Styled.ProductSkeleton /></td>
-                            <td style={{width:"20%", fontSize:"12px", paddingLeft:"5px", textAlign:"center"}}><Styled.ProductSkeleton /></td>
+                            <th style={{width:"30px"}}><Styled.ProductSkeleton /></th>
+                            <td style={{width:"45px"}}><Styled.IconSkeleton /></td>
+                            <td style={{width:"90px"}}><Styled.ProductSkeleton style={{width:"80%"}} /></td>
+                            <td style={{width:"60px", fontSize:"13px", textAlign:"center", color:"red"}}><Styled.ProductSkeleton /></td>
+                            <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"center"}}><Styled.ProductSkeleton /></td>
                        </tr>
                     </Styled.ProjectBox>    
                     )          
@@ -37,15 +37,15 @@ function RightTop() {
               toptvl.map((toptvlElement,index) => 
                         <Styled.ProjectBox>
                             <tr>
-                                <th style={{width:"10%"}}>{index+1}</th>
-                                <td style={{width:"15%"}}><Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
-                                <td style={{width:"30%"}}>
+                                <th style={{width:"30px"}}>{index+1}</th>
+                                <td style={{width:"45px",height:"45px"}}><Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="45px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
+                                <td style={{width:"90px"}}>
                                     <Link to={`/project/${toptvlElement.proj}`}>
                                         {toptvlElement.proj}
                                     </Link>
                                 </td>
-                                <td style={{width:"20%", fontSize:"13px", textAlign:"right", color:"red"}}>{(toptvlElement.difftwo).toFixed(1)} %</td>
-                                <td style={{width:"20%", fontSize:"12px", paddingLeft:"5px", textAlign:"right"}}><TvlDiffAfter data={toptvlElement} /></td>
+                                <td style={{width:"60px", fontSize:"13px", textAlign:"right", color:"red"}}>{(toptvlElement.difftwo).toFixed(1)} %</td>
+                                <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"right"}}><TvlDiffAfter data={toptvlElement} /></td>
                             </tr>
                         </Styled.ProjectBox>
                         
@@ -63,11 +63,11 @@ function RightTop() {
                 skeletonArray.map((arr)=>
                    <Styled.ProjectBox>
                        <tr>
-                            <th style={{width:"10%"}}><Styled.ProductSkeleton /></th>
-                            <td style={{width:"15%"}}><Styled.IconSkeleton /></td>
-                            <td style={{width:"30%"}}><Styled.ProductSkeleton style={{width:"80%"}} /></td>
-                            <td style={{width:"20%", fontSize:"13px", textAlign:"center", color:"red"}}><Styled.ProductSkeleton /></td>
-                            <td style={{width:"20%", fontSize:"12px", paddingLeft:"5px", textAlign:"center"}}><Styled.ProductSkeleton /></td>
+                            <th style={{width:"30px"}}><Styled.ProductSkeleton /></th>
+                            <td style={{width:"45px"}}><Styled.IconSkeleton /></td>
+                            <td style={{width:"90px"}}><Styled.ProductSkeleton style={{width:"80%"}} /></td>
+                            <td style={{width:"60px", fontSize:"13px", textAlign:"center", color:"red"}}><Styled.ProductSkeleton /></td>
+                            <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"center"}}><Styled.ProductSkeleton /></td>
                        </tr>
                     </Styled.ProjectBox>    
                     )          
@@ -77,18 +77,18 @@ function RightTop() {
               
                         <Styled.ProjectBox>
                             <tr>
-                                <th style={{width:"10%"}}>{index+1}</th>
-                                <td style={{width:"15%"}}><Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
-                                <td style={{width:"30%"}}>
+                                <th style={{width:"30px"}}>{index+1}</th>
+                                <td style={{width:"45px"}}><Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
+                                <td style={{width:"80px"}}>
                                     <Link to={`/project/${TopTokenElement.project}`}>
                                         {TopTokenElement.token}
                                     </Link>
                                 </td>
-                                <td style={{width:"20%", fontSize:"13px", textAlign:"right", color:"red"}}>{(TopTokenElement.priceDiff)} %</td>
+                                <td style={{width:"60px", fontSize:"13px", textAlign:"right", color:"red"}}>{(TopTokenElement.priceDiff)} %</td>
                                 {TopTokenElement.sevenPriceDiff === 0 ? 
-                                 <td style={{width:"20%", fontSize:"12px", paddingLeft:"5px", textAlign:"right", color:"#E8720C"}}>new</td>
+                                 <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"right", color:"#E8720C"}}>new</td>
                                 :
-                                 <td style={{width:"20%", fontSize:"12px", paddingLeft:"5px", textAlign:"right"}}>{(TopTokenElement.sevenPriceDiff)} %</td>
+                                 <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"right"}}>{(TopTokenElement.sevenPriceDiff)} %</td>
                                 }
                             </tr>
                         </Styled.ProjectBox>
@@ -206,14 +206,14 @@ function TvlDiffAfter(props) {
     )
 }
 
-const skeletonKeyframes = keyframes`
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-`;
+// const skeletonKeyframes = keyframes`
+//   0% {
+//     background-position: -200px 0;
+//   }
+//   100% {
+//     background-position: calc(200px + 100%) 0;
+//   }
+// `;
 
 const Protocol = styled.div`
   padding-left: 15px;
