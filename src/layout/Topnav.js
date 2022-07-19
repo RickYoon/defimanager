@@ -3,10 +3,9 @@ import { useLocation } from "react-router-dom";
 
 import React from 'react';
 import { Link } from "react-router-dom";
-import logo from "../../assets/CI/modified.svg"
+import logo from "../assets/CI/modified.svg"
 import { AiFillTrophy, AiOutlineProfile } from "react-icons/ai";
-import { BsFillPeopleFill } from "react-icons/bs";
-
+import {BiSpreadsheet} from "react-icons/bi";
 
 function Topnav() {
     const { pathname } = useLocation();
@@ -34,19 +33,19 @@ function Topnav() {
                 <Underline primary={pathname === "/"}>
                     <Link to="/">
                         {pathname === "/" ?
-                            <span style={{ color: "black" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />DeFiRank </span> :
-                            <span style={{ color: "gray" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> DeFiRank </span>
+                            <Span style={{ color: "black" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} />Overview </Span> :
+                            <span style={{ color: "gray" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} /> Overview </span>
                         }
                     </Link>
                 </Underline>
-                <Underline style={{ marginLeft: "10px" }} primary={pathname === "/pools"}>
+                {/* <Underline style={{ marginLeft: "10px" }} primary={pathname === "/pools"}>
                     <Link to="/pools">
                         {pathname === "/pools" ?
                             <span style={{ color: "black" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />PoolRank </span> :
                             <span style={{ color: "gray" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> PoolRank </span>
                         }
                     </Link>
-                </Underline>
+                </Underline> */}
                 <Underline style={{ marginLeft: "10px" }} primary={pathname === "/news"}>
                     <Link to="/news">
                         {pathname === "/news" ?
@@ -62,6 +61,7 @@ function Topnav() {
         </>
     );
 }
+
 
 const Wallet = styled.div`
 
@@ -105,7 +105,7 @@ const Button = styled.button`
 `;
 
 const TemplateBlock = styled.div`
-    width: 900px;
+    width: 1136px;
     max-height: 768px;
     vertical-align:middle;
 
@@ -129,6 +129,19 @@ const TemplateBlock = styled.div`
 
 
 const Span = styled.span`
+  /* background-color: #0a1930; */
+  /* border: 1px solid #fff;
+  border-radius: 999px;
+  color: black;
+  font-size: .75rem; */
+  font-weight: 1000; 
+  letter-spacing: .05rem;
+  /* padding: 0.5rem 1rem;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .3s ease-in-out;
+  cursor: pointer; */
+
     &:hover {
     color:black;
   }
@@ -146,7 +159,7 @@ const Underline = styled.span`
 `;
 
 const SubTopNavBlock = styled.div`
-  width: 900px;
+  width: 1136px;
   max-height: 768px;
   margin: 0 auto;
   padding-top: 30px;

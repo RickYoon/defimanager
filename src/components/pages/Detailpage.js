@@ -131,7 +131,7 @@ function Detailpage() {
         } else {
           tokenOneName = priceArr[0].price[0].tokenName
           serviceObject.startChart = serviceObject.price[0].dateRaw
-          serviceObject.endChart = serviceObject.price[13].dateRaw
+          serviceObject.endChart = serviceObject.price[priceArr.length-1].dateRaw
         }
         // const tokenOneName = "kokoa"
         // console.log("tokenOneName", tokenOneName)

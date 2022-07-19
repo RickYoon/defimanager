@@ -63,8 +63,71 @@ import Kokonutswap from "./Kokonutswap.svg"
 import vevefinance from "./vevefinance.svg"
 import sigmaProtocol from "./sigmaprotocol.svg"
 import klapfinance from "./klapfinance.svg"
+import oUSDC from "./oUSDC.png"
+import oXRP from "./oXRP.svg"
+import oETH from "./oETH.svg"
+import oUSDT from "./oUSDT.svg"
+import USDK from "./USDK.png"
+import KDAI from "./KDAI.png"
+import KSD from "./KSD.png"
+import KLAY from "./KLAY.png"
+import AKLAY from "./AKLAY.png"
+import WEMIX from "./WEMIX.png"
+import KOKOS from "./KOKOS.png"
+import KOKOA from "./kokoaToken.png"
+import synDAI from "./synDAI.png"
+import synUSDC from "./synUSDC.png"
+import synUSDT from "./synUSDT.png"
+import oBUSD from "./oBUSD.png"
+import oWBTC from "./oWBTC.svg"
+import oORC from "./oORC.svg"
+import SKLAY from "./SKLAY.svg"
+import ISR from "./ISR.svg"
+import SSX from "./SSX.svg"
+import WIKEN from "./WIKEN.png"
+import ABL from "./ABL.png"
+import BORA from "./BORA.png"
+import CLAM from "./CLAM.png"
+import MBX from "./MBX.svg"
+import MKC from "./MKC.svg"
+import oGALA from "./oGALA.png"
+import oBNB from "./oBNB.svg"
+import unknown from "./unknown.png"
+import ENTER from "./ENTER.svg"
+import KFI from "./KFI.png"
 
 const icons = {
+    KFI,
+    ENTER,
+    KOKOA,
+    oGALA,
+    oBNB,
+    CLAM,
+    MBX,
+    MKC,
+    BORA,
+    ABL,
+    WIKEN,
+    ISR,
+    SSX,
+    SKLAY,
+    oORC,
+    oWBTC,
+    oBUSD,
+    unknown,
+    synDAI,
+    synUSDC,
+    synUSDT,
+    WEMIX,
+    KOKOS,
+    KLAY,
+    AKLAY,
+    KSD,
+    KDAI,
+    USDK,
+    oUSDT,
+    oETH,
+    oXRP,
     florafinance,
     mesher,
     moneta,
@@ -129,7 +192,8 @@ const icons = {
     Kokonutswap,
     vevefinance,
     sigmaProtocol,
-    klapfinance
+    klapfinance,
+    oUSDC
 }
 
 export default icons;

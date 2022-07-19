@@ -5,6 +5,7 @@ import opensansLight from 'assets/fonts/OpenSans-Light.woff'
 import opensansMedium from 'assets/fonts/OpenSans-Medium.woff'
 
 
+
 const GlobalStyles = createGlobalStyle` 
     ${reset}
     a{
@@ -21,14 +22,14 @@ const GlobalStyles = createGlobalStyle`
     }
 
     html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     @font-face {
-    font-family: 'OpenSans-Semibold';
-    src: local('OpenSans-Semibold'),url(${opensansSemibold}) format('woff');
-    unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+        font-family: 'OpenSans-Semibold';
+        src: local('OpenSans-Semibold'),url(${opensansSemibold}) format('woff');
+        unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
     }
     @font-face {
     font-family: 'OpenSans-Light';

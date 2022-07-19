@@ -17,7 +17,7 @@ function Topnav() {
         <>
             <TemplateBlock>
                 <span>
-                    <Link to="/faq"><span style={{ fontSize: "27px", marginRight: "10px", height: "15px" }}><BsQuestionCircle /></span></Link>
+                    {/* <Link to="/faq"><span style={{ fontSize: "27px", marginRight: "10px", height: "15px" }}><BsQuestionCircle /></span></Link> */}
                     <span onClick={moveNotion} style={{ cursor: "pointer", verticalAlign: "bottom", fontSize: "27px" }}><BiBook /></span>
                 </span>
 

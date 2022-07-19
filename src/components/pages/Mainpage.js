@@ -3,29 +3,22 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { AiFillTrophy, AiOutlineInfoCircle, AiOutlineProfile } from "react-icons/ai";
-import { BsFillSafeFill, BsCurrencyBitcoin, BsFillPeopleFill } from "react-icons/bs";
-// AiOutlineInfoCircle,
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { BsFillSafeFill, BsCurrencyBitcoin } from "react-icons/bs";
 import ReactLoading from 'react-loading';
 import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
 import icons from "../../assets/tokenIcons"
 import ReactTooltip from "react-tooltip"
 
-// hover
-//https://codesandbox.io/s/heuristic-curran-bddeu?fontsize=14&hidenavigation=1&theme=dark
-
 function Main() {
+
+  // set colorList
+  const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
+
+  // set states  
   const [subselection, setSubselection] = useState(true)
   const [number, setNumber] = useState(1)
   const [isloading, setIsloading] = useState(true)
-  const [events, setEvents] = useState([])
-  // const [checkklayswap, setCheckklayswap] = useState(true)
-  const colorarr = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300"]
-  // const colorObj = {
-  //   "stable": "#3366cc",
-  //   "klay": "#dc3912",
-  //   "other": "#6633cc"
-  // }
   const [tvldata, setTvldata] = useState({
     refDate: "2022-00-00",
     total: {
@@ -37,15 +30,9 @@ function Main() {
   const [tokendata, setTokendata] = useState([
     "", ""
   ])
-
-  // const [chartdata, setChartdata] = useState([{
-  //   "name": "-"
-  // }]);
-
   const [tempchart, setTempchart] = useState([{
     "name": "-"
   }]);
-
   const [hundredgroup, setHundredgroup] = useState(["Klayswap"])
   const [fiftygroup, setFiftygroup] = useState([])
   const [tengroup, setTengroup] = useState([])
@@ -53,34 +40,13 @@ function Main() {
   useEffect(() => {
     loadtvl()
     loadchart()
-    // loadWallet()
   }, [])
-
-  // const loadWallet = async () => {
-  //   const accounts = await window.klaytn.enable()
-  //   const account = accounts[0]
-  //   console.log(account)
-  // }
-
-  // useEffect(() => {
-  //   loadchart()
-  // }, [checkklayswap])
-
-  useEffect(() => {
-    chartRebuild()
-    // console.log("hundredgroup", hundredgroup)
-  }, [number])
-
-  const chartRebuild = async () => {
-    // console.log(tempchart)
-  }
-
-
 
   const loadchart = async () => {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/testapi"
+
     await axios.get(url).then(function (response) {
-      // console.log("response", response)
+
       let tempArr = response.data.body.Items;
       let tempKeys = Object.keys(tempArr[0]);
 
@@ -92,27 +58,12 @@ function Main() {
         })
       }
 
-      // console.log("after", tempArr)
-
       tempArr.sort(function (a, b) {
         return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
       })
 
-      // console.log("tempArr", tempArr)
-
-      // setChartdata(tempArr)
-
-      // let tempArray = []
-
-      // tempArr.forEach((arr)=>{
-      //   Object.keys(arr).forEach((kk)=>{
-      //     tempArray.push({
-      //       "proj": kk,
-      //       "TVL": arr[kk]
-      //     })
-      //   })
-      // })
       setTempchart(tempArr)
+
     })
   }
 
@@ -198,27 +149,6 @@ function Main() {
       })
 
       setTvldata(responseObj)
-
-      // 리스트뷰로 upcoming events 를 나열한다.
-      // upcoming 
-
-
-      // schedule upload
-
-      // console.log(Number(aa.poolRatio[i].ratio) + Number(aa.poolRatio[i - 1].ratio))
-
-      // for (let i = 1; i < tempRatio.length; i++) {
-      //   tempRatio[i].chartRatio = tempRatio[i - 1].poolRatio + tempRatio[i].poolRatio
-      // }
-
-      // console.log(tempRatio)
-
-      // tempRatio.forEach((aa) => {
-      //   aa.poolRatio.sort(function (a, b) {
-      //     return b.ratio - a.ratio
-      //   })
-      // })
-
       setIsloading(false)
     })
   }
@@ -234,10 +164,6 @@ function Main() {
       </>
     )
   }
-
-  // const onshow = () => {
-  //   setCheckklayswap(!checkklayswap)
-  // }
 
   const minusNumber = () => {
     let temp = number - 1;
@@ -255,30 +181,6 @@ function Main() {
 
     setNumber(temp)
   }
-
-
-
-  // const mesherTime = async (e) => {
-  //   await axios({
-  //     method: "post",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     url: `https://xa52gqnbwd.execute-api.ap-northeast-2.amazonaws.com/default/myAccounting`,
-  //     data: {
-  //       user: "klaylabs",
-  //       datetime: "2021-10-12T10:33:111Z",
-  //       country: "mesherTime",
-  //       price: 1,
-  //       weight: 1,
-  //     },
-  //   }).then((res) => {
-  //     console.log(res);
-  //     window.location.href = "https://medium.com/mesher/%ED%99%98%EC%8A%B9%EC%98%88%EC%B9%98-%EC%95%88%EC%A0%84%ED%95%9C-%EB%A9%94%EC%85%94%EC%84%BC%ED%84%B0%EB%A1%9C-%EC%9D%B4%EC%A0%84-69d4ef104fcc"
-
-  //   });
-  // }
-
 
   const vevefinance = async (e) => {
     await axios({
@@ -301,12 +203,10 @@ function Main() {
     });
   }
   
-
-
-
   return (
     <>
-
+    <div style={{display:"flex",flexDirection:"row", width:"1000"}}>
+    <div>
       <div style={{ marginTop: "0px", paddingTop: "0px" }}>
         <Topdash>
           <EventCard>
@@ -322,8 +222,6 @@ function Main() {
           </EventCard>
         </Topdash >
       </div>
-
-
 
       <Topdash>
         <Row>
@@ -351,7 +249,6 @@ function Main() {
               </Containersub>
             </Topcard>
           </Rightcolumn>
-
         </Row>
       </Topdash>
 
@@ -457,12 +354,12 @@ function Main() {
                         <Td className="content" style={{ width: "200px", textAlign: "right" }}>1day</Td>
                         <Td className="content" style={{ width: "200px", textAlign: "right" }}>7days</Td>
                         <Tdc className="content" style={{ width: "200px", textAlign: "right" }}>M/S</Tdc>
-
                       </tr>
                     </thead>
                     <tbody>
 
-                      {tvldata.data.length === 0 ? <div>Loading</div> :
+                      {tvldata.data.length === 0 ? 
+                        <div>Loading</div> :
                         tvldata.data.map((tvld, index) => (
                           <Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
                             <Th className="head" style={{ width: "30px", textAlign: "left" }}>{index + 1}
@@ -639,6 +536,11 @@ function Main() {
             }
           </TodoTemplateBlock>
       }
+    </div>
+    <div style={{width:"30px"}}>
+      dws
+    </div>
+    </div>
     </>
   );
 }
@@ -672,7 +574,6 @@ const Topdash = styled.div`
  margin: 0 auto;
  @media screen and (max-width: 500px){
   width: 360px;
-
  }
 `
 
