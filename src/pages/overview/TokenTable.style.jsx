@@ -157,6 +157,18 @@ export const TodoTemplateBlock = Styled.div`
   }
 `;
 
+export const Tr = Styled.tr`
+height : 40px;
+line-height: 40px;
+  &:hover {
+    height : 40px;
+    background-color: #E8E8E8;
+    border-radius:10px;
+    line-height: 40px;
+  }
+`
+
+
 
 export const TextNewspan = Styled.span`
   font-size: 15px;

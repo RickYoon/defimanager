@@ -1,4 +1,5 @@
 import belt from "./belt.png";
+import KBELT from "./belt.png";
 import cherry from "./cherry.png";
 import Klayswap from './Klayswap.svg';
 import KSP from './Klayswap.svg';
@@ -11,12 +12,15 @@ import PALA from './pala.svg'
 import Klaymore from './ic-house.png'
 import HOUSE from './ic-house.png'
 import Claimswap from './claimswap.png'
+import SYM from './symbiotik.svg'
+import CLA from './claimswap.png'
 import Kronosdao from "./kronos.svg"
 import SKRNO from "./kronos.svg"
 import KRNO from "./kronos.svg"
 import i4i from "./i4i.png"
 import KLAYportal from './HaskQuark.svg'
 import definix from './FINIX.png'
+import FINIX from './FINIX.png'
 import Eklipse from './eklipse.png'
 import EKL from './eklipse.png'
 import neverland from './neverland.png'
@@ -26,13 +30,17 @@ import UFO from './ufo.svg'
 import KAIAUTO from './akai.svg'
 import Donkey from './donkey.png'
 import Klaybank from './klaybank.png'
+import KBT from './klaybank.png'
 import neuronswap from './neuron.png'
+import NR from './neuron.png'
 import Klaypay from './klaypay.svg'
 import Belt from './belt.png'
 import JUNMETA from './junmeta.png'
 import RoundRobin from './RoundRobin.svg'
+import RRT from './RoundRobin.svg'
 import BiFi from './bifi.png'
 import Fletaconnect from './cherry.png'
+import KCHERRY from './cherry.png'
 import Qubit from './qubit.png'
 import klaymeta from './klaymeta.svg'
 import TaalSwap from './taalswap.png'
@@ -47,6 +55,7 @@ import KASH from './KairosCash.png'
 import RHEA from './RHEA.svg'
 import KROME from './KROME.svg'
 import Zombie from './Zombie.svg'
+import BLD from './Zombie.svg'
 import Ignite from './Ignite.svg'
 import clubrare from './clubrare.png'
 import popkorn from './popkorn.png'
@@ -56,11 +65,13 @@ import PAN from './peterfarm.png'
 import flexprotocol from './flexprotocol.png'
 import KXRP from "./kxrp.svg"
 import meshswap from "./meshswap.svg"
+import MESH from "./meshswap.svg"
 import moneta from "./moneta.svg"
 import mesher from "./mesher.png"
 import florafinance from "./florafinance.png"
 import Kokonutswap from "./Kokonutswap.svg"
 import vevefinance from "./vevefinance.svg"
+import VEVE from "./vevefinance.svg"
 import sigmaProtocol from "./sigmaprotocol.svg"
 import klapfinance from "./klapfinance.svg"
 import oUSDC from "./oUSDC.png"
@@ -96,8 +107,31 @@ import unknown from "./unknown.png"
 import ENTER from "./ENTER.svg"
 import KFI from "./KFI.png"
 import KSTA from "./KSTA.svg"
+import SCNR from "./SCNR.svg"
+import SIG from "./SIG.svg"
+import META from "./META.svg"
+import JUN from './junmeta.png'
+import KP from "./KP.svg"
+import KPS from "./KPS.svg"
 
 const icons = {
+    KBELT,
+    KP,
+    KPS,
+    KBT,
+    RRT,
+    SYM,
+    VEVE,
+    JUN,
+    NR,
+    BLD,
+    CLA,
+    KCHERRY,
+    MESH,
+    FINIX,
+    SCNR,
+    SIG,
+    META,
     KSTA,
     KFI,
     ENTER,

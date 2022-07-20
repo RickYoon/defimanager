@@ -5,6 +5,8 @@ import icons from "../../assets/tokenIcons"
 import { Link } from "react-router-dom";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactTooltip from "react-tooltip"
+import styled from "styled-components";
+
 
 function TvlTable() {
 
@@ -47,7 +49,7 @@ function TvlTable() {
             </tr>
             )) :
             tvldata.data.map((tvld, index) => (
-            <tr key={index} style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
+            <Tr key={index} style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4" }}>
                 <Styled.Th className="head" style={{ width: "30px", textAlign: "left" }}> {index+1}
                     {tvld.rankdiff === 0 ? 
                         <span style={{ fontSize: "14px", color: "black" }}>(-)</span> :
@@ -103,7 +105,7 @@ function TvlTable() {
                         <Styled.Tdc className="content" style={{ width: "100px", textAlign: "right", color: "gray" }}>-</Styled.Tdc> :
                         <Styled.Tdc className="content" style={{ width: "200px", textAlign: "right" }}>{tvld.MarketShare.toFixed(2)}%</Styled.Tdc>
                     }
-            </tr>
+            </Tr>
             ))
         }
         </tbody>
@@ -113,6 +115,16 @@ function TvlTable() {
   );
 }
 
+const Tr = styled.tr`
+height : 40px;
+line-height: 40px;
+  &:hover {
+    height : 40px;
+    background-color: #E8E8E8;
+    border-radius:10px;
+    line-height: 40px;
+  }
+`
 
 export default TvlTable;
   

@@ -4,7 +4,7 @@ import Chartcard from "./Chartcard"
 import Selector from "./Selector"
 import TvlTable from "./TvlTable"
 import TokenTable from "./TokenTable"
-import RightTop from "./RightTop"
+import RightBox from "./RightBox"
 import { OverviewContext } from "../../components/context/OverviewContext"
 import { getTvlData,getTotalChartData } from 'apis/tvl';
 import { Leftcolumn } from './TopNumbercard.style';
@@ -126,6 +126,7 @@ function Overview() {
 
             setToptvl(top.slice(0,3))
             setToptoken(row.slice(0,3))
+            // setToptoken(row)
 
             // console.log("topToken", row)
       
@@ -212,7 +213,7 @@ function Overview() {
                     {selTvl ? <TvlTable /> :  <TokenTable />}
                 </Styled.Leftcolumn>
                 <Styled.Rightcolumn>
-                    <RightTop />
+                    <RightBox />
                 </Styled.Rightcolumn>
             </Styled.Topbox>
         </OverviewContext.Provider>

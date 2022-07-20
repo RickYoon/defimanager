@@ -27,7 +27,7 @@ function TvlTable() {
                     <></> :
                         tokendata.map((tvld, index) => (
                           tvld.price === 0 ?
-                            <tr style={{ display: "none" }}>
+                            <Styled.Tr style={{ display: "none" }}>
                               <Styled.Td className="head" style={{ width: "20px", textAlign: "center" }}>{index + 1}</Styled.Td>
                               <Styled.Tdpd className="head">
                                 <Link to={`/project/${tvld.project}`}>{tvld.token}<br /><span style={{ fontSize: "12px", color: "gray" }}>{tvld.token}</span></Link>
@@ -38,8 +38,8 @@ function TvlTable() {
                               <Styled.Tdc className="content" style={{ width: "300px", textAlign: "right" }}>{Number(tvld.price.transactions).toLocaleString()}</Styled.Tdc>
                               <Styled.Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Styled.Tdc>
                               <Styled.Tdc className="head" style={{ height: "30px", width: "200px", paddingLeft: "1em", textAlign: "right" }}>{Number(Number(tvld.price.price * tvld.price.Totalsupply).toFixed(0)).toLocaleString()}</Styled.Tdc>
-                            </tr> :
-                            <tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
+                            </Styled.Tr> :
+                            <Styled.Tr style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
                               <Styled.Td className="head" style={{ width: "10px", textAlign: "center" }}>{index + 1}</Styled.Td>
                               <Styled.Tdpdd style={{ whiteSpace: "nowrap" }}>
                                 <img src={icons[tvld.project]} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
@@ -61,7 +61,7 @@ function TvlTable() {
                                   <Styled.TextBluespan>{tvld.sevenPriceDiff}%</Styled.TextBluespan>
                                 }
                               </Styled.Td>
-                            </tr>
+                            </Styled.Tr>
 
                         ))
                       }
