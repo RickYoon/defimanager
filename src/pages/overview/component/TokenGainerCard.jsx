@@ -81,20 +81,25 @@ line-height: 40px;
 `
 
 const Td = styled.td`
-  /* height:25px; */
+
   vertical-align:middle;
   padding-left: 1em;
-  width: ${props => props.width || "30px"}
+  width: ${props => props.width || "30px"};
+
+  @media screen and (max-width: 500px){
+    height:30px;
+    }
 `
 
 const Tdp = styled.td`
-  /* height:25px; */
   width: ${props => props.width || "30px"};
   vertical-align:middle;
   padding-left: 1em;
   &:hover {
     text-decoration: underline;
-  }
+  };
+
+
 `
 
 
