@@ -83,8 +83,10 @@ function RightTop() {
                         <Styled.ProjectBox>
                             <Tr>
                                 <Td>{index+1}</Td>
-                                <Td>
-                                    <Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+                                <Td>{TopTokenElement.token !== "KAI" ?
+                                    <Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> :
+                                    <Styled.Img src={icons[TopTokenElement.project]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                    }
                                 </Td>
                                 <Td width="100px">
                                     <Link to={`/project/${TopTokenElement.project}`}>
