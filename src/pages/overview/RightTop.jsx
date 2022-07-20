@@ -12,7 +12,7 @@ function RightTop() {
   const { isloading,toptvl,toptoken } = useContext(OverviewContext);
   // console.log("tvldata : ", tvldata.total.tvl)
   // console.log("tvldata : ", tvldata.total.difftwo)
-//   console.log("toptoken", toptoken)
+  console.log("toptvl", toptvl)
   return (
     <>
       <Styled.Topdash>
@@ -36,17 +36,23 @@ function RightTop() {
               :
               toptvl.map((toptvlElement,index) => 
                         <Styled.ProjectBox>
-                            <tr>
-                                <th style={{width:"30px"}}>{index+1}</th>
-                                <td style={{width:"45px",height:"45px"}}><Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="45px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
-                                <td style={{width:"90px"}}>
+                            <Tr>
+                                <Td>{index+1}</Td>
+                                <Td>
+                                    <Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+                                </Td>
+                                <Td width="100px">
                                     <Link to={`/project/${toptvlElement.proj}`}>
                                         {toptvlElement.proj}
                                     </Link>
-                                </td>
-                                <td style={{width:"60px", fontSize:"13px", textAlign:"right", color:"red"}}>{(toptvlElement.difftwo).toFixed(1)} %</td>
-                                <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"right"}}><TvlDiffAfter data={toptvlElement} /></td>
-                            </tr>
+                                </Td>
+                                <Td width="70px" style={{fontSize:"12px", color:"red"}}>
+                                    {(toptvlElement.difftwo).toFixed(1)} %
+                                </Td>
+                                <Td width="70px" style={{fontSize:"12px"}}>
+                                    <TvlDiffAfter data={toptvlElement} />
+                                </Td>
+                            </Tr>
                         </Styled.ProjectBox>
                         
                 )}
@@ -74,23 +80,28 @@ function RightTop() {
               : 
               toptoken.map((TopTokenElement,index) => 
 
-              
                         <Styled.ProjectBox>
-                            <tr>
-                                <th style={{width:"30px"}}>{index+1}</th>
-                                <td style={{width:"45px"}}><Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </td>
-                                <td style={{width:"80px"}}>
+                            <Tr>
+                                <Td>{index+1}</Td>
+                                <Td>
+                                    <Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+                                </Td>
+                                <Td width="100px">
                                     <Link to={`/project/${TopTokenElement.project}`}>
                                         {TopTokenElement.token}
                                     </Link>
-                                </td>
-                                <td style={{width:"60px", fontSize:"13px", textAlign:"right", color:"red"}}>{(TopTokenElement.priceDiff)} %</td>
+                                </Td>
+                                <Td width="70px" style={{fontSize:"12px", color:"red"}}>
+                                    {(TopTokenElement.priceDiff)} %
+                                </Td>
                                 {TopTokenElement.sevenPriceDiff === 0 ? 
-                                 <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"right", color:"#E8720C"}}>new</td>
+                                <Td width="70px" style={{fontSize:"12px"}}>
+                                new</Td>
                                 :
-                                 <td style={{width:"60px", fontSize:"12px", paddingLeft:"5px", textAlign:"right"}}>{(TopTokenElement.sevenPriceDiff)} %</td>
+                                <Td width="70px" style={{fontSize:"12px"}}>
+                                     {(TopTokenElement.sevenPriceDiff)} %</Td>
                                 }
-                            </tr>
+                            </Tr>
                         </Styled.ProjectBox>
                         
                 )}
@@ -189,7 +200,7 @@ function RightTop() {
 
 function TvlDiffAfter(props) {
 
-    console.log(props)
+    // console.log("props",props)
     let difference = props.data.tvl-props.data.tvltwo
     // +{(toptvlElement.tvl-toptvlElement.tvltwo).toFixed(0)}
     return (
@@ -205,6 +216,33 @@ function TvlDiffAfter(props) {
         </>
     )
 }
+
+const Tr = styled.tr`
+height : 30px;
+  &:hover {
+    background-color: #E8E8E8;
+  }
+`
+
+
+const Td = styled.td`
+  /* height:25px; */
+  vertical-align:middle;
+  padding-left: 1em;
+  width: ${props => props.width || "30px"}
+
+`
+
+// const Tdp = styled.td`
+//   height:35px;
+//   vertical-align:middle;
+//   width: 50px;
+//   padding-left: 1em;
+//   @media screen and (max-width: 500px){
+//     /* padding-left: 1em; */
+//     width: 50px;
+//   }
+// `
 
 // const skeletonKeyframes = keyframes`
 //   0% {

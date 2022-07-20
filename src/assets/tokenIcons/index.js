@@ -95,8 +95,10 @@ import oBNB from "./oBNB.svg"
 import unknown from "./unknown.png"
 import ENTER from "./ENTER.svg"
 import KFI from "./KFI.png"
+import KSTA from "./KSTA.svg"
 
 const icons = {
+    KSTA,
     KFI,
     ENTER,
     KOKOA,
