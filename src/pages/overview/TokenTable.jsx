@@ -57,7 +57,7 @@ function TvlTable() {
                               </Styled.Td>
                               <Styled.Td className="content" style={{ width: "300px", textAlign: "right" }}>
                                 {tvld.sevenPriceDiff === 0 ? <Styled.TextNewspan>new</Styled.TextNewspan> :
-                                  tvld.sevenPriceDiff === null ? <Styled.TextRedspan>+{tvld.sevenPriceDiff}%</Styled.TextRedspan> :
+                                  tvld.sevenPriceDiff > 0 ? <Styled.TextRedspan>+{tvld.sevenPriceDiff}%</Styled.TextRedspan> :
                                   <Styled.TextBluespan>{tvld.sevenPriceDiff}%</Styled.TextBluespan>
                                 }
                               </Styled.Td>
