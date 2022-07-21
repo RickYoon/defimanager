@@ -47,14 +47,14 @@ function TokenGainerCard(props) {
                                         {TopTokenElement.token}
                                     </Link>
                                 </Tdp>
-                                <Td width="70px" style={{fontSize:"12px", color:"red"}}>
+                                <Td width="70px" style={{fontSize:"12px", color:"red", whiteSpace: "nowrap" }}>
                                     {(TopTokenElement.priceDiff)} %
                                 </Td>
                                 {TopTokenElement.sevenPriceDiff === 0 ? 
-                                <Td width="70px" style={{fontSize:"12px"}}>
+                                <Td width="70px" style={{fontSize:"12px", whiteSpace: "nowrap" }}>
                                 new</Td>
                                 :
-                                <Td width="70px" style={{fontSize:"12px"}}>
+                                <Td width="70px" style={{fontSize:"12px", whiteSpace: "nowrap" }}>
                                      {(TopTokenElement.sevenPriceDiff)} %</Td>
                                 }
                             </Tr>

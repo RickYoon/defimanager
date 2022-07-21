@@ -18,10 +18,6 @@ function RightBox() {
 
       <EventCard />
 
-
-      
-
-
     </>
   );
 }

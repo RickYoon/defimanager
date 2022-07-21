@@ -44,10 +44,10 @@ function TvlGainerCard(props) {
                                         {toptvlElement.proj}
                                     </Link>
                                 </Tdp>
-                                <Td width="70px" style={{fontSize:"12px", color:"red"}}>
+                                <Td width="70px" style={{fontSize:"12px", color:"red", whiteSpace: "nowrap" }}>
                                     {(toptvlElement.difftwo).toFixed(1)} %
                                 </Td>
-                                <Td width="70px" style={{fontSize:"12px"}}>
+                                <Td width="70px" style={{fontSize:"12px", whiteSpace: "nowrap" }}>
                                     <TvlDiffAfter data={toptvlElement} />
                                 </Td>
                             </Tr>
