@@ -35,32 +35,32 @@ function EventCard(props) {
                         KSD Reward 30% event
                     </Protocol>
                     <Token>
-                        2022-06-13 ~ til Reward Exhausted
+                        '22-06-13 ~ til Reward Exhausted
                     </Token>
                 </Explainbox>
             </PoolinfoBox>
 
             <div style={{marginTop:"15px"}}></div>
 
-            <PoolinfoBox  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://medium.com/mesher/7%EC%9B%94-18%EC%9D%BC-8pm-%ED%83%80%EC%9E%84%EC%BA%A1%EC%8A%90-%EC%B6%9C%EC%8B%9C-fa8600da4336"}>
+            <PoolinfoBox  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdqJIeEd6cmYGsmkkWPPuRe14eUPnvudp4LK8Eum7giiymAiQ/viewform"}>
                 <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
                     Now <br/>
                     on
                 </span>
                 <Iconbox>
                     <Iconwrapper>
-                        <Img src={icons["mesher"]} alt="logo" />
+                        <Img src={icons["Klaymore"]} alt="logo" />
                     </Iconwrapper>
                 </Iconbox>
                 <Explainbox>
                     <Protocol>
-                        mesher
+                        Klaymore
                     </Protocol>
                     <Protocol>
-                        MBX airdrop event
+                        Event - SNOWBALL NFT
                     </Protocol>
                     <Token>
-                        2022-07-18 ~ 2022-07-21
+                        '22-07-19 ~ '22-07-25 23:59
                     </Token>
                 </Explainbox>
             </PoolinfoBox>
@@ -81,17 +81,14 @@ function EventCard(props) {
                         Klaymore
                     </Protocol>
                     <Protocol>
-                        New Feature SNOWBALL
+                        Launch - GameFi SNOWBALL
                     </Protocol>
                     <Token>
-                        upcoming...
+                        TBD
                     </Token>
                 </Explainbox>
             </PoolinfoBoxx>
-
-
           </Styled.LowerColumn>
-          <div style={{marginTop:"15px"}}></div>
       </Styled.Topdash>
 
 
