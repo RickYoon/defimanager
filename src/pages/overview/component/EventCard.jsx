@@ -29,7 +29,7 @@ function EventCard(props) {
 
         {props.isLoading ? 
         <>
-        <PoolinfoBoxx style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
+        <PoolinfoBoxx style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}}>
             <span style={{width:"30px", textAlign: "center", fontSize:"10px"}}>
                 <Styled.ProductSkeleton />
             </span>
@@ -53,7 +53,7 @@ function EventCard(props) {
         </>:
         eventList.map((event,index) => 
         index === eventLength-1 ?
-          <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
+          <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = event.eventLink}>
                 <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
                     {event.eventStatus === "On" ?
                         <>Now <br/> on</> :

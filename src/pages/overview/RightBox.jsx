@@ -21,7 +21,7 @@ function RightBox() {
       <EventCard data={eventlist} isLoading={isloading}/>
       <div style={{marginTop:"15px"}}></div>
 
-      <TwitterCard />
+      <TwitterCard isLoading={isloading}/>
       <div style={{marginTop:"15px"}}></div>
 
       <SubmitEvent />

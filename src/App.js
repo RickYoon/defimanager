@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyles from './assets/styles/GlobalStyles';
+import ScrollToTop from 'util/ScrollTop';
 
 // import Topnav from './components/layout/Topnav';
 import Footer from './components/layout/Footer';
@@ -16,6 +17,7 @@ import TopnavDetail from './layout/TopnavDetail'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Topnav />} />

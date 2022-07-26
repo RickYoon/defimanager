@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Timeline } from 'react-twitter-widgets'
 import * as Styled from "./EventCard.style"
 
-function TwitterCard() {
+function TwitterCard(props) {
 
   return (
     <>
@@ -11,6 +11,8 @@ function TwitterCard() {
           <Styled.UpperColumn>
               Projects Feed
           </Styled.UpperColumn>
+          {props.isLoading ? 
+          <><Styled.ProductSkeleton width="100%" height="300px" style={{marginBottom:"20px"}} /></> : 
           <PoolinfoBox>
             <Timeline
               dataSource={{
@@ -24,6 +26,7 @@ function TwitterCard() {
               }}
             />
           </PoolinfoBox>
+          }
       </Styled.Topdash>
     </>
   );
