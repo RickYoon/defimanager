@@ -5,14 +5,14 @@ import ScrollToTop from 'util/ScrollTop';
 
 // import Topnav from './components/layout/Topnav';
 import Footer from './components/layout/Footer';
-// import Detailpage from './components/pages/Detailpage'
+import Detailpage from './components/pages/Detailpage'
 import Newspage from './components/pages/Newspage'
 // import Poolpage from 'components/pages/Poolpage';
 
 import Overview from './pages/overview/Overview'
 import Topnav from './layout/Topnav';
 import TopnavDetail from './layout/TopnavDetail'
-import Detail from './pages/detail/Detail'
+// import Detail from './pages/detail/Detail'
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route exact path="/news" element={<Newspage />} />
-        <Route exact path="/project/:id" element={<Detail />} />
+        <Route exact path="/project/:id" element={<Detailpage />} />
         {/* <Route exact path="/Poolpage" element={<Poolpage />} /> */}
       </Routes>
       <Routes>
