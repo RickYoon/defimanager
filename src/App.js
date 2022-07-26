@@ -6,9 +6,12 @@ import GlobalStyles from './assets/styles/GlobalStyles';
 import Footer from './components/layout/Footer';
 import Detailpage from './components/pages/Detailpage'
 import Newspage from './components/pages/Newspage'
+import Poolpage from 'components/pages/Poolpage';
 
 import Overview from './pages/overview/Overview'
 import Topnav from './layout/Topnav';
+import TopnavDetail from './layout/TopnavDetail'
+// import Detail from './pages/detail/Detail'
 
 function App() {
   return (
@@ -17,12 +20,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Topnav />} />
         <Route exact path="/news" element={<Topnav />} />
-        <Route exact path="/project/:id" element={<Topnav />} />
+        <Route exact path="/project/:id" element={<TopnavDetail />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/project/:id" element={<Detailpage />} />
+        <Route exact path="/Poolpage" element={<Poolpage />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Footer />} />

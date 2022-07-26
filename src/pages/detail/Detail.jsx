@@ -1,0 +1,130 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+
+import { DetailContext } from "../../components/context/DetailContext"
+import { getDetailData } from 'apis/detail';
+import * as Styled from "./Detail.style"
+
+import TopTitle from './TopTitle';
+import TopNumberCard from './TopNumberCard'
+import TvlChartCard from "./TvlChartCard"
+import TokenChartcard from "./TokenChartCard"
+import RightBox from "./RightBox"
+import TokenTable from "./TokenTable"
+
+function Detail() {
+
+    const { id } = useParams();
+    const [isloading, setIsloading] = useState(false)
+    const [detailinfo, setDetailinfo] = useState({
+      "chart": [{
+        date: "07-01",
+        tvl: 0
+      }],
+      "proj": {},
+      "lastTvl": 0,
+      "oneDayChangeValue": 0,
+      "oneDayChangePercent": 0
+    });
+  
+
+    useEffect(() => {
+        loadchart(id)
+    }, [])
+
+    const loadchart = async (id) => {
+
+        setIsloading(true)
+
+        await getDetailData(id).then(function (response){
+
+          let tempArr = [];
+          let maxArr = [];
+          let priceArr = [];
+
+          console.log("response", response)
+
+          response.chart.Items.forEach((item) => {
+            if(Number(item[id])>0){
+            tempArr.push({
+              date: item.date.slice(5, 10),
+              value: Number(item[id]),
+            })
+            maxArr.push({
+              value: Number(item[id]),
+            })
+          }
+          })
+
+          tempArr.sort(function (a, b) {
+            return a.date < b.date ? -1 : a.date < b.date ? 1 : 0;
+          })
+
+          maxArr.sort(function (a, b) {
+            return a.value > b.value ? -1 : a.value > b.value ? 1 : 0;
+          })
+
+          response.price.forEach((item) => {
+            if (item.price > 1) {
+              priceArr.push({
+                date: item.date.slice(5, 10),
+                dateRaw: item.date,
+                price: item[id],
+                value: Number(item.price.toFixed(1))
+              })
+            } else {
+              priceArr.push({
+                date: item.date.slice(5, 10),
+                dateRaw: item.date,
+                price: item[id],
+                value: Number(item.price.toFixed(5))
+              })
+            }
+          })
+
+          priceArr.sort(function(a,b){
+            return a.date < b.date ? -1 : a.date < b.date ? 1 : 0;
+          })
+
+          let serviceObject = {
+            "chart": tempArr,
+            "maxRef": maxArr[0].value * 1.1,
+            "minRef": maxArr[maxArr.length-1].value * 0.9,
+            "price": priceArr,
+            "lastTvl": Number(response.chart.Items[0][id].toFixed(0)),
+            "proj": response.proj,
+            "oneDayChangeValue": response.chart.Items[0][id]-response.chart.Items[1][id],
+            "oneDayChangePercent": ((response.chart.Items[0][id]-response.chart.Items[1][id])/response.chart.Items[0][id])*100
+          }
+
+          setDetailinfo(serviceObject)
+
+        })
+
+        setIsloading(false)
+
+    
+    }
+
+
+  return (
+    <>
+        <DetailContext.Provider value={{detailinfo, isloading}}>
+          <Styled.Topbox>
+            <Styled.Leftcolumn>              
+              <TopTitle />
+              <TopNumberCard />
+              <TvlChartCard />        
+              <TokenChartcard />      
+              <TokenTable />
+            </Styled.Leftcolumn>
+            <Styled.Rightcolumn>
+                <RightBox />
+            </Styled.Rightcolumn>
+          </Styled.Topbox>
+        </DetailContext.Provider>
+    </>
+  );
+}
+
+export default Detail;

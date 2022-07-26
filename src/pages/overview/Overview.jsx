@@ -7,12 +7,23 @@ import TokenTable from "./TokenTable"
 import RightBox from "./RightBox"
 import { OverviewContext } from "../../components/context/OverviewContext"
 import { getTvlData,getTotalChartData } from 'apis/tvl';
+import {getEventData} from 'apis/event';
 import { Leftcolumn } from './TopNumbercard.style';
 import * as Styled from "./Overview.style"
 
 function Overview() {
 
     const [isloading, setIsloading] = useState(false)
+
+    const [eventlist, setEventlist] = useState([
+      {
+        "projectName":"Kokonutswap",
+        "eventName": "KSD Reward 30% event",
+        "eventSchedule": "'22-06-13 ~ til Reward Exhausted",
+        "eventStatus": "On",
+        "eventLink": ""
+    }
+    ])
 
     const [totalchart, setTotalchart] = useState([{
         "date": "2022-01-10",
@@ -76,8 +87,16 @@ function Overview() {
 
     useEffect(() => {
         loadtvl()
+        loadEvent()
         // loadchart()
     }, [])
+
+    const loadEvent = async () => {
+      await getEventData().then(function (response){
+        // console.log("리스판스", response)
+        setEventlist(response)
+      })
+    }
 
     const loadchart = async () => {
 
@@ -204,7 +223,7 @@ function Overview() {
 
   return (
     <>
-        <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken}}>
+        <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist}}>
             <Styled.Topbox>
                 <Styled.Leftcolumn>
                     <TopNumbercard />

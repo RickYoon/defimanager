@@ -19,12 +19,35 @@ export const Topdash = Styled.div`
     box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
     overflow: visible;
     margin-right: 5px;
+    margin-top: 40px;
     background-color: rgb(255, 255, 255);
     background-clip: border-box;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
     @media screen and (max-width: 500px){
         width: 360px;
+        margin-top: 10px;
+    }
+`
+
+export const TopdashBottom = Styled.div`
+
+    display: flex;
+    flex-direction: column;
+
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
+    overflow: visible;
+    margin-right: 5px;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    @media screen and (max-width: 500px){
+        width: 360px;
+        margin-top: 10px;
     }
 `
 
@@ -37,10 +60,6 @@ export const UpperColumn = Styled.div`
     margin-right: 15px;
     margin-top: 15px;
     padding:5px;
-    @media screen and (max-width: 500px){
-      width: 330px;
-    }
-
 `
 
 export const LowerColumn = Styled.div`
@@ -52,7 +71,7 @@ export const LowerColumn = Styled.div`
 `
 
 export const ProjectBox = Styled.div`
-    height: 40px;
+    height: 25px;
     margin-left: 15px;
     margin-right: 15px;
     /* padding:5px; */

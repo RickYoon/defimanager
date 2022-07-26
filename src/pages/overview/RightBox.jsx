@@ -3,10 +3,12 @@ import { OverviewContext } from 'components/context/OverviewContext';
 import TvlGainerCard from "./component/TvlGainerCard"
 import TokenGainerCard from "./component/TokenGainerCard";
 import EventCard from "./component/EventCard"
+import TwitterCard from "./component/TwitterCard"
+import SubmitEvent from "./component/SubmitEvent"
 
 function RightBox() {
 
-  const { isloading,toptvl,toptoken } = useContext(OverviewContext);
+  const { isloading,toptvl,toptoken,eventlist } = useContext(OverviewContext);
 
   return (
     <>
@@ -16,7 +18,13 @@ function RightBox() {
       <TokenGainerCard data={toptoken} isLoading={isloading}/>
       <div style={{marginTop:"15px"}}></div>
 
-      <EventCard />
+      <EventCard data={eventlist} isLoading={isloading}/>
+      <div style={{marginTop:"15px"}}></div>
+
+      <TwitterCard />
+      <div style={{marginTop:"15px"}}></div>
+
+      <SubmitEvent />
 
     </>
   );

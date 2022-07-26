@@ -37,6 +37,9 @@ export const UpperColumn = Styled.div`
     margin-right: 15px;
     margin-top: 15px;
     padding:5px;
+    @media screen and (max-width: 500px){
+      width: 330px;
+    }
 `
 
 export const LowerColumn = Styled.div`
@@ -65,7 +68,8 @@ export const Righttext = Styled.span`
   float: right;
   font-family: "OpenSans-Semibold";
   font-size: 12px;
-  color: ${props => props.color || "gray"}
+  color: ${props => props.color || "gray"};
+  
 `
 
 

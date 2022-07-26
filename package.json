@@ -12,6 +12,7 @@
     "http-proxy-middleware": "2.0.6",
     "json-server": "0.17.0",
     "klip-sdk": "2.0.1",
+    "numeral": "2.0.6",
     "qrcode.react": "3.0.1",
     "react": "18.0.0",
     "react-advanced-news-ticker": "1.0.1",

@@ -3,96 +3,115 @@ import * as Styled from "./EventCard.style"
 import icons from "../../../assets/tokenIcons"
 import styled from "styled-components";
 
+// technical leader 
+
+// 백앤드 + 블록체인 엔지니어 
+// nodejs 활용 백앤드 빌드할 수 있는 사람
+// frontend 개발자
+// 경계 : 조직과의 fit이 맞을까?
+// 사무실은 강남역 목요일 오전 10시, 오후 2시 중 선택
 
 function EventCard(props) {
 
-  console.log("props",props.data)
+  const eventList = props.data
+  const eventLength = props.data.length
+//   const isLoading = true;
+//   console.log("event Props",eventList)
 
   return (
     <>
-
-<Styled.Topdash>
+        <Styled.Topdash>
           <Styled.UpperColumn>
               Event List
           </Styled.UpperColumn>
           <Styled.LowerColumn>
 
-          <PoolinfoBox  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
+
+        {props.isLoading ? 
+        <>
+        <PoolinfoBoxx style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
+            <span style={{width:"30px", textAlign: "center", fontSize:"10px"}}>
+                <Styled.ProductSkeleton />
+            </span>
+            <Iconbox>
+                <Iconwrapper>
+                    <Styled.IconSkeleton />
+                </Iconwrapper>
+            </Iconbox>
+            <Explainbox>
+                <Protocol>
+                    <Styled.ProductSkeleton width="150px" height="15px" />
+                </Protocol>
+                <Protocol>
+                    <Styled.ProductSkeleton width="170px" height="15px"  />
+                </Protocol>
+                <Token>
+                    <Styled.ProductSkeleton width="170px" height="15px"  />
+                </Token>
+            </Explainbox>
+        </PoolinfoBoxx> 
+        </>:
+        eventList.map((event,index) => 
+        index === eventLength-1 ?
+          <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
                 <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
-                    Now <br/>
-                    on
+                    {event.eventStatus === "On" ?
+                        <>Now <br/> on</> :
+                        event.eventStatus === "TBD" ?
+                        <>D-?</> :
+                        <>Up <br/> coming</>
+                    }
                 </span>
                 <Iconbox>
                     <Iconwrapper>
-                        <Img src={icons["Kokonutswap"]} alt="logo" />
+                        <Img src={icons[event.projectName]} alt="logo" />
                     </Iconwrapper>
                 </Iconbox>
                 <Explainbox>
                     <Protocol>
-                        Kokonutswap
+                        {event.projectName}
                     </Protocol>
                     <Protocol>
-                        KSD Reward 30% event
+                        {event.eventName}
                     </Protocol>
                     <Token>
-                        '22-06-13 ~ til Reward Exhausted
+                        {event.eventSchedule}
                     </Token>
                 </Explainbox>
-            </PoolinfoBox>
+            </PoolinfoBoxx> :
+            <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
+            <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
+                {event.eventStatus === "On" ?
+                    <>Now <br/> on</> :
+                    event.eventStatus === "TBD" ?
+                    <>D-?</> :
+                    <>Up <br/> coming</>
+                }
+            </span>
+            <Iconbox>
+                <Iconwrapper>
+                    <Img src={icons[event.projectName]} alt="logo" />
+                </Iconwrapper>
+            </Iconbox>
+            <Explainbox>
+                <Protocol>
+                    {event.projectName}
+                </Protocol>
+                <Protocol>
+                    {event.eventName}
+                </Protocol>
+                <Token>
+                    {event.eventSchedule}
+                </Token>
+            </Explainbox>
+        </PoolinfoBoxx>
+            )
+        
+            }
 
-            <div style={{marginTop:"15px"}}></div>
 
-            <PoolinfoBox  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdqJIeEd6cmYGsmkkWPPuRe14eUPnvudp4LK8Eum7giiymAiQ/viewform"}>
-                <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
-                    Now <br/>
-                    on
-                </span>
-                <Iconbox>
-                    <Iconwrapper>
-                        <Img src={icons["Klaymore"]} alt="logo" />
-                    </Iconwrapper>
-                </Iconbox>
-                <Explainbox>
-                    <Protocol>
-                        Klaymore
-                    </Protocol>
-                    <Protocol>
-                        Event - SNOWBALL NFT
-                    </Protocol>
-                    <Token>
-                        '22-07-19 ~ '22-07-25 23:59
-                    </Token>
-                </Explainbox>
-            </PoolinfoBox>
-
-            <div style={{marginTop:"15px"}}></div>
-
-            <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://docs.klaystake.house/v/korean/snowball"}>
-                <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
-                    D-?
-                </span>
-                <Iconbox>
-                    <Iconwrapper>
-                        <Img src={icons["Klaymore"]} alt="logo" />
-                    </Iconwrapper>
-                </Iconbox>
-                <Explainbox>
-                    <Protocol>
-                        Klaymore
-                    </Protocol>
-                    <Protocol>
-                        Launch - GameFi SNOWBALL
-                    </Protocol>
-                    <Token>
-                        TBD
-                    </Token>
-                </Explainbox>
-            </PoolinfoBoxx>
           </Styled.LowerColumn>
-      </Styled.Topdash>
-
-
-
+        </Styled.Topdash>
     </>
   );
 }
@@ -122,11 +141,25 @@ const PoolinfoBox = styled.div`
   flex-direction : row;
   align-items: center;
   height: 60px;
-  padding-bottom: 10px;
   border-bottom-width: 1px;
   border-bottom-style:solid;
   border-bottom-color:#d1d1d1;
+
+  &:hover {
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    color: #316395;
+  }
+
 `
+
+// &:hover {
+//     height : 40px;
+//     background-color: #E8E8E8;
+//     border-radius:10px;
+//     line-height: 40px;
+//   }
+
 
 
 const PoolinfoBoxx = styled.div`
@@ -134,8 +167,12 @@ const PoolinfoBoxx = styled.div`
   display : flex;
   flex-direction : row;
   align-items: center;
-  height: 60px;
-  padding-bottom: 10px;
+  height: 65px;
+  &:hover {
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    color: #316395;
+  }
 `
 
 const Img = styled.img`

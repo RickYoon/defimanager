@@ -35,19 +35,19 @@ function TvlGainerCard(props) {
               props.data.map((toptvlElement,index) => 
                         <Styled.ProjectBox>
                             <Tr>
-                                <Td>{index+1}</Td>
-                                <Td>
+                                <Td width="10px">{index+1}</Td>
+                                <Td width="30px" >
                                     <Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
                                 </Td>
-                                <Tdp width="100px">
+                                <Tdp>
                                     <Link to={`/project/${toptvlElement.proj}`}>
                                         {toptvlElement.proj}
                                     </Link>
                                 </Tdp>
-                                <Td width="70px" style={{fontSize:"12px", color:"red", whiteSpace: "nowrap" }}>
+                                <Td width="55px" style={{textAlign:"right",fontSize:"13px", color:"red", whiteSpace: "nowrap" }}>
                                     {(toptvlElement.difftwo).toFixed(1)} %
                                 </Td>
-                                <Td width="70px" style={{fontSize:"12px", whiteSpace: "nowrap" }}>
+                                <Td width="55px" style={{textAlign:"right",fontSize:"13px", whiteSpace: "nowrap" }}>
                                     <TvlDiffAfter data={toptvlElement} />
                                 </Td>
                             </Tr>
@@ -68,10 +68,10 @@ function TvlDiffAfter(props) {
     return (
         <>
         {difference > 1000000 ?
-            <>+ {(difference/1000000).toFixed(1)} M</> :
+            <>{(difference/1000000).toFixed(1)} M</> :
             difference > 1000 ?
-            <>+ {(difference/1000).toFixed(1)} K</> :
-            <>+ {difference.toFixed(1)}</>
+            <>{(difference/1000).toFixed(1)} K</> :
+            <>{difference.toFixed(1)}</>
             }
 
         
@@ -98,17 +98,28 @@ const Td = styled.td`
   width: ${props => props.width || "30px"};
   @media screen and (max-width: 500px){
     height:30px;
+    font-size: 15px;
+
     }
 `
 
 const Tdp = styled.td`
   /* height:25px; */
-  width: ${props => props.width || "30px"};
+  /* width: ${props => props.width || "30px"}; */
   vertical-align:middle;
   padding-left: 1em;
+  width: 100px;
+
   &:hover {
     text-decoration: underline;
+    color:#3366cc;
+
   };
+
+  @media screen and (max-width: 500px){
+    width: 130px;
+  }
+
 `
 
 

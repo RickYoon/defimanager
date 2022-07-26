@@ -43,11 +43,11 @@ function Poolpage() {
     // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/queryPoolList"
 
-    // await axios.get(url).then(function (response) {
-    //   setPooldata(response.data.body)
-    //   setBackupPooldata(response.data.body)
-    // })
-    // setIsloading(false)
+    await axios.get(url).then(function (response) {
+      setPooldata(response.data.body)
+      setBackupPooldata(response.data.body)
+    })
+    setIsloading(false)
   }
 
   const tvlSorting = () => {

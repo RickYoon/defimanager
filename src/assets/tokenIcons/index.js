@@ -113,8 +113,10 @@ import META from "./META.svg"
 import JUN from './junmeta.png'
 import KP from "./KP.svg"
 import KPS from "./KPS.svg"
+import TVL from "./TVL.svg"
 
 const icons = {
+    TVL,
     KBELT,
     KP,
     KPS,

@@ -36,26 +36,25 @@ function TokenGainerCard(props) {
 
                         <Styled.ProjectBox>
                             <Tr>
-                                <Td>{index+1}</Td>
-                                <Td>{TopTokenElement.token === "KAI" || TopTokenElement.token === "AKAI"?
+                                <Td width="10px" >{index+1}</Td>
+                                <Td width="30px">{TopTokenElement.token === "KAI" || TopTokenElement.token === "AKAI"?
                                      <Styled.Img src={icons[TopTokenElement.project]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> :
                                      <Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                                     }
                                 </Td>
-                                <Tdp width="100px">
+                                <Tdp>
                                     <Link to={`/project/${TopTokenElement.project}`}>
                                         {TopTokenElement.token}
                                     </Link>
                                 </Tdp>
-                                <Td width="70px" style={{fontSize:"12px", color:"red", whiteSpace: "nowrap" }}>
+                                <Td width="55px" style={{textAlign:"right",fontSize:"14px", color:"red", whiteSpace: "nowrap" }}>
                                     {(TopTokenElement.priceDiff)} %
                                 </Td>
                                 {TopTokenElement.sevenPriceDiff === 0 ? 
-                                <Td width="70px" style={{fontSize:"12px", whiteSpace: "nowrap" }}>
-                                new</Td>
-                                :
-                                <Td width="70px" style={{fontSize:"12px", whiteSpace: "nowrap" }}>
-                                     {(TopTokenElement.sevenPriceDiff)} %</Td>
+                                <Td width="55px" style={{textAlign:"right",fontSize:"13px", whiteSpace: "nowrap" }}>new</Td>
+                                : TopTokenElement.sevenPriceDiff > 0 ? 
+                                  <Td width="55px" style={{textAlign:"right",fontSize:"13px", whiteSpace: "nowrap",color:"red" }}> {(TopTokenElement.sevenPriceDiff)} %</Td> :
+                                  <Td width="55px" style={{textAlign:"right",fontSize:"13px", whiteSpace: "nowrap",color:"blue" }}> {(TopTokenElement.sevenPriceDiff)} %</Td> 
                                 }
                             </Tr>
                         </Styled.ProjectBox>
@@ -88,17 +87,24 @@ const Td = styled.td`
 
   @media screen and (max-width: 500px){
     height:30px;
+    font-size: 15px;
+
     }
 `
 
 const Tdp = styled.td`
-  width: ${props => props.width || "30px"};
+  /* width: ${props => props.width || "30px"}; */
   vertical-align:middle;
   padding-left: 1em;
+  width: 100px;
   &:hover {
+    color:#3366cc;
     text-decoration: underline;
   };
 
+  @media screen and (max-width: 500px){
+    width: 130px;
+  }
 
 `
 
