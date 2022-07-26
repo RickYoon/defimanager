@@ -75,7 +75,7 @@ export const Righttext = Styled.span`
 
 
 export const Img = Styled.img`
-    height: 100%;
+    height: 30px;
     /* width: 70%; */
     border:1px solid #eaeaea;
     border-radius:50%;

@@ -37,6 +37,8 @@ export const Th = Styled.th`
   text-align: left;
   vertical-align:middle;
   padding-left:5px;
+  white-space: nowrap;
+  
 `;
 
 export const Td = Styled.td`

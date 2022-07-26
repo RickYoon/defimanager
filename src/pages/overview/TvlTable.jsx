@@ -50,7 +50,7 @@ function TvlTable() {
             )) :
             tvldata.data.map((tvld, index) => (
             <Tr key={index} style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4" }}>
-                <Styled.Th className="head" style={{ width: "40px", textAlign: "left" }}> {index+1}
+                <Styled.Th className="head" style={{ width: "50px", textAlign: "left" }}> {index+1}
                     {tvld.rankdiff === 0 ? 
                         <span style={{ fontSize: "14px", color: "black" }}>(-)</span> :
                         tvld.rankdiff > 0 ? 
