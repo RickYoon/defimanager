@@ -4,16 +4,16 @@ import React, {useContext} from "react";
 // import TokenGainerCard from "./component/TokenGainerCard";
 import InfoBox from "./component/InfoBox"
 import TwitterCard from "./component/TwitterCard"
-
+import NavBox from "./component/NavBox"
 
 function RightBox() {
 
-//   const { isloading,toptvl,toptoken } = useContext(OverviewContext);
 
   return (
     <>
-        <InfoBox />
-        <TwitterCard />
+      <NavBox />
+      <InfoBox />
+      <TwitterCard />
     </>
   );
 }

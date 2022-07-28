@@ -14,9 +14,10 @@ import {
   import icons from "../../assets/tokenIcons"
 
 
-function TokenChartcard() {
+function TokenChartcard(props) {
 
   const { detailinfo,isloading } = useContext(DetailContext);
+  const {pageInfo} = props;
 
     console.log("detailinfo", detailinfo.price)
     const data = detailinfo.price
@@ -32,8 +33,8 @@ function TokenChartcard() {
     <>
         <Styled.Chartcover>
         <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-          <Styled.Img src={icons["ENTER"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-          <span style={{fontSize:"12px",marginLeft:"10px"}}>ENTER</span>
+          <Styled.Img src={icons[pageInfo]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+          <span style={{fontSize:"12px",marginLeft:"10px"}}>{detailinfo.proj.tokensymbol}</span>
         </div>
 
             <ResponsiveContainer width="100%" height={250}>
@@ -41,15 +42,25 @@ function TokenChartcard() {
                     <><Styled.ProductSkeleton /></> :
                 
                 <AreaChart data={data}>
+
                     <defs>
-                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#488A99" stopOpacity={0.5} />
-                          <stop offset="95%" stopColor="#488A99" stopOpacity={0} />
-                        </linearGradient>
+                      <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#488A99" stopOpacity={0.5} />
+                        <stop offset="95%" stopColor="#488A99" stopOpacity={0} />
+                      </linearGradient>
                     </defs>
 
-                    <Area dataKey="value" stroke="#488A99" fill="url(#colorPv)" />
+                    <defs>
+                      <linearGradient id="lineColor" x1="0" y1="0" x2="100%" y2="0">
+                        <stop offset="0%" stopColor="white" stopOpacity={1} />
+                        <stop offset={`${178/180*10}%`} stopColor="white" stopOpacity={1} />
+                        <stop offset={`${178/180*10}%`} stopColor="#488A99" />
+                        <stop offset="100%" stopColor="#488A99" />
+                      </linearGradient>
+                    </defs>
+
                     
+                    <Area dataKey="value" stroke="url(#lineColor)" fill="url(#splitColor)" />  
 
                     <XAxis
                         tickLine={false}
@@ -77,9 +88,6 @@ function TokenChartcard() {
                         yAxisId={0}
                         mirror={true}
                         style={{ fontSize: "14px" }}
-                        // domain={[detailinfo.minRef, detailinfo.maxRef]}
-                        // allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
                     />
 
                     <Tooltip content={<CustomTooltip />} />
@@ -93,8 +101,6 @@ function TokenChartcard() {
     );
 }
 
-
-
 function CustomTooltip({ active, payload, label }) {
   const toK = (num) => {
     return Numeral(num).format('0.[00]a')
@@ -104,10 +110,13 @@ function CustomTooltip({ active, payload, label }) {
 
     if (active) {
       return (
+        payload[0].value === 0 ?
+        <></>
+        : 
         <Styled.StyleTooltip>
-          <h4>{label}</h4>
-          <p>{moneySymbol + toK((payload[0].value))}</p>
-        </Styled.StyleTooltip>
+        <h4>{label}</h4>
+        <p>{moneySymbol + toK((payload[0].value))}</p>
+      </Styled.StyleTooltip>
       );
     }
     return null;

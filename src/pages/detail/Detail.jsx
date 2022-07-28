@@ -115,7 +115,7 @@ function Detail() {
               <TopTitle />
               <TopNumberCard />
               <TvlChartCard />        
-              <TokenChartcard />      
+              <TokenChartcard pageInfo={id} />      
               <TokenTable />
             </Styled.Leftcolumn>
             <Styled.Rightcolumn>

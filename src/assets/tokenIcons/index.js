@@ -114,8 +114,10 @@ import JUN from './junmeta.png'
 import KP from "./KP.svg"
 import KPS from "./KPS.svg"
 import TVL from "./TVL.svg"
+import KLEX from "./KLEX.svg"
 
 const icons = {
+    KLEX,
     TVL,
     KBELT,
     KP,

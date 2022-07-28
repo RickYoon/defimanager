@@ -5,6 +5,7 @@ import { useLocation, Link } from "react-router-dom";
 import logo from "../assets/CI/modified.svg"
 import { BsBoxArrowLeft } from "react-icons/bs";
 import {BiSpreadsheet} from "react-icons/bi";
+// import NavBox from "../pages/detail/component/NavBox"
 
 function TopnavDetail() {
 
@@ -30,6 +31,7 @@ function TopnavDetail() {
                     Back to List
                 </Navspan>
             </Link>
+            {/* <NavBox /> */}
             </SubTopNavBlock>
             </>
     );

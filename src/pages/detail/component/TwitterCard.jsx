@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from "styled-components";
 import { Timeline } from 'react-twitter-widgets'
 import * as Styled from "./InfoBox.style"
+import { DetailContext } from 'components/context/DetailContext';
 
 
 function TwitterCard() {
+
+  const { detailinfo, isloading } = useContext(DetailContext);
 
   return (
     <>
@@ -12,19 +15,22 @@ function TwitterCard() {
           <Styled.UpperColumn>
               Projects Feed
           </Styled.UpperColumn>
+          {isloading ? 
+          <><Styled.ProductSkeleton width="100%" height="300px" style={{marginBottom:"20px"}} /></> : 
           <PoolinfoBox>
             <Timeline
               dataSource={{
                 sourceType: 'profile',
-                screenName: "Klayswap"
+                screenName: detailinfo.proj.twitterid
               }}
               options={{
-                height: '500',
+                height: '450px',
                 width: '100%',
                 chrome: "nofooter,noheader,transparent"
               }}
             />
           </PoolinfoBox>
+          }
       </Styled.TopdashBottom>
     </>
   );
@@ -36,9 +42,7 @@ const PoolinfoBox = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 20px;
-  border-bottom-width: 1px;
-  border-bottom-style:solid;
-  border-bottom-color:#d1d1d1;
+  height: 450px;
 `
 
 

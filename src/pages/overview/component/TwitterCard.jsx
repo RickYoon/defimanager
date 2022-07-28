@@ -36,9 +36,6 @@ const PoolinfoBox = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 20px;
-  border-bottom-width: 1px;
-  border-bottom-style:solid;
-  border-bottom-color:#d1d1d1;
 `
 
 export default TwitterCard;

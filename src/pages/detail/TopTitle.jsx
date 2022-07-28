@@ -15,13 +15,13 @@ function TopTitle() {
 
   return (
     <>
-      <SubTemplateBlock>
+      <SubTemplateBlock style={{marginBottom:"10px"}}>
         <span>
           <Img src={icons[id]} alt="logo" />
             <ProjectName>
                 {id === "UFO" ?
                     <>UFOSWAP</> :
-                    id
+                    id + " (#1)"
                 }
             </ProjectName>
         </span>
@@ -56,12 +56,20 @@ const Img = styled.img`
     margin-right: 10px;
     vertical-align: bottom;
     border-radius: 15px; 
+    @media screen and (max-width: 500px){
+      height: 25px;
+  }
+
 `
 
 const ProjectName = styled.span`
     font-weight: bold;
     font-family: "OpenSans-Semibold";
     font-size: 25px;
+    @media screen and (max-width: 500px){
+      font-size: 20px;
+  }
+
 `
 
 
