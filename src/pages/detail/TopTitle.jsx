@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useParams, Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 // import axios from 'axios';
@@ -7,11 +7,12 @@ import styled from "styled-components";
 // import { Timeline } from 'react-twitter-widgets'
 import icons from "../../assets/tokenIcons"
 // import {setCookie, getCookie} from "../../assets/util/cookie"
-
+import { DetailContext } from 'components/context/DetailContext';
 
 function TopTitle() {
 
   const { id } = useParams();
+  const { detailinfo,isloading } = useContext(DetailContext);
 
   return (
     <>
@@ -21,7 +22,8 @@ function TopTitle() {
             <ProjectName>
                 {id === "UFO" ?
                     <>UFOSWAP</> :
-                    id + " (#1)"
+                    isloading ? <></> :
+                    id + " (#" + detailinfo.rankInfo.myRank + ")"
                 }
             </ProjectName>
         </span>

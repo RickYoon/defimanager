@@ -1,14 +1,20 @@
 import React, { useContext } from 'react';
+import { DetailContext } from 'components/context/DetailContext';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function NavBox() {
 
+  const { detailinfo,isloading } = useContext(DetailContext);
+
+  console.log("de : ", detailinfo)
 
   return (
     <>
       <Topdash>
-          <Prev href="#" id="prev">#1. klayswap</Prev>
-          <Next href="#" id="next">#3. klapfinance</Next>
+          {detailinfo.rankInfo.myRank === 1 ? <Prev href="#" id="prev"></Prev> : 
+          <Prev href="#" id="prev">#{detailinfo.rankInfo.myRank-1}. {detailinfo.rankInfo.Prev}</Prev> }
+          <Next href="#" id="next" onClick={()=>window.location.href = `http://localhost:7777/project/${detailinfo.rankInfo.Next}`}>#{detailinfo.rankInfo.myRank+1}. {detailinfo.rankInfo.Next}</Next>
       </Topdash>
     </>
   );
@@ -119,6 +125,7 @@ const Next = styled.a`
 const Prev = styled.a`
   & {
     color: #7e7e7e;
+    opacity: 0;
     display: inline-block;
     font: normal normal 1.0em Arial,sans-serif;
     overflow: hidden;

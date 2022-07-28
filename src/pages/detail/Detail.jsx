@@ -24,7 +24,12 @@ function Detail() {
       "proj": {},
       "lastTvl": 0,
       "oneDayChangeValue": 0,
-      "oneDayChangePercent": 0
+      "oneDayChangePercent": 0,
+      "rankInfo": {
+        myRank : 0,
+        Prev : "",
+        Next : ""
+      }
     });
   
 
@@ -41,9 +46,43 @@ function Detail() {
           let tempArr = [];
           let maxArr = [];
           let priceArr = [];
+          let rankList = {
+            myRank : 0,
+            Prev : "",
+            Next : ""
+          };
+          let sortArr = [];
 
-          console.log("response", response)
+          // console.log("response", response.chart.Items[0])
 
+          const sortable = Object.entries(response.chart.Items[0])
+          sortable.forEach((table)=>{
+            if(table[0] !=="date"){
+              table[0] !=="dataType" ? 
+              sortArr.push({
+                projName: table[0],
+                tvl: table[1]
+              }) :
+              <></> 
+            }
+          })
+
+          sortArr.sort(function (a, b) {
+            return a.tvl > b.tvl ? -1 : a.tvl < b.tvl ? 1 : 0;
+          })
+
+          console.log("sortArr", sortArr)
+
+          rankList.myRank = sortArr.findIndex(i => i.projName === id)
+          rankList.myRank === 1 ? rankList.Prev = "" : rankList.Prev = sortArr[rankList.myRank - 1].projName
+          rankList.myRank === sortArr.length-1 ? rankList.Next = "" : rankList.Next = sortArr[rankList.myRank + 1].projName
+
+          // console.log(sortArr.length)
+
+          // rankList.myRank = sortArr.filter((element)=> element.projName === id)
+
+          // console.log("rankList", rankList)
+ 
           response.chart.Items.forEach((item) => {
             if(Number(item[id])>0){
             tempArr.push({
@@ -94,7 +133,8 @@ function Detail() {
             "lastTvl": Number(response.chart.Items[0][id].toFixed(0)),
             "proj": response.proj,
             "oneDayChangeValue": response.chart.Items[0][id]-response.chart.Items[1][id],
-            "oneDayChangePercent": ((response.chart.Items[0][id]-response.chart.Items[1][id])/response.chart.Items[0][id])*100
+            "oneDayChangePercent": ((response.chart.Items[0][id]-response.chart.Items[1][id])/response.chart.Items[0][id])*100,
+            "rankInfo":rankList
           }
 
           setDetailinfo(serviceObject)
@@ -112,7 +152,7 @@ function Detail() {
         <DetailContext.Provider value={{detailinfo, isloading}}>
           <Styled.Topbox>
             <Styled.Leftcolumn>              
-              <TopTitle />
+              <TopTitle/>
               <TopNumberCard />
               <TvlChartCard />        
               <TokenChartcard pageInfo={id} />      

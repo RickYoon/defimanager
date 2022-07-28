@@ -79,7 +79,7 @@ function EventCard(props) {
                     </Token>
                 </Explainbox>
             </PoolinfoBoxx> :
-            <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = "https://kokonutswap.finance/farm"}>
+            <PoolinfoBoxx  style={{marginLeft:"20px", marginRight:"20px", cursor:"pointer"}} onClick={()=>window.location.href = event.eventLink}>
             <span style={{width:"40px", textAlign: "center", fontSize:"10px"}}>
                 {event.eventStatus === "On" ?
                     <>Now <br/> on</> :
