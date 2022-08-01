@@ -27,6 +27,7 @@ export const Topdash = Styled.div`
     @media screen and (max-width: 500px){
         width: 360px;
         margin-top: 10px;
+        padding-left: 5px;
     }
 `
 

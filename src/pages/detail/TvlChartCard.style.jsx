@@ -83,3 +83,21 @@ export const ProductSkeleton = Styled.div`
   margin-top: ${props => props.marginTop || "0"}
 `;
 
+export const IconSkeleton = Styled.div`
+  display: inline-block;
+  /* height: 25px; */
+  width: 25px;
+  margin-left: 10px;
+  animation: ${skeletonKeyframes} 1300ms ease-in-out infinite;
+  background-color: #eee;
+  background-image: linear-gradient(
+    90deg,
+    #eee,
+    #f5f5f5,
+    #eee
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  margin-top: ${props => props.marginTop || "0"}
+`;

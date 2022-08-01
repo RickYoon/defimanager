@@ -9,8 +9,9 @@ import TopTitle from './TopTitle';
 import TopNumberCard from './TopNumberCard'
 import TvlChartCard from "./TvlChartCard"
 import TokenChartcard from "./TokenChartCard"
+import TokenChartCardMulti from "./TokenChartCardMulti"
 import RightBox from "./RightBox"
-import TokenTable from "./TokenTable"
+// import TokenTable from "./TokenTable"
 
 function Detail() {
 
@@ -21,7 +22,10 @@ function Detail() {
         date: "07-01",
         tvl: 0
       }],
-      "proj": {},
+      "proj": {
+        twitterid: ""
+      },
+      "vacancyCounter": 0,
       "lastTvl": 0,
       "oneDayChangeValue": 0,
       "oneDayChangePercent": 0,
@@ -46,6 +50,7 @@ function Detail() {
           let tempArr = [];
           let maxArr = [];
           let priceArr = [];
+          let priceArrTwo = [];
           let rankList = {
             myRank : 0,
             Prev : "",
@@ -75,7 +80,7 @@ function Detail() {
 
           rankList.myRank = sortArr.findIndex(i => i.projName === id)
           rankList.myRank === 1 ? rankList.Prev = "" : rankList.Prev = sortArr[rankList.myRank - 1].projName
-          rankList.myRank === sortArr.length-1 ? rankList.Next = "" : rankList.Next = sortArr[rankList.myRank + 1].projName
+          rankList.myRank === sortArr.length-1 ? rankList.Next = "end" : rankList.Next = sortArr[rankList.myRank + 1].projName
 
           // console.log(sortArr.length)
 
@@ -103,25 +108,44 @@ function Detail() {
             return a.value > b.value ? -1 : a.value > b.value ? 1 : 0;
           })
 
+          console.log("response.price", response.price )
+
           response.price.forEach((item) => {
-            if (item.price > 1) {
-              priceArr.push({
-                date: item.date.slice(5, 10),
-                dateRaw: item.date,
-                price: item[id],
-                value: Number(item.price.toFixed(1))
-              })
-            } else {
-              priceArr.push({
-                date: item.date.slice(5, 10),
-                dateRaw: item.date,
-                price: item[id],
-                value: Number(item.price.toFixed(5))
-              })
-            }
+              if (item.price > 1) {
+                priceArr.push({
+                  date: item.date.slice(5, 10),
+                  dateRaw: item.date,
+                  value: Number(item.multiObject[0].tokenPrice.toFixed(1))
+                })
+                if(item.multiObject.length === 2){
+                priceArrTwo.push({
+                  date: item.date.slice(5, 10),
+                  dateRaw: item.date,
+                  value: Number(item.multiObject[1].tokenPrice.toFixed(1))
+                })
+                }
+              } else {
+                priceArr.push({
+                  date: item.date.slice(5, 10),
+                  dateRaw: item.date,
+                  value: Number(item.multiObject[0].tokenPrice.toFixed(5))
+                })
+                if(item.multiObject.length === 2){
+                priceArrTwo.push({
+                  date: item.date.slice(5, 10),
+                  dateRaw: item.date,
+                  value: Number(item.multiObject[1].tokenPrice.toFixed(1))
+                })
+              }
+              }
+            
           })
+          
 
           priceArr.sort(function(a,b){
+            return a.date < b.date ? -1 : a.date < b.date ? 1 : 0;
+          })
+          priceArrTwo.sort(function(a,b){
             return a.date < b.date ? -1 : a.date < b.date ? 1 : 0;
           })
 
@@ -130,8 +154,13 @@ function Detail() {
             "maxRef": maxArr[0].value * 1.1,
             "minRef": maxArr[maxArr.length-1].value * 0.9,
             "price": priceArr,
+            "chartLength": tempArr.length,
+            "priceLength": priceArr.length,
+            "priceTwo": priceArrTwo,
             "lastTvl": Number(response.chart.Items[0][id].toFixed(0)),
             "proj": response.proj,
+            "tokenList": response.tokenList,
+            "vacancyCounter": response.numberOfPricedays,
             "oneDayChangeValue": response.chart.Items[0][id]-response.chart.Items[1][id],
             "oneDayChangePercent": ((response.chart.Items[0][id]-response.chart.Items[1][id])/response.chart.Items[0][id])*100,
             "rankInfo":rankList
@@ -154,9 +183,17 @@ function Detail() {
             <Styled.Leftcolumn>              
               <TopTitle/>
               <TopNumberCard />
-              <TvlChartCard />        
-              <TokenChartcard pageInfo={id} />      
-              <TokenTable />
+              <TvlChartCard />
+              {detailinfo.proj.tokenNumber === 2 ?
+                <>
+                  <TokenChartCardMulti pageInfo={id} refNumber={1} /> 
+                  <TokenChartCardMulti pageInfo={id} refNumber={2}/> 
+                </>
+                : detailinfo.proj.tokenNumber === 0 ?
+                <></> :
+                <TokenChartcard pageInfo={id} />
+              }
+              {/* <TokenTable /> */}
             </Styled.Leftcolumn>
             <Styled.Rightcolumn>
                 <RightBox />

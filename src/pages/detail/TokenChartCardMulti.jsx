@@ -14,39 +14,30 @@ import {
   import icons from "../../assets/tokenIcons"
 
 
-function TokenChartcard(props) {
+function TokenChartcardMulti(props) {
 
   const { detailinfo,isloading } = useContext(DetailContext);
-  const {pageInfo} = props;
+  const {pageInfo,refNumber} = props;
+  let data = [];
 
-  const data = detailinfo.price
-  const tokenRatio = Number(detailinfo.vacancyCounter)
-  console.log("tokenRatio",tokenRatio)
-  // console.log("detailinfo.vacancyCounter",detailinfo.vacancyCounter)
-
-    const toK = (num) => {
-      return Numeral(num).format('0.[00]a')
-    }    
-
-    const moneySymbol = "$"
+  if(refNumber === 1){
+    data = detailinfo.price
+  }else {
+    data = detailinfo.priceTwo
+  }
+  const toK = (num) => {
+    return Numeral(num).format('0.[00]a')
+  }    
+  const moneySymbol = "$"
     
     return (
     <>
-    {/* {data === undefined ? 
-      <></> : */}
+    {data === undefined ? 
+      <></> :
         <Styled.Chartcover>
         <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-        {isloading? 
-            <>
-            <Styled.Img src={icons[pageInfo]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <Styled.ProductSkeleton width="25px" /> 
-            </>
-            :
-            <>
-            <Styled.Img src={icons[pageInfo]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>{detailinfo.proj.tokensymbol}</span>
-            </>
-          }
+          <Styled.Img src={icons[detailinfo.tokenList[refNumber-1]]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+          <span style={{fontSize:"12px",marginLeft:"10px"}}>{detailinfo.tokenList[refNumber-1]}</span>
         </div>
 
             <ResponsiveContainer width="100%" height={250}>
@@ -65,8 +56,8 @@ function TokenChartcard(props) {
                     <defs>
                       <linearGradient id="lineColor" x1="0" y1="0" x2="100%" y2="0">
                         <stop offset="0%" stopColor="white" stopOpacity={1} />
-                        <stop offset={`${tokenRatio}%`} stopColor="white" stopOpacity={1} />
-                        <stop offset={`${tokenRatio}%`} stopColor="#488A99" />
+                        {/* <stop offset={`${178/180*10}%`} stopColor="white" stopOpacity={1} />
+                        <stop offset={`${178/180*10}%`} stopColor="#488A99" /> */}
                         <stop offset="100%" stopColor="#488A99" />
                       </linearGradient>
                     </defs>
@@ -109,7 +100,7 @@ function TokenChartcard(props) {
                 }
             </ResponsiveContainer>
         </Styled.Chartcover>
-        {/* } */}
+        }
     </>
     );
 }
@@ -124,7 +115,7 @@ function CustomTooltip({ active, payload, label }) {
 
     if (active) {
       return (
-        payload[0].value === 0 || undefined ?
+        payload[0].value === 0 ?
         <></>
         : 
         <Styled.StyleTooltip>
@@ -137,5 +128,5 @@ function CustomTooltip({ active, payload, label }) {
   }
 
 
-export default TokenChartcard;
+export default TokenChartcardMulti;
   

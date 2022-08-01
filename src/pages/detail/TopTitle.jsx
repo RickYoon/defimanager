@@ -8,6 +8,8 @@ import styled from "styled-components";
 import icons from "../../assets/tokenIcons"
 // import {setCookie, getCookie} from "../../assets/util/cookie"
 import { DetailContext } from 'components/context/DetailContext';
+import * as Styled from "./TvlChartCard.style"
+
 
 function TopTitle() {
 
@@ -17,27 +19,52 @@ function TopTitle() {
   return (
     <>
       <SubTemplateBlock style={{marginBottom:"10px"}}>
+        {isloading ? 
+        <span>
+          <Img src={icons[id]} alt="logo" />
+            <ProjectName>
+              <ProductSkeleton />
+            </ProjectName>
+        </span>
+        :
         <span>
           <Img src={icons[id]} alt="logo" />
             <ProjectName>
                 {id === "UFO" ?
                     <>UFOSWAP</> :
-                    isloading ? <></> :
+                    isloading ?
+                    id :
                     id + " (#" + detailinfo.rankInfo.myRank + ")"
                 }
             </ProjectName>
         </span>
-        {/* <div style={{float:"right", paddingTop:"15px"}}>
-          <Prev href="#" id="prev">1</Prev>
-          <Next href="#" id="next">3</Next>
-        </div> */}
+      }
       </SubTemplateBlock>
-
     </>
   );
 }
+
+
 //Audit report
 //https://github.com/KlaySwap/klayswap/blob/master/audit/Smart_Contract_Audit_Report_KlaySwap_ver_2.0.pdf
+
+const ProductSkeleton = styled.div`
+  display: inline-block;
+  /* height: ${props => props.height || "90%"}; */
+  /* width: ${props => props.width || "100%"}; */
+  background-color: #eee;
+  background-image: linear-gradient(
+    90deg,
+    #eee,
+    #f5f5f5,
+    #eee
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  margin-top: ${props => props.marginTop || "0"}
+`;
+
 
 const SubTemplateBlock = styled.div`
   width: 788px;

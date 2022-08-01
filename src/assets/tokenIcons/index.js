@@ -115,8 +115,10 @@ import KP from "./KP.svg"
 import KPS from "./KPS.svg"
 import TVL from "./TVL.svg"
 import KLEX from "./KLEX.svg"
+import KLAP from "./KLAP.svg"
 
 const icons = {
+    KLAP,
     KLEX,
     TVL,
     KBELT,

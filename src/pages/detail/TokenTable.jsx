@@ -1,21 +1,20 @@
 import * as Styled from "./TokenTable.style"
-// import { OverviewContext } from 'components/context/OverviewContext';
+import { DetailContext } from 'components/context/DetailContext';
 import React, {useContext} from "react";
 import icons from "../../assets/tokenIcons"
 import { Link } from "react-router-dom";
 
 function TvlTable() {
 
-  // const { tokendata } = useContext(OverviewContext);
+  const { detailinfo,isloading } = useContext(DetailContext);
+  console.log("totken", detailinfo)
 
   return (
      <Styled.TodoTemplateBlock>
        <Styled.UpperColumn>
           Trend Summary
           <Styled.Righttext>  ('22.07.11~'22.09.11) </Styled.Righttext>
-        </Styled.UpperColumn>
-         
-          
+        </Styled.UpperColumn>         
 
         <div className="tablecss">
             <Styled.Table>

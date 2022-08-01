@@ -31,29 +31,57 @@ function InfoBox() {
                       <Td style={{width:"80px"}}>
                         Category
                       </Td>
-                      <Td width="200px" style={{fontSize:"14px", color:"#316395", whiteSpace: "nowrap"}}>
+                      <Td width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap"}}>
                         {detailinfo.proj.category}
                       </Td>
                   </Tr>
-                </Styled.ProjectBox>
+                </Styled.ProjectBox>              
+                {detailinfo.proj.tokensymbol !== "multiToken" ?  
                 <Styled.ProjectBox>
                   <Tr>
                     <Td style={{width:"80px"}}>
                       Token (s)
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395", whiteSpace: "nowrap" }}>
+                    <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                       {detailinfo.proj.tokensymbol} 
-                      <Span onClick={()=>window.location.href = `https://www.klaytnfinder.io/token/${detailinfo.proj.tokenContractAddress}`}>
-                      {"   "}klaytnfinder <ImArrowUpRight2 /></Span>
-                    </Td>
+                      <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddress}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {"   "}klaytnscope <ImArrowUpRight2 /></Span>
+                    </Tdlink>
                   </Tr>
                 </Styled.ProjectBox>
+                :
+                <>
+                <Styled.ProjectBox>
+                  <Tr>
+                    <Td style={{width:"80px"}}>
+                      Token (s)
+                    </Td>
+                    <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                      {detailinfo.proj.tokensymbolOne} 
+                      <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressOne}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {"   "}klaytnscope <ImArrowUpRight2 /></Span>
+                    </Tdlink>
+                  </Tr>
+                </Styled.ProjectBox>                
+                <Styled.ProjectBox>
+                <Tr>
+                  <Td style={{width:"80px"}}>
+                  </Td>
+                  <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                    {detailinfo.proj.tokensymbolTwo} 
+                    <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressTwo}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                    {"   "}klaytnscope <ImArrowUpRight2 /></Span>
+                  </Tdlink>
+                </Tr>
+              </Styled.ProjectBox>    
+              </>            
+              }
                 <Styled.ProjectBox>
                   <Tr>
                     <Td style={{width:"80px"}}>
                       Team
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395", whiteSpace: "nowrap" }}>
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                       {detailinfo.proj.team} 
                     </Td>
                   </Tr>
@@ -63,10 +91,14 @@ function InfoBox() {
                     <Td style={{width:"80px"}}>
                       Audit
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395", whiteSpace: "nowrap" }}>
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                        {detailinfo.proj.audit}
-                       <Span onClick={()=>window.location.href = `${detailinfo.proj.auditDetail}`}>
+                       {detailinfo.proj.audit === "Yes" ? 
+                       <Span onClick={()=>window.open(`${detailinfo.proj.auditDetail}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                         {"   "}report <ImArrowUpRight2 /></Span>
+                        :
+                        <></>
+                        }
                     </Td>
                   </Tr>
                 </Styled.ProjectBox>
@@ -75,7 +107,7 @@ function InfoBox() {
                     <Td style={{width:"80px"}}>
                       Investor
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395", whiteSpace: "nowrap" }}>
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                       {detailinfo.proj.investor} 
                     </Td>
                   </Tr>
@@ -85,10 +117,10 @@ function InfoBox() {
                     <Td style={{width:"80px"}}>
                       Links
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395" }}>
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <AiFillHome style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
-                      <span style={{marginLeft:"5px"}} onClick={()=>window.location.href = `https://${detailinfo.proj.homeUrl}`}>
-                      {detailinfo.proj.homeUrl}</span>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://${detailinfo.proj.homeUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {detailinfo.proj.homeUrl}</Links>  
                     </Td>
                   </Tr>
                 </Styled.ProjectBox>
@@ -96,43 +128,58 @@ function InfoBox() {
                   <Tr>
                     <Td style={{width:"80px"}}>                      
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395" }}>
-                      <FaFileAlt style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
-                      <span style={{marginLeft:"5px"}} onClick={()=>window.location.href = `https://${detailinfo.proj.docsUrl}`}>
-                      {detailinfo.proj.docsUrl}</span>
-                    </Td>
+                    {detailinfo.proj.docsUrl === "long" ?
+                      <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
+                        <FaFileAlt style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
+                        <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`${detailinfo.proj.docsUrlReal}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        documents</Links>
+                      </Td> :
+                      <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
+                        <FaFileAlt style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
+                        <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://${detailinfo.proj.docsUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        {detailinfo.proj.docsUrl}</Links>
+                      </Td>
+                    }
                   </Tr>
                 </Styled.ProjectBox>
+                {detailinfo.proj.twitterUrl === "-" ?
+                <></>
+                :
+                <Styled.ProjectBox>
+                <Tr>
+                  <Td style={{width:"80px"}}>                      
+                  </Td>
+                  <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
+                    <FaTwitter style={{height:"16px",verticalAlign:"top"}}/> 
+                    <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://twitter.com/${detailinfo.proj.twitterUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                    {detailinfo.proj.twitterUrl}</Links>
+                  </Td>
+                </Tr>
+              </Styled.ProjectBox>
+                }
+                {detailinfo.proj.mediumUrl === "-" ?
+                <></>
+                :
                 <Styled.ProjectBox>
                   <Tr>
                     <Td style={{width:"80px"}}>                      
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395" }}>
-                      <FaTwitter style={{height:"16px",verticalAlign:"top"}}/> 
-                      <span style={{marginLeft:"5px"}} onClick={()=>window.location.href = `https://twitter.com/${detailinfo.proj.twitterUrl}`}>
-                      {detailinfo.proj.twitterUrl}</span>
-                    </Td>
-                  </Tr>
-                </Styled.ProjectBox>
-                <Styled.ProjectBox>
-                  <Tr>
-                    <Td style={{width:"80px"}}>                      
-                    </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395" }}>
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <FaMedium style={{height:"16px",verticalAlign:"top"}}/> 
-                      <span style={{marginLeft:"5px"}} onClick={()=>window.location.href = `https://medium.com/${detailinfo.proj.mediumUrl}`}>
-                      {detailinfo.proj.mediumUrl}</span>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://medium.com/${detailinfo.proj.mediumUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {detailinfo.proj.mediumUrl}</Links>
                     </Td>
                   </Tr>
                 </Styled.ProjectBox>
+                }
                 <Styled.ProjectBox>
                   <Tr>
                     <Td style={{width:"80px"}}>                      
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395" }}>
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <FaTelegramPlane style={{height:"20px",verticalAlign:"top"}}/>
-                      <span style={{marginLeft:"5px"}} onClick={()=>window.location.href = `https://t.me/${detailinfo.proj.telegramUrl}`}>
-                      {detailinfo.proj.telegramUrl}</span>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://t.me/${detailinfo.proj.telegramUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {detailinfo.proj.telegramUrl}</Links>
                     </Td>
                   </Tr>
                 </Styled.ProjectBox>
@@ -140,11 +187,19 @@ function InfoBox() {
                   <Tr>
                     <Td style={{width:"80px"}}>                      
                     </Td>
-                    <Td width="200px" style={{fontSize:"14px", color:"#316395" }}>
+                    {detailinfo.proj.discordUrl === "-" ? 
+                    <Td width="200px" style={{fontSize:"13px", color:"gray" }}>
                       <SiDiscord style={{height:"20px",verticalAlign:"top"}}/>
-                      <span style={{marginLeft:"5px"}} onClick={()=>window.location.href = `https://discord.gg/${detailinfo.proj.discordUrl}`}>
+                      <span style={{marginLeft:"5px"}}>
                       discord.gg</span>
                     </Td>
+                    :
+                    <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
+                      <SiDiscord style={{height:"20px",verticalAlign:"top"}}/>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://discord.com/invite/${detailinfo.proj.discordUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      discord.gg</Links>
+                    </Td>
+                    }
                   </Tr>
                 </Styled.ProjectBox>              
               </>          
@@ -258,6 +313,14 @@ const SkeletonWaiting = () =>{
   )
 }
 
+const Links = styled.span`
+  &:hover {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  };
+`
+
 
 const Tr = styled.tr`
 height : 20px;
@@ -278,6 +341,20 @@ const Td = styled.td`
     height:30px;
     }
 `
+
+const Tdlink = styled.td`
+  /* height:25px; */
+  font-family: "OpenSans-Medium";
+  vertical-align:middle;
+  padding-left: 1em;
+  font-size: 13px;
+  width: ${props => props.width || "30px"};
+
+  @media screen and (max-width: 500px){
+    width: 230px; 
+  }
+`
+
 
 const Span = styled.span`
   color: gray;

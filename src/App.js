@@ -12,7 +12,7 @@ import Newspage from './components/pages/Newspage'
 import Overview from './pages/overview/Overview'
 import Topnav from './layout/Topnav';
 import TopnavDetail from './layout/TopnavDetail'
-// import Detail from './pages/detail/Detail'
+import Detail from './pages/detail/Detail'
 
 function App() {
   return (

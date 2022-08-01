@@ -11,6 +11,7 @@ function TwitterCard() {
 
   return (
     <>
+    {detailinfo.proj.twitterid !== "-" ?
         <Styled.TopdashBottom>
           <Styled.UpperColumn>
               Projects Feed
@@ -32,6 +33,9 @@ function TwitterCard() {
           </PoolinfoBox>
           }
       </Styled.TopdashBottom>
+      :
+      <></>
+    }
     </>
   );
 }
