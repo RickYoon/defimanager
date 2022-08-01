@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route exact path="/news" element={<Newspage />} />
-        <Route exact path="/project/:id" element={<Detailpage />} />
+        <Route exact path="/project/:id" element={<Detail />} />
         {/* <Route exact path="/Poolpage" element={<Poolpage />} /> */}
       </Routes>
       <Routes>

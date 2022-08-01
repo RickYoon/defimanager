@@ -56,8 +56,8 @@ function TokenChartcardMulti(props) {
                     <defs>
                       <linearGradient id="lineColor" x1="0" y1="0" x2="100%" y2="0">
                         <stop offset="0%" stopColor="white" stopOpacity={1} />
-                        {/* <stop offset={`${178/180*10}%`} stopColor="white" stopOpacity={1} />
-                        <stop offset={`${178/180*10}%`} stopColor="#488A99" /> */}
+                        <stop offset={`${0}%`} stopColor="white" stopOpacity={1} />
+                        <stop offset={`${0}%`} stopColor="#488A99" />
                         <stop offset="100%" stopColor="#488A99" />
                       </linearGradient>
                     </defs>
