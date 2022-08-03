@@ -116,8 +116,12 @@ import KPS from "./KPS.svg"
 import TVL from "./TVL.svg"
 import KLEX from "./KLEX.svg"
 import KLAP from "./KLAP.svg"
+import neopin from "./neopin.png"
+import klaycity from "./klaycity.png"
 
 const icons = {
+    neopin,
+    klaycity,
     KLAP,
     KLEX,
     TVL,
