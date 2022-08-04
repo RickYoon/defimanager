@@ -118,8 +118,10 @@ import KLEX from "./KLEX.svg"
 import KLAP from "./KLAP.svg"
 import neopin from "./neopin.png"
 import klaycity from "./klaycity.png"
+import PangeaSwap from "./PangeaSwap.png"
 
 const icons = {
+    PangeaSwap,
     neopin,
     klaycity,
     KLAP,
