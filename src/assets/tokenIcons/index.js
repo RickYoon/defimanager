@@ -117,10 +117,14 @@ import TVL from "./TVL.svg"
 import KLEX from "./KLEX.svg"
 import KLAP from "./KLAP.svg"
 import neopin from "./neopin.png"
-import klaycity from "./klaycity.png"
+import klaycity from "./klaycity.jpg"
 import PangeaSwap from "./PangeaSwap.png"
+import ORB from "./ORB.png"
+import LAY from "./LAY.png"
 
 const icons = {
+    ORB,
+    LAY,
     PangeaSwap,
     neopin,
     klaycity,

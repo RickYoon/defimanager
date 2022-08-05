@@ -5,6 +5,7 @@ import TokenGainerCard from "./component/TokenGainerCard";
 import EventCard from "./component/EventCard"
 import TwitterCard from "./component/TwitterCard"
 import SubmitEvent from "./component/SubmitEvent"
+import EventBanner from "./component/EventBanner"
 
 function RightBox() {
 
@@ -25,6 +26,9 @@ function RightBox() {
       <div style={{marginTop:"15px"}}></div>
 
       <SubmitEvent />
+      {/* <div style={{marginTop:"15px"}}></div>
+
+      <EventBanner /> */}
 
     </>
   );
