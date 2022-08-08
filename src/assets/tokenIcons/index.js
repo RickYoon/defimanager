@@ -120,7 +120,7 @@ import neopin from "./neopin.png"
 import klaycity from "./klaycity.jpg"
 import PangeaSwap from "./PangeaSwap.png"
 import ORB from "./ORB.png"
-import LAY from "./LAY.png"
+import LAY from "./LAY007.png"
 
 const icons = {
     ORB,

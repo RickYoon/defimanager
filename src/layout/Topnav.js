@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useLocation } from "react-router-dom";
-
+import { BiBook } from "react-icons/bi";
 import React from 'react';
 import { Link } from "react-router-dom";
 import logo from "../assets/CI/modified.svg"
@@ -14,19 +14,19 @@ function Topnav() {
         window.location.href = "https://www.klaylabs.net"
     }
 
-    // const moveWallet = () => {
-    //     window.location.href = "/defimanager"
-    // }
+    const moveDocs = () => {
+        window.location.href = "https://amazing-leaf-bca.notion.site/Introduction-1fbb9ef8a0a542d18ca3351c3c88b58c"
+    }
+
     return (
         <>
             <TemplateBlock>
                 <span onClick={moveMain} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
-                    <span style={{ marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
-                {/* <span>
-                    <Wallet onClick={moveWallet}>DeFi Manager</Wallet>
-                </span> */}
+                <span onClick={moveDocs} style={{marginTop:"10px", fontSize:"25px", cursor: "pointer"}}>
+                    <span style={{marginRight:"15px"}}><BiBook /></span>
+                </span>
             </TemplateBlock>
 
             <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
@@ -95,13 +95,13 @@ const Wallet = styled.div`
 `
 
 const Button = styled.button`
-  display: inline-block;
+  /* display: inline-block;
   color: black;
   font-size: 18px;
-  margin-top: 3px;
-  padding: 0.25em 1em;
-  border-radius: 0px;
-  border-color:gray;
+  margin-top: 3px; */
+  /* padding: 0.25em 1em; */
+  /* border-radius: 0px; */
+  /* border-color:gray; */
 `;
 
 const TemplateBlock = styled.div`
