@@ -121,8 +121,10 @@ import klaycity from "./klaycity.jpg"
 import PangeaSwap from "./PangeaSwap.png"
 import ORB from "./ORB.png"
 import LAY from "./LAY007.png"
+import KeyFinance from "./KeyFinance.png"
 
 const icons = {
+    KeyFinance,
     ORB,
     LAY,
     PangeaSwap,
