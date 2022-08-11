@@ -1,5 +1,56 @@
 import Styled, { keyframes } from 'styled-components';
 
+export const Rangedisplay = Styled.div`
+  padding-left:10px;
+  padding-bottom:15px;
+  font-size: 15px;
+  height: 10px;
+  vertical-align: middle;
+`
+
+export const RangeControlBox = Styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction : row;
+`
+
+export const Chartbutton = Styled.div`
+  /* Adapt the colors based on primary prop */
+  background: ${props => props.primary ? "#316395" : "white"};
+  color: ${props => props.primary ? "white" : "gray"};
+
+  font-size: 0.9em;
+  /* margin: 0.2em; */
+  padding: 0.2em 0.8em;
+  /* border: 2px solid palevioletred; */
+  border-radius: 5px;
+  cursor: pointer;
+  @media screen and (max-width: 500px){
+    /* width: 100%; */
+    padding: 0.2em 0.4em;
+  }
+`
+
+export const ChartbuttonInput = Styled.input`
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 10%;
+`
+
+export const RangeContainer = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-right:10px;
+
+`
+
 
 export const Chartcover = Styled.div`
   background-color: white;
@@ -7,7 +58,7 @@ export const Chartcover = Styled.div`
   max-height: 768px;
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
   padding-top:15px;
-  padding-bottom:5px;
+  /* padding-bottom:5px; */
   padding-left:10px;
   padding-right:10px;
   margin-top: 10px;
