@@ -108,6 +108,27 @@ const skeletonKeyframes = keyframes`
 `;
 
 
+
+export const SmallSkeleton = Styled.div`
+  display: inline-block;
+  height: ${props => props.height || "90%"};
+  width: ${props => props.width || "100%"};
+  animation: ${skeletonKeyframes} 1300ms ease-in-out infinite;
+  background-color: #eee;
+  background-image: linear-gradient(
+    90deg,
+    #eee,
+    #f5f5f5,
+    #eee
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  margin-top: ${props => props.marginTop || "0"}
+`;
+
+
+
 export const ProductSkeleton = Styled.div`
   display: inline-block;
   height: ${props => props.height || "90%"};

@@ -54,7 +54,7 @@ function Chartcard() {
     return (
     <>
         <Styled.Chartcover>
-            <Chartrange selection={range} ranger={changeRange} startdate={startdate} enddate={enddate}/>            
+            <Chartrange selection={range} ranger={changeRange} startdate={startdate} enddate={enddate} isloading={isloading}/>            
             <ResponsiveContainer width="100%" height={300}>
                 {isloading ? 
                     <><Styled.ProductSkeleton /></> :
@@ -109,11 +109,14 @@ function Chartcard() {
 }
 
 function Chartrange (props) {
-    console.log(props)
+    // console.log(props)
     return (
         <>
         <Styled.RangeContainer>
+        {props.isloading ? 
+        <Styled.Rangedisplay><Styled.SmallSkeleton style={{marginLeft:"-5px"}} width="100px" height="20px" /> </Styled.Rangedisplay> : 
         <Styled.Rangedisplay>'22.{props.startdate} ~ {props.enddate} </Styled.Rangedisplay>
+        }
         <Styled.RangeControlBox>
             {props.selection === 0 ?
                 <Styled.Chartbutton primary={true}>

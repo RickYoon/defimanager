@@ -7,7 +7,7 @@ import ScrollToTop from 'util/ScrollTop';
 import Footer from './components/layout/Footer';
 import Detailpage from './components/pages/Detailpage'
 import Newspage from './components/pages/Newspage'
-// import Poolpage from 'components/pages/Poolpage';
+import Poolpage from 'components/pages/Poolpage';
 
 import Overview from './pages/overview/Overview'
 import Topnav from './layout/Topnav';
@@ -21,6 +21,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Topnav />} />
+        <Route exact path="/Poolpage" element={<Topnav />} />
         <Route exact path="/news" element={<Topnav />} />
         <Route exact path="/project/:id" element={<TopnavDetail />} />
       </Routes>
@@ -28,7 +29,7 @@ function App() {
         <Route path="/" element={<Overview />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/project/:id" element={<Detail />} />
-        {/* <Route exact path="/Poolpage" element={<Poolpage />} /> */}
+        <Route exact path="/Poolpage" element={<Poolpage />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Footer />} />

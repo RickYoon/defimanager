@@ -38,11 +38,11 @@ function Topnav() {
                         }
                     </Link>
                 </Underline>
-                {/* <Underline style={{ marginLeft: "10px" }} primary={pathname === "/pools"}>
-                    <Link to="/pools">
-                        {pathname === "/pools" ?
-                            <span style={{ color: "black" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} />PoolRank </span> :
-                            <span style={{ color: "gray" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> PoolRank </span>
+                {/* <Underline style={{ marginLeft: "10px" }} primary={pathname === "/Poolpage"}>
+                    <Link to="/Poolpage">
+                        {pathname === "/Poolpage" ?
+                            <span style={{ color: "black" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> Yieldview </span> :
+                            <span style={{ color: "gray" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> Yieldview </span>
                         }
                     </Link>
                 </Underline> */}
