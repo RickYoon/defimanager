@@ -47,7 +47,7 @@ function Chartrange (props) {
             Feed collection
           </Styled.UpperColumn>
           
-          <Styled.Selcontainer>
+          {/* <Styled.Selcontainer>
             {props.selsns === "twitter" ? 
             <>
               <Styled.SelectionHover><FaTwitter style={{height:"25px",width:"25px"}} /></Styled.SelectionHover>
@@ -59,7 +59,7 @@ function Chartrange (props) {
               <FaMedium style={{height:"25px",width:"25px", color: "black"}} />
             </>
             }
-          </Styled.Selcontainer>
+          </Styled.Selcontainer> */}
        </Styled.RangeContainer>
       </>
   )

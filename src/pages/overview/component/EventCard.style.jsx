@@ -185,7 +185,3 @@ export const SelectionNo = Styled.div`
   color: gray;
   cursor: pointer;
 `
-
-
-
-/* style={{height:"25px",width:"25px",marginRight:"10px", color:"#1DA1F2"}} */
