@@ -138,3 +138,54 @@ export const TextNewspan = Styled.span`
     font-size: 13px;
   }
 `
+
+export const Selcontainer = Styled.div`
+  display: flex;
+  margin-top: 15px;
+  margin-right: 10px;
+`
+
+export const Item = Styled.div`
+  background-color:${props => props.primary ? "white" : ""};
+  color:${props => props.primary ? "#316395" : "gray"};
+  border-width: 4px;
+  border-radius: 8px;
+  border-color: ${props => props.primary ? "black" : ""};
+  flex-basis: 50%;
+  height: 40px;  
+  padding-top: 10px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align:center;
+  align-self: center;
+  /* @media screen and (max-width: 500px){ */
+  width: 360px;
+  /* } */
+`
+
+export const RangeContainer = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-right:10px;
+`
+
+export const SelectionHover = Styled.div`
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+  color: #1DA1F2;
+`
+
+export const SelectionNo = Styled.div`
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+  color: gray;
+  cursor: pointer;
+`
+
+
+
+/* style={{height:"25px",width:"25px",marginRight:"10px", color:"#1DA1F2"}} */

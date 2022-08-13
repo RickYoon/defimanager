@@ -1,16 +1,22 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from "styled-components";
 import { Timeline } from 'react-twitter-widgets'
 import * as Styled from "./EventCard.style"
+import { FaMedium,FaTwitter} from "react-icons/fa";
+
 
 function TwitterCard(props) {
+
+  const [selsns,Setselsns] = useState("twitter")
+
+  const chageSel = (sns) => {
+    Setselsns(sns)
+  } 
 
   return (
     <>
         <Styled.Topdash>
-          <Styled.UpperColumn>
-              Projects Feed
-          </Styled.UpperColumn>
+          <Chartrange selsns={selsns} chageSel={chageSel}/>
           {props.isLoading ? 
           <><Styled.ProductSkeleton width="100%" height="300px" style={{marginBottom:"20px"}} /></> : 
           <PoolinfoBox>
@@ -31,6 +37,34 @@ function TwitterCard(props) {
     </>
   );
 }
+
+function Chartrange (props) {
+  // console.log(props)
+  return (
+      <>
+       <Styled.RangeContainer>
+          <Styled.UpperColumn>
+            Feed collection
+          </Styled.UpperColumn>
+          
+          <Styled.Selcontainer>
+            {props.selsns === "twitter" ? 
+            <>
+              <Styled.SelectionHover><FaTwitter style={{height:"25px",width:"25px"}} /></Styled.SelectionHover>
+              <FaMedium style={{height:"25px",width:"25px", color: "gray", cursor:"pointer"}} onClick={()=>props.chageSel("medium")}/>
+            </>
+            :
+            <>
+              <Styled.SelectionNo onClick={()=>props.chageSel("twitter")}><FaTwitter style={{height:"25px",width:"25px"}}/></Styled.SelectionNo>
+              <FaMedium style={{height:"25px",width:"25px", color: "black"}} />
+            </>
+            }
+          </Styled.Selcontainer>
+       </Styled.RangeContainer>
+      </>
+  )
+}
+
 
 const PoolinfoBox = styled.div`
   margin-left: 20px;

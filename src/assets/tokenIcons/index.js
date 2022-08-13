@@ -122,8 +122,10 @@ import PangeaSwap from "./PangeaSwap.png"
 import ORB from "./ORB.png"
 import LAY from "./LAY007.png"
 import KeyFinance from "./KeyFinance.png"
+import NPT from "./NPT.png"
 
 const icons = {
+    NPT,
     KeyFinance,
     ORB,
     LAY,
