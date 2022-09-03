@@ -123,8 +123,10 @@ import ORB from "./ORB.png"
 import LAY from "./LAY007.png"
 import KeyFinance from "./KeyFinance.png"
 import NPT from "./NPT.png"
+import klexfinance from "./klexfinance.svg"
 
 const icons = {
+    klexfinance,
     NPT,
     KeyFinance,
     ORB,
