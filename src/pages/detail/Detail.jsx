@@ -33,7 +33,8 @@ function Detail() {
         myRank : 0,
         Prev : "",
         Next : ""
-      }
+      },
+      "price": []
     });
   
 

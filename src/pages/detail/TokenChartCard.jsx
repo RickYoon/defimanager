@@ -17,10 +17,11 @@ import {
 function TokenChartcard(props) {
 
   const { detailinfo,isloading } = useContext(DetailContext);
-  const {pageInfo} = props;
+  const { pageInfo } = props;
 
-  const data = detailinfo.price
+  const data = detailinfo.price;
   const tokenRatio = Number(detailinfo.vacancyCounter)
+  console.log("data",data);
   console.log("tokenRatio",tokenRatio)
   // console.log("detailinfo.vacancyCounter",detailinfo.vacancyCounter)
 
@@ -32,8 +33,8 @@ function TokenChartcard(props) {
     
     return (
     <>
-    {/* {data === undefined ? 
-      <></> : */}
+    {detailinfo.price.length === 0 ? 
+      <></> :
         <Styled.Chartcover>
         <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
         {isloading? 
@@ -109,7 +110,7 @@ function TokenChartcard(props) {
                 }
             </ResponsiveContainer>
         </Styled.Chartcover>
-        {/* } */}
+        }
     </>
     );
 }

@@ -36,7 +36,59 @@ function InfoBox() {
                       </Td>
                   </Tr>
                 </Styled.ProjectBox>              
-                {detailinfo.proj.tokensymbol !== "multiToken" ?  
+                {detailinfo.proj.tokensymbol === "multiToken" ?
+                    <>
+                    <Styled.ProjectBox>
+                      <Tr>
+                        <Td style={{width:"80px"}}>
+                          Token (s)
+                        </Td>
+                        <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                          {detailinfo.proj.tokensymbolOne} 
+                          <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressOne}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                          {"   "}klaytnscope <ImArrowUpRight2 /></Span>
+                        </Tdlink>
+                      </Tr>
+                    </Styled.ProjectBox>                
+                    <Styled.ProjectBox>
+                    <Tr>
+                      <Td style={{width:"80px"}}>
+                      </Td>
+                      <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                        {detailinfo.proj.tokensymbolTwo} 
+                        <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressTwo}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        {"   "}klaytnscope <ImArrowUpRight2 /></Span>
+                      </Tdlink>
+                    </Tr>
+                  </Styled.ProjectBox>    
+                  </>       
+                :
+                detailinfo.proj.tokensymbol === "MESH" ?
+                <Styled.ProjectBox>
+                  <Tr>
+                    <Td style={{width:"80px"}}>
+                      Token (s)
+                    </Td>
+                    <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                      {detailinfo.proj.tokensymbol} 
+                      <Span onClick={()=>window.open(`https://polygonscan.com/token/${detailinfo.proj.tokenContractAddress}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {"   "}polygonscan <ImArrowUpRight2 /></Span>
+                    </Tdlink>
+                  </Tr>
+                </Styled.ProjectBox>                
+                :   
+                detailinfo.proj.tokensymbol === "-" ?
+                <Styled.ProjectBox>
+                  <Tr>
+                    <Td style={{width:"80px"}}>
+                      Token (s)
+                    </Td>
+                    <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                      {detailinfo.proj.tokensymbol} 
+                    </Tdlink>
+                  </Tr>
+                </Styled.ProjectBox>                
+                :
                 <Styled.ProjectBox>
                   <Tr>
                     <Td style={{width:"80px"}}>
@@ -49,32 +101,6 @@ function InfoBox() {
                     </Tdlink>
                   </Tr>
                 </Styled.ProjectBox>
-                :
-                <>
-                <Styled.ProjectBox>
-                  <Tr>
-                    <Td style={{width:"80px"}}>
-                      Token (s)
-                    </Td>
-                    <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
-                      {detailinfo.proj.tokensymbolOne} 
-                      <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressOne}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-                      {"   "}klaytnscope <ImArrowUpRight2 /></Span>
-                    </Tdlink>
-                  </Tr>
-                </Styled.ProjectBox>                
-                <Styled.ProjectBox>
-                <Tr>
-                  <Td style={{width:"80px"}}>
-                  </Td>
-                  <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
-                    {detailinfo.proj.tokensymbolTwo} 
-                    <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressTwo}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-                    {"   "}klaytnscope <ImArrowUpRight2 /></Span>
-                  </Tdlink>
-                </Tr>
-              </Styled.ProjectBox>    
-              </>            
               }
                 <Styled.ProjectBox>
                   <Tr>
