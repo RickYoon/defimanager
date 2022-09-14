@@ -7,7 +7,7 @@ function EventBanner() {
 
   return (
     <>
-      <Styled.Topdash style={{textAlign: "center", cursor:"pointer"}} onClick={()=>window.location.href = "https://gleam.io/LpqyP/futuredex-"}>
+      <Styled.Topdash style={{textAlign: "center", cursor:"pointer"}} onClick={()=>window.location.href = "https://bit.ly/3qCSlKY"}>
           <img alt="" class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src={icons["futureDexEvent"]}></img>
       </Styled.Topdash>
     </>
