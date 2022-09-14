@@ -12,7 +12,7 @@ export const Topdash = Styled.div`
     background-color: rgb(255, 255, 255);
     background-clip: border-box;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    margin: 20px;
+    /* margin: 20px; */
     &:hover {
       color: #316395;
     }

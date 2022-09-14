@@ -16,6 +16,8 @@ import Overview from './pages/overview/Overview'
 import Detail from './pages/detail/Detail'
 import Poolsearch from './pages/poolsearch'
 
+import Nftoverview from 'pages/nftOverview/Overview';
+
 function App() {
   return (
     <Router>
@@ -23,12 +25,14 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Topnav />} />
+        <Route exact path="/nftview" element={<Topnav />} />
         <Route exact path="/Poolpage" element={<Topnav />} />
         <Route exact path="/news" element={<Topnav />} />
         <Route exact path="/project/:id" element={<TopnavDetail />} />
       </Routes>
       <Routes>
         <Route path="/" element={<Overview />} />
+        <Route exact path="/nftview" element={<Nftoverview />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/project/:id" element={<Detail />} />
         <Route exact path="/Poolpage" element={<Poolsearch />} />

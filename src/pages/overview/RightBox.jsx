@@ -26,9 +26,10 @@ function RightBox() {
       <div style={{marginTop:"15px"}}></div>
 
       <SubmitEvent />
-      {/* <div style={{marginTop:"15px"}}></div>
+      <div style={{marginTop:"15px"}}></div>
 
-      <EventBanner /> */}
+      <EventBanner />
+      
 
     </>
   );
