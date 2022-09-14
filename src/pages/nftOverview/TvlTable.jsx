@@ -23,10 +23,10 @@ function TvlTable(props) {
           <Styled.TrHead>
             <Styled.Th>#</Styled.Th>
             <Styled.Tdp>Collection</Styled.Tdp>
-            <Styled.Td width="150px" style={{fontSize:"13px"}} >24h Volume</Styled.Td>
-            <Styled.Td width="100px" style={{fontSize:"13px"}}>Chg</Styled.Td>
-            <Styled.Tdc textAlign="center" width="200px" style={{fontSize:"13px"}}>Market Share</Styled.Tdc>
-            <Styled.Td textAlign="center" width="200px" style={{fontSize:"13px"}}>Floor Price</Styled.Td>
+            <Styled.Td textAlign="right" width="150px" style={{fontSize:"13px"}} >24h Volume</Styled.Td>
+            <Styled.Td textAlign="center" width="100px" style={{fontSize:"13px"}}>Chg</Styled.Td>
+            <Styled.Tdc textAlign="right" width="200px" style={{fontSize:"13px"}}>Market Share</Styled.Tdc>
+            <Styled.Td textAlign="right" width="200px" style={{fontSize:"13px"}}>Floor Price</Styled.Td>
           </Styled.TrHead>
         </thead>
         {nftdata.map((data, index) => (
@@ -34,14 +34,16 @@ function TvlTable(props) {
                 <Styled.Th className="head" style={{ width: "50px", textAlign: "left" }}> {index+1}
                 </Styled.Th>
                 <Styled.Tdpd className="head" style={{ width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
-                    <Link to={`/project/${data.proj}`}>
-                        <img src={`https://dwckk6v6uouee.cloudfront.net/project/0xEF45D7272211f7D9C9b3b509D550e8856CD9E050/logo.png`} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                    {/* <Link to={`/project/${data.proj}`}> */}
+                        <img src={`https://dwckk6v6uouee.cloudfront.net/project/${data.contract}/logo.png`} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                         <span style={{ padding: "7px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}</span>
-                    </Link>
+                    {/* </Link> */}
                 </Styled.Tdpd>
-                <Styled.Td className="head" textAlign="center" style={{ width: "10px", fontSize:"13px", color:"#3f3f3f"}}>{data.totalVolume}</Styled.Td>
-                <Styled.Td className="head" style={{ width: "50px", fontSize:"12px", color:"#3f3f3f"}}>0</Styled.Td>
-                <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Msbox props={data.marketShare}/></Styled.Tdc>
+                <Styled.Td className="head" textAlign="right" style={{width: "100px", fontSize:"13px", color:"#3f3f3f"}}>{data.totalVolume.toLocaleString()}</Styled.Td>
+                <Styled.Td className="head" textAlign="center" style={{ width: "50px", fontSize:"12px", color:"#3f3f3f"}}>-</Styled.Td>
+                <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>
+                  <Msbox props={data.marketShare}/>
+                </Styled.Tdc>
                 <Styled.Td className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><FloorPriceBox props={data.floorPrice}/></Styled.Td>
           </Tr>
         ))}

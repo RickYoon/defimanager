@@ -8,6 +8,7 @@ import { AiFillTrophy, AiOutlineProfile } from "react-icons/ai";
 import {BsCreditCard2FrontFill} from "react-icons/bs";
 import {SiBitcoinsv} from "react-icons/si"
 import {GiChecklist} from "react-icons/gi"
+import {BiSpreadsheet} from "react-icons/bi";
 
 function Topnav() {
     const { pathname } = useLocation();
@@ -32,7 +33,31 @@ function Topnav() {
             </TemplateBlock>
 
             <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
-                <Underline primary={pathname === "/"}>
+            <Underline primary={pathname === "/"}>
+                    <Link to="/">
+                        {pathname === "/" ?
+                            <Span style={{ color: "black" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} />Overview </Span> :
+                            <span style={{ color: "gray" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} /> Overview </span>
+                        }
+                    </Link>
+                </Underline>
+                <Underline style={{ marginLeft: "10px" }} primary={pathname === "/Poolpage"}>
+                    <Link to="/Poolpage">
+                        {pathname === "/Poolpage" ?
+                            <span style={{ color: "black" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> Yieldview </span> :
+                            <span style={{ color: "gray" }}><AiFillTrophy style={{ marginRight: "5px", verticalAlign: "middle" }} /> Yieldview </span>
+                        }
+                    </Link>
+                </Underline>
+                <Underline style={{ marginLeft: "10px" }} primary={pathname === "/news"}>
+                    <Link to="/news">
+                        {pathname === "/news" ?
+                            <span style={{ color: "black" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} />News </span> :
+                            <span style={{ color: "gray" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /> News </span>
+                        }
+                    </Link>
+                </Underline>
+                {/* <Underline primary={pathname === "/"}>
                     <Link to="/">
                         {pathname === "/" ?
                             <Span style={{ color: "black" }}><SiBitcoinsv style={{ marginRight: "5px", verticalAlign: "middle" }} /> DeFi </Span> :
@@ -55,7 +80,7 @@ function Topnav() {
                             <span style={{ color: "gray" }}><GiChecklist style={{ marginRight: "0px", verticalAlign: "middle" }} /> APR </span>
                         }
                     </Link>
-                </Underline>
+                </Underline> */}
                 {/* <Underline style={{ marginLeft: "10px" }} primary={pathname === "/news"}>
                     <Link to="/news">
                         {pathname === "/news" ?

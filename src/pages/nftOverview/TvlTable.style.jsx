@@ -2,11 +2,11 @@ import Styled, { keyframes } from 'styled-components';
 
 
 export const Tdpd = Styled.td`
-  &:hover {
+  /* &:hover {
     text-decoration:underline;
     color:#3366cc;
   }
-  cursor: pointer;
+  cursor: pointer; */
   height:25px;
   font-size:13px;
   vertical-align:middle;

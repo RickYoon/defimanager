@@ -4,6 +4,8 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactTooltip from "react-tooltip"
 import styled, { keyframes } from "styled-components";
 import icons from "../../assets/tokenIcons"
+import opensea from "../../assets/CI/opensea.svg"
+import pala from "../../assets/CI/pala.png"
 
 function FloorPriceBox(props) {
 
@@ -12,12 +14,13 @@ function FloorPriceBox(props) {
     <>
         <Explainbox>
             <Token>
-            O : {props.props.opensea}
+            {props.props.opensea.toLocaleString()} <img src={opensea} alt="logo" height="13px" width="13px" style={{verticalAlign:"middle"}}/>
             </Token>
             <Token>
-            P : {props.props.pala}
+            {props.props.pala.toLocaleString()} <img src={pala} alt="logo" height="13px" width="13px" style={{verticalAlign:"middle"}}/> 
             </Token>
         </Explainbox>
+
 
     </>
   );
@@ -41,10 +44,12 @@ const Token = styled.div`
     /* padding-left: 15px; */
     color: #657795;
     font-size: 12px;
-    text-align: left;
+    text-align: right;
     height: 20px;
-    text-align: center;
 `
+
+
+
 
 
 

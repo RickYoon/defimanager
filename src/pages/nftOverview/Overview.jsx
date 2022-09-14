@@ -3,7 +3,7 @@ import TopNumbercard from "./TopNumbercard"
 import axios from "axios";
 import { NftviewContext } from "../../components/context/NftviewContext"
 
-// import Chartcard from "./Chartcard"
+import Chartcard from "./Chartcard"
 // import Selector from "./Selector"
 import TvlTable from "./TvlTable"
 // import TokenTable from "./TokenTable"
@@ -53,8 +53,8 @@ function Nftoverview() {
             <Styled.Topbox>
                 <Styled.Leftcolumn>
                     <TopNumbercard />
+                    <Chartcard />
                     <TvlTable />
-                    {/* <Chartcard /> */}
                     {/* {selTvl ? <TvlTable /> :  <TokenTable />} */}
                 </Styled.Leftcolumn>
                 {/* <Styled.Rightcolumn>

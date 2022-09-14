@@ -4,6 +4,8 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactTooltip from "react-tooltip"
 import styled, { keyframes } from "styled-components";
 import icons from "../../assets/tokenIcons"
+import opensea from "../../assets/CI/opensea.svg"
+import pala from "../../assets/CI/pala.png"
 
 function Msbox(props) {
 
@@ -13,10 +15,10 @@ function Msbox(props) {
     <>
         <Explainbox>
             <Token>
-            O : {props.props.opensea}
+                {props.props.opensea.toLocaleString()} ({(props.props.opensea/props.props.total*100).toFixed(0)}%) <img src={opensea} alt="logo" height="13px" width="13px" style={{verticalAlign:"middle"}}/>
             </Token>
             <Token>
-            P : {props.props.pala}(70%)
+                {props.props.pala.toLocaleString()} ({(props.props.pala/props.props.total*100).toFixed(0)}%) <img src={pala} alt="logo" height="13px" width="13px" style={{verticalAlign:"middle"}}/> 
             </Token>
         </Explainbox>
 
@@ -42,7 +44,7 @@ const Token = styled.div`
     /* padding-left: 15px; */
     color: #657795;
     font-size: 12px;
-    text-align: center;
+    text-align: right;
     height: 20px;
 `
 
