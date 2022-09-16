@@ -1,5 +1,17 @@
 import Styled, { keyframes } from 'styled-components';
 
+export const Tdp = Styled.td`
+  vertical-align:middle;
+  /* width: 50px; */
+  padding-left: 2em;
+  
+  @media screen and (max-width: 500px){
+    padding-left: 1em;
+    /* width: 150px; */
+  }
+`
+
+
 
 export const Tdpd = Styled.td`
   /* &:hover {
@@ -10,12 +22,12 @@ export const Tdpd = Styled.td`
   height:25px;
   font-size:13px;
   vertical-align:middle;
-  width: 400px;
+  /* width: 400px; */
   padding-left: 2em;
   @media screen and (max-width: 500px){
     padding-left: 10px;
     font-size:13px;
-    width: 1000px;
+    /* width: 1000px; */
   }
 `
 
@@ -25,6 +37,9 @@ export const P = Styled.p`
 
 export const Table = Styled.table`
   /* margin: 20px; */
+  width: 100%;
+  /* width: 788px; */
+    /* overflow-x: auto; */
 `
 
 export const TrHead = Styled.tr`
@@ -34,7 +49,7 @@ export const TrHead = Styled.tr`
 
 export const Th = Styled.th`
   height: 25px;
-  width: 30px;
+  /* width: 30px; */
   text-align: left;
   vertical-align:middle;
   padding-left:5px;
@@ -46,6 +61,9 @@ export const Td = Styled.td`
   vertical-align:middle;
   width: ${props => props.width || "200px"};
   text-align:  ${props => props.textAlign || ""};
+  /* @media screen and (max-width: 500px){
+    width: 200px;
+  } */
 `
 
 export const Tdc = Styled.td`
@@ -57,16 +75,6 @@ export const Tdc = Styled.td`
   text-align:  ${props => props.textAlign || ""};
 `;
 
-export const Tdp = Styled.td`
-  vertical-align:middle;
-  width: 300px;
-  padding-left: 2em;
-  
-  @media screen and (max-width: 500px){
-    padding-left: 1em;
-    width: 250px;
-  }
-`
 
 
 
@@ -106,8 +114,15 @@ export const TodoTemplateBlock = Styled.div`
   }
   
   @media screen and (max-width: 500px){
-    width: 360px;
-    padding-left:0px;
+    /* width: 360px; */
+    /* width: 600px; */
+    overflow-x: auto;
+    /* width: 800px; */
+    padding: 0 16px;
+    white-space: pre;
+    width: calc(100%);
+    /* white-space: pre; */
+    /* padding-left:0px;
     padding-right:0px;
     border-radius: 8px;
     box-shadow: 1px 1px 1px gray;
@@ -120,11 +135,11 @@ export const TodoTemplateBlock = Styled.div`
     background-clip: border-box;
     border: 0px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.75rem;
-    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
-    overflow: visible;
-    margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
+    box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem; */
+    /* overflow: visible; */
+    /* margin: 0 auto; 페이지 중앙에 나타나도록 설정 */
 
-    margin-top: 16px;
+    /* margin-top: 16px;
     margin-bottom: 5px;
 
     .loader {
@@ -136,7 +151,7 @@ export const TodoTemplateBlock = Styled.div`
     .tablecss{
       font-size:13px;
       
-    }
+    } */
     /* .head{
     }
     .headcol:before {

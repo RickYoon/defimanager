@@ -33,7 +33,7 @@ function Topnav() {
             </TemplateBlock>
 
             <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
-            <Underline primary={pathname === "/"}>
+                <Underline primary={pathname === "/"}>
                     <Link to="/">
                         {pathname === "/" ?
                             <Span style={{ color: "black" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} />Overview </Span> :

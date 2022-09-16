@@ -7,18 +7,21 @@ import icons from "../../assets/tokenIcons"
 import opensea from "../../assets/CI/opensea.svg"
 import pala from "../../assets/CI/pala.png"
 
-function FloorPriceBox(props) {
+function FloorPriceBoxUSD(props) {
 
   // console.log("props", props)
   return (
     <>
         <Explainbox style={{fontSize:"13px"}}>
             <Token>
-              <span onClick={()=>window.open(`https://www.naver.com`)}>{props.props.opensea.toLocaleString()}</span>
-              <img src={opensea} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+            {/* {props.props.opensea.toLocaleString()}  */}
+            {(Number((Number(props.klayPrice) * Number(props.props.opensea)).toFixed(0))).toLocaleString()}
+
+            <img src={opensea} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
             </Token>
             <Token>
-              {props.props.pala.toLocaleString()} <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"3px",verticalAlign:"middle"}}/> 
+            {(Number((Number(props.klayPrice) * Number(props.props.pala)).toFixed(0))).toLocaleString()}
+            <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle"}}/> 
             </Token>
         </Explainbox>
 
@@ -56,4 +59,4 @@ const Token = styled.div`
 
 
 
-export default FloorPriceBox;
+export default FloorPriceBoxUSD;

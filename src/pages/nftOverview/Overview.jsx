@@ -16,11 +16,20 @@ import * as Styled from "./Overview.style"
 
 function Nftoverview() {
 
-    const [isloading,setIsloading] = useState(false)
+    const [isloading, setIsloading] = useState(false);
+    const [currency, setCurrency] = useState("KLAY");
+    const [totaldata, setTotaldata]= useState({
+        totalKlay: 0,
+        openseaKlay:0,
+        palaKlay: 0,
+        totalUSD: 0,
+        openseaShare: 0
+    })
     const [nftdata, setNftdata] = useState([{
         proj:"",
         totalVolume: 0,
         totalChange: 0,
+        klayPrice: 0,
         marketShare: {
           opensea: 0,
           pala: 0
@@ -33,27 +42,52 @@ function Nftoverview() {
 
     useEffect(() => {
       loadNftdata()
-    }, [])
+    }, [currency])
 
     const loadNftdata = async () => {
         setIsloading(true)
+        const klayPrice = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&ids=klay-token`)
+
         const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/getLatestNftData"
 
         await axios.get(url).then(function (response) {
             // console.log(response)
-            console.log("response.data",response.data.body)
+            // console.log("response.data",response.data.body)
+            let totalCounter = {
+                totalKlay: 0,
+                openseaKlay:0,
+                palaKlay: 0,
+                totalUSD: 0,
+                openseaShare: 0,
+                klayPrice : 0,
+            }
+            
+            // opensea volume 합치기
+            // console.log("aa",response.data.body)
+            Object.keys(response.data.body).forEach((data)=>{
+                        totalCounter.totalKlay += response.data.body[data].marketShare.total;
+                        totalCounter.openseaKlay += response.data.body[data].marketShare.opensea;
+                        totalCounter.palaKlay += response.data.body[data].marketShare.pala;
+            })
+
+            totalCounter["totalUSD"] = Number((klayPrice.data[0].current_price * totalCounter["totalKlay"]).toFixed(2))
+            totalCounter["openseaShare"] = Number(((totalCounter["openseaKlay"] / totalCounter["totalKlay"])*100).toFixed(1))
+            totalCounter["klayPrice"] = klayPrice.data[0].current_price
+            // console.log("totalCounter",totalCounter)
+        
             setNftdata(response.data.body)
+            setTotaldata(totalCounter)
         })
         setIsloading(false)
     }
 
   return (
     <>
-        <NftviewContext.Provider value={{nftdata}}>
+        <NftviewContext.Provider value={{nftdata,totaldata,currency, setCurrency}}>
             <Styled.Topbox>
                 <Styled.Leftcolumn>
                     <TopNumbercard />
-                    <Chartcard />
+                    {/* <Chartcard /> */}
                     <TvlTable />
                     {/* {selTvl ? <TvlTable /> :  <TokenTable />} */}
                 </Styled.Leftcolumn>

@@ -7,10 +7,10 @@ import icons from "../../assets/tokenIcons"
 import opensea from "../../assets/CI/opensea.svg"
 import pala from "../../assets/CI/pala.png"
 
-function Msbox(props) {
+function MsboxUSD(props) {
 
     // console.log("아픈씨",props.props.opensea)
-    // console.log("아픈씨",props.klayPrice)
+    // console.log("아픈씨 klay", props.klayPrice)
     // console.log("why")
 
   return (
@@ -18,7 +18,7 @@ function Msbox(props) {
         {/* {props.currency === "KLAY" ?  */}
         <Explainbox>
             <Token>
-                {(props.props.opensea).toLocaleString()}
+                {(Number((Number(props.klayPrice) * Number(props.props.opensea)).toFixed(0))).toLocaleString()}
                 ({props.props.total === 0 ?
                     "-"
                     :
@@ -26,7 +26,7 @@ function Msbox(props) {
                 }%) <img src={opensea} alt="logo" height="13px" width="13px" style={{verticalAlign:"middle"}}/>
             </Token>
             <Token>
-                {(props.props.pala).toLocaleString()} 
+                {(Number((Number(props.klayPrice) * Number(props.props.pala)).toFixed(0))).toLocaleString()}
                 ({props.props.total === 0 ?
                     "-"
                     :
@@ -74,4 +74,4 @@ const Token = styled.div`
 
 
 
-export default Msbox;
+export default MsboxUSD;

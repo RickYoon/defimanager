@@ -7,8 +7,8 @@ import styled from "styled-components";
 
 function TokenGainerCard(props) {
 
-  console.log("props",props.data)
-  console.log("props",props.isLoading)
+  // console.log("props",props.data)
+  // console.log("props",props.isLoading)
   const skeletonArray = ['','','']
 
   return (

@@ -27,7 +27,7 @@ function Chartcard() {
 
     useEffect(() => {
         // dataUpdater(range)
-        console.log("rantotalchartge",totalchart)
+        // console.log("rantotalchartge",totalchart)
         // setChartRange()
     }, [])
 
