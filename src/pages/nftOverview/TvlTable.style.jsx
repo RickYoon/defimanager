@@ -11,6 +11,16 @@ export const Tdp = Styled.td`
   }
 `
 
+export const Tdk = Styled.td`
+  vertical-align:middle;
+  width: ${props => props.width || "200px"};
+  text-align:  ${props => props.textAlign || ""};
+  @media screen and (max-width: 500px){
+    padding-left: 2em;
+    /* width: 150px; */
+  }
+`
+
 
 
 export const Tdpd = Styled.td`
@@ -23,7 +33,7 @@ export const Tdpd = Styled.td`
   font-size:13px;
   vertical-align:middle;
   /* width: 400px; */
-  padding-left: 2em;
+  padding-left: 1em;
   @media screen and (max-width: 500px){
     padding-left: 10px;
     font-size:13px;
@@ -52,7 +62,7 @@ export const Th = Styled.th`
   /* width: 30px; */
   text-align: left;
   vertical-align:middle;
-  padding-left:5px;
+  padding-left:1px;
   white-space: nowrap;
   
 `;
@@ -61,9 +71,6 @@ export const Td = Styled.td`
   vertical-align:middle;
   width: ${props => props.width || "200px"};
   text-align:  ${props => props.textAlign || ""};
-  /* @media screen and (max-width: 500px){
-    width: 200px;
-  } */
 `
 
 export const Tdc = Styled.td`

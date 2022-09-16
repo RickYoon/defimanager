@@ -11,6 +11,9 @@ import MsboxUSD from "./MsboxUSD"
 import FloorPriceBox from "./FloorPriceBox"
 import FloorPriceBoxUSD from "./FloorPriceBoxUSD"
 import { NftviewContext } from "../../components/context/NftviewContext"
+import opensea from "../../assets/CI/opensea.svg"
+import pala from "../../assets/CI/pala.png"
+
 
 function TvlTable(props) {
 
@@ -41,52 +44,68 @@ function TvlTable(props) {
             <Styled.Td textAlign="right" style={{fontSize:"13px"}}>
                 <span>Floor Price</span>
             </Styled.Td>
-            <Styled.Tdc textAlign="right" style={{fontSize:"13px"}}>Volume Share</Styled.Tdc>
-            <Styled.Td textAlign="right" width="10px" style={{fontSize:"13px"}} >Volume (24h)</Styled.Td>
+            <Styled.Tdk textAlign="right" style={{fontSize:"13px"}}>Volume Share</Styled.Tdk>
+            <Styled.Tdk textAlign="right" width="10px" style={{fontSize:"13px"}} >Volume (24h)</Styled.Tdk>
             {/* <Styled.Td textAlign="center" width="100px" style={{fontSize:"13px"}}>Chg</Styled.Td> */}
           </Styled.TrHead>
         </thead>
         {currency === "KLAY" ? 
             nftdata.map((data, index) => (
             <Tr key={index} style={{ height: "40px", borderBottom: "0.03em solid #D4D4D4" }}>
-                  <Styled.Th className="head" style={{ textAlign: "left" }}> {index+1}
+                  <Styled.Th className="head" style={{ textAlign: "left", fontSize:"10px" }}> {index+1}
                   </Styled.Th>
                   <Styled.Tdpd className="head" style={{ textAlign: "left", whiteSpace: "nowrap" }}>
                       {/* <Link to={`/project/${data.proj}`}> */}
-                      <img src={`https://goclubhouse.s3.ap-northeast-2.amazonaws.com/klaylabs/${data.proj}.png`} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                          <span style={{ padding: "7px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}</span>
+                      <img src={`https://goclubhouse.s3.ap-northeast-2.amazonaws.com/klaylabs/${data.proj}.png`} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                          <Span style={{ padding: "1px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}
+                          <span onClick={()=>window.open(`https://opensea.io/collection/${data.proj}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                            <img src={opensea} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>                          
+                          </span>
+                          {data.contract === undefined ? 
+                          <></>:
+                          <span onClick={()=>window.open(`https://pala.world/square/project/${data.contract}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                            <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>
+                          </span>}
+                          </Span>
                       {/* </Link> */}
                   </Styled.Tdpd>
                   <Styled.Td className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
                     <FloorPriceBox props={data.floorPrice} linkInfo={data}/>
                   </Styled.Td>
-                  <Styled.Tdc className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
+                  <Styled.Td className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
                     <Msbox props={data.marketShare} klayPrice={totaldata.klayPrice}/>
-                  </Styled.Tdc>
-                  <Styled.Td className="head" width="150px" textAlign="right" style={{fontSize:"15px", color:"#3f3f3f"}}>{Number(Number(data.totalVolume).toFixed(0)).toLocaleString()}</Styled.Td>
+                  </Styled.Td>
+                  <Styled.Td className="head" width="150px" textAlign="right" style={{fontSize:"14px", color:"#3f3f3f"}}>{Number(Number(data.totalVolume).toFixed(0)).toLocaleString()}</Styled.Td>
                   {/* <Styled.Td className="head" textAlign="center" style={{ width: "50px", fontSize:"12px", color:"#3f3f3f"}}>-</Styled.Td> */}
             </Tr>
             ))
             :
             nftdata.map((data, index) => (
               <Tr key={index} style={{ height: "40px", borderBottom: "0.03em solid #D4D4D4" }}>
-              <Styled.Th className="head" style={{ textAlign: "left" }}> {index+1}
+              <Styled.Th className="head" style={{ textAlign: "left", fontSize:"10px" }}> {index+1}
               </Styled.Th>
               <Styled.Tdpd className="head" style={{ textAlign: "left", whiteSpace: "nowrap" }}>
                   {/* <Link to={`/project/${data.proj}`}> */}
-                  <img src={`https://goclubhouse.s3.ap-northeast-2.amazonaws.com/klaylabs/${data.proj}.png`} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                      <span style={{ padding: "7px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}</span>
+                  <img src={`https://goclubhouse.s3.ap-northeast-2.amazonaws.com/klaylabs/${data.proj}.png`} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                      <Span style={{padding: "1px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}
+                      <span onClick={()=>window.open(`https://opensea.io/collection/${data.proj}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        <img src={opensea} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>                          
+                      </span>
+                      <span onClick={()=>window.open(`https://pala.world/square/project/${data.contract}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>
+                      </span>
+                      </Span>
                   {/* </Link> */}
               </Styled.Tdpd>
               <Styled.Td className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
-                <FloorPriceBoxUSD props={data.floorPrice} klayPrice={totaldata.klayPrice}/>
+              <FloorPriceBoxUSD props={data.floorPrice} klayPrice={totaldata.klayPrice}/>
               </Styled.Td>
-              <Styled.Tdc className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
-                <MsboxUSD props={data.marketShare} klayPrice={totaldata.klayPrice}/>
-              </Styled.Tdc>
-              <Styled.Td className="head" width="150px" textAlign="right" style={{fontSize:"15px", color:"#3f3f3f"}}>{Number(Number(totaldata.klayPrice * data.totalVolume).toFixed(0)).toLocaleString()}</Styled.Td>
+              <Styled.Td className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
+              <MsboxUSD props={data.marketShare} klayPrice={totaldata.klayPrice}/>
+              </Styled.Td>
+              <Styled.Td className="head" width="150px" textAlign="right" style={{fontSize:"14px", color:"#3f3f3f"}}>{Number(Number(totaldata.klayPrice * data.totalVolume).toFixed(0)).toLocaleString()}</Styled.Td>
               {/* <Styled.Td className="head" textAlign="center" style={{ width: "50px", fontSize:"12px", color:"#3f3f3f"}}>-</Styled.Td> */}
-            </Tr>
+        </Tr>
             ))
             }
       </Styled.Table>
@@ -106,8 +125,14 @@ line-height: 40px;
   }
 `
 
+const Span = styled.span`
+  font-size: 13px;
+  @media screen and (max-width: 500px){
+    font-size: 11px;
+    /* width: 150px; */
+  }
+`
+
+
 export default TvlTable;
   
-
-
-

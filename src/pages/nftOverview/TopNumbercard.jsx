@@ -14,7 +14,7 @@ function TopNumbercard() {
           <Styled.Leftcolumn>
             <Styled.Topcard>
               <Styled.Containersub>
-                  <Styled.Lefttext> Total Trading Volume (24h) </Styled.Lefttext>
+                  <Styled.Lefttext> Total Volume (24h) </Styled.Lefttext>
                   {isloading ? 
                     <Styled.Righttext style={{width: "70px", float:"right"}}><Styled.ProductSkeleton /></Styled.Righttext> : 
                     <Styled.Righttext color="#316395"><TransBillion data={totaldata.totalUSD}/></Styled.Righttext>
