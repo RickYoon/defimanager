@@ -13,6 +13,7 @@ import FloorPriceBoxUSD from "./FloorPriceBoxUSD"
 import { NftviewContext } from "../../components/context/NftviewContext"
 import opensea from "../../assets/CI/opensea.svg"
 import pala from "../../assets/CI/pala.png"
+import { GoLinkExternal } from "react-icons/go"
 
 
 function TvlTable(props) {
@@ -58,16 +59,16 @@ function TvlTable(props) {
                       {/* <Link to={`/project/${data.proj}`}> */}
                       <img src={`https://goclubhouse.s3.ap-northeast-2.amazonaws.com/klaylabs/${data.proj}.png`} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                           <Span style={{ padding: "1px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}
-                          <span onClick={()=>window.open(`https://opensea.io/collection/${data.proj}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-                            <img src={opensea} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>                          
-                          </span>
-                          {data.contract === undefined ? 
-                          <></>:
-                          <span onClick={()=>window.open(`https://pala.world/square/project/${data.contract}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-                            <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>
-                          </span>}
                           </Span>
-                      {/* </Link> */}
+                          {data.detail === true ?
+                          <Link to={`/nftview/${data.proj}`}>
+                            <GoLinkExternal style={{marginLeft:"5px"}}/>
+                          </Link> :
+                            <></>
+                          }
+
+                                             
+                     
                   </Styled.Tdpd>
                   <Styled.Td className="head" style={{ fontSize:"15px", color:"#3f3f3f"}}>
                     <FloorPriceBox props={data.floorPrice} linkInfo={data}/>
@@ -88,12 +89,6 @@ function TvlTable(props) {
                   {/* <Link to={`/project/${data.proj}`}> */}
                   <img src={`https://goclubhouse.s3.ap-northeast-2.amazonaws.com/klaylabs/${data.proj}.png`} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                       <Span style={{padding: "1px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{data.proj}
-                      <span onClick={()=>window.open(`https://opensea.io/collection/${data.proj}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-                        <img src={opensea} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>                          
-                      </span>
-                      <span onClick={()=>window.open(`https://pala.world/square/project/${data.contract}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-                        <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle",cursor:"pointer"}}/>
-                      </span>
                       </Span>
                   {/* </Link> */}
               </Styled.Tdpd>

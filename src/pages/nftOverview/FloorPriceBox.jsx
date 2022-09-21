@@ -12,13 +12,17 @@ function FloorPriceBox(props) {
   // console.log("props", props)
   return (
     <>
-        <Explainbox style={{fontSize:"13px"}}>
+        <Explainbox>
             <Token>
-              <span onClick={()=>window.open(`https://www.naver.com`)}>{props.props.opensea.toLocaleString()}</span>
-              <img src={opensea} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+              <Span onClick={()=>window.open(`https://opensea.io/collection/${props.linkInfo.proj}`)}>{props.props.opensea.toLocaleString()}
+                <img src={opensea} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+              </Span>
+              
             </Token>
             <Token>
-              {props.props.pala.toLocaleString()} <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"3px",verticalAlign:"middle"}}/> 
+            <Span onClick={()=>window.open(`https://pala.world/square/project/${props.linkInfo.contract}`)}>{props.props.pala.toLocaleString()}
+                <img src={pala} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+              </Span>
             </Token>
         </Explainbox>
 
@@ -27,11 +31,23 @@ function FloorPriceBox(props) {
   );
 }
 
+const Span = styled.div`
+cursor: pointer;
+height : 30px;
+line-height: 20px;
+font-size: 14px;
+  &:hover {
+    height : 30px;
+    line-height: 20px;
+    text-decoration:underline;
+    color: blue;
+  }
+`
+
 
 const Explainbox = styled.div`
   display : flex;
   flex-direction : column;
-  height: 60px;
 `
 
 const Protocol = styled.div`

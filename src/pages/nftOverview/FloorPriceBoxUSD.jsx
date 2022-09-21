@@ -12,29 +12,39 @@ function FloorPriceBoxUSD(props) {
   // console.log("props", props)
   return (
     <>
-        <Explainbox style={{fontSize:"13px"}}>
+            <Explainbox>
             <Token>
-            {/* {props.props.opensea.toLocaleString()}  */}
-            {(Number((Number(props.klayPrice) * Number(props.props.opensea)).toFixed(0))).toLocaleString()}
-
-            <img src={opensea} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+              <Span onClick={()=>window.open(`https://opensea.io/collection/${props.linkInfo.proj}`)}>{(Number((Number(props.klayPrice) * Number(props.props.opensea)).toFixed(0))).toLocaleString()}
+                <img src={opensea} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+              </Span>
+              
             </Token>
             <Token>
-            {(Number((Number(props.klayPrice) * Number(props.props.pala)).toFixed(0))).toLocaleString()}
-            <img src={pala} alt="logo" height="13px" width="13px" style={{marginLeft:"5px",verticalAlign:"middle"}}/> 
+            <Span onClick={()=>window.open(`https://pala.world/square/project/${props.linkInfo.contract}`)}>{(Number((Number(props.klayPrice) * Number(props.props.pala)).toFixed(0))).toLocaleString()}
+                <img src={pala} alt="logo" height="15px" width="15px" style={{marginLeft:"5px",verticalAlign:"middle"}}/>
+              </Span>
             </Token>
         </Explainbox>
-
-
     </>
   );
 }
 
+const Span = styled.div`
+cursor: pointer;
+height : 30px;
+line-height: 20px;
+font-size: 14px;
+  &:hover {
+    height : 30px;
+    line-height: 20px;
+    text-decoration:underline;
+    color: blue;
+  }
+`
 
 const Explainbox = styled.div`
   display : flex;
   flex-direction : column;
-  height: 60px;
 `
 
 const Protocol = styled.div`
