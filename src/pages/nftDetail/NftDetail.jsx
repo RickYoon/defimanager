@@ -17,8 +17,10 @@ function NftDetail() {
 
     const { id } = useParams();
     const [isloading, setIsloading] = useState(false)
-    const [nftdetailinfo, setNftdetailinfo] = useState(
-      [
+    const [nftdetailinfo, setNftdetailinfo] = useState({
+      startDate: "01-01",
+      endDate: "12-31",
+      data : {Items : [
         {
             "datetime": "2022-09-01T00:47:13.000Z",
             "priceInKlay": 638,
@@ -31,7 +33,10 @@ function NftDetail() {
             "itemClass": "Common"
             
         }
-      ]);
+      ]},
+      classList : ["klay"],
+      classify: {}
+    });
   
 
     useEffect(() => {
@@ -42,7 +47,7 @@ function NftDetail() {
       await getNftDetailData(id).then(function (response){
         // console.log("response",response)
 
-        setNftdetailinfo(response.Items)
+        setNftdetailinfo(response)
       })
     }
 

@@ -27,24 +27,27 @@ function TvlChartcard() {
     let dataEpic = []
     let dataLegendary = []
     let dataMythic = []
-    nftdetailinfo.forEach((res)=>{
-      if(res.itemClass === "Common"){
-        res["day"] = res.datetime.slice(0,10)
-        // console.log(res.datetime.slice(0,10))
-        data.push(res);
-      } else if (res.itemClass === "Uncommon"){
-        res["day"] = res.datetime.slice(0,10)
-        dataUncommon.push(res)
-      }else if (res.itemClass === "Rare"){
-        dataRare.push(res)
-      }else if (res.itemClass === "Epic"){
-        dataEpic.push(res)
-      }else if (res.itemClass === "Legendary"){
-        dataLegendary.push(res)
-      }else if (res.itemClass === "Mythic"){
-        dataMythic.push(res)
-      }
-    })
+
+    let classifyData = nftdetailinfo.classify;
+    
+    // nftdetailinfo.data.Items.forEach((res)=>{
+    //   if(res.itemClass === "Common"){
+    //     res["day"] = res.datetime.slice(0,10)
+    //     // console.log(res.datetime.slice(0,10))
+    //     data.push(res);
+    //   } else if (res.itemClass === "Uncommon"){
+    //     res["day"] = res.datetime.slice(0,10)
+    //     dataUncommon.push(res)
+    //   }else if (res.itemClass === "Rare"){
+    //     dataRare.push(res)
+    //   }else if (res.itemClass === "Epic"){
+    //     dataEpic.push(res)
+    //   }else if (res.itemClass === "Legendary"){
+    //     dataLegendary.push(res)
+    //   }else if (res.itemClass === "Mythic"){
+    //     dataMythic.push(res)
+    //   }
+    // })
 
     // const data = nftdetailinfo
     // const data = []
@@ -57,350 +60,75 @@ function TvlChartcard() {
     
     return (
     <>
-        <Styled.Chartcover>
-          <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-            <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>Common</span>
-          </div>
-            <ResponsiveContainer width="100%" height={250}>
-                {isloading ? 
-                    <><Styled.ProductSkeleton /></> :
-                
-                <ScatterChart data={data}>
-                    <defs>
-                    <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
-                        <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
-                    </linearGradient>
-                    </defs>
-
-                    {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
-                    <Scatter dataKey="day" fill="#82ca9d" />
-                    <XAxis
-                        tickLine={false}
-                        axisLine={false}
-                        interval="preserveEnd"
-                        minTickGap={120}
-                        dataKey="day"
-                        stroke="#efefef"
-                        tick={{ fontSize: 10, fill: '#000000' }}
-                        tickFormatter={(str) => {
-                            return str
-                        }}
-                    />
-
-                    <YAxis
-                        type="number"
-                        orientation="left"
-                        tickFormatter={(tick) => moneySymbol + toK(tick)}
-                        axisLine={false}
-                        tickLine={false}
-                        interval="preserveEnd"
-                        dataKey="priceInUSD"
-                        minTickGap={80}
-                        tickCount={8}
-                        yAxisId={0}
-                        mirror={true}
-                        style={{ fontSize: "14px" }}
-                        domain={[nftdetailinfo.minRef, nftdetailinfo.maxRef]}
-                        allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
-                    />
-
-                    <Tooltip content={<CustomTooltip />} />
-
-                    <CartesianGrid opacity={0.15} vertical={false} />
-                </ScatterChart>
-                }
-            </ResponsiveContainer>
-        </Styled.Chartcover>
-        <Styled.Chartcover>
-          <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-            <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>Uncommon</span>
-          </div>
-            <ResponsiveContainer width="100%" height={250}>
-                {isloading ? 
-                    <><Styled.ProductSkeleton /></> :
-                
-                <ScatterChart data={dataUncommon}>
-                    <defs>
-                    <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
-                        <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
-                    </linearGradient>
-                    </defs>
-
-                    {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
-                    <Scatter fill="#82ca9d" />
-                    <XAxis
-                        tickLine={false}
-                        axisLine={false}
-                        interval="preserveEnd"
-                        minTickGap={120}
-                        dataKey="day"
-                        stroke="#efefef"
-                        tick={{ fontSize: 10, fill: '#000000' }}
-                        tickFormatter={(str) => {
-                            return str
-                        }}
-                    />
-
-                    <YAxis
-                        type="number"
-                        orientation="left"
-                        tickFormatter={(tick) => moneySymbol + toK(tick)}
-                        axisLine={false}
-                        tickLine={false}
-                        interval="preserveEnd"
-                        dataKey="priceInUSD"
-                        minTickGap={80}
-                        tickCount={8}
-                        yAxisId={0}
-                        mirror={true}
-                        style={{ fontSize: "14px" }}
-                        domain={[nftdetailinfo.minRef, nftdetailinfo.maxRef]}
-                        allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
-                    />
-
-                    <Tooltip content={<CustomTooltip />} />
-
-                    <CartesianGrid opacity={0.15} vertical={false} />
-                </ScatterChart>
-                }
-            </ResponsiveContainer>
-        </Styled.Chartcover>
-        <Styled.Chartcover>
-          <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-            <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>Rare</span>
-          </div>
-            <ResponsiveContainer width="100%" height={250}>
-                {isloading ? 
-                    <><Styled.ProductSkeleton /></> :
-                
-                <ScatterChart data={dataRare}>
-                    <defs>
-                    <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
-                        <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
-                    </linearGradient>
-                    </defs>
-
-                    {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
-                    <Scatter fill="#82ca9d" />
-                    <XAxis
-                        tickLine={false}
-                        axisLine={false}
-                        interval="preserveEnd"
-                        minTickGap={120}
-                        dataKey="date"
-                        stroke="#efefef"
-                        tick={{ fontSize: 10, fill: '#000000' }}
-                        tickFormatter={(str) => {
-                            return str
-                        }}
-                    />
-
-                    <YAxis
-                        type="number"
-                        orientation="left"
-                        tickFormatter={(tick) => moneySymbol + toK(tick)}
-                        axisLine={false}
-                        tickLine={false}
-                        interval="preserveEnd"
-                        dataKey="priceInUSD"
-                        minTickGap={80}
-                        tickCount={8}
-                        yAxisId={0}
-                        mirror={true}
-                        style={{ fontSize: "14px" }}
-                        domain={[nftdetailinfo.minRef, nftdetailinfo.maxRef]}
-                        allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
-                    />
-
-                    <Tooltip content={<CustomTooltip />} />
-
-                    <CartesianGrid opacity={0.15} vertical={false} />
-                </ScatterChart>
-                }
-            </ResponsiveContainer>
-        </Styled.Chartcover>
-        <Styled.Chartcover>
-          <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-            <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>Epic</span>
-          </div>
-            <ResponsiveContainer width="100%" height={250}>
-                {isloading ? 
-                    <><Styled.ProductSkeleton /></> :
-                
-                <ScatterChart data={dataEpic}>
-                    <defs>
-                    <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
-                        <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
-                    </linearGradient>
-                    </defs>
-
-                    {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
-                    <Scatter fill="#82ca9d" />
-                    <XAxis
-                        tickLine={false}
-                        axisLine={false}
-                        interval="preserveEnd"
-                        minTickGap={120}
-                        dataKey="date"
-                        stroke="#efefef"
-                        tick={{ fontSize: 10, fill: '#000000' }}
-                        tickFormatter={(str) => {
-                            return str
-                        }}
-                    />
-
-                    <YAxis
-                        type="number"
-                        orientation="left"
-                        tickFormatter={(tick) => moneySymbol + toK(tick)}
-                        axisLine={false}
-                        tickLine={false}
-                        interval="preserveEnd"
-                        dataKey="priceInUSD"
-                        minTickGap={80}
-                        tickCount={8}
-                        yAxisId={0}
-                        mirror={true}
-                        style={{ fontSize: "14px" }}
-                        domain={[nftdetailinfo.minRef, nftdetailinfo.maxRef]}
-                        allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
-                    />
-
-                    <Tooltip content={<CustomTooltip />} />
-
-                    <CartesianGrid opacity={0.15} vertical={false} />
-                </ScatterChart>
-                }
-            </ResponsiveContainer>
-        </Styled.Chartcover>
-        <Styled.Chartcover>
-          <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-            <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>Legendary</span>
-          </div>
-            <ResponsiveContainer width="100%" height={250}>
-                {isloading ? 
-                    <><Styled.ProductSkeleton /></> :
-                
-                <ScatterChart data={dataLegendary}>
-                    <defs>
-                    <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
-                        <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
-                    </linearGradient>
-                    </defs>
-
-                    {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
-                    <Scatter fill="#82ca9d" />
-                    {/* <XAxis
-                        tickLine={false}
-                        axisLine={false}
-                        interval="preserveEnd"
-                        minTickGap={120}
-                        dataKey="date"
-                        stroke="#efefef"
-                        tick={{ fontSize: 10, fill: '#000000' }}
-                        tickFormatter={(str) => {
-                            return str
-                        }}
-                    /> */}
-
-                    <YAxis
-                        type="number"
-                        orientation="left"
-                        tickFormatter={(tick) => moneySymbol + toK(tick)}
-                        axisLine={false}
-                        tickLine={false}
-                        interval="preserveEnd"
-                        dataKey="priceInUSD"
-                        minTickGap={80}
-                        tickCount={8}
-                        yAxisId={0}
-                        mirror={true}
-                        style={{ fontSize: "14px" }}
-                        domain={[nftdetailinfo.minRef, nftdetailinfo.maxRef]}
-                        allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
-                    />
-
-                    <Tooltip content={<CustomTooltip />} />
-
-                    <CartesianGrid opacity={0.15} vertical={false} />
-                </ScatterChart>
-                }
-            </ResponsiveContainer>
-        </Styled.Chartcover>
-        <Styled.Chartcover>
-          <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
-            <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>Mythic</span>
-          </div>
-            <ResponsiveContainer width="100%" height={250}>
-                {isloading ? 
-                    <><Styled.ProductSkeleton /></> :
-                
-                <ScatterChart data={dataMythic}>
-                    <defs>
-                    <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
-                        <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
-                    </linearGradient>
-                    </defs>
-
-                    {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
-                    <Scatter fill="#82ca9d" />
-                    <XAxis
-                        tickLine={false}
-                        axisLine={false}
-                        interval="preserveEnd"
-                        minTickGap={120}
-                        dataKey="date"
-                        stroke="#efefef"
-                        tick={{ fontSize: 10, fill: '#000000' }}
-                        tickFormatter={(str) => {
-                            return str
-                        }}
-                    />
-
-                    <YAxis
-                        type="number"
-                        orientation="left"
-                        tickFormatter={(tick) => moneySymbol + toK(tick)}
-                        axisLine={false}
-                        tickLine={false}
-                        interval="preserveEnd"
-                        dataKey="priceInUSD"
-                        minTickGap={80}
-                        tickCount={8}
-                        yAxisId={0}
-                        mirror={true}
-                        style={{ fontSize: "14px" }}
-                        domain={[nftdetailinfo.minRef, nftdetailinfo.maxRef]}
-                        allowDataOverFlow={true}
-                        // domain={[ 0, dataMax => (100000000) ]}    
-                    />
-
-                    <Tooltip content={<CustomTooltip />} />
-
-                    <CartesianGrid opacity={0.15} vertical={false} />
-                </ScatterChart>
-                }
-            </ResponsiveContainer>
-        </Styled.Chartcover>
+      {nftdetailinfo.classList.map((element)=>{
+        // console.log(element)
+        // console.log(classifyData)
+        return <Chartview data={classifyData[element]} category={element}/>
+      })
+      }
      </>
     );
+}
+
+function Chartview(props){
+  let data = props.data;
+  let cat = props.category;
+  // console.log("props",props);
+  return (
+    <Styled.Chartcover>
+    <div style={{float:"right", fontSize:"15px", marginRight:"10px"}}>
+      <Styled.Img src={icons["TVL"]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+      <span style={{fontSize:"12px",marginLeft:"10px"}}>{cat}</span>
+    </div>
+      <ResponsiveContainer width="100%" height={250}>
+          <ScatterChart data={data}>
+              <defs>
+              <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
+                  <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
+              </linearGradient>
+              </defs>
+
+              {/* <Area dataKey="value" stroke="#2451B7" fill="url(#color)" /> */}
+              <Scatter fill="#82ca9d" />
+              <XAxis
+                  tickLine={false}
+                  axisLine={false}
+                  interval="preserveEnd"
+                  minTickGap={120}
+                  dataKey="day"
+                  stroke="#efefef"
+                  tick={{ fontSize: 10, fill: '#000000' }}
+                  tickFormatter={(str) => {
+                      return str
+                  }}
+              />
+
+              <YAxis
+                  type="number"
+                  orientation="left"
+                  // tickFormatter={(tick) => moneySymbol + toK(tick)}
+                  axisLine={false}
+                  tickLine={false}
+                  interval="preserveEnd"
+                  dataKey="priceInUSD"
+                  minTickGap={80}
+                  tickCount={8}
+                  yAxisId={0}
+                  mirror={true}
+                  style={{ fontSize: "14px" }}
+                  // domain={[data.minRef, data.maxRef]}
+                  allowDataOverFlow={true}
+                  // domain={[ 0, dataMax => (100000000) ]}    
+              />
+
+              <Tooltip content={<CustomTooltip />} />
+
+              <CartesianGrid opacity={0.15} vertical={false} />
+          </ScatterChart>
+      </ResponsiveContainer>
+  </Styled.Chartcover>
+  )
 }
 
 

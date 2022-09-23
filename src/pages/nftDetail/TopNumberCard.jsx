@@ -6,6 +6,7 @@ import { ImArrowUp2,ImArrowDown2 } from "react-icons/im";
 function TopNumbercard() {
 
   const { nftdetailinfo, isloading} = useContext(NftDetailContext);
+  console.log("here", nftdetailinfo)
   
   return (
     <>
@@ -17,7 +18,7 @@ function TopNumbercard() {
                   <Styled.Lefttext> transaction History (Beta)</Styled.Lefttext>
                     {isloading ? 
                         <Styled.Righttext> <Styled.ProductSkeleton style={{width:"70px"}}/> </Styled.Righttext> :
-                        <Styled.Righttext color="#316395"> 09.01 ~ 09.22 </Styled.Righttext>
+                        <Styled.Righttext color="#316395"> {nftdetailinfo.startDate} ~ {nftdetailinfo.endDate} </Styled.Righttext>
                     }
               </Styled.Containersub>
             </Styled.Topcard>
