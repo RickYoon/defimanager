@@ -35,14 +35,14 @@ function NftDetail() {
   
 
     useEffect(() => {
-        loadchart()
+        loadchart(id)
     }, [])
 
-    const loadchart = async()=>{
-      await getNftDetailData().then(function (response){
-        // console.log(response.body)
+    const loadchart = async(id)=>{
+      await getNftDetailData(id).then(function (response){
+        // console.log("response",response)
 
-        setNftdetailinfo(response.body.Items)
+        setNftdetailinfo(response.Items)
       })
     }
 
