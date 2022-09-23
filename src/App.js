@@ -45,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Footer />} />
         <Route exact path="/nftview" element={<Footer />} />
+        <Route exact path="/nftview/:id" element={<Footer />} />
         <Route exact path="/news" element={<Footer />} />
         <Route exact path="/project/:id" element={<Footer />} />
         <Route exact path="/Poolpage" element={<Projectfooter />} />

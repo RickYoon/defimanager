@@ -21,48 +21,11 @@ function TvlChartcard() {
 
     console.log("nftdetailinfo", nftdetailinfo)
 
-    let data = []
-    let dataUncommon = []
-    let dataRare = []
-    let dataEpic = []
-    let dataLegendary = []
-    let dataMythic = []
-
     let classifyData = nftdetailinfo.classify;
-    
-    // nftdetailinfo.data.Items.forEach((res)=>{
-    //   if(res.itemClass === "Common"){
-    //     res["day"] = res.datetime.slice(0,10)
-    //     // console.log(res.datetime.slice(0,10))
-    //     data.push(res);
-    //   } else if (res.itemClass === "Uncommon"){
-    //     res["day"] = res.datetime.slice(0,10)
-    //     dataUncommon.push(res)
-    //   }else if (res.itemClass === "Rare"){
-    //     dataRare.push(res)
-    //   }else if (res.itemClass === "Epic"){
-    //     dataEpic.push(res)
-    //   }else if (res.itemClass === "Legendary"){
-    //     dataLegendary.push(res)
-    //   }else if (res.itemClass === "Mythic"){
-    //     dataMythic.push(res)
-    //   }
-    // })
-
-    // const data = nftdetailinfo
-    // const data = []
-
-    const toK = (num) => {
-      return Numeral(num).format('0.[00]a')
-    }    
-
-    const moneySymbol = "$"
-    
+      
     return (
     <>
       {nftdetailinfo.classList.map((element)=>{
-        // console.log(element)
-        // console.log(classifyData)
         return <Chartview data={classifyData[element]} category={element}/>
       })
       }
@@ -73,6 +36,11 @@ function TvlChartcard() {
 function Chartview(props){
   let data = props.data;
   let cat = props.category;
+  const toK = (num) => {
+    return Numeral(num).format('0.[00]a')
+  }    
+
+  const moneySymbol = "$"
   // console.log("props",props);
   return (
     <Styled.Chartcover>
@@ -107,7 +75,7 @@ function Chartview(props){
               <YAxis
                   type="number"
                   orientation="left"
-                  // tickFormatter={(tick) => moneySymbol + toK(tick)}
+                  tickFormatter={(tick) => moneySymbol + toK(tick)}
                   axisLine={false}
                   tickLine={false}
                   interval="preserveEnd"
@@ -130,8 +98,6 @@ function Chartview(props){
   </Styled.Chartcover>
   )
 }
-
-
 
 function CustomTooltip({ active, payload, label }) {
   const toK = (num) => {
