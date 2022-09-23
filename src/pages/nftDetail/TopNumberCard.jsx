@@ -17,7 +17,7 @@ function TopNumbercard() {
                   <Styled.Lefttext> transaction History (Beta)</Styled.Lefttext>
                     {isloading ? 
                         <Styled.Righttext> <Styled.ProductSkeleton style={{width:"70px"}}/> </Styled.Righttext> :
-                        <Styled.Righttext color="#316395"> 09.01 ~ 09.20 </Styled.Righttext>
+                        <Styled.Righttext color="#316395"> 09.01 ~ 09.22 </Styled.Righttext>
                     }
               </Styled.Containersub>
             </Styled.Topcard>
