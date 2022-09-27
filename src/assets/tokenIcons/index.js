@@ -125,8 +125,10 @@ import KeyFinance from "./KeyFinance.png"
 import NPT from "./NPT.png"
 import klexfinance from "./klexfinance.svg"
 import futuredex from "./futuredex.png"
+import stakely from "./stakely.png"
 
 const icons = {
+    stakely,
     futuredex,
     klexfinance,
     NPT,
