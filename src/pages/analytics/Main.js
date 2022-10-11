@@ -311,7 +311,7 @@ function Main() {
                           <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    return  <Area type="linear" stroke={colorarr[index]} fill="url(#color)" dataKey={fifty}/>
+                    return  <Area type="linear" stroke={colorarr[index]} fill="url(#color2)" dataKey={fifty}/>
                   })                 
                 }
 
@@ -377,7 +377,7 @@ function Main() {
                           <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-                    return  <Area type="linear" stroke={colorarr[index]} fill="url(#color)" dataKey={fifty}/>
+                    return  <Area type="linear" stroke={colorarr[index]} fill="url(#color2)" dataKey={fifty}/>
                   })                 
                 }
 
