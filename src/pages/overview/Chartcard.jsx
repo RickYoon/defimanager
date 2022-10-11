@@ -28,7 +28,7 @@ function Chartcard() {
     const setChartRange = () => {
         
         if(range === 3){
-            console.log("range1",range)
+            // console.log("range1",range)
             setData(totalchart)
             setStartdate(totalchart[0].date)
             setEnddate(totalchart[totalchart.length-1].date)

@@ -91,10 +91,6 @@ function Menubutton() {
     const navEl = useRef(null)
     const { id } = useParams();
     const { pathname } = useLocation();
-    console.log("id", id)
-    console.log("pathname", pathname)
-    // let frontId = id.split("/")[1]
-    console.log("pathname",pathname.split("/")[1])
 
     const moveMain = () => {
         window.location.href = "https://www.klaylabs.net"

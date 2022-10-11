@@ -306,14 +306,15 @@ function Main() {
                 {
                   lendinggroup.map((fifty, index) => {
                     <defs>
-                      <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor={colorarr[index]} stopOpacity={0.4} />
-                          <stop offset="75%" stopColor={colorarr[index]} stopOpacity={0.05} />
+                      <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#dd4477" stopOpacity={0.0} />
+                          <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
                       </linearGradient>
-                    </defs>    
+                    </defs>
                     return  <Area type="linear" stroke={colorarr[index]} fill="url(#color)" dataKey={fifty}/>
                   })                 
                 }
+
 
                 <XAxis
                     dataKey="date"
@@ -371,11 +372,11 @@ function Main() {
                 {
                   stakinggroup.map((fifty, index) => {
                     <defs>
-                      <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor={colorarr[index]} stopOpacity={0.4} />
-                          <stop offset="75%" stopColor={colorarr[index]} stopOpacity={0.05} />
+                      <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#dd4477" stopOpacity={0.0} />
+                          <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
                       </linearGradient>
-                    </defs>    
+                    </defs>
                     return  <Area type="linear" stroke={colorarr[index]} fill="url(#color)" dataKey={fifty}/>
                   })                 
                 }
