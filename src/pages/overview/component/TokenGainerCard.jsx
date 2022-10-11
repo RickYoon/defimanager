@@ -88,7 +88,7 @@ const Td = styled.td`
   @media screen and (max-width: 500px){
     height:30px;
     font-size: 15px;
-
+    width: 100px;
     }
 `
 

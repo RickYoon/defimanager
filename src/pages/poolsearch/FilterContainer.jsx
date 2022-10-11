@@ -33,8 +33,8 @@ const Searchbox = styled.div`
   background-color: #fff;
   box-shadow: 1px 1px 1px gray;
 
-  @media screen and (max-width: 500px){
-  width: 360px;
+  @media screen and (max-width : 950px){
+  width: 90%;
   box-shadow: 1px 1px 1px gray;
   }
 

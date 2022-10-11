@@ -17,7 +17,8 @@ import Mainpage from '../pages/Mainpage'
 
 function Sidenav() {
 
-    const {serviceState, setServiceState} = useContext(WalletContext);
+    // const {serviceState, setServiceState} = useContext(WalletContext);
+    const [serviceState, setServiceState] = useState("portfolio")
 
     const setPortfolio = () => {
         setServiceState("portfolio")

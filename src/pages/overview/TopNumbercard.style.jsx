@@ -5,7 +5,7 @@ export const Topdash = Styled.div`
     margin: 0 auto;
     
     @media screen and (max-width: 500px){
-    width: 360px;
+    width: 100%;
     }
 `
 
@@ -16,7 +16,7 @@ export const Row = Styled.div`
     justify-content:space-between;
 
     @media screen and (max-width: 500px){
-    width:380px;
+    width:100%
     display:flex;
     flex-direction:column;
     }
@@ -37,7 +37,7 @@ export const Leftcolumn = Styled.div`
     margin-right: 5px;
 
     @media screen and (max-width: 500px){
-        width:360px;
+        width:100%;
         padding: 0;
         margin-bottom:10px;
         margin-right: 0px;
@@ -59,10 +59,11 @@ export const Rightcolumn = Styled.div`
     margin-left: 5px;
 
     @media screen and (max-width: 500px){
-        width:360px;
-        padding: 0;
-        margin-bottom:10px;
-        margin-left: 0px;
+      width:100%;
+      padding: 0;
+      margin-bottom:10px;
+      margin-right: 0px;
+      margin-left: 0px;
     }
 `
 

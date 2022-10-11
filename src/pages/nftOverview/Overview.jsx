@@ -17,6 +17,7 @@ import * as Styled from "./Overview.style"
 function Nftoverview() {
 
     const [isloading, setIsloading] = useState(false);
+
     const [currency, setCurrency] = useState("KLAY");
     const [totaldata, setTotaldata]= useState({
         totalKlay: 0,
@@ -83,18 +84,19 @@ function Nftoverview() {
 
   return (
     <>
-        <NftviewContext.Provider value={{nftdata,totaldata,currency, setCurrency}}>
+        <NftviewContext.Provider value={{nftdata,totaldata,currency, setCurrency,isloading}}>
+        <Styled.OverBox>
+          <Styled.Wrappertitle>
+            <Styled.Title>Klaytn NFT Overview</Styled.Title>
+          </Styled.Wrappertitle>
+
             <Styled.Topbox>
                 <Styled.Leftcolumn>
                     <TopNumbercard />
-                    {/* <Chartcard /> */}
                     <TvlTable />
-                    {/* {selTvl ? <TvlTable /> :  <TokenTable />} */}
                 </Styled.Leftcolumn>
-                {/* <Styled.Rightcolumn>
-                    <RightBox />
-                </Styled.Rightcolumn> */}
             </Styled.Topbox>
+            </Styled.OverBox>
         </NftviewContext.Provider>
     </>
   );

@@ -10,7 +10,6 @@ import icons from "../../assets/tokenIcons"
 
 
 function Detailpage() {
-
   const { id } = useParams();
   const { pathname } = useLocation();
   const [isloading, setIsloading] = useState(false)

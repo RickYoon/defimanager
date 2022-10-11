@@ -21,7 +21,7 @@ function Projectfooter() {
                         <Iconwrapper>
                             <Img src={icons.Klayswap} alt="logo" />
                             <Img src={icons.Kokonutswap} alt="logo" />
-                            {/* <Img src={icons.PALA} alt="logo" /> */}
+                            <Img src={icons.PALA} alt="logo" />
                         </Iconwrapper>
                     </center>
             </TemplateBlock>

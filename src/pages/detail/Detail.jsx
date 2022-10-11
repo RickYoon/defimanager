@@ -13,6 +13,10 @@ import TokenChartCardMulti from "./TokenChartCardMulti"
 import RightBox from "./RightBox"
 // import TokenTable from "./TokenTable"
 
+import { Link } from "react-router-dom";
+import { BsBoxArrowLeft } from "react-icons/bs";
+
+
 function Detail() {
 
     const { id } = useParams();
@@ -180,6 +184,13 @@ function Detail() {
   return (
     <>
         <DetailContext.Provider value={{detailinfo, isloading}}>
+        <Styled.OverBox>
+            <Styled.SubTopNavBlock style={{ marginBottom: "30px", fontSize: "17px" }}>
+            <Link to="/">
+                    <BsBoxArrowLeft style={{ marginRight: "10px", verticalAlign: "middle" }}/>
+                    Back to List
+            </Link>
+            </Styled.SubTopNavBlock>
           <Styled.Topbox>
             <Styled.Leftcolumn>              
               <TopTitle/>
@@ -200,9 +211,12 @@ function Detail() {
                 <RightBox />
             </Styled.Rightcolumn>
           </Styled.Topbox>
+          </Styled.OverBox>
         </DetailContext.Provider>
     </>
   );
 }
+
+
 
 export default Detail;

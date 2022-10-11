@@ -224,6 +224,10 @@ function Overview() {
   return (
     <>
         <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist}}>
+          <Styled.OverBox>
+            <Styled.Wrappertitle>
+              <Styled.Title>Klaytn DeFi Overview</Styled.Title>
+            </Styled.Wrappertitle>
             <Styled.Topbox>
                 <Styled.Leftcolumn>
                     <TopNumbercard />
@@ -235,6 +239,7 @@ function Overview() {
                     <RightBox />
                 </Styled.Rightcolumn>
             </Styled.Topbox>
+          </Styled.OverBox>
         </OverviewContext.Provider>
     </>
   );

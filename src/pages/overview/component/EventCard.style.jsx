@@ -24,7 +24,7 @@ export const Topdash = Styled.div`
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
     @media screen and (max-width: 500px){
-        width: 360px;
+      width: 100%;
     }
 `
 

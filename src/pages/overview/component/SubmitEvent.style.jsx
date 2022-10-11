@@ -17,12 +17,12 @@ export const Topdash = Styled.div`
     }
 
     @media screen and (max-width: 500px){
-        width: 360px;
+        width: 100%;
     }
 `
 
 export const UpperColumn = Styled.div`
-    width: 290px;
+    width: 90%;
     font-family: "OpenSans-Medium";
     font-size: 14px;
     margin:15px;

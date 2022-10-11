@@ -115,7 +115,7 @@ export const TodoTemplateBlock = Styled.div`
   }
   
   @media screen and (max-width: 500px){
-    width: 360px;
+    width: 100%;
     padding-left:0px;
     padding-right:0px;
     border-radius: 8px;

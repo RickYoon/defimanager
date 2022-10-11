@@ -24,7 +24,7 @@ export const Topdash = Styled.div`
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
     @media screen and (max-width: 500px){
-        width: 360px;
+        width: 100%;
     }
 `
 
@@ -38,7 +38,7 @@ export const UpperColumn = Styled.div`
     margin-top: 15px;
     padding:5px;
     @media screen and (max-width: 500px){
-      width: 330px;
+      width: 90%;
     }
 `
 
@@ -48,6 +48,10 @@ export const LowerColumn = Styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    @media screen and (max-width: 500px){
+      width: 100%;
+    }
+
 `
 
 export const ProjectBox = Styled.div`
@@ -59,6 +63,10 @@ export const ProjectBox = Styled.div`
 
     display: flex;
     flex-direction: row;
+    @media screen and (max-width: 500px){
+      width: 90%;
+    }
+
 
     /* background: black; */
 `
@@ -68,7 +76,8 @@ export const Righttext = Styled.span`
   float: right;
   font-family: "OpenSans-Semibold";
   font-size: 12px;
-  color: ${props => props.color || "gray"}
+  color: ${props => props.color || "gray"};
+  
 `
 
 

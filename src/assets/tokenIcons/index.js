@@ -126,8 +126,65 @@ import NPT from "./NPT.png"
 import klexfinance from "./klexfinance.svg"
 import futuredex from "./futuredex.png"
 import stakely from "./stakely.png"
+import ceDAI from "./ceDAI.png"
+import ceUSDC from "./ceUSDC.png"
+import ceUSDT from "./ceUSDT.png"
+import AGOV from "./AGOV.png"
+import MNR from "./MNR.svg"
+import STAR from "./STAR.svg"
+import ISK from "./ISK.svg"
+import WALK from "./WALK.jpeg"
+import GRND from "./GRND.jpeg"
+import CNT from "./CNT.svg"
+import ZTC from "./ZTC.svg"
+import PLWI from "./PLWI.svg"
+import GHUB from "./GHUB.svg"
+import defToken from "./default.svg"
+import IJM from "./IJM.svg"
+import vKAI from "./vKAI.png"
+import oHANDY from "./oHANDY.svg"
+import PIB from "./PIB.png"
+import KICX from "./KICX.png"
+import PER from "./PER.png"
+import SKZ from "./SKZ.png"
+import NGIT from "./NGIT.png"
+import TRCL from "./TRCL.svg"
+import sKAI from "./sKAI.png"
+import oAERGO from "./oAERGO.png"
+import sigKSP from "./sigKSP.png"
+import MARD from "./MARD.png"
+import oMESH from "./oMESH.png"
+
 
 const icons = {
+    IJM,
+    vKAI,
+    oHANDY,
+    PIB,
+    KICX,
+    PER,
+    SKZ,
+    NGIT,
+    TRCL,
+    sKAI,
+    oAERGO,
+    sigKSP,
+    MARD,
+    oMESH,
+    defToken,
+    CNT,
+    ZTC,
+    PLWI,
+    GHUB,
+    ISK,
+    WALK,
+    GRND,
+    STAR,
+    MNR,
+    AGOV,
+    ceDAI,
+    ceUSDC,
+    ceUSDT,
     stakely,
     futuredex,
     klexfinance,

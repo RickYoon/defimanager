@@ -4,8 +4,7 @@ import { NftviewContext } from "../../components/context/NftviewContext"
 
 function TopNumbercard() {
 
-  const { totaldata } = useContext(NftviewContext);
-  const isloading = false;
+  const { totaldata,isloading } = useContext(NftviewContext);
 
   return (
     <>

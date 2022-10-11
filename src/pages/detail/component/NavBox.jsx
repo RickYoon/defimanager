@@ -42,7 +42,7 @@ const Topdash = styled.div`
     justify-content: space-between;
 
     @media screen and (max-width: 500px){
-        width: 360px;
+        width: 100%;
         margin-top: 10px;
         margin-bottom: 5px;
     }

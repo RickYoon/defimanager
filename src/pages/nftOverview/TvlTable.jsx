@@ -18,14 +18,58 @@ import { GoLinkExternal } from "react-icons/go"
 
 function TvlTable(props) {
 
-  const { nftdata, currency, setCurrency, totaldata } = useContext(NftviewContext);
+  const { nftdata, currency, setCurrency, totaldata,isloading } = useContext(NftviewContext);
   const changeCurrenecy = (ref) => {
-    // console.log("clicked!", ref)
     setCurrency(ref)
   }
-  // console.log("totaldata",totaldata)
+
+  const skeletonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  // const isloading = true;
 
   return (
+    <>
+    {isloading?
+      <>
+          <Styled.TodoTemplateBlock>
+
+          <Styled.Table>
+        <thead>
+          <Styled.TrHead>
+            <Styled.Th style={{fontSize:"13px"}} >#</Styled.Th>
+            <Styled.Tdpd style={{fontSize:"13px"}} >Collection</Styled.Tdpd>
+            <Styled.Td textAlign="right" style={{fontSize:"13px"}}>
+                <span>Floor Price</span>
+            </Styled.Td>
+            <Styled.Tdk textAlign="right" style={{fontSize:"13px"}}>Volume Share</Styled.Tdk>
+            <Styled.Tdk textAlign="right" width="10px" style={{fontSize:"13px"}} >Volume (24h)</Styled.Tdk>
+            {/* <Styled.Td textAlign="center" width="100px" style={{fontSize:"13px"}}>Chg</Styled.Td> */}
+          </Styled.TrHead>
+        </thead>
+        {skeletonArray.map((index) => (
+            <Tr key={index} style={{ height: "35px", borderBottom: "0.03em solid #D4D4D4" }}>
+                  <Styled.Th className="head" style={{ textAlign: "left", fontSize:"10px",marginTop: "5px" }}> 
+                    <Styled.ProductSkeleton/>
+                  </Styled.Th>
+                  <Styled.Tdpd className="head" style={{ textAlign: "left", whiteSpace: "nowrap" }}>
+                    <Styled.IconSkeleton style={{ padding: "1px",borderRadius: "15px",marginTop: "5px"}}/>
+                     <Styled.ProductSkeleton style={{whiteSpace: "nowrap", marginLeft:"10px", height:"20px"}}/>
+                  </Styled.Tdpd>
+                  <Styled.Td className="head" style={{ textAlign: "right", fontSize:"15px", color:"#3f3f3f"}}>
+                  <Styled.ProductSkeleton/>
+                  </Styled.Td>
+                  <Styled.Td className="head" style={{ textAlign: "right",fontSize:"15px", color:"#3f3f3f"}}>
+                  <Styled.ProductSkeleton/>
+                  </Styled.Td>
+                  <Styled.Td className="head" width="150px" textAlign="right" style={{fontSize:"14px", color:"#3f3f3f"}}>
+                  <Styled.ProductSkeleton/>
+                  </Styled.Td>
+            </Tr>
+            ))
+          }
+          </Styled.Table>
+          </Styled.TodoTemplateBlock>
+      </> 
+    :
     <Styled.TodoTemplateBlock>
         <div style={{textAlign:"left", marginTop:"10px", marginRight:"20px", fontSize:"17px"}}>
         <span>Project List &nbsp; &nbsp; &nbsp; &nbsp; </span>
@@ -106,7 +150,9 @@ function TvlTable(props) {
       </Styled.Table>
       </div>
   </Styled.TodoTemplateBlock>
-  );
+  }
+  </>
+  )
 }
 
 const Tr = styled.tr`

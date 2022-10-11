@@ -8,12 +8,17 @@ import { AiFillTrophy, AiOutlineProfile } from "react-icons/ai";
 import {BsCreditCard2FrontFill} from "react-icons/bs";
 import {SiBitcoinsv} from "react-icons/si"
 import {GiChecklist} from "react-icons/gi"
+import {BiSpreadsheet} from "react-icons/bi";
 
 function Topnav() {
     const { pathname } = useLocation();
 
     const moveMain = () => {
         window.location.href = "https://www.klaylabs.net"
+    }
+
+    const moveNFT = () => {
+        window.location.href = "http://localhost:7777/nftview"
     }
 
     const moveDocs = () => {
@@ -26,44 +31,37 @@ function Topnav() {
                 <div onClick={moveMain} style={{ display:"flex", flexDirection: "row",cursor: "pointer" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
                 </div>
-                <div onClick={moveDocs} style={{display:"flex", flexDirection: "row",marginTop:"10px", fontSize:"25px", cursor: "pointer"}}>
+                <div style={{display:"flex", flexDirection: "row",marginTop:"10px", fontSize:"25px", cursor: "pointer"}}>
+                    <div onClick={moveNFT} style={{marginRight:"15px", fontSize:"15px", lineHeight:"1.6"}}>NFT</div>
                     <div style={{marginRight:"15px"}}><BiBook /></div>
                 </div>
             </TemplateBlock>
 
-            <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "17px" }}>
+            <SubTopNavBlock style={{ marginBottom: "30px", marginTop: "20px", fontSize: "15px" }}>
                 <Underline primary={pathname === "/"}>
                     <Link to="/">
                         {pathname === "/" ?
-                            <Span style={{ color: "black" }}><SiBitcoinsv style={{ marginRight: "5px", verticalAlign: "middle" }} /> DeFi </Span> :
-                            <span style={{ color: "gray" }}><SiBitcoinsv style={{ marginRight: "5px", verticalAlign: "middle" }} /> DeFi </span>
-                        }
-                    </Link>
-                </Underline>
-                <Underline style={{ marginLeft: "10px" }} primary={pathname === "/nftview"}>
-                    <Link to="/nftview">
-                        {pathname === "/nftview" ?
-                            <span style={{ color: "black" }}><BsCreditCard2FrontFill style={{ marginRight: "5px", verticalAlign: "middle" }} /> NFT </span> :
-                            <span style={{ color: "gray" }}><BsCreditCard2FrontFill style={{ marginRight: "5px", verticalAlign: "middle" }} /> NFT </span>
+                            <Span style={{ color: "black" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} />Overview </Span> :
+                            <span style={{ color: "gray" }}><BiSpreadsheet style={{ marginRight: "5px", verticalAlign: "middle" }} /> Overview </span>
                         }
                     </Link>
                 </Underline>
                 <Underline style={{ marginLeft: "5px" }} primary={pathname === "/Poolpage"}>
                     <Link to="/Poolpage">
                         {pathname === "/Poolpage" ?
-                            <span style={{ color: "black" }}><GiChecklist style={{ marginRight: "0px", verticalAlign: "middle" }} /> APR </span> :
-                            <span style={{ color: "gray" }}><GiChecklist style={{ marginRight: "0px", verticalAlign: "middle" }} /> APR </span>
+                            <span style={{ color: "black" }}><GiChecklist style={{ marginRight: "0px", verticalAlign: "middle" }} /> Poollist </span> :
+                            <span style={{ color: "gray" }}><GiChecklist style={{ marginRight: "0px", verticalAlign: "middle" }} /> Poollist </span>
                         }
                     </Link>
                 </Underline>
-                {/* <Underline style={{ marginLeft: "10px" }} primary={pathname === "/news"}>
+                <Underline style={{ marginLeft: "10px" }} primary={pathname === "/news"}>
                     <Link to="/news">
                         {pathname === "/news" ?
-                            <span style={{ color: "black" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} />News </span> :
-                            <span style={{ color: "gray" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /> News </span>
+                            <span style={{ color: "black" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} />Analytics </span> :
+                            <span style={{ color: "gray" }}><AiOutlineProfile style={{ marginRight: "5px", verticalAlign: "middle" }} /> Analytics </span>
                         }
                     </Link>
-                </Underline> */}
+                </Underline>
                 {/* <Underline style={{ marginLeft: "10px" }} primary={false}>
                     <BsFillPeopleFill style={{ marginRight: "5px", verticalAlign: "middle" }} />Community
                 </Underline> */}

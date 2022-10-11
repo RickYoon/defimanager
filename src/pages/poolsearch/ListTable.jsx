@@ -4,9 +4,11 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactTooltip from "react-tooltip"
 import styled, { keyframes } from "styled-components";
 import icons from "../../assets/tokenIcons"
+import * as Styled from "./ListTable.style"
 
 function ListTable() {
 
+  const skeletonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   const { isloading, pooldata } = useContext(PoolContext);
 
   return (
@@ -27,14 +29,18 @@ function ListTable() {
           <tbody>
                   
           {isloading ? 
-          <Tr style={{ height: "50px", borderBottom: "0.06em solid #D4D4D4 " }}>
-            <Th><ProductSkeleton /></Th>
-            <Th><ProductSkeleton /></Th>
-            <Tdc><ProductSkeleton /></Tdc>
-            <Tdc><ProductSkeleton /></Tdc>
-            <Td><ProductSkeleton /></Td>
-            <Td><ProductSkeleton /></Td>
-          </Tr>
+            skeletonArray.map((skelton,index)=>(
+            <tr key={index} style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
+                 <Styled.Th className="head" style={{ width: "30px", textAlign: "left" }}><Styled.ProductSkeleton/></Styled.Th>
+                 <Styled.Tdc className="head" style={{ height: "50px", width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
+                     <Styled.IconSkeleton style={{ padding: "1px",borderRadius: "15px"}}/>
+                     <Styled.ProductSkeleton style={{whiteSpace: "nowrap", marginLeft:"10px", height:"25px"}}/>
+                </Styled.Tdc>
+                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
+                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
+                 <Styled.Td className="content" style={{ width: "200px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
+                <Styled.Td className="content" style={{ width: "50px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
+            </tr>))
             :
             pooldata.map((pool, index) => (
             <Tr style={{ height: "50px", borderBottom: "0.06em solid #D4D4D4 " }}>
@@ -44,7 +50,11 @@ function ListTable() {
                     <Iconbox>
                     {pool.poolinfo.map((token)=>(
                       <Iconwrapper>
-                        <Img src={icons[token]} alt="logo" fontSize="20px"/>
+                        {icons[token] === undefined ? 
+                          <Img src={icons["defToken"]} alt="logo" fontSize="20px"/>
+                          :
+                          <Img src={icons[token]} alt="logo" fontSize="20px"/>
+                        }
                       </Iconwrapper>
                     ))}
                     </Iconbox>
@@ -70,7 +80,8 @@ function ListTable() {
                 <Td className="content" style={{ width: "20px", fontSize:"13px",textAlign: "right"}}>{pool.tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Td>
                 <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{pool.apr}</Td>
               </Tr>
-              ))}           
+              ))
+              }           
             </tbody>
         </table>
       </TodoTemplateBlock>
@@ -92,8 +103,8 @@ const skeletonKeyframes = keyframes`
 
 const ProductSkeleton = styled.div`
   display: inline-block;
-  height: ${props => props.height || "16px"};
-  width: ${props => props.width || "100%"};
+  height: ${props => props.height || "20px"};
+  width: ${props => props.width || "50%"};
   animation: ${skeletonKeyframes} 1300ms ease-in-out infinite;
   background-color: #eee;
   background-image: linear-gradient(
@@ -271,7 +282,7 @@ const TodoTemplateBlock = styled.div`
 
   margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
 
-  margin-top: 16px;
+  /* margin-top: 16px; */
   margin-bottom: 16px;
   padding-left:18px;
   padding-right:20px;
@@ -295,8 +306,8 @@ const TodoTemplateBlock = styled.div`
     margin-left:200px;
   }
   
-  @media screen and (max-width: 500px){
-    width: 360px;
+  @media screen and (max-width: 950px){
+    width: 90%;
     padding-left:20px;
     padding-right:20px;
     border-radius: 8px;

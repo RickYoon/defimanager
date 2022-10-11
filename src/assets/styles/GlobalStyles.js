@@ -19,11 +19,12 @@ const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'OpenSans-Medium', 'SpoqaHanSansNeo-Regular';
         background: #e9ecef;
+        min-height: 100vh;
     }
 
     html, body {
         max-width: 100%;
-        overflow-x: hidden;
+        min-height: 100vh;
     }
 
     @font-face {

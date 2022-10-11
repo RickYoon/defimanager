@@ -35,7 +35,7 @@ function TvlGainerCard(props) {
               props.data.map((toptvlElement,index) => 
                         <Styled.ProjectBox>
                             <Tr>
-                                <Td width="10px">{index+1}</Td>
+                                <Td width="10%">{index+1}</Td>
                                 <Td width="30px" >
                                     <Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
                                 </Td>
@@ -79,6 +79,7 @@ function TvlDiffAfter(props) {
     )
 }
 
+
 const Tr = styled.tr`
 height : 40px;
 line-height: 40px;
@@ -88,36 +89,34 @@ line-height: 40px;
     border-radius:10px;
     line-height: 40px;
   }
-  
 `
 
 const Td = styled.td`
-  /* height:25px; */
+
   vertical-align:middle;
   padding-left: 1em;
   width: ${props => props.width || "30px"};
+
   @media screen and (max-width: 500px){
     height:30px;
     font-size: 15px;
-
+    width: 100px;
     }
 `
 
 const Tdp = styled.td`
-  /* height:25px; */
   /* width: ${props => props.width || "30px"}; */
   vertical-align:middle;
   padding-left: 1em;
   width: 100px;
-
   &:hover {
-    text-decoration: underline;
     color:#3366cc;
-
+    text-decoration: underline;
   };
 
   @media screen and (max-width: 500px){
     width: 130px;
+    text-align: left;
   }
 
 `

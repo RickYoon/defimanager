@@ -4,8 +4,8 @@ export const Topdash = Styled.div`
     width: 788px;
     margin: 0 auto;
     
-    @media screen and (max-width: 500px){
-    width: 360px;
+    @media screen and (max-width: 950px){
+    width: 100%;
     }
 `
 
@@ -15,8 +15,8 @@ export const Row = Styled.div`
     width:100%;
     justify-content:space-between;
 
-    @media screen and (max-width: 500px){
-    width:380px;
+    @media screen and (max-width: 950px){
+    width:100%;
     display:flex;
     flex-direction:column;
     }
@@ -36,8 +36,8 @@ export const Leftcolumn = Styled.div`
     overflow: visible;
     margin-right: 5px;
 
-    @media screen and (max-width: 500px){
-        width:360px;
+    @media screen and (max-width: 950px){
+        width:100%;
         padding: 0;
         margin-bottom:10px;
         margin-right: 0px;
@@ -58,8 +58,8 @@ export const Rightcolumn = Styled.div`
     overflow: visible;
     margin-left: 5px;
 
-    @media screen and (max-width: 500px){
-        width:360px;
+    @media screen and (max-width: 950px){
+        width:100%;
         padding: 0;
         margin-bottom:10px;
         margin-left: 0px;

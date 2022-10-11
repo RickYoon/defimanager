@@ -11,9 +11,7 @@ function Topmenu() {
   return (
     <>
         <Topdash>
-            <Row>
-              <Leftcolumn>
-                {order === "tvl" ? 
+        {order === "tvl" ? 
                 <>
                     <Selectionbutton onClick={tvlSorting}>
                       Top TVL
@@ -32,19 +30,7 @@ function Topmenu() {
                   </Selectionbutton> 
                 </>
               }
-              </Leftcolumn>
 
-              <Rightcolumn>
-                    <Filterbox style={{display:"flex",alignItems:"center"}}>
-                      <span style={{marginRight:"10px"}}>3 Projects</span>
-                      <AiOutlineInfoCircle data-for="exp" data-tip="explain" size={25}/>
-                      <ReactTooltip id="exp" border data-border={true} multiline={true} place="top" aria-haspopup='true' type="light" effect="solid">
-                        <p>You can find connected project list in below.</p>
-                        <p>More projects will be added.</p>
-                      </ReactTooltip>
-                    </Filterbox>
-              </Rightcolumn>
-            </Row>
           </Topdash>
     </>
   );
@@ -94,8 +80,8 @@ const Topdash = styled.div`
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 30px;
-  @media screen and (max-width: 500px){
-    width: 360px;
+  @media screen and (max-width : 950px){
+    width: 90%;
   }
 `
 

@@ -91,30 +91,94 @@ function Poolpage() {
 
   return (
     <>
-        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,pooldata}}> 
+        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,pooldata,isloading}}> 
+        <OverBox>
+        <Wrappertitle>
+            <Title>Yield Explorer</Title>
+        </Wrappertitle>
         <Topbox>
             <Leftcolumn>
+              <FilterMobile>
                 <Topmenu />
-                <FilterContainer />
+                <FilterContainer />      
+              </FilterMobile>          
                 <ListTable />
             </Leftcolumn>
             <Rightcolumn>
-                
+            <FilterDesktop>
+              <Topmenu />
+              <FilterContainer />                
+            </FilterDesktop>
             </Rightcolumn>
         </Topbox>
+        </OverBox>
         
         </PoolContext.Provider>
     </>
   );
 }
-// - 데이터 연결상태 및 업데이트 시간(?) <br/>
-// - pool theme (top tvl, top apr, filter(stable, project))
-// - kokonutswap(ok)
-// - klayswap (ok)
-// - claimswap (ok) https://data-api.claimswap.org/dashboard/toppool
-// - pala
-// - definix
-// - ufoswap
+
+const FilterMobile = styled.div`
+    display: none;
+  @media screen and (max-width: 950px){
+    display: block;
+    margin-bottom :15px;
+  }
+`
+
+const FilterDesktop = styled.div`
+  @media screen and (max-width: 950px){
+    display: none;
+  }
+`
+
+
+
+const Title = styled.h1`
+  font-weight: 600;
+  font-size: 20px;
+`
+
+const Wrappertitle = styled.div`
+  margin: 0px auto 20px auto;
+  width: 1136px;
+  @media screen and (max-width: 950px){
+    width: 90%;
+    padding-top: 20px;
+    color: black;
+  }
+  @media screen and (max-width: 500px){
+    width: 90%;
+    padding-top: 20px;
+    color: gray;
+  }
+`
+
+const OverBox = styled.div`
+
+  position: relative;
+  width: calc(100% - (230px));
+  width: -moz-calc(100% - (230px));
+  width: -webkit-calc(100% - (230px));
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+  overflow: auto;
+  padding: 30px;
+
+  @media screen and (max-width: 950px){
+    /* width: 360px; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+    width: calc(100% );
+    width: -moz-calc(100%);
+    width: -webkit-calc(100%);
+    padding: 0px;
+    margin-Top: 10px;
+  }
+`
+
 
 const Topbox = styled.div`
   width: 1136px;
@@ -125,8 +189,8 @@ const Topbox = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media screen and (max-width: 500px){
-    width: 360px;
+  @media screen and (max-width: 950px){
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -136,7 +200,7 @@ const Leftcolumn = styled.div`
   width: 788px;
   /* background: gray; */
   @media screen and (max-width: 500px){
-    width: 360px;
+    width: 100%;
   }
 `
 
@@ -144,7 +208,7 @@ const Rightcolumn = styled.div`
   width: 324px;
   /* background: gray; */
   @media screen and (max-width: 500px){
-    width: 360px;
+    width: 100%;
   }
 
 `

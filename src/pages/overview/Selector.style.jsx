@@ -15,7 +15,7 @@ export const Container = Styled.div`
   flex-direction: row;
   
   @media screen and (max-width: 500px){
-  width: 360px;
+  width: 100%;
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
 }
 `
