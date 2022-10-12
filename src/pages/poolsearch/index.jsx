@@ -17,6 +17,7 @@ function Poolpage() {
 
   const [order, setOrder] = useState("tvl")
   const [stable, setStable] = useState(false)
+  const [klay, setKlay] = useState(false)
   const [isloading,setIsloading] = useState(false)
   
   const [backupPooldata, setBackupPooldata]= useState([])
@@ -27,7 +28,8 @@ function Poolpage() {
     reward: [],
     tvl: 0,
     apr:0,
-    stableOnly: "no"
+    stableOnly: "no",
+    klayOnly: "no"
   }])
 
   useEffect(() => {
@@ -63,7 +65,7 @@ function Poolpage() {
         if(a.tvl > b.tvl) return -1;
       })
       setPooldata(tempState)
-      console.log("tvl")
+      // console.log("tvl")
   }
 
   const aprSorting = () => {
@@ -74,7 +76,7 @@ function Poolpage() {
         if(a.apr > b.apr) return -1;
       })
       setPooldata(tempState)
-      console.log("apr")
+      // console.log("apr")
   }
 
   const stableSetter = () => {
@@ -88,10 +90,21 @@ function Poolpage() {
     }
   }
 
+  const klaySetter = () => {
+    if(!klay){
+      let tempState = pooldata.filter(pool => pool.klayOnly === "yes" )
+      setPooldata(tempState)
+      setKlay(!klay)
+    } else {
+      setPooldata(backupPooldata)
+      setKlay(!klay)
+    }
+  }
+
 
   return (
     <>
-        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,pooldata,isloading}}> 
+        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading}}> 
         <OverBox>
         <Wrappertitle>
             <Title>Yield Explorer</Title>

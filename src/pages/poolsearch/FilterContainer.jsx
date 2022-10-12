@@ -6,7 +6,7 @@ import styled, { keyframes } from "styled-components";
 
 function FilterContainer() {
 
-  const { stable, stableSetter } = useContext(PoolContext);
+  const { stable, stableSetter, klay, klaySetter } = useContext(PoolContext);
 
   return (
     <>
@@ -15,6 +15,8 @@ function FilterContainer() {
         <Filterbox>
           <input type="checkbox" name="xxx" value="yyy" checked={stable} onClick={stableSetter}></input>
           <span style={{paddingLeft:"5px", verticalAlign: "center"}}>Stable-Only</span>
+          <input style={{marginLeft:"25px", verticalAlign: "center"}} type="checkbox" name="xxx" value="yyy" checked={klay} onClick={klaySetter}></input>
+          <span style={{paddingLeft:"5px", verticalAlign: "center"}}>Klay-Only</span>
         </Filterbox>
       </Searchbox>
 
