@@ -1,10 +1,9 @@
 import React, {useContext} from "react";
 import { PoolContext } from 'components/context/PoolContext';
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import ReactTooltip from "react-tooltip"
 import styled, { keyframes } from "styled-components";
 import icons from "../../assets/tokenIcons"
 import * as Styled from "./ListTable.style"
+
 
 function ListTable() {
 
@@ -17,13 +16,13 @@ function ListTable() {
         <table>
           <thead>
             <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
-              <Th className="head" style={{ width: "5%", textAlign: "left" }}>#</Th>
-              <Th className="head" style={{ width: "40%", textAlign: "left" }}>POOLINFO</Th>
-              <Tdc className="head" style={{ width: "15%", textAlign: "left" }}>TYPE</Tdc>
-              {/* <Tdc className="head" style={{ width: "15%", textAlign: "left" }}>STABLE</Tdc> */}
-              <Tdc className="content" style={{ width: "15%" }}>REWARDS</Tdc>
-              <Td className="content" style={{ width: "10%", textAlign: "right" }}>TVL($)</Td>
-              <Td className="content" style={{ width: "10%", textAlign: "right" }}>APR(%)</Td>
+              <Th className="head" style={{ width: "5%", textAlign: "center" }}>#</Th>
+              <Tdc className="head" style={{ width: "5%", textAlign: "center", fontSize:"13px" }}>@</Tdc>
+              <Th className="head" style={{ width: "40%", textAlign: "left", fontSize:"13px" }}>POOLINFO</Th>
+              <Tdc className="head" style={{ width: "15%", textAlign: "left", fontSize:"13px" }}>TYPE</Tdc>
+              <Tdc className="content" style={{ width: "10%", fontSize:"13px" }}>REWARDS</Tdc>
+              <Td className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>TVL($)</Td>
+              <Td className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>APR(%)</Td>
             </tr>
           </thead>
           <tbody>
@@ -32,10 +31,11 @@ function ListTable() {
             skeletonArray.map((skelton,index)=>(
             <tr key={index} style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
                  <Styled.Th className="head" style={{ width: "30px", textAlign: "left" }}><Styled.ProductSkeleton/></Styled.Th>
-                 <Styled.Tdc className="head" style={{ height: "50px", width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
+                 <Styled.Tdc className="head" style={{ height: "20px", width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
                      <Styled.IconSkeleton style={{ padding: "1px",borderRadius: "15px"}}/>
                      <Styled.ProductSkeleton style={{whiteSpace: "nowrap", marginLeft:"10px", height:"25px"}}/>
                 </Styled.Tdc>
+                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Td className="content" style={{ width: "200px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
@@ -44,7 +44,15 @@ function ListTable() {
             :
             pooldata.map((pool, index) => (
             <Tr style={{ height: "50px", borderBottom: "0.06em solid #D4D4D4 " }}>
-                <Th className="head" style={{ width: "30px", textAlign: "left" }}>{index+1}</Th>
+                <Th className="head" style={{ width: "30px", textAlign: "center", fontSize: "13px" }}>{index+1}</Th>
+                <Tdc>                    
+                  {pool.protocol.split("-")[0] === "klaystation" ?
+                      <Imgs src={icons["Klaystation"]} alt="logo" height="15px" width="15px" style={{ marginLeft:"10px", padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                      : pool.protocol === "hashquark" ?
+                        <Imgs src={icons["KLAYportal"]} alt="logo" height="18px" width="18px" style={{ marginLeft:"10px",  padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />                  
+                          :
+                          <Imgs src={icons[pool.protocol]} alt="logo" height="18px" width="18px" style={{ marginLeft:"10px",  padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                      }</Tdc>
                 <Th>
                   <PoolinfoBox>
                     <Iconbox>
@@ -60,7 +68,9 @@ function ListTable() {
                     </Iconbox>
                     <Explainbox>
                     <Protocol>
+                      
                     {pool.protocol}
+
                     </Protocol>
                     <Token>
                       {pool.poolinfo.map((token,index)=>{
@@ -74,11 +84,23 @@ function ListTable() {
                     </Explainbox>
                   </PoolinfoBox>
                 </Th>
-                <Tdc className="head" style={{ width: "50px", textAlign: "left", fontSize:"13px" }}>{pool.type}</Tdc>
-                {/* <Tdc className="head" style={{ width: "50px", textAlign: "left", fontSize:"13px" }}>{pool.stableOnly}</Tdc> */}
-                <Tdc className="head" style={{ width: "30px", fontSize:"13px"}}>{pool.reward}</Tdc>
+                <Tdc className="head" style={{ width: "30px", textAlign: "left", fontSize:"12px" }}>{pool.type}</Tdc>
+                <Tdc className="head" style={{ width: "30px", fontSize:"12px", color: "gray"}}>
+                  {pool.reward[0] === "KLAY" ? 
+                    <img src={icons["KLAY"]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                    :
+                    pool.reward.length === 1 ?
+                    <>fee</>
+                    :
+                    pool.reward.map((res)=> res!=="fee" ? 
+                      <img src={icons[res]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+                      : 
+                      res + " + "
+                    )
+                  }
+                </Tdc>
                 <Td className="content" style={{ width: "20px", fontSize:"13px",textAlign: "right"}}>{pool.tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Td>
-                <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{pool.apr}</Td>
+                <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{Number(pool.apr).toFixed(1)}</Td>
               </Tr>
               ))
               }           
@@ -258,6 +280,13 @@ const Img = styled.img`
     /* padding: 1px; */
     /* background-color:ㅎㄱ묘; */
   `
+
+const Imgs = styled.img`
+  width: 20px;
+  height: 20px;
+  border: 0.5px solid #eaeaea;
+  border-radius:50%;
+`
 
 const Iconwrapper = styled.div`
     width: 15px;

@@ -154,9 +154,21 @@ import oAERGO from "./oAERGO.png"
 import sigKSP from "./sigKSP.png"
 import MARD from "./MARD.png"
 import oMESH from "./oMESH.png"
+import BTIS from "./BTIS.png"
+import BTIX from "./BTIX.png"
+import portalDAI from "./portalDAI.png"
+import portalUSDC from "./portalUSDC.png"
+import portalUSDT from "./portalUSDT.png"
+import stKLAY from "./stKLAY.png"
 
 
 const icons = {
+    BTIS,
+    BTIX,
+    portalDAI,
+    portalUSDC,
+    portalUSDT,
+    stKLAY,
     IJM,
     vKAI,
     oHANDY,

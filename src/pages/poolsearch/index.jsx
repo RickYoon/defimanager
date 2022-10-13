@@ -47,10 +47,11 @@ function Poolpage() {
 
   const loadPools = async () => {
     setIsloading(true)
-    // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvllist"
-    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/queryPoolList"
+    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/getPoolList_v1"
+    // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/queryPoolList"
 
     await axios.get(url).then(function (response) {
+      // console.log(response.data.body)
       setPooldata(response.data.body)
       setBackupPooldata(response.data.body)
     })
@@ -106,26 +107,25 @@ function Poolpage() {
     <>
         <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading}}> 
         <OverBox>
-        <Wrappertitle>
-            <Title>Yield Explorer</Title>
-        </Wrappertitle>
-        <Topbox>
-            <Leftcolumn>
-              <FilterMobile>
+          <Wrappertitle>
+              <Title>Yield Explorer</Title>
+          </Wrappertitle>
+          <Topbox>
+              <Leftcolumn>
+                <FilterMobile>
+                  <Topmenu />
+                  <FilterContainer />      
+                </FilterMobile>          
+                  <ListTable />
+              </Leftcolumn>
+              <Rightcolumn>
+              <FilterDesktop>
                 <Topmenu />
-                <FilterContainer />      
-              </FilterMobile>          
-                <ListTable />
-            </Leftcolumn>
-            <Rightcolumn>
-            <FilterDesktop>
-              <Topmenu />
-              <FilterContainer />                
-            </FilterDesktop>
-            </Rightcolumn>
-        </Topbox>
-        </OverBox>
-        
+                <FilterContainer />                
+              </FilterDesktop>
+              </Rightcolumn>
+          </Topbox>
+        </OverBox>        
         </PoolContext.Provider>
     </>
   );
