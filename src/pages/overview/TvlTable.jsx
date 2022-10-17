@@ -73,7 +73,7 @@ function TvlTable() {
                             <span> {Number(tvld.tvl / 1000000).toFixed(1)}M </span> :
                                 tvld.tvl > 1000 ?
                                     <span> {Number(tvld.tvl / 1000).toFixed(0)}K </span> :
-                                    <span> Number(tvld.tvl / 1000).toFixed(0)</span>
+                                    <span> {Number(tvld.tvl).toFixed(0)}</span>
                     }
                 </Styled.Td>
                 <Styled.Td className="content" style={{ width: "50px", textAlign: "right" }}>
