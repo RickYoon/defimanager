@@ -78,6 +78,7 @@ import oUSDC from "./oUSDC.png"
 import oXRP from "./oXRP.svg"
 import oETH from "./oETH.svg"
 import oUSDT from "./oUSDT.svg"
+import klapoUSDT from "./oUSDT.svg"
 import USDK from "./USDK.png"
 import KDAI from "./KDAI.png"
 import KSD from "./KSD.png"
@@ -88,6 +89,7 @@ import KOKOS from "./KOKOS.png"
 import KOKOA from "./kokoaToken.png"
 import synDAI from "./synDAI.png"
 import synUSDC from "./synUSDC.png"
+import USDC from "./synUSDC.png"
 import synUSDT from "./synUSDT.png"
 import oBUSD from "./oBUSD.png"
 import oWBTC from "./oWBTC.svg"
@@ -160,9 +162,50 @@ import portalDAI from "./portalDAI.png"
 import portalUSDC from "./portalUSDC.png"
 import portalUSDT from "./portalUSDT.png"
 import stKLAY from "./stKLAY.png"
-
+import klapUSDC from "./klap-USDC.png"
+import klapDAI from "./klap-DAI.png"
+import klapportalDAI from "./klap-portalDAI.png"
+import klapportalUSDT from "./klap-portalUSDT.png"
+import klapUSDT from "./klap-USDT.png"
+import klapportalUSDC from "./klap-portalUSDC.png"
+import WKLAY from "./WKLAY.png"
+import vvCLA from "./vvCLA.png"
+import USDT from "./USDT.png"
+import WAVAX from "./WAVAX.png"
+import WBTC from "./WBTC.png"
+import WETH from "./WETH.png"
+import WBNB from "./WBNB.png"
+import sAlap from "./sAlap.svg"
+import SIX from "./SIX.png"
+import sMoksha from "./sAlap.svg"
+import sBWPM from "./sBWPM.svg"
+import BOMUL from "./BOMUL.png"
+import JUNS from "./JUNS.png"
+import fee from "./fee.png"
 
 const icons = {
+    fee,
+    JUNS,
+    BOMUL,
+    klapoUSDT,
+    sBWPM,
+    sMoksha,
+    SIX,
+    sAlap,
+    WAVAX,
+    WBTC,
+    WETH,
+    WBNB,
+    USDT,
+    vvCLA,
+    WKLAY,
+    USDC,
+    klapportalUSDC,
+    klapDAI,
+    klapportalDAI,
+    klapportalUSDT,
+    klapUSDT,
+    klapUSDC,
     BTIS,
     BTIX,
     portalDAI,

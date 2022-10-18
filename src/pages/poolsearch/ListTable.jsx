@@ -58,9 +58,10 @@ function ListTable() {
                     <Iconbox>
                     {pool.poolinfo.map((token)=>(
                       <Iconwrapper>
-                        {icons[token] === undefined ? 
-                          <Img src={icons["defToken"]} alt="logo" fontSize="20px"/>
-                          :
+                        {token.split("-")[0] === "klap" ?
+                          <Img src={icons[token.replace("-","")]} alt="logo" fontSize="20px"/> :
+                          icons[token] === undefined ? 
+                          <Img src={icons["defToken"]} alt="logo" fontSize="20px"/> :
                           <Img src={icons[token]} alt="logo" fontSize="20px"/>
                         }
                       </Iconwrapper>
@@ -86,17 +87,21 @@ function ListTable() {
                 </Th>
                 <Tdc className="head" style={{ width: "30px", textAlign: "left", fontSize:"12px" }}>{pool.type}</Tdc>
                 <Tdc className="head" style={{ width: "30px", fontSize:"12px", color: "gray"}}>
-                  {pool.reward[0] === "KLAY" ? 
-                    <img src={icons["KLAY"]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                    :
-                    pool.reward.length === 1 ?
-                    <>fee</>
-                    :
-                    pool.reward.map((res)=> res!=="fee" ? 
-                      <img src={icons[res]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+                  {pool.reward.map((res)=> res!=="fee" ? 
+                      <Imgs src={icons[res]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
                       : 
-                      res + " + "
+                      pool.reward.length !== 1 ?
+                      res + " + " :
+                      res
                     )
+                  }
+                  {
+                    pool.isAirdropPool ?
+                    pool.airdropToken.map((res)=>
+                      <> <img src={icons[res]} alt={res} height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> </>
+                    )
+                    :
+                    <></>
                   }
                 </Tdc>
                 <Td className="content" style={{ width: "20px", fontSize:"13px",textAlign: "right"}}>{pool.tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Td>
