@@ -46,7 +46,9 @@ function ChangeOneDay(props) {
           {
             props.value > 0 ?
             <Styled.Righttext color="red"><ImArrowUp2 style={{height:"15px"}} /> {Math.abs(Number(Number(props.value).toFixed(0))).toLocaleString()} ( {props.percent.toFixed(2)}% )</Styled.Righttext> :
-            <Styled.Righttext> <ImArrowDown2 style={{height:"15px"}} /> {Math.abs(Number(Number(props.value).toFixed(0))).toLocaleString()} ({Math.abs(props.percent).toFixed(1)}%)</Styled.Righttext>
+            props.value < 0 ?
+            <Styled.Righttext> <ImArrowDown2 style={{height:"15px"}} /> {Math.abs(Number(Number(props.value).toFixed(0))).toLocaleString()} ({Math.abs(props.percent).toFixed(1)}%)</Styled.Righttext> :
+            <Styled.Righttext> - </Styled.Righttext>
           }
           </>
       );

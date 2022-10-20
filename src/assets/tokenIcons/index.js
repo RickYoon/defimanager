@@ -123,7 +123,7 @@ import klaycity from "./klaycity.jpg"
 import PangeaSwap from "./PangeaSwap.png"
 import ORB from "./ORB.png"
 import LAY from "./LAY007.png"
-import KeyFinance from "./KeyFinance.png"
+import keyfinance from "./keyfinance.png"
 import NPT from "./NPT.png"
 import klexfinance from "./klexfinance.svg"
 import futuredex from "./futuredex.png"
@@ -244,7 +244,7 @@ const icons = {
     futuredex,
     klexfinance,
     NPT,
-    KeyFinance,
+    keyfinance,
     ORB,
     LAY,
     PangeaSwap,

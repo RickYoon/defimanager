@@ -111,6 +111,8 @@ function Poolpage() {
               <Title>Yield Explorer</Title>
           </Wrappertitle>
           <Topbox>
+          <FilterContainer />      
+
               <Leftcolumn>
                 <FilterMobile>
                   <Topmenu />
