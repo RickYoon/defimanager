@@ -9,6 +9,18 @@ function ListTable() {
 
   const skeletonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   const { isloading, pooldata } = useContext(PoolContext);
+  const homeJson = {
+    "Klayswap" : "https://klayswap.com/exchange/pool",
+    "Kokonutswap" : "https://kokonutswap.finance/pools",
+    "Klaymore": "https://klaystake.house/",
+    "klaystation": "https://klaystation.io/staking",
+    "stakely": "https://stake.ly/klay",
+    "klexfinance": "https://app.klex.finance/",
+    "PangeaSwap": "https://app.pangeaswap.com/pool",
+    "hashquark": "https://klayportal.hashquark.io/",
+    "Claimswap": "https://app.claimswap.org/",
+    "PALA": "https://pala.io/dex"
+  }
 
   return (
     <>
@@ -69,8 +81,13 @@ function ListTable() {
                     </Iconbox>
                     <Explainbox>
                     <Protocol>
-                      
-                    {pool.protocol}
+                    {pool.protocol.split("-")[0] === "klaystation" ? 
+                      <Span onClick={()=>window.open(homeJson["klaystation"], "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {pool.protocol} </Span>       
+                      :
+                      <Span onClick={()=>window.open(homeJson[pool.protocol], "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {pool.protocol} </Span>       
+                    }
 
                     </Protocol>
                     <Token>
@@ -117,52 +134,17 @@ function ListTable() {
   );
 }
 
+const Span = styled.span`
+  cursor: pointer;
+  /* color: gray;
+  float: right; */
 
-const skeletonKeyframes = keyframes`
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-`;
-
-
-const ProductSkeleton = styled.div`
-  display: inline-block;
-  height: ${props => props.height || "20px"};
-  width: ${props => props.width || "50%"};
-  animation: ${skeletonKeyframes} 1300ms ease-in-out infinite;
-  background-color: #eee;
-  background-image: linear-gradient(
-    90deg,
-    #eee,
-    #f5f5f5,
-    #eee
-  );
-  background-size: 200px 100%;
-  background-repeat: no-repeat;
-  border-radius: 4px;
-  margin-top: ${props => props.marginTop || "0"}
-`;
-
-const Searchbox = styled.div`
-  width: 900px;
-  margin: 0 auto;
-  gap: 24px;
-  border: 1px solid #edeff1;
-  display: flex;
-  padding: 15px 24px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 1px 1px 1px gray;
-
-  @media screen and (max-width: 500px){
-  width: 360px;
-  box-shadow: 1px 1px 1px gray;
-  }
-
+  &:hover {
+    color: blue;
+    text-decoration: underline;
+  };
 `
+
 
 const Protocol = styled.div`
   padding-left: 15px;
@@ -187,90 +169,6 @@ const PoolinfoBox = styled.div`
   display : flex;
   flex-direction : row;
   align-items: center;
-`
-
-const Filterbox = styled.a`
-  color: black;
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .05rem;
-  /* padding: 0.5rem 1rem; */
-`
-
-const Selectionbutton = styled.a`
-  background-color: #0a1930;
-  border: 1px solid #fff;
-  border-radius: 999px;
-  color: #fff;
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .05rem;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  text-transform: capitalize;
-  transition: all .3s ease-in-out;
-  cursor: pointer;
-`
-
-const Unselectionbutton = styled.a`
-  /* background-color: #0a1930; */
-  border: 1px solid #fff;
-  border-radius: 999px;
-  color: black;
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .05rem;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  text-transform: capitalize;
-  transition: all .3s ease-in-out;
-  cursor: pointer;
-
-`
-
-const Topdash = styled.div`
-  width: 900px;
-  margin: 0 auto;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  @media screen and (max-width: 500px){
-    width: 360px;
-  }
-`
-
-const Leftcolumn = styled.div`
-  width:30%;
-
-  @media screen and (max-width: 500px){
-  width:200px;
-  /* padding: 0;
-  margin-bottom:10px;
-  margin-right: 0px; */
-
-  }
-`
-
-
-const Row = styled.div`
-  display:flex;
-  flex-direction:row;
-  width:100%;
-  justify-content:space-between;
-  @media screen and (max-width: 500px){
-    width:380px;
-    display:flex;
-    flex-direction:row;
-}`
-
-const Rightcolumn = styled.div`
-  /* width:15%; */
-  float:right;
-
-  @media screen and (max-width: 500px){
-    float:right;
-    padding-right:20px;
-
-  }
 `
 
 const Img = styled.img`
@@ -393,16 +291,6 @@ const Tdc = styled.td`
   vertical-align:middle;
 `;
 
-const Tdp = styled.td`
-  height:25px;
-  vertical-align:middle;
-  width: 300px;
-  padding-left: 2em;
-  @media screen and (max-width: 500px){
-    padding-left: 1em;
-    width: 250px;
-  }
-`
 
 const Td = styled.td`
   height:25px;
@@ -412,22 +300,6 @@ const Td = styled.td`
 const Tr = styled.tr`
   &:hover {
     background-color: #E8E8E8;
-  }
-`
-const Tdpd = styled.td`
-  &:hover {
-    text-decoration:underline;
-    color:#3366cc;
-  }
-  cursor: pointer;
-  height:25px;
-  vertical-align:middle;
-  width: 400px;
-  padding-left: 2em;
-  @media screen and (max-width: 500px){
-    padding-left: 10px;
-    font-size:13px;
-    width: 1000px;
   }
 `
 

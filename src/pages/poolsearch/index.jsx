@@ -1,17 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Link } from "react-router-dom";
-import icons from "../../assets/tokenIcons"
-import { AiFillTrophy, AiOutlineInfoCircle, AiOutlineProfile } from "react-icons/ai";
-import ReactTooltip from "react-tooltip"
-import Skeleton from "../../assets/styles/Skeleton.js";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { PoolContext } from "../../components/context/PoolContext"
-
+import { Button, Modal,Image, List } from 'semantic-ui-react'
 import Topmenu from "./Topmenu"
 import FilterContainer from "./FilterContainer"
 import ListTable from "./ListTable"
+import icons from "../../assets/tokenIcons"
+import { map } from 'lodash';
 
 function Poolpage() {
 
@@ -19,6 +16,8 @@ function Poolpage() {
   const [stable, setStable] = useState(false)
   const [klay, setKlay] = useState(false)
   const [isloading,setIsloading] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [escape, setEscape] = useState(true)
   
   const [backupPooldata, setBackupPooldata]= useState([])
   const [pooldata, setPooldata] = useState([{
@@ -102,14 +101,100 @@ function Poolpage() {
     }
   }
 
+  const connectedList = [
+    {
+      projectName : "Klayswap",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "Kokonutswap",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "klexfinance",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "PangeaSwap",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "KLAYportal",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "Claimswap",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "PALA",
+      category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "Klaymore",
+      category : "Staking",
+      poolNumber : 0
+    },
+    {
+      projectName : "Klaystation",
+      category : "Staking",
+      poolNumber : 0
+    },
+    {
+      projectName : "stakely",
+      category : "Staking",
+      poolNumber : 0
+    }
+  ]
 
   return (
     <>
         <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading}}> 
         <OverBox>
           <Wrappertitle>
-              <Title>Yield Explorer</Title>
+              <Title>Yield Explorer
+                <Button onClick={() => setModal(true)} size="mini" style={{marginLeft:"20px"}}>{connectedList.length} projects</Button>
+              </Title>
           </Wrappertitle>
+              <Modal
+              closeOnEscape={true}
+              closeOnDimmerClick={true}
+              open={modal}
+              size="mini"
+              onClose={() => setModal(false)}
+              onOpen={() => setModal(true)}
+            >
+          <Modal.Header>Connected Projects ({connectedList.length})</Modal.Header>
+          <Modal.Content>
+          <List verticalAlign='middle'>
+            {connectedList.map((element)=>(
+              <List.Item>
+                <List.Content floated='right'>
+                  <Button disabled>{element.category}</Button>
+                </List.Content>
+                <Image avatar src={icons[element.projectName]} />
+                <List.Content verticalAlign='middle'>
+                  <span style={{marginLeft:"10px"}}>{element.projectName}
+                </span></List.Content>
+              </List.Item>
+            ))
+            }
+          </List>
+
+          </Modal.Content>
+          <Modal.Actions>
+            <Button positive onClick={() => setModal(false)}>
+              Ok
+            </Button>
+          </Modal.Actions>
+        </Modal>
           <Topbox>
               <Leftcolumn>
                 <FilterMobile>

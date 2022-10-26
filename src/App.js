@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import 'semantic-ui-css/semantic.min.css'
 import GlobalStyles from './assets/styles/GlobalStyles';
 import ScrollToTop from 'util/ScrollTop';
 
@@ -19,6 +20,7 @@ import Overview from './pages/overview/Overview'
 import Detail from './pages/detail/Detail'
 import NftDetail from './pages/nftDetail/NftDetail'
 import Poolsearch from './pages/poolsearch'
+import StrategyPage from './pages/strategy'
 
 import Nftoverview from 'pages/nftOverview/Overview';
 import DefimanagerNew from 'components/pages/DefimanagerNew'
@@ -49,6 +51,7 @@ function App() {
         <Route exact path="/nftview/:id" element={<NftDetail />} />
         <Route exact path="/analytics" element={<Main />} />
         <Route exact path="/news" element={<Newspage />} />
+        <Route exact path="/Strategy" element={<StrategyPage />} />
       </Routes>
       {/* <Routes> */}
         {/* <Route path="/" element={<Footer />} /> */}
