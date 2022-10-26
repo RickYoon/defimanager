@@ -64,7 +64,8 @@ function ListTable() {
                         <Imgs src={icons["KLAYportal"]} alt="logo" height="18px" width="18px" style={{ marginLeft:"10px",  padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />                  
                           :
                           <Imgs src={icons[pool.protocol]} alt="logo" height="18px" width="18px" style={{ marginLeft:"10px",  padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                      }</Tdc>
+                      }
+                </Tdc>
                 <Th>
                   <PoolinfoBox>
                     <Iconbox>
@@ -281,6 +282,10 @@ const Th = styled.th`
   height:25px;
   vertical-align:middle;
   padding-left:5px;
+  @media screen and (max-width: 500px){
+    max-width: 150px;
+  }
+
 `;
 
 const Tdc = styled.td`
