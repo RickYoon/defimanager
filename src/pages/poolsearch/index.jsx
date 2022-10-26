@@ -18,6 +18,7 @@ function Poolpage() {
   const [isloading,setIsloading] = useState(false)
   const [modal, setModal] = useState(false)
   const [escape, setEscape] = useState(true)
+  const [aggtime, setAggtime] = useState("0000-00-00")
   
   const [backupPooldata, setBackupPooldata]= useState([])
   const [pooldata, setPooldata] = useState([{
@@ -46,13 +47,15 @@ function Poolpage() {
 
   const loadPools = async () => {
     setIsloading(true)
-    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/getPoolList_v1"
+    // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/getPoolList_v1"
     // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/queryPoolList"
+    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/poollist_v2"
 
     await axios.get(url).then(function (response) {
-      // console.log(response.data.body)
-      setPooldata(response.data.body)
-      setBackupPooldata(response.data.body)
+      // console.log(response)
+      setPooldata(response.data.body.data)
+      setBackupPooldata(response.data.body.data)
+      setAggtime(response.data.body.date)
     })
     setIsloading(false)
   }
@@ -161,8 +164,9 @@ function Poolpage() {
           <Wrappertitle>
               <Title>Yield Explorer
                 <Button onClick={() => setModal(true)} size="mini" style={{marginLeft:"20px"}}>{connectedList.length} projects</Button>
+                
               </Title>
-          </Wrappertitle>
+            </Wrappertitle>
               <Modal
               closeOnEscape={true}
               closeOnDimmerClick={true}
@@ -208,6 +212,7 @@ function Poolpage() {
                 <Topmenu />
                 <FilterContainer />                
               </FilterDesktop>
+              {/* <Button disabled size="mini" style={{marginTop:"20px"}}>aggregation time: {aggtime}</Button> */}
               </Rightcolumn>
           </Topbox>
         </OverBox>        
