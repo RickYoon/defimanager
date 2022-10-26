@@ -182,8 +182,14 @@ import sBWPM from "./sBWPM.svg"
 import BOMUL from "./BOMUL.png"
 import JUNS from "./JUNS.png"
 import fee from "./fee.png"
+import MOOI from "./MOOI.svg"
+import GXA from "./GXA.jpeg"
+import ZEMIT from "./ZEMIT.svg"
 
 const icons = {
+    ZEMIT,
+    MOOI,
+    GXA,
     fee,
     JUNS,
     BOMUL,

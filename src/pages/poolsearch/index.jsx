@@ -4,11 +4,10 @@ import axios from "axios";
 import styled from "styled-components";
 import { PoolContext } from "../../components/context/PoolContext"
 import { Button, Modal,Image, List } from 'semantic-ui-react'
-import Topmenu from "./Topmenu"
-import FilterContainer from "./FilterContainer"
 import ListTable from "./ListTable"
 import icons from "../../assets/tokenIcons"
-import { map } from 'lodash';
+import Filterbox from "./Filterbox"
+import RightBox from "./RightBox"
 
 function Poolpage() {
 
@@ -17,8 +16,13 @@ function Poolpage() {
   const [klay, setKlay] = useState(false)
   const [isloading,setIsloading] = useState(false)
   const [modal, setModal] = useState(false)
-  const [escape, setEscape] = useState(true)
   const [aggtime, setAggtime] = useState("0000-00-00")
+  const [filter, setFilter] = useState({
+    project : "",
+    token : "",
+    type: "",
+    order: "tvl"
+  })
   
   const [backupPooldata, setBackupPooldata]= useState([])
   const [pooldata, setPooldata] = useState([{
@@ -34,15 +38,94 @@ function Poolpage() {
 
   useEffect(() => {
     loadPools()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // useEffect(() => {
-  //     pooldata.sort((a,b) => {
-  //       if(a.tvl < b.tvl) return 1;
-  //       if(a.tvl === b.tvl) return 0;
-  //       if(a.tvl > b.tvl) return -1;
-  //     })
-  // }, [order])
+  useEffect(() => {
+    // loadPools()
+    console.log("filter changed")
+    let tempState = backupPooldata
+
+    if(filter.order === "apr"){
+      console.log("here")
+    // eslint-disable-next-line array-callback-return
+    tempState.sort(function(a,b){
+        if(a.apr < b.apr) return 1;
+        if(a.apr === b.apr) return 0;
+        if(a.apr > b.apr) return -1;
+      })
+
+      // setPooldata(tempaa)
+    } else {
+    // eslint-disable-next-line array-callback-return
+    tempState.sort(function(a,b){
+        if(a.tvl < b.tvl) return 1;
+        if(a.tvl === b.tvl) return 0;
+        if(a.tvl > b.tvl) return -1;
+      })
+    }
+
+    if(filter.project === ""){
+      tempState = tempState.filter(pool => pool )
+      setPooldata(tempState)
+    } else {
+      if(filter.project === "KLAYportal"){
+        tempState = tempState.filter(pool => pool.protocol === "hashquark" )
+      } else if (filter.project === "Klaystation") {
+        tempState = tempState.filter(pool => pool.protocol.split("-")[0] === "klaystation" )
+      } else {
+        tempState = tempState.filter(pool => pool.protocol === filter.project )
+      }
+      setPooldata(tempState)
+    }
+
+    if(filter.type === ""){
+      tempState = tempState.filter(pool => pool )
+      setPooldata(tempState)
+    } else if (filter.type === "stableOnly"){
+      tempState = tempState.filter(pool => pool.stableOnly === "yes" )
+      setPooldata(tempState)
+    } else if (filter.type === "klayOnly"){
+      tempState = tempState.filter(pool => pool.klayOnly === "yes" )
+      setPooldata(tempState)
+    }
+
+    if(filter.token === ""){
+      tempState = tempState.filter(pool => pool )
+      setPooldata(tempState)
+    } else if (filter.token === "KLAY"){
+      let tempArray = []
+      let zeroCoin = tempState.filter(pool => pool.poolinfo[0] === "KLAY" )
+      let oneCoin = tempState.filter(pool => pool.poolinfo[1] === "KLAY" )
+      zeroCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      oneCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      setPooldata(tempArray)
+    } else if (filter.token === "oUSDT"){
+      let tempArray = []
+      let zeroCoin = tempState.filter(pool => pool.poolinfo[0] === "oUSDT" )
+      let oneCoin = tempState.filter(pool => pool.poolinfo[1] === "oUSDT" )
+      let twoCoin = tempState.filter(pool => pool.poolinfo[2] === "oUSDT" )
+      let threeCoin = tempState.filter(pool => pool.poolinfo[3] === "oUSDT" )
+      zeroCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      oneCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      twoCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      threeCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      setPooldata(tempArray)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter])
 
 
   const loadPools = async () => {
@@ -56,12 +139,14 @@ function Poolpage() {
       setPooldata(response.data.body.data)
       setBackupPooldata(response.data.body.data)
       setAggtime(response.data.body.date)
+      console.log(aggtime)
     })
     setIsloading(false)
   }
 
   const tvlSorting = () => {
     setOrder("tvl")
+    // eslint-disable-next-line array-callback-return
     let tempState = pooldata.sort(function(a,b){
         if(a.tvl < b.tvl) return 1;
         if(a.tvl === b.tvl) return 0;
@@ -73,6 +158,7 @@ function Poolpage() {
 
   const aprSorting = () => {
     setOrder("apr")
+    // eslint-disable-next-line array-callback-return
     let tempState = pooldata.sort(function(a,b){
         if(a.apr < b.apr) return 1;
         if(a.apr === b.apr) return 0;
@@ -84,7 +170,7 @@ function Poolpage() {
 
   const stableSetter = () => {
     if(!stable){
-      let tempState = pooldata.filter(pool => pool.stableOnly === "yes" )
+      let tempState = pooldata.filter(pool => pool.protocol === "yes" )
       setPooldata(tempState)
       setStable(!stable)
     } else {
@@ -159,12 +245,12 @@ function Poolpage() {
 
   return (
     <>
-        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading}}> 
+        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading, filter, setFilter}}> 
         <OverBox>
           <Wrappertitle>
               <Title>Yield Explorer
-                <Button onClick={() => setModal(true)} size="mini" style={{marginLeft:"20px"}}>{connectedList.length} projects</Button>
-                
+                <Button onClick={() => setModal(true)} size="mini" style={{marginLeft:"20px"}}>{connectedList.length} projects
+                </Button>
               </Title>
             </Wrappertitle>
               <Modal
@@ -175,17 +261,17 @@ function Poolpage() {
               onClose={() => setModal(false)}
               onOpen={() => setModal(true)}
             >
-          <Modal.Header>Connected Projects ({connectedList.length})</Modal.Header>
+          <Modal.Header style={{fontSize:"17px"}}>Connected Projects ({connectedList.length})</Modal.Header>
           <Modal.Content>
           <List verticalAlign='middle'>
             {connectedList.map((element)=>(
               <List.Item>
                 <List.Content floated='right'>
-                  <Button disabled>{element.category}</Button>
+                  <Button disabled style={{fontSize:"13px"}}>{element.category}</Button>
                 </List.Content>
                 <Image avatar src={icons[element.projectName]} />
                 <List.Content verticalAlign='middle'>
-                  <span style={{marginLeft:"10px"}}>{element.projectName}
+                  <span style={{marginLeft:"10px", fontSize:"13px"}}>{element.projectName}
                 </span></List.Content>
               </List.Item>
             ))
@@ -201,18 +287,19 @@ function Poolpage() {
         </Modal>
           <Topbox>
               <Leftcolumn>
-                <FilterMobile>
+              <Filterbox/>
+                {/* <FilterMobile>
                   <Topmenu />
                   <FilterContainer />      
-                </FilterMobile>          
+                </FilterMobile>           */}
                   <ListTable />
               </Leftcolumn>
               <Rightcolumn>
-              <FilterDesktop>
+                <RightBox />
+              {/* <FilterDesktop>
                 <Topmenu />
                 <FilterContainer />                
-              </FilterDesktop>
-              {/* <Button disabled size="mini" style={{marginTop:"20px"}}>aggregation time: {aggtime}</Button> */}
+              </FilterDesktop> */}
               </Rightcolumn>
           </Topbox>
         </OverBox>        
@@ -221,19 +308,19 @@ function Poolpage() {
   );
 }
 
-const FilterMobile = styled.div`
-    display: none;
-  @media screen and (max-width: 950px){
-    display: block;
-    margin-bottom :15px;
-  }
-`
+// const FilterMobile = styled.div`
+//     display: none;
+//   @media screen and (max-width: 950px){
+//     display: block;
+//     margin-bottom :15px;
+//   }
+// `
 
-const FilterDesktop = styled.div`
-  @media screen and (max-width: 950px){
-    display: none;
-  }
-`
+// const FilterDesktop = styled.div`
+//   @media screen and (max-width: 950px){
+//     display: none;
+//   }
+// `
 
 
 
