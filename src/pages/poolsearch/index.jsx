@@ -189,8 +189,8 @@ function Poolpage() {
           </List>
 
           </Modal.Content>
-          <Modal.Actions>
-            <Button positive onClick={() => setModal(false)}>
+          <Modal.Actions> 
+            <Button color='black' onClick={() => setModal(false)}>
               Ok
             </Button>
           </Modal.Actions>
