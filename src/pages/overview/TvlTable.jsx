@@ -112,11 +112,13 @@ function TvlTable() {
             <Styled.Td width="50px" textAlign="right"></Styled.Td>
             <Styled.Td textAlign="right" onClick={handleOnedayOrder} style={{cursor: "pointer"}}>
                 {ovfilter.onedayOrder ? <CgArrowDown style={{verticalAlign:"bottom"}}/> : <></>}
-                1day
+                <DesktopFont>1day</DesktopFont>
+                <MobileFont>1D</MobileFont>
             </Styled.Td>
             <Styled.Td textAlign="right" onClick={handleSevendayOrder} style={{cursor: "pointer"}}>
                 {ovfilter.sevendayOrder ? <CgArrowDown style={{verticalAlign:"bottom"}}/> : <></>}
-                7days
+                <DesktopFont>7days</DesktopFont>
+                <MobileFont>7D</MobileFont>
             </Styled.Td>
             <Styled.Tdc textAlign="right">M/S</Styled.Tdc>
           </Styled.TrHead>
@@ -152,7 +154,7 @@ function TvlTable() {
                 <Styled.Tdpd className="head" style={{ width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
                     <Link to={`/project/${tvld.proj}`}>
                         <img src={icons[tvld.proj]} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                        <span style={{ padding: "7px", whiteSpace: "nowrap", paddingLeft:"10px" }}>{tvld.proj}</span>
+                        <span style={{ padding: "0px", whiteSpace: "nowrap", paddingLeft:"5px" }}>{tvld.proj}</span>
                     </Link>
                 </Styled.Tdpd>
                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.chain}</Styled.Tdc>
@@ -214,6 +216,19 @@ line-height: 40px;
     background-color: #E8E8E8;
     border-radius:10px;
     line-height: 40px;
+  }
+`
+
+const DesktopFont = styled.span`
+  @media screen and (max-width: 500px){
+    display: none;
+  }
+`
+
+const MobileFont = styled.span`
+  display: none;
+  @media screen and (max-width: 500px){
+    display: inline;
   }
 `
 
