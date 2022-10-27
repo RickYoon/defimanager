@@ -8,7 +8,7 @@ import ScrollToTop from 'util/ScrollTop';
 // import Poolpage from 'components/pages/Poolpage';
 import Topnav from './layout/Topnav';
 import TopnavNftDetail from 'layout/TopnavNftDetail';
-import TopnavNFT from 'layout/TopnavNFT';
+// import TopnavNFT from 'layout/TopnavNFT';
 
 import Projectfooter from "./layout/Projectfooter"
 
