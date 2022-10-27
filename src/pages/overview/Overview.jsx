@@ -10,10 +10,18 @@ import { getTvlData,getTotalChartData } from 'apis/tvl';
 import {getEventData} from 'apis/event';
 import { Leftcolumn } from './TopNumbercard.style';
 import * as Styled from "./Overview.style"
+import { flowRight } from 'lodash';
 
 function Overview() {
 
     const [isloading, setIsloading] = useState(false)
+
+    const [ovfilter, setOvfilter] = useState({
+      category : "",
+      tvlOrder: true,
+      onedayOrder: false,
+      sevendayOrder: false
+    })
 
     const [eventlist, setEventlist] = useState([
       {
@@ -83,13 +91,93 @@ function Overview() {
             tvltwo: 206008719,
             MarketShare: 0
         }]
-      })    
+      })   
+      
+    const [backupTvldata, setBackupTvldata]= useState({
+      refDate: "2022-00-00",
+      total: {
+        tvl: 0,
+        diff: 0
+      },
+      data: [{
+          cat: "DEX",
+          chain: "Klaytn",
+          diff: -4,
+          difftwo: 0.9,
+          proj: "Klayswap",
+          rankdiff: 0,
+          ranktwo: 1,
+          rankyes: 1,
+          site: "https://klayswap.com/",
+          tvl: 207856632,
+          tvltwo: 206008719,
+          MarketShare: 0
+      }]
+    })
 
     useEffect(() => {
         loadtvl()
         loadEvent()
         // loadchart()
     }, [])
+
+
+    useEffect(() => {
+    //  console.log("ov filter changed", ovfilter.category)
+    //  console.log("backupTvldata", backupTvldata)
+     let backdata = backupTvldata.data
+    //  let tempState = []
+     if(ovfilter.tvlOrder){
+        backdata.sort(function (a, b) {
+          return a.tvl < b.tvl ? 1 : a.tvl > b.tvl ? -1 : 0;
+        })
+     } else if (ovfilter.onedayOrder){
+        backdata.sort(function (a, b) {
+          return a.difftwo < b.difftwo ? 1 : a.difftwo > b.difftwo ? -1 : 0;
+        })
+     } else if (ovfilter.sevendayOrder){
+      backdata.sort(function (a, b) {
+        return a.diff < b.diff ? 1 : a.diff > b.difftwo ? -1 : 0;
+      })
+    }
+
+
+
+     if(ovfilter.category === ""){
+      setTvldata({
+        ...tvldata, 
+        data : backdata
+      })
+     } else if (ovfilter.category === "Dexes") {
+      let tempState = backdata.filter(element =>  element.cat === "Dexes" )
+      console.log(tempState)
+      setTvldata({
+        ...tvldata, 
+        data : tempState
+      })
+     } else if (ovfilter.category === "Lending") {
+      let tempState = backdata.filter(element =>  element.cat === "Lending" )
+      console.log(tempState)
+      setTvldata({
+        ...tvldata, 
+        data : tempState
+      })
+     } else if (ovfilter.category === "Staking") {
+      let tempState = backdata.filter(element =>  element.cat === "Staking" )
+      console.log(tempState)
+      setTvldata({
+        ...tvldata, 
+        data : tempState
+      })
+     } else if (ovfilter.category === "Optimizer") {
+      let tempState = backdata.filter(element =>  element.cat === "Optimizer" )
+      console.log(tempState)
+      setTvldata({
+        ...tvldata, 
+        data : tempState
+      })
+     }
+  }, [ovfilter])
 
     const loadEvent = async () => {
       await getEventData().then(function (response){
@@ -213,6 +301,7 @@ function Overview() {
             })
       
             setTvldata(responseObj)
+            setBackupTvldata(responseObj)
             // setIsloading(false)
           })
 
@@ -223,7 +312,7 @@ function Overview() {
 
   return (
     <>
-        <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist}}>
+        <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist,ovfilter, setOvfilter}}>
           <Styled.OverBox>
             <Styled.Wrappertitle>
               <Styled.Title>Klaytn DeFi Overview</Styled.Title>

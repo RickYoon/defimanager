@@ -11,10 +11,13 @@ export const Tdpd = Styled.td`
   vertical-align:middle;
   width: 400px;
   padding-left: 2em;
+  font-size: 15px;
+
   @media screen and (max-width: 500px){
     padding-left: 10px;
     font-size:13px;
     width: 1000px;
+    font-size: 12px;
   }
 `
 
@@ -45,12 +48,18 @@ export const Td = Styled.td`
   vertical-align:middle;
   width: ${props => props.width || "200px"};
   text-align:  ${props => props.textAlign || ""};
+  font-size: 14px;
+  @media screen and (max-width: 500px){
+    font-size: 12px;
+  }
 `
 
 export const Tdc = Styled.td`
   @media screen and (max-width: 500px){
     display:none;
+    
   }
+  font-size: 14px;
   vertical-align:middle;
   width: ${props => props.width || "200px"};
   text-align:  ${props => props.textAlign || ""};
@@ -60,10 +69,13 @@ export const Tdp = Styled.td`
   vertical-align:middle;
   width: 400px;
   padding-left: 2em;
+  font-size: 14px;
   
   @media screen and (max-width: 500px){
     padding-left: 1em;
     width: 250px;
+    font-size: 12px;
+
   }
 `
 

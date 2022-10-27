@@ -245,7 +245,7 @@ function Poolpage() {
 
   return (
     <>
-        <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading, filter, setFilter}}> 
+      <PoolContext.Provider value={{order,tvlSorting,aprSorting,stable, stableSetter,klay, klaySetter,pooldata,isloading, filter, setFilter}}> 
         <OverBox>
           <Wrappertitle>
               <Title>Yield Explorer
@@ -303,7 +303,7 @@ function Poolpage() {
               </Rightcolumn>
           </Topbox>
         </OverBox>        
-        </PoolContext.Provider>
+      </PoolContext.Provider>
     </>
   );
 }

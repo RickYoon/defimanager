@@ -1,18 +1,90 @@
 import * as Styled from "./TvlTable.style"
 import { OverviewContext } from 'components/context/OverviewContext';
-import React, {useContext} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import icons from "../../assets/tokenIcons"
 import { Link } from "react-router-dom";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactTooltip from "react-tooltip"
 import styled from "styled-components";
-
+import { Dropdown } from 'semantic-ui-react'
+import styles from "./TvlTable.module.css";
+import {CgArrowDown} from "react-icons/cg"
 
 function TvlTable() {
 
   const skeletonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-  const { tvldata, isloading } = useContext(OverviewContext);
+  const { tvldata, isloading, ovfilter, setOvfilter } = useContext(OverviewContext);
 
+  const categoryOption = [
+    {
+      key: 0,
+      text: 'Dexes',
+      value: 'Dexes',
+      style: { fontSize:'13px'}
+    },
+    {
+        key: 1,
+        text: 'Lending',
+        value: 'Lending',
+        style: { fontSize:'13px'}
+    },
+    {
+        key: 2,
+        text: 'Staking',
+        value: 'Staking',
+        style: { fontSize:'13px'}
+    },
+    {
+        key: 3,
+        text: 'Optimizer',
+        value: 'Optimizer',
+        style: { fontSize:'13px'}
+    }
+  ]
+
+  
+
+  const handleCatOnChange = (e, data) => {
+    // console.log(data.value);
+    // setOvfilter(data.value)
+    setOvfilter({
+        ...ovfilter,
+        category : data.value
+    })
+  }
+  const handleTvlOrder = (e, data) => {
+    // console.log(data.value);
+    // setOvfilter(data.value)
+    setOvfilter({
+        ...ovfilter,
+        tvlOrder : true,
+        onedayOrder: false,
+        sevendayOrder: false
+    })
+  }
+
+  const handleOnedayOrder = (e, data) => {
+    // console.log(data.value);
+    // setOvfilter(data.value)
+    setOvfilter({
+        ...ovfilter,
+        tvlOrder : false,
+        onedayOrder: true,
+        sevendayOrder: false
+    })
+  }
+
+  const handleSevendayOrder = (e, data) => {
+    // console.log(data.value);
+    // setOvfilter(data.value)
+    setOvfilter({
+        ...ovfilter,
+        tvlOrder : false,
+        onedayOrder: false,
+        sevendayOrder: true
+    })
+  }
+  
   return (
     <Styled.TodoTemplateBlock>
         <div className="tablecss" style={{ margin: "20px" }}>
@@ -22,11 +94,30 @@ function TvlTable() {
             <Styled.Th>#</Styled.Th>
             <Styled.Tdp>Project</Styled.Tdp>
             <Styled.Tdc width="200px">Chain</Styled.Tdc>
-            <Styled.Tdc width="150px">Category</Styled.Tdc>
-            <Styled.Td textAlign="right">TVL($)</Styled.Td>
+            <Styled.Tdc width="150px">
+                <span className={styles.name_box}>
+                    <Dropdown 
+                        onChange={handleCatOnChange}
+                        placeholder={<div style={{color:"black"}}>Category</div>} 
+                        clearable
+                        options={categoryOption}
+                        style={{fontSize:"13px", color:"black"}}
+                    />
+                </span>
+            </Styled.Tdc>
+            <Styled.Td textAlign="right" onClick={handleTvlOrder} style={{cursor: "pointer"}}>
+                {ovfilter.tvlOrder ? <CgArrowDown style={{verticalAlign:"bottom"}}/> : <></>}
+                TVL($)
+            </Styled.Td>
             <Styled.Td width="50px" textAlign="right"></Styled.Td>
-            <Styled.Td textAlign="right">1day</Styled.Td>
-            <Styled.Td textAlign="right">7days</Styled.Td>
+            <Styled.Td textAlign="right" onClick={handleOnedayOrder} style={{cursor: "pointer"}}>
+                {ovfilter.onedayOrder ? <CgArrowDown style={{verticalAlign:"bottom"}}/> : <></>}
+                1day
+            </Styled.Td>
+            <Styled.Td textAlign="right" onClick={handleSevendayOrder} style={{cursor: "pointer"}}>
+                {ovfilter.sevendayOrder ? <CgArrowDown style={{verticalAlign:"bottom"}}/> : <></>}
+                7days
+            </Styled.Td>
             <Styled.Tdc textAlign="right">M/S</Styled.Tdc>
           </Styled.TrHead>
         </thead>
