@@ -1,6 +1,7 @@
-// import React, {useContext} from "react";
-// import { OverviewContext } from 'components/context/OverviewContext';
-// import TvlGainerCard from "./component/TvlGainerCard"
+import React, {useContext} from "react";
+import { PoolContext } from "components/context/PoolContext"
+import TvlGainerCard from "./component/TvlGainerCard"
+import TvlLoserCard from "./component/TvlLoserCard"
 // import TokenGainerCard from "./component/TokenGainerCard";
 // import EventCard from "./component/EventCard"
 // import TwitterCard from "./component/TwitterCard"
@@ -9,24 +10,16 @@
 
 function RightBox() {
 
-//   const { isloading,toptvl,toptoken,eventlist } = useContext(OverviewContext);
+  const { filter, pooldata, isloading } = useContext(PoolContext);
 
   return (
     <>
-      {/* <TvlGainerCard data={toptvl} isLoading={isloading}/>
-      <div style={{marginTop:"15px"}}></div>
+      {/* <TvlGainerCard data={toptvl} isLoading={isloading}/> */}
+      {/* <TvlGainerCard data={pooldata} isLoading={isloading} filter={filter}/> */}
+      {/* <div style={{marginTop:"15px"}}></div> */}
 
-      <TokenGainerCard data={toptoken} isLoading={isloading}/>
-      <div style={{marginTop:"15px"}}></div>
+      {/* <TvlLoserCard data={pooldata} isLoading={isloading} filter={filter}/> */}
 
-      <EventCard data={eventlist} isLoading={isloading}/>
-      <div style={{marginTop:"15px"}}></div>
-
-      <TwitterCard isLoading={isloading}/>
-      <div style={{marginTop:"15px"}}></div>
-
-      <SubmitEvent />
-      <div style={{marginTop:"15px"}}></div> */}
 
       {/* <EventBanner /> */}
       

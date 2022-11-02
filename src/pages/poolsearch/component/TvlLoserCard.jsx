@@ -3,9 +3,23 @@ import * as Styled from "./TvlGainerCard.style"
 import icons from "../../../assets/tokenIcons"
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {
+  Button,
+  Divider,
+  Dropdown,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Label,
+  Menu,
+  Message,
+  Segment,
+  Table,
+} from 'semantic-ui-react'
 
 
-function TvlGainerCard(props) {
+function TvlLoserCard(props) {
 
   console.log("props",props.data)
   // console.log("props",props.isLoading)
@@ -49,12 +63,12 @@ function TvlGainerCard(props) {
     if(props.data.length > 0){
       
       props.data.sort(function(a,b){
-        if((a.tvlDiff/a.tvl) < (b.tvlDiff/b.tvl)) return 1;
+        if((a.tvlDiff/a.tvl) > (b.tvlDiff/b.tvl)) return 1;
         if((a.tvlDiff/a.tvl) === (b.tvlDiff/b.tvl)) return 0;
-        if((a.tvlDiff/a.tvl) > (b.tvlDiff/b.tvl)) return -1;
+        if((a.tvlDiff/a.tvl) < (b.tvlDiff/b.tvl)) return -1;
       })
   
-      for(let i=0;i<5;i++){
+      for(let i=0;i<3;i++){
         if(props.data[i]!==undefined){
           TempArray.push(props.data[i])
         }
@@ -86,7 +100,7 @@ function TvlGainerCard(props) {
     <>
       <Styled.Topdash>
           <Styled.UpperColumn>
-              Top TVL Gainer Pools
+              Top TVL Loser Pools
               <Styled.Righttext> 1day - TVL / APR </Styled.Righttext>
           </Styled.UpperColumn>
           <Styled.LowerColumn style={{marginTop:"10px"}}>
@@ -104,7 +118,6 @@ function TvlGainerCard(props) {
                     )          
               :              
               toppools.map((pool,index) => 
-              <>
               <Styled.ProjectBox style={{height: "40px"}}>
                   <Td width="10%" style={{ width: "20px", textAlign: "center", fontSize: "13px" }}>{index+1}</Td>
                   <Tr>
@@ -144,85 +157,27 @@ function TvlGainerCard(props) {
                     </Explainbox>
                   </PoolinfoBox>
                   </Tr>
-                  {/* <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
-                  {pool.tvlDiff > 1000000000 ?
+                  <Td width="300px" style={{fontSize:"13px", color:"blue", textAlign: "right"}}>
+                  {Math.abs(pool.tvlDiff) > 1000000000 ?
                         <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                        pool.tvlDiff > 1000000 ?
+                        Math.abs(pool.tvlDiff) > 1000000 ?
                             <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                            pool.tvlDiff > 1000 ?
+                            Math.abs(pool.tvlDiff) > 1000 ?
                                     <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
                                     <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                    } 
+                    }<br/>
                         {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
-                        <br />
-                        {pool.tvlDiff > 1000000000 ?
-                        <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                        pool.tvlDiff > 1000000 ?
-                            <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                            pool.tvlDiff > 1000 ?
-                                    <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
-                                    <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                    } 
-                        {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
-
-                  </Td> */}
+                  </Td>
                   {/* <Td width="300px" style={{fontSize:"13px", color:"black", textAlign: "right"}}>
                         {(pool.apr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} %<br/>
                         {((pool.aprDiff)/(pool.tvl)).toFixed(1)} %
                   </Td> */}
               </Styled.ProjectBox>
-                            <Styled.ProjectBox style={{height: "20px"}}>
-                            {/* <Td width="10%" style={{ width: "20px", textAlign: "center", fontSize: "13px" }}>{index+1}</Td> */}
-                            <Tr style={{marginLeft:"40px"}}>
-                            TVL 
-                            </Tr>
-                            <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
-                            {pool.tvlDiff > 1000000000 ?
-                                  <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                                  pool.tvlDiff > 1000000 ?
-                                      <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                                      pool.tvlDiff > 1000 ?
-                                              <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
-                                              <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                              } 
-                                  {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
-                                  <br />
-          
-                            </Td>
-                            {/* <Td width="300px" style={{fontSize:"13px", color:"black", textAlign: "right"}}>
-                                  {(pool.apr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} %<br/>
-                                  {((pool.aprDiff)/(pool.tvl)).toFixed(1)} %
-                            </Td> */}
-                        </Styled.ProjectBox>
-                        <Styled.ProjectBox style={{height: "20px"}}>
-                            {/* <Td width="10%" style={{ width: "20px", textAlign: "center", fontSize: "13px" }}>{index+1}</Td> */}
-                            <Tr style={{marginLeft:"40px"}}>
-                            APR 
-                            </Tr>
-                            <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
-                            {pool.tvlDiff > 1000000000 ?
-                                  <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                                  pool.tvlDiff > 1000000 ?
-                                      <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                                      pool.tvlDiff > 1000 ?
-                                              <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
-                                              <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                              } 
-                                  {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
-                                  <br />
-          
-                            </Td>
-                            {/* <Td width="300px" style={{fontSize:"13px", color:"black", textAlign: "right"}}>
-                                  {(pool.apr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} %<br/>
-                                  {((pool.aprDiff)/(pool.tvl)).toFixed(1)} %
-                            </Td> */}
-                        </Styled.ProjectBox>
-                        
-                        </>
               )
               }
           </Styled.LowerColumn>
       </Styled.Topdash>
+
     </>
   );
 }
@@ -311,8 +266,7 @@ const PoolinfoBox = styled.div`
   display : flex;
   flex-direction : row;
   align-items: center;
-  width: 80%;
-  margin-left: 20px;
+  width: 120px;
 `
 
 const Img = styled.img`
@@ -357,7 +311,7 @@ const Span = styled.span`
   };
 `
 
-export default TvlGainerCard;
+export default TvlLoserCard;
   
 
 // props.data.map((toptvlElement,index) => 

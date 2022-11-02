@@ -55,7 +55,7 @@ function ListTable() {
             </tr>))
             :
             pooldata.map((pool, index) => (
-            <Tr style={{ height: "50px", borderBottom: "0.06em solid #D4D4D4 " }}>
+            <Tr style={{ height: "60px", borderBottom: "0.06em solid #D4D4D4 " }}>
                 <Th className="head" style={{ width: "30px", textAlign: "center", fontSize: "13px" }}>{index+1}</Th>
                 <Tdc>                    
                   {pool.protocol.split("-")[0] === "klaystation" ?
@@ -122,8 +122,25 @@ function ListTable() {
                     <></>
                   }
                 </Tdc>
-                <Td className="content" style={{ width: "20px", fontSize:"13px",textAlign: "right"}}>{pool.tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Td>
-                <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{Number(pool.apr).toFixed(1)}</Td>
+                <Td className="content" style={{ width: "20px", fontSize:"14px",textAlign: "right"}}>
+                  {pool.tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} <br />
+                  {pool.tvlDiff > 0 ? 
+                    <span style={{color:"red", fontSize:"12px"}}>+{pool.tvlDiff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br/>{(100 * ((pool.tvlDiff) / pool.tvlyes)).toFixed(1)}%</span>
+                    : pool.tvlDiff < 0 ?
+                      <span style={{color:"blue", fontSize:"12px"}}>{pool.tvlDiff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br/>{(100 * ((pool.tvlDiff) / pool.tvlyes)).toFixed(1)}%</span>
+                      :
+                      <><span style={{color:"blue", fontSize:"12px"}}>-<br/>-%</span></>
+                    }
+                </Td>
+                <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{Number(pool.apr).toFixed(1)} <br />
+                  {pool.aprDiff > 0 ? 
+                    <span style={{color:"red", fontSize:"12px"}}>+{(pool.aprDiff).toFixed(1)}</span>
+                    : pool.aprDiff < 0 ?
+                      <span style={{color:"blue", fontSize:"12px"}}>{(pool.aprDiff).toFixed(1)}</span>
+                      :
+                      <></>
+                    }
+                </Td> 
               </Tr>
               ))
               }           
