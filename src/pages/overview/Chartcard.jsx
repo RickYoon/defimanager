@@ -33,16 +33,16 @@ function Chartcard() {
             setStartdate(totalchart[0].date)
             setEnddate(totalchart[totalchart.length-1].date)
         } else if (range ===0){
-            setData(totalchart.slice(totalchart.length-7,totalchart.length))
-            setStartdate(totalchart[totalchart.length-7].date)
-            setEnddate(totalchart[totalchart.length-1].date)
-        } else if (range ===1){
             setData(totalchart.slice(totalchart.length-30,totalchart.length))
             setStartdate(totalchart[totalchart.length-30].date)
             setEnddate(totalchart[totalchart.length-1].date)
-        }else if (range ===2){
+        } else if (range ===1){
             setData(totalchart.slice(totalchart.length-90,totalchart.length))
             setStartdate(totalchart[totalchart.length-90].date)
+            setEnddate(totalchart[totalchart.length-1].date)
+        }else if (range ===2){
+            setData(totalchart.slice(totalchart.length-180,totalchart.length))
+            setStartdate(totalchart[totalchart.length-180].date)
             setEnddate(totalchart[totalchart.length-1].date)
         }
     }    
@@ -120,37 +120,37 @@ function Chartrange (props) {
         <Styled.RangeControlBox>
             {props.selection === 0 ?
                 <Styled.Chartbutton primary={true}>
-                    <span>7D</span>
+                    <span>1M</span>
                 </Styled.Chartbutton> :
                 <Styled.Chartbutton primary={false} onClick={() => props.ranger(0)}>
-                    <span>7D</span>
+                    <span>1M</span>
                 </Styled.Chartbutton>
             }
 
             {props.selection === 1 ?
                 <Styled.Chartbutton primary={true}>
-                    <span>30D</span>
+                    <span>3M</span>
                 </Styled.Chartbutton> :
                 <Styled.Chartbutton primary={false} onClick={() => props.ranger(1)}>
-                    <span>30D</span>
+                    <span>3M</span>
                 </Styled.Chartbutton>
             }
 
             {props.selection === 2 ?
                 <Styled.Chartbutton primary={true}>
-                    <span>90D</span>
+                    <span>6M</span>
                 </Styled.Chartbutton> :
                 <Styled.Chartbutton primary={false} onClick={() => props.ranger(2)}>
-                    <span>90D</span>
+                    <span>6M</span>
                 </Styled.Chartbutton>
             }
 
             {props.selection === 3 ?
                 <Styled.Chartbutton primary={true}>
-                    <span>180D</span>
+                    <span>9M</span>
                 </Styled.Chartbutton> :
                 <Styled.Chartbutton primary={false} onClick={() => props.ranger(3)}>
-                    <span>180D</span>
+                    <span>9M</span>
                 </Styled.Chartbutton>
             }
             </Styled.RangeControlBox>
