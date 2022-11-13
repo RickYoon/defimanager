@@ -14,7 +14,7 @@ import {
 function Chartcard() {
 
     const { totalchart,isloading } = useContext(OverviewContext);
-    const [range, setRange] = useState(3);
+    const [range, setRange] = useState(2);
     const [data, setData] = useState([])
     const [startdate, setStartdate] = useState("")
     const [enddate, setEnddate] = useState("")
@@ -41,9 +41,15 @@ function Chartcard() {
             setStartdate(totalchart[totalchart.length-90].date)
             setEnddate(totalchart[totalchart.length-1].date)
         }else if (range ===2){
-            setData(totalchart.slice(totalchart.length-180,totalchart.length))
-            setStartdate(totalchart[totalchart.length-180].date)
-            setEnddate(totalchart[totalchart.length-1].date)
+            if(totalchart.length > 100){
+                setData(totalchart.slice(totalchart.length-180,totalchart.length))
+                setStartdate(totalchart[totalchart.length-180].date)
+                setEnddate(totalchart[totalchart.length-1].date)
+            } else {
+                setData(totalchart)
+                setStartdate(totalchart[0].date)
+                setEnddate(totalchart[totalchart.length-1].date)
+            }
         }
     }    
 
