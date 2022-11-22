@@ -133,18 +133,11 @@ function TvlGainerCard(props) {
 
                     </Protocol>
                     <Token>
-                      {pool.poolinfo.map((token,index)=>{
-                        if (index + 1 === pool.poolinfo.length) {
-                          return token
-                        } else {
-                          return token  + " + " 
-                        }
-                      })}
                     </Token>
                     </Explainbox>
                   </PoolinfoBox>
                   </Tr>
-                  {/* <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
+                  <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
                   {pool.tvlDiff > 1000000000 ?
                         <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
                         pool.tvlDiff > 1000000 ?
@@ -153,70 +146,16 @@ function TvlGainerCard(props) {
                                     <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
                                     <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
                     } 
-                        {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
                         <br />
-                        {pool.tvlDiff > 1000000000 ?
-                        <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                        pool.tvlDiff > 1000000 ?
-                            <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                            pool.tvlDiff > 1000 ?
-                                    <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
-                                    <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                    } 
                         {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
 
-                  </Td> */}
+                  </Td>
                   {/* <Td width="300px" style={{fontSize:"13px", color:"black", textAlign: "right"}}>
                         {(pool.apr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} %<br/>
                         {((pool.aprDiff)/(pool.tvl)).toFixed(1)} %
                   </Td> */}
               </Styled.ProjectBox>
-                            <Styled.ProjectBox style={{height: "20px"}}>
-                            {/* <Td width="10%" style={{ width: "20px", textAlign: "center", fontSize: "13px" }}>{index+1}</Td> */}
-                            <Tr style={{marginLeft:"40px"}}>
-                            TVL 
-                            </Tr>
-                            <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
-                            {pool.tvlDiff > 1000000000 ?
-                                  <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                                  pool.tvlDiff > 1000000 ?
-                                      <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                                      pool.tvlDiff > 1000 ?
-                                              <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
-                                              <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                              } 
-                                  {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
-                                  <br />
-          
-                            </Td>
-                            {/* <Td width="300px" style={{fontSize:"13px", color:"black", textAlign: "right"}}>
-                                  {(pool.apr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} %<br/>
-                                  {((pool.aprDiff)/(pool.tvl)).toFixed(1)} %
-                            </Td> */}
-                        </Styled.ProjectBox>
-                        <Styled.ProjectBox style={{height: "20px"}}>
-                            {/* <Td width="10%" style={{ width: "20px", textAlign: "center", fontSize: "13px" }}>{index+1}</Td> */}
-                            <Tr style={{marginLeft:"40px"}}>
-                            APR 
-                            </Tr>
-                            <Td width="300px" style={{fontSize:"13px", color:"red", textAlign: "right"}}>
-                            {pool.tvlDiff > 1000000000 ?
-                                  <span> $ {Number(pool.tvlDiff / 1000000000).toFixed(1)}B </span> :
-                                  pool.tvlDiff > 1000000 ?
-                                      <span> $ {Number(pool.tvlDiff / 1000000).toFixed(1)}M </span> :
-                                      pool.tvlDiff > 1000 ?
-                                              <span> $ {Number(pool.tvlDiff / 1000).toFixed(0)}K </span> :
-                                              <span> $ {Number(pool.tvlDiff).toFixed(0)}</span>
-                              } 
-                                  {(100*(pool.tvlDiff)/(pool.tvl)).toFixed(1)} %
-                                  <br />
-          
-                            </Td>
-                            {/* <Td width="300px" style={{fontSize:"13px", color:"black", textAlign: "right"}}>
-                                  {(pool.apr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} %<br/>
-                                  {((pool.aprDiff)/(pool.tvl)).toFixed(1)} %
-                            </Td> */}
-                        </Styled.ProjectBox>
+
                         
                         </>
               )

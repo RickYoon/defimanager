@@ -45,7 +45,7 @@ function InfoBox() {
                         </Td>
                         <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                           {detailinfo.proj.tokensymbolOne} 
-                          <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressOne}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                          <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddressOne}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                           {"   "}klaytnscope <ImArrowUpRight2 /></Span>
                         </Tdlink>
                       </Tr>
@@ -71,7 +71,7 @@ function InfoBox() {
                     </Td>
                     <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                       {detailinfo.proj.tokensymbol} 
-                      <Span onClick={()=>window.open(`https://polygonscan.com/token/${detailinfo.proj.tokenContractAddress}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Span onClick={()=>window.open(`https://polygonscan.com/token/${detailinfo.proj.tokenContractAddress}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {"   "}polygonscan <ImArrowUpRight2 /></Span>
                     </Tdlink>
                   </Tr>
@@ -96,7 +96,7 @@ function InfoBox() {
                     </Td>
                     <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                       {detailinfo.proj.tokensymbol} 
-                      <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddress}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Span onClick={()=>window.open(`https://scope.klaytn.com/account/${detailinfo.proj.tokenContractAddress}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {"   "}klaytnscope <ImArrowUpRight2 /></Span>
                     </Tdlink>
                   </Tr>
@@ -120,7 +120,7 @@ function InfoBox() {
                     <Td width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
                        {detailinfo.proj.audit}
                        {detailinfo.proj.audit === "Yes" ? 
-                       <Span onClick={()=>window.open(`${detailinfo.proj.auditDetail}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                       <Span onClick={()=>window.open(`${detailinfo.proj.auditDetail}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                         {"   "}report <ImArrowUpRight2 /></Span>
                         :
                         <></>
@@ -145,7 +145,7 @@ function InfoBox() {
                     </Td>
                     <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <AiFillHome style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
-                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://${detailinfo.proj.homeUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://${detailinfo.proj.homeUrl}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {detailinfo.proj.homeUrl}</Links>  
                     </Td>
                   </Tr>
@@ -157,12 +157,12 @@ function InfoBox() {
                     {detailinfo.proj.docsUrl === "long" ?
                       <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                         <FaFileAlt style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
-                        <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`${detailinfo.proj.docsUrlReal}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`${detailinfo.proj.docsUrlReal}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                         documents</Links>
                       </Td> :
                       <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                         <FaFileAlt style={{height:"16px",verticalAlign:"top",cursor: "pointer"}}/> 
-                        <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://${detailinfo.proj.docsUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                        <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://${detailinfo.proj.docsUrl}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                         {detailinfo.proj.docsUrl}</Links>
                       </Td>
                     }
@@ -177,7 +177,7 @@ function InfoBox() {
                   </Td>
                   <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                     <FaTwitter style={{height:"16px",verticalAlign:"top"}}/> 
-                    <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://twitter.com/${detailinfo.proj.twitterUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                    <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://twitter.com/${detailinfo.proj.twitterUrl}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                     {detailinfo.proj.twitterUrl}</Links>
                   </Td>
                 </Tr>
@@ -192,7 +192,7 @@ function InfoBox() {
                     </Td>
                     <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <FaMedium style={{height:"16px",verticalAlign:"top"}}/> 
-                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://medium.com/${detailinfo.proj.mediumUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://medium.com/${detailinfo.proj.mediumUrl}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {detailinfo.proj.mediumUrl}</Links>
                     </Td>
                   </Tr>
@@ -204,7 +204,7 @@ function InfoBox() {
                     </Td>
                     <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <FaTelegramPlane style={{height:"20px",verticalAlign:"top"}}/>
-                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://t.me/${detailinfo.proj.telegramUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://t.me/${detailinfo.proj.telegramUrl}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {detailinfo.proj.telegramUrl}</Links>
                     </Td>
                   </Tr>
@@ -222,7 +222,7 @@ function InfoBox() {
                     :
                     <Td width="200px" style={{fontSize:"13px", color:"#316395" }}>
                       <SiDiscord style={{height:"20px",verticalAlign:"top"}}/>
-                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://discord.com/invite/${detailinfo.proj.discordUrl}`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Links style={{marginLeft:"5px"}} onClick={()=>window.open(`https://discord.com/invite/${detailinfo.proj.discordUrl}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       discord.gg</Links>
                     </Td>
                     }

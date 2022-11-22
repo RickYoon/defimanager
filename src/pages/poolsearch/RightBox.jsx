@@ -15,10 +15,10 @@ function RightBox() {
   return (
     <>
       {/* <TvlGainerCard data={toptvl} isLoading={isloading}/> */}
-      {/* <TvlGainerCard data={pooldata} isLoading={isloading} filter={filter}/> */}
-      {/* <div style={{marginTop:"15px"}}></div> */}
+      <TvlGainerCard data={pooldata} isLoading={isloading} filter={filter}/>
+      <div style={{marginTop:"15px"}}></div>
 
-      {/* <TvlLoserCard data={pooldata} isLoading={isloading} filter={filter}/> */}
+      <TvlLoserCard data={pooldata} isLoading={isloading} filter={filter}/>
 
 
       {/* <EventBanner /> */}

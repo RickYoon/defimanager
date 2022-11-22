@@ -68,7 +68,7 @@ function TvlLoserCard(props) {
         if((a.tvlDiff/a.tvl) < (b.tvlDiff/b.tvl)) return -1;
       })
   
-      for(let i=0;i<3;i++){
+      for(let i=0;i<5;i++){
         if(props.data[i]!==undefined){
           TempArray.push(props.data[i])
         }
@@ -146,13 +146,7 @@ function TvlLoserCard(props) {
 
                     </Protocol>
                     <Token>
-                      {pool.poolinfo.map((token,index)=>{
-                        if (index + 1 === pool.poolinfo.length) {
-                          return token
-                        } else {
-                          return token  + " + " 
-                        }
-                      })}
+
                     </Token>
                     </Explainbox>
                   </PoolinfoBox>

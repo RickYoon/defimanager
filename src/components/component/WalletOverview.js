@@ -5,7 +5,6 @@ import klaytnLogo from "../../assets/uiux/klaytnLogo.png"
 import icons from "../../assets/tokenIcons"
 import { WalletContext } from 'components/context/WalletContext';
 
-
 const WalletOverview = () => {
 
     const {walletaddress, assetState, setServiceState,isloading} = useContext(WalletContext);
