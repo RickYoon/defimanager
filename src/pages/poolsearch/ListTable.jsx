@@ -83,10 +83,10 @@ function ListTable() {
                     <Explainbox>
                     <Protocol>
                     {pool.protocol.split("-")[0] === "klaystation" ? 
-                      <Span onClick={()=>window.open(homeJson["klaystation"], "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Span onClick={()=>window.open(homeJson["klaystation"], "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {pool.protocol} </Span>       
                       :
-                      <Span onClick={()=>window.open(homeJson[pool.protocol], "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Span onClick={()=>window.open(homeJson[pool.protocol], "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
                       {pool.protocol} </Span>       
                     }
 
