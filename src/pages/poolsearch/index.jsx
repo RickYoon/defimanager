@@ -296,13 +296,13 @@ function Poolpage() {
                 </FilterMobile>           */}
                   <ListTable />
               </Leftcolumn>
-              <Rightcolumn>
-                <RightBox />
+              {/* <Rightcolumn> */}
+                {/* <RightBox /> */}
               {/* <FilterDesktop>
                 <Topmenu />
                 <FilterContainer />                
               </FilterDesktop> */}
-              </Rightcolumn>
+              {/* </Rightcolumn> */}
           </Topbox>
         </OverBox>        
       </PoolContext.Provider>
