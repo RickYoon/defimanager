@@ -190,11 +190,14 @@ function Overview() {
 
         await getTotalChartData().then(function (response){
 
-            let sixMonthData = response.body;          
+            let sixMonthData = response.body;      
+            
+            console.log("response.body",response.body)
 
             sixMonthData.sort(function (a, b) {
                 return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
             })
+            console.log("sixMonthData",sixMonthData)
 
             setTotalchart(sixMonthData)
         })

@@ -21,6 +21,8 @@ import Detail from './pages/detail/Detail'
 import NftDetail from './pages/nftDetail/NftDetail'
 import Poolsearch from './pages/poolsearch'
 import StrategyPage from './pages/strategy'
+import StablePage from './pages/stables'
+
 
 import Nftoverview from 'pages/nftOverview/Overview';
 import DefimanagerNew from 'components/pages/DefimanagerNew'
@@ -40,6 +42,7 @@ function App() {
         <Route exact path="/project/:id" element={<Nav />} />
         <Route exact path="/nftview" element={<Nav />} />
         <Route exact path="/analytics" element={<Nav />} />
+        <Route exact path="/stables" element={<Nav />} />
         <Route exact path="/nftview/:id" element={<TopnavNftDetail />} />
         <Route exact path="/news" element={<Topnav />} />
       </Routes>
@@ -52,6 +55,7 @@ function App() {
         <Route exact path="/analytics" element={<Main />} />
         <Route exact path="/news" element={<Newspage />} />
         <Route exact path="/Strategy" element={<StrategyPage />} />
+        <Route exact path="/stables" element={<StablePage />} />
       </Routes>
       {/* <Routes> */}
         {/* <Route path="/" element={<Footer />} /> */}

@@ -35,7 +35,7 @@ function DesktopNav() {
 
             <div style={{height:"5px"}}></div>
             
-            <p data-linksheader>DeFi Market</p>
+            <p data-linksheader>Market Research</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
                 <Link to="/">
@@ -94,7 +94,7 @@ function DesktopNav() {
           </Link>
         }
 
-        <p data-linksheader>NFT Market</p>
+        <p data-linksheader>Asset Management</p>
 
         {pathname === "/nftview" ?
             <Detailss>

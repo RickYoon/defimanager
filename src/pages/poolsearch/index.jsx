@@ -35,7 +35,8 @@ function Poolpage() {
     aprDiff: 0,
     tvlDiff: 0,
     stableOnly: "no",
-    klayOnly: "no"
+    klayOnly: "no",
+    amount: 0
   }])
 
   useEffect(() => {

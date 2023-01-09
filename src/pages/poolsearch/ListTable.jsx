@@ -132,8 +132,9 @@ function ListTable() {
                       <><span style={{color:"blue", fontSize:"12px"}}>-<br/>-%</span></>
                     }
                 </Td>
+
                 <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{Number(pool.apr).toFixed(1)} <br />
-                  {pool.aprDiff > 0 ? 
+                  {pool.aprDiff > 0 ?
                     <span style={{color:"red", fontSize:"12px"}}>+{(pool.aprDiff).toFixed(1)}</span>
                     : pool.aprDiff < 0 ?
                       <span style={{color:"blue", fontSize:"12px"}}>{(pool.aprDiff).toFixed(1)}</span>

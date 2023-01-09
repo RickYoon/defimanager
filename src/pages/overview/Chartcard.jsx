@@ -121,7 +121,7 @@ function Chartrange (props) {
         <Styled.RangeContainer>
         {props.isloading ? 
         <Styled.Rangedisplay><Styled.SmallSkeleton style={{marginLeft:"-5px"}} width="100px" height="20px" /> </Styled.Rangedisplay> : 
-        <Styled.Rangedisplay>'22.{props.startdate} ~ {props.enddate} </Styled.Rangedisplay>
+        <Styled.Rangedisplay>'{props.startdate} ~ {props.enddate} </Styled.Rangedisplay>
         }
         <Styled.RangeControlBox>
             {props.selection === 0 ?
