@@ -17,6 +17,7 @@ import Footer from './components/layout/Footer';
 import Newspage from './components/pages/Newspage'
 
 import Overview from './pages/overview/Overview'
+import KlaytnOverview from "./pages/klaytnOverview/Overview"
 import Detail from './pages/detail/Detail'
 import NftDetail from './pages/nftDetail/NftDetail'
 import Poolsearch from './pages/poolsearch'
@@ -38,6 +39,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Nav />} />
+        <Route path="/klaytn" element={<Nav />} />
         <Route exact path="/Poolpage" element={<Nav />} />
         <Route exact path="/project/:id" element={<Nav />} />
         <Route exact path="/nftview" element={<Nav />} />
@@ -48,6 +50,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/" element={<Overview />} />
+        <Route path="/klaytn" element={<KlaytnOverview />} />
         <Route exact path="/Poolpage" element={<Poolsearch />} />
         <Route exact path="/project/:id" element={<Detail />} />
         <Route exact path="/nftview" element={<Nftoverview />} />

@@ -252,7 +252,7 @@ const Dropbox = styled.div`
 `
 
 const TodoTemplateBlock = styled.div`
-  width: 100%;
+  width: 1024px;
   /* max-height: 1024px; */
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */

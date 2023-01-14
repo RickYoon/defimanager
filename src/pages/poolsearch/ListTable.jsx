@@ -35,6 +35,8 @@ function ListTable() {
               <Tdc className="content" style={{ width: "10%", fontSize:"13px" }}>REWARDS</Tdc>
               <Td className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>TVL($)</Td>
               <Td className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>APR(%)</Td>
+              <Tdc className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>Amount(x)</Tdc>
+              <Tdc className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>Amount(y)</Tdc>
             </tr>
           </thead>
           <tbody>
@@ -52,6 +54,8 @@ function ListTable() {
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Td className="content" style={{ width: "200px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
                 <Styled.Td className="content" style={{ width: "50px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
+                <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
+                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
             </tr>))
             :
             pooldata.map((pool, index) => (
@@ -132,7 +136,6 @@ function ListTable() {
                       <><span style={{color:"blue", fontSize:"12px"}}>-<br/>-%</span></>
                     }
                 </Td>
-
                 <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{Number(pool.apr).toFixed(1)} <br />
                   {pool.aprDiff > 0 ?
                     <span style={{color:"red", fontSize:"12px"}}>+{(pool.aprDiff).toFixed(1)}</span>
@@ -142,6 +145,35 @@ function ListTable() {
                       <></>
                     }
                 </Td> 
+                <Tdc className="content" style={{ width: "20px", fontSize:"14px",textAlign: "right", paddingLeft:"60px"}}>
+                  {pool.amount !== undefined ?  
+                    <>
+                    {Number(pool.amount[0]).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br/>
+                    {pool.amountDiffA !== undefined ? Number(pool.amountDiffA).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : <></>}<br/>
+                    {pool.amountDiffA !== undefined ? Number(pool.amountDiffA) > 0 ? 
+                      <span style={{color:"red", fontSize:"12px"}}>+{(100*Number(pool.amountDiffA) / Number(pool.amount[0]+ pool.amountDiffA)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span> :
+                      <span style={{color:"blue", fontSize:"12px"}}>{(100*Number(pool.amountDiffA) / Number(pool.amount[0]- pool.amountDiffA)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
+                      :
+                      <></>
+                    }
+                    </>
+                    :  <></>}
+                </Tdc>
+                <Tdc className="content" style={{ width: "20px", fontSize:"14px",textAlign: "right", paddingLeft:"30px"}}>
+                  {pool.amount !== undefined ?  
+                    <>
+                    {pool.amount[1] !== undefined ? Number(pool.amount[1]).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : <></>}<br/>
+                    {pool.amountDiffB !== null ? Number(pool.amountDiffB).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : <></>}<br/>
+                    {pool.amountDiffB !== null ? Number(pool.amountDiffB) > 0 ? 
+                      <span style={{color:"red", fontSize:"12px"}}>+{(100*Number(pool.amountDiffB) / Number(pool.amount[1] + pool.amountDiffB)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span> :
+                      <span style={{color:"blue", fontSize:"12px"}}>{(100*Number(pool.amountDiffB) / Number(pool.amount[1] - pool.amountDiffB)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
+                      :
+                      <></>
+                    }
+                    </>
+                    :  <></>}
+                </Tdc>                
+
               </Tr>
               ))
               }           
@@ -223,7 +255,8 @@ const Iconbox = styled.div`
 
 
 const TodoTemplateBlock = styled.div`
-  width: 100%;
+  /* width: 100%; */
+  width:1024px;
   /* max-height: 1024px; */
 
   position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */

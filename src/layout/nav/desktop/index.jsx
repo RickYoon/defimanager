@@ -34,8 +34,30 @@ function DesktopNav() {
                 </span>
 
             <div style={{height:"5px"}}></div>
+
+            <p data-linksheader>Klaytn</p>
+
+            {pathname === "/klaytn" ?
+                <Detailss>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
+                            <span>Overview</span>
+                        </summary>
+                </Detailss>
+                :
+                <Link to="/klaytn">
+                    <Details>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
+                            <span>Overview</span>
+                        </summary>
+                    </Details>
+                    </Link>
+            }
+
+
             
-            <p data-linksheader>Market Research</p>
+            <p data-linksheader>DeFi</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
                 <Link to="/">
@@ -94,7 +116,7 @@ function DesktopNav() {
           </Link>
         }
 
-        <p data-linksheader>Asset Management</p>
+        <p data-linksheader>NFT</p>
 
         {pathname === "/nftview" ?
             <Detailss>
