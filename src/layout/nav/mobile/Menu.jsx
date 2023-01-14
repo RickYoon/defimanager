@@ -136,6 +136,27 @@ function Menubutton() {
             <Close onClick={() => setShow(!show)}>
                     <X height={20} width={20} strokeWidth="4px" />
             </Close>
+
+            <p data-linksheader>Klaytn</p>
+
+            {pathname === "/klaytn" ?
+                <Detailss>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
+                            <span>Overview</span>
+                        </summary>
+                </Detailss>
+                :
+                <Link to="/klaytn">
+                    <Details>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
+                            <span>Overview</span>
+                        </summary>
+                    </Details>
+                    </Link>
+            }
+
             <p data-linksheader>DeFi Market</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
