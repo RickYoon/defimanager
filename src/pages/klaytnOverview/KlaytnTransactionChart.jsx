@@ -11,6 +11,7 @@ import {
     Area,
     Tooltip,
     CartesianGrid,
+    Brush
   } from "recharts";
   import Numeral from 'numeral'
 import axios from 'axios';
@@ -454,6 +455,7 @@ function KlaytnTransactionChart() {
 
                     <Tooltip content={<CustomTooltip />} cursor={{fill: 'transparent'}} />
                     <CartesianGrid opacity={0.15} vertical={false} />
+                    {/* <Brush dataKey="date" height={30} stroke="#000" /> */}
                     </BarChart>
                     :
                     <AreaChart data={data}>
@@ -499,6 +501,8 @@ function KlaytnTransactionChart() {
 
                     <Tooltip content={<CustomTooltip />} cursor={{fill: 'transparent'}} />
                     <CartesianGrid opacity={0.15} vertical={false} />
+                    <Brush dataKey="date" height={30} stroke="gray" />
+                    {/* <Brush startIndex={"19-09"} endIndex={"22-01"} dataKey="date" /> */}
                     </AreaChart>
                 }
             </ResponsiveContainer>
