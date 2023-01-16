@@ -42,11 +42,11 @@ function ActiveUsersChart() {
     const dataLoading = async () => {
 
         setIsloading(true)
-        const aa = await axios.get("https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/klaytntransactions?period=userDaily")
+        const aa = await axios.get("https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/klaytndau")
         console.log("range", aa.data)
-        setData(aa.data)
+        setData(aa.data.body)
         let temp = []
-        aa.data.forEach((res)=>{
+        aa.data.body.forEach((res)=>{
             temp.push(res.value)
         })
         setRef(Math.max.apply(null, temp))
