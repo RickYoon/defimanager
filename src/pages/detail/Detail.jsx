@@ -96,7 +96,7 @@ function Detail() {
           response.chart.Items.forEach((item) => {
             if(Number(item[id])>0){
             tempArr.push({
-              date: item.date.slice(5, 10),
+              date: item.date.slice(2, 10),
               value: Number(item[id]),
             })
             maxArr.push({
@@ -118,26 +118,26 @@ function Detail() {
           response.price.forEach((item) => {
               if (item.price > 1) {
                 priceArr.push({
-                  date: item.date.slice(5, 10),
+                  date: item.date.slice(2, 10),
                   dateRaw: item.date,
                   value: Number(item.multiObject[0].tokenPrice.toFixed(1))
                 })
                 if(item.multiObject.length === 2){
                 priceArrTwo.push({
-                  date: item.date.slice(5, 10),
+                  date: item.date.slice(2, 10),
                   dateRaw: item.date,
                   value: Number(item.multiObject[1].tokenPrice.toFixed(1))
                 })
                 }
               } else {
                 priceArr.push({
-                  date: item.date.slice(5, 10),
+                  date: item.date.slice(2, 10),
                   dateRaw: item.date,
                   value: Number(item.multiObject[0].tokenPrice.toFixed(5))
                 })
                 if(item.multiObject.length === 2){
                 priceArrTwo.push({
-                  date: item.date.slice(5, 10),
+                  date: item.date.slice(2, 10),
                   dateRaw: item.date,
                   value: Number(item.multiObject[1].tokenPrice.toFixed(1))
                 })

@@ -53,6 +53,7 @@ function Main() {
 
     await axios.get(url).then(function (response) {
 
+      console.log("rrr", response)
       let tempArr = response.data.body.Items;
       let tempKeys = Object.keys(tempArr[0]);
 
@@ -64,9 +65,9 @@ function Main() {
         })
       }
 
-      tempArr.sort(function (a, b) {
-        return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
-      })
+      // tempArr.sort(function (a, b) {
+      //   return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+      // })
 
       console.log("tempchart",tempArr)
       setTempchart(tempArr)
@@ -79,7 +80,7 @@ function Main() {
     const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tvlinfotest"
 
     await axios.get(url).then(function (response) {
-      console.log(response.data.body)
+      // console.log("resw", response.data.body)
       // tvl
       let tempArr = response.data.body.data.filter(dat => dat.proj !== "KCT-Total")
       let tempTotal = response.data.body.data.filter(dat => dat.proj === "KCT-Total")
