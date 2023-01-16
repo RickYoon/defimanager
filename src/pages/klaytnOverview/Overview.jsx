@@ -323,7 +323,7 @@ function KlaytnOverview() {
             <Styled.Topbox>
                 <Styled.Leftcolumn>
                     {/* <TopNumbercard /> */}
-                    {/* <KlaytnPriceChart /> */}
+                    <KlaytnPriceChart />
                     <KlaytnTransactionChart />
                     <ActiveUsersChart />
                 </Styled.Leftcolumn>
