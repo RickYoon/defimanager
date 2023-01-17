@@ -10,6 +10,9 @@ import yieldBlack from 'assets/uiux/yield_black.png'
 import yieldWhite from 'assets/uiux/yield_white.png'
 import collectionsBlack from 'assets/uiux/collections_black.png'
 import collectionsWhite from 'assets/uiux/collections_white.png'    
+import chainBlack from 'assets/uiux/chain_black.png'
+import chainWhite from 'assets/uiux/chain_white.png'
+import walletIcon from "assets/uiux/wallet.png"
 
 import { useParams, Link, useLocation } from "react-router-dom";
 
@@ -33,38 +36,16 @@ function DesktopNav() {
                     <span style={{ marginLeft: "0px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
 
-            <div style={{height:"5px"}}></div>
-
-            <p data-linksheader>Klaytn</p>
-
-            {pathname === "/klaytn" ?
-                <Detailss>
-                        <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                            <span>Overview</span>
-                        </summary>
-                </Detailss>
-                :
-                <Link to="/klaytn">
-                    <Details>
-                        <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
-                            <span>Overview</span>
-                        </summary>
-                    </Details>
-                    </Link>
-            }
-
-
+            <div style={{height:"15px"}}></div>
             
-            <p data-linksheader>DeFi</p>
+            <p data-linksheader>Project</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
                 <Link to="/">
                 <Detailss>
                     <summary>
                         <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                        <span>Overview</span>
+                        <span>DeFi</span>
                     </summary>
                 </Detailss>
                 </Link>
@@ -73,13 +54,68 @@ function DesktopNav() {
                     <Details>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
-                            <span>Overview</span>
+                            <span>DeFi</span>
                         </summary>
                     </Details>
                 </Link>
            }
+                   {pathname === "/nftview" ?
+            <Detailss>
+                <summary>
+                    <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
+                    <span>NFT</span>
+                </summary>
+            </Detailss>
+        :
+        <Link to="/nftview">
+            <Details>
+                <summary>
+                    <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
+                    <span>NFT</span>
+                </summary>
+            </Details>
+        </Link>
+        }
+            <p data-linksheader>Analytics</p>
 
-          {pathname === "/Poolpage" ?
+            {pathname === "/klaytn" ?
+                <Detailss>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
+                            <span>Chain</span>
+                        </summary>
+                </Detailss>
+                :
+                <Link to="/klaytn">
+                    <Details>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={chainBlack} /></span>
+                            <span>Chain</span>
+                        </summary>
+                    </Details>
+                    </Link>
+            }
+
+
+        {pathname === "/analytics" ?
+           <Detailss>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
+                <span>Compare</span>
+            </summary>
+           </Detailss>
+           :
+           <Link to="/analytics">
+           <Details>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={analyticsBlack} /></span>
+                <span>Compare</span>
+            </summary>
+          </Details>
+          </Link>
+        }
+
+        {pathname === "/Poolpage" ?
            <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
@@ -97,44 +133,25 @@ function DesktopNav() {
             </Link>
         }
 
+{/* <p data-linksheader>Fi Manager</p>
 
-        {pathname === "/analytics" ?
-           <Detailss>
+{pathname === "/wallet" ?
+    <Detailss>
             <summary>
-                <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
-                <span>Analytics</span>
+                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                <span>Wallet</span>
             </summary>
-           </Detailss>
-           :
-           <Link to="/analytics">
-           <Details>
+    </Detailss>
+    :
+    <Link to="/wallet">
+        <Details>
             <summary>
-                <span data-mainlinkicon><img height="25px" src={analyticsBlack} /></span>
-                <span>Analytics</span>
+                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                <span>Wallet</span>
             </summary>
-          </Details>
-          </Link>
-        }
-
-        <p data-linksheader>NFT</p>
-
-        {pathname === "/nftview" ?
-            <Detailss>
-                <summary>
-                    <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
-                    <span>Overview</span>
-                </summary>
-            </Detailss>
-        :
-        <Link to="/nftview">
-            <Details>
-                <summary>
-                    <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
-                    <span>Overview</span>
-                </summary>
-            </Details>
+        </Details>
         </Link>
-        }
+} */}
 
         <div
             style={{

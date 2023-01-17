@@ -19,14 +19,16 @@ import Newspage from './components/pages/Newspage'
 import Overview from './pages/overview/Overview'
 import KlaytnOverview from "./pages/klaytnOverview/Overview"
 import Detail from './pages/detail/Detail'
-import NftDetail from './pages/nftDetail/NftDetail'
 import Poolsearch from './pages/poolsearch'
+import Wallet from './components/pages/DefimanagerNew'
+
+
+import NftDetail from './pages/nftDetail/NftDetail'
 import StrategyPage from './pages/strategy'
 import StablePage from './pages/stables'
 
 
 import Nftoverview from 'pages/nftOverview/Overview';
-import DefimanagerNew from 'components/pages/DefimanagerNew'
 import Sidenav from 'components/layout/Sidenav'
 import Nav from 'layout/nav'
 
@@ -39,6 +41,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Nav />} />
+        <Route path="/wallet" element={<Nav />} />
         <Route path="/klaytn" element={<Nav />} />
         <Route exact path="/Poolpage" element={<Nav />} />
         <Route exact path="/project/:id" element={<Nav />} />
@@ -50,6 +53,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/" element={<Overview />} />
+        <Route path="/wallet" element={<Wallet />} />
         <Route path="/klaytn" element={<KlaytnOverview />} />
         <Route exact path="/Poolpage" element={<Poolsearch />} />
         <Route exact path="/project/:id" element={<Detail />} />

@@ -13,7 +13,11 @@ import overviewBlack from 'assets/uiux/overview_black.png'
 import yieldBlack from 'assets/uiux/yield_black.png'
 import yieldWhite from 'assets/uiux/yield_white.png'
 import collectionsWhite from 'assets/uiux/collections_white.png'
+import collectionsBlack from 'assets/uiux/collections_black.png'    
+import chainBlack from 'assets/uiux/chain_black.png'
+import chainWhite from 'assets/uiux/chain_white.png'
 import { useParams, Link, useLocation } from "react-router-dom";
+import walletIcon from "assets/uiux/wallet.png"
 
 const slideIn = keyframes`
   0% {
@@ -137,34 +141,14 @@ function Menubutton() {
                     <X height={20} width={20} strokeWidth="4px" />
             </Close>
 
-            <p data-linksheader>Klaytn</p>
-
-            {pathname === "/klaytn" ?
-                <Detailss>
-                        <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                            <span>Overview</span>
-                        </summary>
-                </Detailss>
-                :
-                <Link to="/klaytn">
-                    <Details>
-                        <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                            <span>Overview</span>
-                        </summary>
-                    </Details>
-                    </Link>
-            }
-
-            <p data-linksheader>DeFi Market</p>
+            <p data-linksheader>Project</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
                 <Link to="/">
                 <Detailss>
                     <summary>
                         <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                        <span>Overview</span>
+                        <span>DeFi</span>
                     </summary>
                 </Detailss>
                 </Link>
@@ -172,69 +156,105 @@ function Menubutton() {
                 <Link to="/">
                     <Details>
                         <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                            <span>Overview</span>
+                            <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
+                            <span>DeFi</span>
                         </summary>
                     </Details>
                 </Link>
+           }
+                   {pathname === "/nftview" ?
+            <Detailss>
+                <summary>
+                    <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
+                    <span>NFT</span>
+                </summary>
+            </Detailss>
+        :
+        <Link to="/nftview">
+            <Details>
+                <summary>
+                    <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
+                    <span>NFT</span>
+                </summary>
+            </Details>
+        </Link>
+        }
+            <p data-linksheader>Analytics</p>
+
+            {pathname === "/klaytn" ?
+                <Detailss>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
+                            <span>Chain</span>
+                        </summary>
+                </Detailss>
+                :
+                <Link to="/klaytn">
+                    <Details>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={chainBlack} /></span>
+                            <span>Chain</span>
+                        </summary>
+                    </Details>
+                    </Link>
             }
 
-            {pathname === "/Poolpage" ?
-            <Detailss>
+
+        {pathname === "/analytics" ?
+           <Detailss>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
+                <span>Compare</span>
+            </summary>
+           </Detailss>
+           :
+           <Link to="/analytics">
+           <Details>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={analyticsBlack} /></span>
+                <span>Compare</span>
+            </summary>
+          </Details>
+          </Link>
+        }
+
+        {pathname === "/Poolpage" ?
+           <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
                     <span>Yield</span>
                 </summary>
-            </Detailss>
-            :
-            <Link to="/Poolpage">
+           </Detailss>
+           :
+           <Link to="/Poolpage">
             <Details>
                 <summary>
-                    <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
+                    <span data-mainlinkicon><img height="25px" src={yieldBlack} /></span>
                     <span>Yield</span>
                 </summary>
             </Details>
             </Link>
-            }
+        }
 
+{/* <p data-linksheader>Fi Manager</p>
 
-            {pathname === "/analytics" ?
-            <Detailss>
+{pathname === "/wallet" ?
+    <Detailss>
             <summary>
-                <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
-                <span>Analytics</span>
+                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                <span>Wallet</span>
             </summary>
-            </Detailss>
-            :
-            <Link to="/analytics">
-            <Details>
+    </Detailss>
+    :
+    <Link to="/wallet">
+        <Details>
             <summary>
-                <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
-                <span>Analytics</span>
+                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                <span>Wallet</span>
             </summary>
-            </Details>
-            </Link>
-            }
-
-            <p data-linksheader>NFT Market</p>
-
-            {pathname === "/nftview" ?
-            <Detailss>
-                <summary>
-                    <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
-                    <span>Overview</span>
-                </summary>
-            </Detailss>
-            :
-            <Link to="/nftview">
-            <Details>
-                <summary>
-                    <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
-                    <span>Overview</span>
-                </summary>
-            </Details>
-            </Link>
-            }
+        </Details>
+        </Link>
+} */}
                     <div
             style={{
                 width: "70%",

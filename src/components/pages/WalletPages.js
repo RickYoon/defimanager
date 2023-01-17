@@ -13,6 +13,8 @@ import QRCode from "qrcode.react";
 import ReactLoading from 'react-loading';
 // import { useWeb3Context } from 'web3'
 
+import WalletTokenDetailTable from "components/component/WalletTokenDetailTable"
+
 function Topnav() {
     const [modalstate, setModalstate] = useState(false)
     const [klipmodalstate, setKlipmodalstate] = useState(false)
@@ -187,10 +189,10 @@ function Topnav() {
         <>
             <TemplateBlock style={{ marginBottom: "50px" }}>
 
-                <span onClick={moveMain} style={{ cursor: "pointer" }}>
+                {/* <span onClick={moveMain} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
                     <div style={{ height: "15px", marginTop: "5px", marginLeft: "5px", fontSize: "12px", fontStyle: "oblique" }}>DeFi-Manager  (beta)</div>
-                </span>
+                </span> */}
 
                 <span>
                     <Wallet onClick={openModal}>
@@ -213,6 +215,8 @@ function Topnav() {
                     <div style={{ fontSize: "24px" }}>$ {totalbalance}</div>
                 }
             </SubTemplateBlockVertical>
+
+            <WalletTokenDetailTable />
 
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "10px", fontSize: "20px" }}>Account Overview</div>

@@ -19,8 +19,8 @@ function RightBox() {
       <TokenGainerCard data={toptoken} isLoading={isloading}/>
       <div style={{marginTop:"15px"}}></div>
 
-      <EventCard data={eventlist} isLoading={isloading}/>
-      <div style={{marginTop:"15px"}}></div>
+      {/* <EventCard data={eventlist} isLoading={isloading}/>
+      <div style={{marginTop:"15px"}}></div> */}
 
       <TwitterCard isLoading={isloading}/>
       <div style={{marginTop:"15px"}}></div>

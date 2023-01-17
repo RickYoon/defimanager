@@ -15,6 +15,8 @@ import WalletKairoscashDetail from 'components/component/WalletKairoscashDetail'
 import styled from "styled-components";
 import initialState from "./state/initialAssetState.json"
 
+import WalletTokenDetailTable from "components/component/WalletTokenDetailTable"
+
 const DefimanagerNew = () => {
 
     const [walletaddress, setWalletaddress] = useState("")
@@ -299,25 +301,8 @@ const DefimanagerNew = () => {
         <>
             <WalletContext.Provider value={{walletaddress,setWalletaddress,modalstate,setModalstate,assetState,setAssetState,setServiceState,isloading,serviceState}}>
                 <Container>
-                <TopnavManagerMobile />
-                <Walletmodal />
-                    <SideNav />
-                    {serviceState === "portfolio" ? 
-                        <WalletOverview /> :
-                            serviceState === "History" ? 
-                            <History /> : 
-                            serviceState === "tokenDetail" ?
-                            <WalletTokenDetail /> :
-                                serviceState === "klayswapDetail" ?
-                                <WalletKlayswapDetail /> :
-                                    serviceState === "klaystationDetail" ?
-                                    <WalletKlaystationDetail /> :
-                                        serviceState === "kronosDetail" ?
-                                        <WalletKronosDetail /> :
-                                            serviceState === "kairoscashDetail" ?
-                                            <WalletKairoscashDetail /> :
-                                            <Settings />
-                    }
+                <WalletTokenDetailTable />
+                {/* <WalletOverview />  */}
                 </Container>
             </WalletContext.Provider>
         </>
