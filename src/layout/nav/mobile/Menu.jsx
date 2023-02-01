@@ -236,6 +236,25 @@ function Menubutton() {
             </Link>
         }
 
+{/* <p data-linksheader>Wallets</p>
+
+{pathname.slice(0,7) === "/wallet" ?
+    <Detailss>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                <span>Portfolio</span>
+            </summary>
+    </Detailss>
+    :
+    <Link to="/wallet">
+        <Details>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                <span>Portfolio</span>
+            </summary>
+        </Details>
+        </Link>
+} */}
                     <div
             style={{
                 width: "70%",
