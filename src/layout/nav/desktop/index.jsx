@@ -132,8 +132,8 @@ function DesktopNav() {
             </Details>
             </Link>
         }
-
-        {/* <p data-linksheader>Manager</p>
+{/* 
+        <p data-linksheader>Manager</p>
 
         {pathname.slice(0,7) === "/wallet" ?
             <Detailss>

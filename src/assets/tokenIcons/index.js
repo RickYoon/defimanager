@@ -185,8 +185,10 @@ import fee from "./fee.png"
 import MOOI from "./MOOI.svg"
 import GXA from "./GXA.jpeg"
 import ZEMIT from "./ZEMIT.svg"
+import wemixFi from "./wemixFi.png"
 
 const icons = {
+    wemixFi,
     ZEMIT,
     MOOI,
     GXA,

@@ -63,6 +63,20 @@ function InfoBox() {
                   </Styled.ProjectBox>    
                   </>       
                 :
+                detailinfo.proj.tokensymbol === "WEMIX" ?
+                <Styled.ProjectBox>
+                  <Tr>
+                    <Td style={{width:"80px"}}>
+                      Token (s)
+                    </Td>
+                    <Tdlink width="200px" style={{fontSize:"13px", color:"#316395", whiteSpace: "nowrap" }}>
+                      {detailinfo.proj.tokensymbol} 
+                      <Span onClick={()=>window.open(`https://explorer.wemix.com/token/${detailinfo.proj.tokenContractAddress}`, "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      {"   "}WemixExplorer <ImArrowUpRight2 /></Span>
+                    </Tdlink>
+                  </Tr>
+                </Styled.ProjectBox>                
+                :
                 detailinfo.proj.tokensymbol === "MESH" ?
                 <Styled.ProjectBox>
                   <Tr>

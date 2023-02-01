@@ -38,17 +38,13 @@ import Main from 'pages/analytics/Main'
 
 
 function App() {
-  // RouteChangeTracker()
-  
-
   return (
     <Router>
-      {/* <Analytics id="G-WTWX3TJM39" debug> */}
       <ScrollToTop />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Nav />} />
-        {/* <Route path="/wallet" element={<Nav />} /> */}
+        <Route path="/wallet" element={<Nav />} />
         <Route path="/klaytn" element={<Nav />} />
         <Route exact path="/wallet/:id" element={<Nav />} />
         <Route exact path="/Poolpage" element={<Nav />} />
@@ -61,7 +57,7 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/" element={<Overview />} />
-        {/* <Route path="/wallet" element={<Wallet />} /> */}
+        <Route path="/wallet" element={<Wallet />} />
         <Route path="/klaytn" element={<KlaytnOverview />} />
         <Route exact path="/wallet/:id" element={<Wallet />} />
         <Route exact path="/Poolpage" element={<Poolsearch />} />
@@ -73,15 +69,6 @@ function App() {
         <Route exact path="/Strategy" element={<StrategyPage />} />
         <Route exact path="/stables" element={<StablePage />} />
       </Routes>
-      {/* <Routes> */}
-        {/* <Route path="/" element={<Footer />} /> */}
-        {/* <Route exact path="/nftview" element={<Footer />} />
-        <Route exact path="/nftview/:id" element={<Footer />} />
-        <Route exact path="/news" element={<Footer />} />
-        <Route exact path="/project/:id" element={<Footer />} />
-        <Route exact path="/Poolpage" element={<Projectfooter />} />
-      </Routes> */}
-      {/* </Analytics> */}
     </Router>
   );
 }
