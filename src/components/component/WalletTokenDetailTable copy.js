@@ -1399,136 +1399,39 @@ const WalletTokenDetailTable = () => {
         <>
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
                 <div style={{ fontSize: "18px", color: "#657795" }}>Tokens
-                    <span style={{ fontSize: "12px" }}> (23) 
+                    <span style={{ fontSize: "12px" }}> (23) : 
                         <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 23,321.2</span>
                     </span>
                 </div>
 
                 <Table>
                     <Thead>
-                        <Th>Asset</Th>
-                        <Thr>Token Price ($)</Thr>
-                        <Thrr>Value ($)</Thrr>
+                        <Th styled={{textAlign:"left"}}>Token</Th>
+                        <Th styled={{textAlign:"right"}}>project</Th>
+                        <Thr styled={{textAlign:"right"}}>Price</Thr>
+                        <Thr>Balance</Thr>
+                        <Thr>value ($)</Thr>
                     </Thead>
                     {assetState.map((token) => (
                     <tbody>
                         <Tr>
-                            <Td>
-                                {icons[token.tokenSymbol] !== undefined ? 
-                                <><img src={icons[token.tokenSymbol]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.tokenSymbol}</span></> :
-                                <><img src={icons["unknown"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.tokenSymbol}</span></>
-                                }
-                            </Td>
+                            <Td><img src={icons[token.tokenSymbol]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />{token.tokenSymbol}</Td>
+                            <Td>{token.tokenProject}</Td>
+                            <Tdr>0</Tdr>
                             <Tdr>{token.balance.toFixed(3)}</Tdr>
-                            <Tdrr>{token.balance.toFixed(3)}</Tdrr>
+                            <Tdr>0</Tdr>
                         </Tr>
                     </tbody>
                     ))}
-                </Table>                
+                </Table>
+
+                
             </SubTemplateBlockVertical>
 
-            <SubTemplateBlockVertical style={{marginTop:"20px"}}>
-                <div style={{ fontSize: "18px", color: "#657795" }}>
-                <img src={icons["Klayswap"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                <span style={{fontSize:"13px"}}>Klayswap</span>
-                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 32.2</span>
-                </div>
-
-                <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Single Deposit</span>
-
-                <Table>
-                    <Thead>
-                        <Th>Pool</Th>
-                        <Thr>Balance ($)</Thr>
-                        <Thrr>Value ($)</Thrr>
-                    </Thead>
-                    <tbody>
-                        <Tr>
-                            <Td>Klay</Td>
-                            <Tdr>23</Tdr>
-                            <Tdrr>0.3</Tdrr>
-                        </Tr>
-                    </tbody>
-                </Table>               
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Pair Deposit</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>                
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Plus Deposit</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>      
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Staking</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>   
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Voting Power</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>   
-
-            </SubTemplateBlockVertical>
-
-
-
-            {/* <SubTemplateBlockVertical>
+            <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Klayswap total Value</div>
                 <div style={{ fontSize: "24px" }}>$ 0</div>
-            </SubTemplateBlockVertical> */}
+            </SubTemplateBlockVertical>
 
             {/* <MobileTemplate>
             <div style={{ marginBottom: "10px", fontSize: "20px" }}>Governance Token</div>
@@ -1622,38 +1525,21 @@ const Tr = styled.tr`
 const Td = styled.td`
     color: #050f19;
     padding: 12px 29px!important;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: normal;
-    text-align: left;
-    border-bottom: 1px solid #edeff1 !important;
-    @media screen and (max-width: 500px){
-        padding: 10px 10px!important;
-    }
-`
-
-const Tdrr = styled.td`
-    color: #050f19;
-    padding: 12px 29px!important;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
-    text-align: right;
+    text-align: left;
     border-bottom: 1px solid #edeff1 !important;
 `
 
 const Tdr = styled.td`
     color: #050f19;
-    /* padding: 12px 29px!important; */
-    font-size: 14px;
+    padding: 12px 29px!important;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
     text-align: right;
-    padding-right: 70px;
     border-bottom: 1px solid #edeff1 !important;
-    @media screen and (max-width: 500px){
-        display: none;
-    }
 `
 
 
@@ -1662,40 +1548,19 @@ const Thr = styled.th`
     background: #f9fafb;
     text-align: inherit;
     color: rgba(0,0,0,.87);
-    padding-right: 70px;
-    font-style: none;
-    font-weight: 700;
-    text-transform: none;
-    border-bottom: 1px solid rgba(34,36,38,.1);
-    border-left: none;
-    text-align:right;
-
-    @media screen and (max-width: 500px){
-        display: none;
-    }
-`
-
-const Th = styled.th`
-    cursor: auto;
-    background: #f9fafb;
-    text-align: inherit;
-    color: rgba(0,0,0,.87);
     padding: 12px 29px!important;
     font-style: none;
     font-weight: 700;
     text-transform: none;
     border-bottom: 1px solid rgba(34,36,38,.1);
     border-left: none;
-    @media screen and (max-width: 500px){
-        padding: 10px 10px!important;
-    }
+    text-align:right;
 `
 
-
-const Thrr = styled.th`
+const Th = styled.th`
     cursor: auto;
     background: #f9fafb;
-    text-align: right;
+    text-align: inherit;
     color: rgba(0,0,0,.87);
     padding: 12px 29px!important;
     font-style: none;
@@ -1719,7 +1584,7 @@ const Table = styled.table`
     width: 100%;
     background: #fff;
     margin: 1em 0;
-    /* border: 1px solid rgba(34,36,38,.15); */
+    border: 1px solid rgba(34,36,38,.15);
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: 0.28571429rem;
@@ -1729,16 +1594,14 @@ const Table = styled.table`
     
         
   @media screen and (max-width: 500px){
-      width: 310px;
-      font-size: 20px;
+      width: 360px;
+      font-size: 12px;
     }
 
 `
 
 const SubTemplateBlockVertical = styled.div`
-     /* width: 900px; */
-     max-width: 900px;
-
+     width: 900px;
     margin: 10px auto;
     padding-bottom: 10px;
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
@@ -1761,9 +1624,9 @@ const SubTemplateBlockVertical = styled.div`
     overflow: visible;
     
   @media screen and (max-width: 500px){
-      width: 360px;
+      width: 370px;
       /* margin: 10px 10px; */
-      font-size: 15px;
+      font-size: 12px;
     }
 `;
 

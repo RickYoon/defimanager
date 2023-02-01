@@ -206,8 +206,9 @@ function Main() {
     <>
       <Styled.OverBox>
             <Styled.Wrappertitle>
-              <Styled.Title>Analytics</Styled.Title>
+              <Styled.Title>Compare Projects</Styled.Title>
             </Styled.Wrappertitle>
+
       <Styled.Topbox>
       <Styled.Leftcolumn>
       <div>

@@ -1,0 +1,36 @@
+{
+    "totalBalance" : 0,
+    "klayBalance" : 0,
+    "tokenBalance" : 0,
+    "tokenList" : [],
+    "klaystation": {
+        "value" : 0
+    },
+    "kronosdao": {
+        "value" : 0
+    },
+    "kairoscash": {
+        "value" : 0
+    },
+    "klayswap":{
+        "klayswapTotalBalance":0,
+        "PairPoolList" : [
+            {
+                "poolType": "",
+                "poolName": "",
+                "tokenAname": "",
+                "tokenBname": "",
+                "tokenAnumber": 0,
+                "tokenBnumber": 0,
+                "value": 0,
+                "tokenArray": [
+                    {
+                        "KLAY": 0
+                    },
+                    {
+                        "HOUSE": 0
+                    }
+                ]
+            }
+        ]}
+}

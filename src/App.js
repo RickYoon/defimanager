@@ -1,4 +1,6 @@
 import React from 'react';
+// import RouteChangeTracker from './RouteChangeTracker';
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
 import GlobalStyles from './assets/styles/GlobalStyles';
@@ -20,7 +22,7 @@ import Overview from './pages/overview/Overview'
 import KlaytnOverview from "./pages/klaytnOverview/Overview"
 import Detail from './pages/detail/Detail'
 import Poolsearch from './pages/poolsearch'
-import Wallet from './components/pages/DefimanagerNew'
+import Wallet from './pages/wallet'
 
 
 import NftDetail from './pages/nftDetail/NftDetail'
@@ -34,15 +36,21 @@ import Nav from 'layout/nav'
 
 import Main from 'pages/analytics/Main'
 
+
 function App() {
+  // RouteChangeTracker()
+  
+
   return (
     <Router>
+      {/* <Analytics id="G-WTWX3TJM39" debug> */}
       <ScrollToTop />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Nav />} />
-        <Route path="/wallet" element={<Nav />} />
+        {/* <Route path="/wallet" element={<Nav />} /> */}
         <Route path="/klaytn" element={<Nav />} />
+        <Route exact path="/wallet/:id" element={<Nav />} />
         <Route exact path="/Poolpage" element={<Nav />} />
         <Route exact path="/project/:id" element={<Nav />} />
         <Route exact path="/nftview" element={<Nav />} />
@@ -53,8 +61,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/" element={<Overview />} />
-        <Route path="/wallet" element={<Wallet />} />
+        {/* <Route path="/wallet" element={<Wallet />} /> */}
         <Route path="/klaytn" element={<KlaytnOverview />} />
+        <Route exact path="/wallet/:id" element={<Wallet />} />
         <Route exact path="/Poolpage" element={<Poolsearch />} />
         <Route exact path="/project/:id" element={<Detail />} />
         <Route exact path="/nftview" element={<Nftoverview />} />
@@ -72,6 +81,7 @@ function App() {
         <Route exact path="/project/:id" element={<Footer />} />
         <Route exact path="/Poolpage" element={<Projectfooter />} />
       </Routes> */}
+      {/* </Analytics> */}
     </Router>
   );
 }

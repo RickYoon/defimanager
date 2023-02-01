@@ -187,7 +187,7 @@ function Topnav() {
 
     return (
         <>
-            <TemplateBlock style={{ marginBottom: "50px" }}>
+            <TemplateBlock style={{ marginBottom: "0px" }}>
 
                 {/* <span onClick={moveMain} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />

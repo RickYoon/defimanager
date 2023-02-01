@@ -236,25 +236,6 @@ function Menubutton() {
             </Link>
         }
 
-{/* <p data-linksheader>Fi Manager</p>
-
-{pathname === "/wallet" ?
-    <Detailss>
-            <summary>
-                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
-                <span>Wallet</span>
-            </summary>
-    </Detailss>
-    :
-    <Link to="/wallet">
-        <Details>
-            <summary>
-                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
-                <span>Wallet</span>
-            </summary>
-        </Details>
-        </Link>
-} */}
                     <div
             style={{
                 width: "70%",
