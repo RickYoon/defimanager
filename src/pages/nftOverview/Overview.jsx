@@ -87,12 +87,12 @@ function Nftoverview() {
         <NftviewContext.Provider value={{nftdata,totaldata,currency, setCurrency,isloading}}>
         <Styled.OverBox>
           <Styled.Wrappertitle>
-            <Styled.Title>Klaytn NFT Overview</Styled.Title>
+            <Styled.Title>NFT Overview</Styled.Title>
           </Styled.Wrappertitle>
 
             <Styled.Topbox>
                 <Styled.Leftcolumn>
-                    <TopNumbercard />
+                    {/* <TopNumbercard /> */}
                     <TvlTable />
                 </Styled.Leftcolumn>
             </Styled.Topbox>

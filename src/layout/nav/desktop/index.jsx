@@ -59,7 +59,7 @@ function DesktopNav() {
                     </Details>
                 </Link>
            }
-                   {pathname === "/nftview" ?
+                   {/* {pathname === "/nftview" ?
             <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
@@ -75,7 +75,7 @@ function DesktopNav() {
                 </summary>
             </Details>
         </Link>
-        }
+        } */}
             <p data-linksheader>Analytics</p>
 
             {pathname === "/klaytn" ?

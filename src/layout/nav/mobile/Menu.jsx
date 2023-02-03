@@ -162,7 +162,7 @@ function Menubutton() {
                     </Details>
                 </Link>
            }
-                   {pathname === "/nftview" ?
+                   {/* {pathname === "/nftview" ?
             <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
@@ -178,7 +178,8 @@ function Menubutton() {
                 </summary>
             </Details>
         </Link>
-        }
+        } */}
+
             <p data-linksheader>Analytics</p>
 
             {pathname === "/klaytn" ?
@@ -236,25 +237,25 @@ function Menubutton() {
             </Link>
         }
 
-{/* <p data-linksheader>Wallets</p>
+            {/* <p data-linksheader>Wallets</p>
 
-{pathname.slice(0,7) === "/wallet" ?
-    <Detailss>
-            <summary>
-                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
-                <span>Portfolio</span>
-            </summary>
-    </Detailss>
-    :
-    <Link to="/wallet">
-        <Details>
-            <summary>
-                <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
-                <span>Portfolio</span>
-            </summary>
-        </Details>
-        </Link>
-} */}
+            {pathname.slice(0,7) === "/wallet" ?
+                <Detailss>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                            <span>Portfolio</span>
+                        </summary>
+                </Detailss>
+                :
+                <Link to="/wallet">
+                    <Details>
+                        <summary>
+                            <span data-mainlinkicon><img height="25px" src={walletIcon} /></span>
+                            <span>Portfolio</span>
+                        </summary>
+                    </Details>
+                    </Link>
+            } */}
                     <div
             style={{
                 width: "70%",
