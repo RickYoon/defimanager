@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
+import icons from "assets/tokenIcons"
 import React, { useState, useEffect } from 'react';
 import * as Styled from "./Main.style"
 import {
@@ -53,7 +54,7 @@ function Main() {
 
     await axios.get(url).then(function (response) {
 
-      console.log("rrr", response)
+      // console.log("rrr", response)
       let tempArr = response.data.body.Items;
       let tempKeys = Object.keys(tempArr[0]);
 
@@ -69,7 +70,7 @@ function Main() {
         return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
       })
 
-      console.log("tempchart",tempArr)
+      // console.log("tempchart",tempArr)
       setTempchart(tempArr)
 
     })
@@ -123,13 +124,18 @@ function Main() {
       let dexClub = tempArr.filter((arr) => arr.cat === "DEX")
       let dexArray = []
       dexClub.forEach((ele)=> {
-        dexArray.push(ele.proj)
+        // console.log("ele",ele)
+        if(ele.tvl > 5000000) {
+          dexArray.push(ele.proj)
+        }
       })
 
       let lendingClub = tempArr.filter((arr) => arr.cat === "Lending")
       let lendingArray = []
       lendingClub.forEach((ele)=> {
-        lendingArray.push(ele.proj)
+        if(ele.proj !== "KairosCash"){
+          lendingArray.push(ele.proj)
+        }
       })
 
       let stakingClub = tempArr.filter((arr) => arr.cat === "staking")
@@ -141,24 +147,6 @@ function Main() {
       setDexgroup(dexArray)
       setLendinggroup(lendingArray)
       setStakinggroup(stakingArray)
-
-      // console.log("dexClub",dexClub)
-
-      // let hundredClub = tempArr.filter((arr) => arr.cat === "DEX")
-      // // console.log("hundredClub", hundredClub)
-      // let temphund = []
-      // hundredClub.forEach((ele) => {
-      //   temphund.push(ele.proj)
-      // })
-
-      // let lendingClub = tempArr.filter((arr) => arr.cat === "Reserve cur.")
-      // // console.log("hundredClub", hundredClub)
-      // let lending = []
-      // lendingClub.forEach((ele) => {
-      //   lending.push(ele.proj)
-      // })
-
-      // console.log("temphund",temphund)
 
       responseObj.data.forEach((ress) => {
         if (ress.pool !== undefined) {
@@ -173,81 +161,59 @@ function Main() {
     })
   }
 
-  const transnumber = () => {
-
-    return (
-      <>
-        {tvldata.total.tvl > 10000000 ?
-          <span> ${(tvldata.total.tvl / 1000000000).toFixed(2)}B</span> :
-          <span> - </span>
-        }
-      </>
-    )
-  }
-
-  const minusNumber = () => {
-    let temp = number - 1;
-    if (temp === 0) {
-      temp = 4
-    }
-    setNumber(temp)
-  }
-
-  const plusNumber = () => {
-    let temp = number + 1;
-    if (temp === 5) {
-      temp = 1
-    }
-
-    setNumber(temp)
-  }
-  
   return (
     <>
       <Styled.OverBox>
             <Styled.Wrappertitle>
-              <Styled.Title>Compare Projects</Styled.Title>
+              <Styled.Title>Compare Projects (6 Month)</Styled.Title>
             </Styled.Wrappertitle>
 
       <Styled.Topbox>
       <Styled.Leftcolumn>
-      <div>
-      
       <Chartcover>
-        <TemplateBlockinner>Dex Projects
+        <TemplateBlockinner>DEX (over $ 5M) <span style={{color:"gray", fontSize:"13px", float:"right"}}> Log scale </span>
         </TemplateBlockinner>
 
-        <div style={{ marginLeft: "7px", marginRight: "7px", paddingTop: "5px" }}>
+        <div style={{ marginLeft: "7px", marginRight: "7px", paddingTop: "0px", paddingBottom: "0px" }}>
           <ResponsiveContainer width="100%" height={350}>
-            <AreaChart data={tempchart}>
-
-            {/* <defs>
-                      <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor={colorarr[index]} stopOpacity={0.4} />
-                          <stop offset="75%" stopColor={colorarr[index]} stopOpacity={0.05} />
-                      </linearGradient>
-                    </defs>    
-                    return  <Area stroke={colorarr[index]} dataKey={fifty}/> */}
+          {isloading ?
+          <><Styled.ProductSkeleton /></>
+          :
+            <AreaChart data={tempchart} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+            <Chartrange isloading={isloading}/>            
 
                 {
                   dexgroup.map((fifty, index) => {
-                    console.log("fifty", fifty)
+                    // console.log("fifty", fifty)
                     return (
                     <>
                     <defs>
                       <linearGradient id="color1" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#3366cc" stopOpacity={0.9} />
-                          <stop offset="75%" stopColor="#3366cc" stopOpacity={0.05} />
+                          <stop offset="0%" stopColor="#3366cc" stopOpacity={0.2} />
+                          <stop offset="50%" stopColor="#3366cc" stopOpacity={0.0} />
                       </linearGradient>
-                    </defs>
-                    <defs>
                       <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#dd4477" stopOpacity={0.0} />
-                          <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
+                          <stop offset="0%" stopColor="#dc3912" stopOpacity={0.2} />
+                          <stop offset="50%" stopColor="#dc3912" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="color3" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#ff9900" stopOpacity={0.2} />
+                          <stop offset="50%" stopColor="#ff9900" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="color4" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#109618" stopOpacity={0.2} />
+                          <stop offset="50%" stopColor="#109618" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="color5" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#990099" stopOpacity={0.2} />
+                          <stop offset="50%" stopColor="#990099" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="color6" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#0099c6" stopOpacity={0.2} />
+                          <stop offset="50%" stopColor="#0099c6" stopOpacity={0.0} />
                       </linearGradient>
                     </defs>
-
-                    <Area type="monotone" strokeWidth={1} dataKey={fifty} stroke={colorarr[index]} fill="url(#color2)" />
+                    <Area type="monotone" isAnimationActive={false} strokeWidth={1.1} dataKey={fifty} stroke={colorarr[index]} fill={`url(#color${index+1})`} />
                     </>
                     )})                 
                 }
@@ -260,17 +226,17 @@ function Main() {
                     stroke="#efefef"
                     tick={{ fontSize: 10, fill: '#000000' }}
                     minTickGap={120}
-                    domain={['dataMin', 'dataMax']}
+                    // domain={['0', '1000']}
                     tickFormatter={(str) => {
                         return str
                     }}
                 />
 
-                {/* <YAxis scale="log" domain={['auto', 'auto']} /> */}
 
                 <YAxis
+                    // scale="linear" 
                     scale="log" 
-                    domain={['auto', 'auto']}
+                    domain={[2000000, 'auto']}
                     axisLine={false}
                     tickLine={false}
                     tickCount={8}
@@ -283,37 +249,64 @@ function Main() {
                     mirror={true}
                     style={{ fontSize: "14px" }}
                 />
-                <Legend wrapperStyle={{ fontSize: "12px" }} />
-                <Tooltip />
+                <Legend iconType="circle" content={<RenderCusomizedLegend />} />
 
-                {/* <Tooltip content={<CustomTooltip />} /> */}
+                {/* <Legend wrapperStyle={{fontSize:"12px"}} /> */}
+                <Tooltip content={<CustomTooltip />} />
 
                 <CartesianGrid opacity={0.15} vertical={false} />
             </AreaChart>
-          </ResponsiveContainer>
+              }
+            </ResponsiveContainer>
         </div>
       </Chartcover>
-    </div>
-
+      
     <div>
       <div style={{marginTop: "15px"}}></div>
       <Chartcover>
-        <TemplateBlockinner>Lending projects
+      <TemplateBlockinner>Lending <span style={{color:"gray", fontSize:"13px", float:"right"}}> Log scale </span>
         </TemplateBlockinner>
 
         <div style={{ marginLeft: "7px", marginRight: "7px", paddingTop: "5px" }}>
           <ResponsiveContainer width="100%" height={350}>
-            <AreaChart data={tempchart}>
+          {isloading ?
+          <><Styled.ProductSkeleton /></>
+          :
+            <AreaChart data={tempchart} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
 
                 {
                   lendinggroup.map((fifty, index) => {
-                    <defs>
-                      <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#dd4477" stopOpacity={0.0} />
-                          <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
-                      </linearGradient>
-                    </defs>
-                    return  <Area type="linear" stroke={colorarr[index]} fill="url(#color2)" dataKey={fifty}/>
+                    return (
+                      <>
+                      <defs>
+                        <linearGradient id="color1" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#3366cc" stopOpacity={0.2} />
+                            <stop offset="50%" stopColor="#3366cc" stopOpacity={0.0} />
+                        </linearGradient>
+                        <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#dc3912" stopOpacity={0.2} />
+                            <stop offset="50%" stopColor="#dc3912" stopOpacity={0.0} />
+                        </linearGradient>
+                        <linearGradient id="color3" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#ff9900" stopOpacity={0.2} />
+                            <stop offset="50%" stopColor="#ff9900" stopOpacity={0.0} />
+                        </linearGradient>
+                        <linearGradient id="color4" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#109618" stopOpacity={0.2} />
+                            <stop offset="50%" stopColor="#109618" stopOpacity={0.0} />
+                        </linearGradient>
+                        <linearGradient id="color5" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#990099" stopOpacity={0.2} />
+                            <stop offset="50%" stopColor="#990099" stopOpacity={0.0} />
+                        </linearGradient>
+                        <linearGradient id="color6" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#0099c6" stopOpacity={0.2} />
+                            <stop offset="50%" stopColor="#0099c6" stopOpacity={0.0} />
+                        </linearGradient>
+                      </defs>
+                      <Area type="monotone" isAnimationActive={false} strokeWidth={1.1} dataKey={fifty} stroke={colorarr[index]} fill={`url(#color${index+1})`} />
+                      </>
+                      )
                   })                 
                 }
 
@@ -336,7 +329,7 @@ function Main() {
 
                 <YAxis
                     scale="log"
-                    domain={['auto', 'auto']}
+                    domain={[1000000, 'auto']}
                     axisLine={false}
                     tickLine={false}
                     tickCount={8}
@@ -349,13 +342,14 @@ function Main() {
                     mirror={true}
                     style={{ fontSize: "14px" }}
                 />
-                <Legend wrapperStyle={{ fontSize: "12px" }} />
-                <Tooltip />
+                <Legend iconType="circle" content={<RenderCusomizedLegend />} />
+                <Tooltip content={<CustomTooltip />} />
 
                 {/* <Tooltip content={<CustomTooltip />} /> */}
 
                 <CartesianGrid opacity={0.15} vertical={false} />
             </AreaChart>
+        }
           </ResponsiveContainer>
         </div>
       </Chartcover>
@@ -364,23 +358,49 @@ function Main() {
     <div>
       <div style={{marginTop: "15px"}}></div>
       <Chartcover>
-        <TemplateBlockinner>Staking projects
+        <TemplateBlockinner>Staking
         </TemplateBlockinner>
 
         <div style={{ marginLeft: "7px", marginRight: "7px", paddingTop: "5px" }}>
           <ResponsiveContainer width="100%" height={350}>
+          {isloading ?
+          <><Styled.ProductSkeleton /></>
+          :
             <AreaChart data={tempchart}>
 
                 {
                   stakinggroup.map((fifty, index) => {
+                    return (
+                      <>
                     <defs>
-                      <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#dd4477" stopOpacity={0.0} />
-                          <stop offset="75%" stopColor="#dd4477" stopOpacity={0.0} />
-                      </linearGradient>
-                    </defs>
-                    return  <Area type="linear" stroke={colorarr[index]} fill="url(#color2)" dataKey={fifty}/>
-                  })                 
+                    <linearGradient id="color1" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#3366cc" stopOpacity={0.2} />
+                        <stop offset="50%" stopColor="#3366cc" stopOpacity={0.0} />
+                    </linearGradient>
+                    <linearGradient id="color2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#dc3912" stopOpacity={0.2} />
+                        <stop offset="50%" stopColor="#dc3912" stopOpacity={0.0} />
+                    </linearGradient>
+                    <linearGradient id="color3" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#ff9900" stopOpacity={0.2} />
+                        <stop offset="50%" stopColor="#ff9900" stopOpacity={0.0} />
+                    </linearGradient>
+                    <linearGradient id="color4" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#109618" stopOpacity={0.2} />
+                        <stop offset="50%" stopColor="#109618" stopOpacity={0.0} />
+                    </linearGradient>
+                    <linearGradient id="color5" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#990099" stopOpacity={0.2} />
+                        <stop offset="50%" stopColor="#990099" stopOpacity={0.0} />
+                    </linearGradient>
+                    <linearGradient id="color6" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#0099c6" stopOpacity={0.2} />
+                        <stop offset="50%" stopColor="#0099c6" stopOpacity={0.0} />
+                    </linearGradient>
+                  </defs>
+                  <Area type="monotone" isAnimationActive={false} strokeWidth={1.1} dataKey={fifty} stroke={colorarr[index]} fill={`url(#color${index+1})`} />
+                  </>)
+              })                 
                 }
 
                 <XAxis
@@ -414,18 +434,17 @@ function Main() {
                     mirror={true}
                     style={{ fontSize: "14px" }}
                 />
-                <Legend wrapperStyle={{ fontSize: "12px" }} />
-                <Tooltip />
-
-                {/* <Tooltip content={<CustomTooltip />} /> */}
+                <Legend iconType="circle" content={<RenderCusomizedLegend />} />
+                <Tooltip content={<CustomTooltip />} />
 
                 <CartesianGrid opacity={0.15} vertical={false} />
             </AreaChart>
+          }
           </ResponsiveContainer>
         </div>
       </Chartcover>
     </div>
-
+    <div style={{height:"50px"}}></div>
       </Styled.Leftcolumn>
       <Styled.Rightcolumn>
       </Styled.Rightcolumn>
@@ -435,6 +454,112 @@ function Main() {
   );
 }
 
+function RenderCusomizedLegend({ active, payload, label }) {
+    return (
+      <div style={{margin:"0px auto", width:"90%",display:"flex",flexDirection:"row",flexWrap:"wrap",justifyContent:"center"}}>
+        {payload.map((res)=>(
+          <LegendSet>
+            <img src={icons[res.dataKey]} alt="logo" height="20px" width="20px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+            <span style={{fontSize:"12px", color:`${res.color}`}}>{" "}{" "}{res.dataKey}</span>
+          </LegendSet>
+        ))}
+      </div>
+    );
+}
+
+function CustomTooltip({ active, payload, label }) {
+
+  // payload.sort(function (a, b) {
+  //   return a.value > b.value ? 1 : a.value < b.value ? -1 : 0;
+  // })
+
+  if (active) {
+    payload.sort(function(a, b)  {
+      // console.log(a)
+      if(Number(a.value) < Number(b.value)) return 1;
+      if(Number(a.value) === Number(b.value)) return 0;
+      if(Number(a.value) > Number(b.value)) return -1;
+    });
+      return (
+      <Styled.StyleTooltip>
+        <h4>{label}</h4>
+        <br/>
+        {payload.map((res) => (
+          isNaN(res.value) ?
+           <></>
+           :
+           <><div style={{height:"30px"}}>
+           <img src={icons[res.name]} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+           {"     "}{res.name} : {(res.value/1000000).toFixed(2)+"M"}</div></> 
+
+        ))}
+      </Styled.StyleTooltip>
+    );
+  }
+  return null;
+}
+
+
+
+function Chartrange (props) {
+  // console.log(props)
+  return (
+      <>
+      <Styled.RangeContainer>
+      {props.isloading ? 
+      <Styled.Rangedisplay><Styled.SmallSkeleton style={{marginLeft:"-5px"}} width="100px" height="20px" /> </Styled.Rangedisplay> : 
+      <Styled.Rangedisplay>'{props.startdate} ~ {props.enddate} </Styled.Rangedisplay>
+      }
+      <Styled.RangeControlBox>
+          {props.selection === 0 ?
+              <Styled.Chartbutton primary={true}>
+                  <span>1M</span>
+              </Styled.Chartbutton> :
+              <Styled.Chartbutton primary={false} onClick={() => props.ranger(0)}>
+                  <span>1M</span>
+              </Styled.Chartbutton>
+          }
+
+          {props.selection === 1 ?
+              <Styled.Chartbutton primary={true}>
+                  <span>3M</span>
+              </Styled.Chartbutton> :
+              <Styled.Chartbutton primary={false} onClick={() => props.ranger(1)}>
+                  <span>3M</span>
+              </Styled.Chartbutton>
+          }
+
+          {props.selection === 2 ?
+              <Styled.Chartbutton primary={true}>
+                  <span>6M</span>
+              </Styled.Chartbutton> :
+              <Styled.Chartbutton primary={false} onClick={() => props.ranger(2)}>
+                  <span>6M</span>
+              </Styled.Chartbutton>
+          }
+
+          {props.selection === 3 ?
+              <Styled.Chartbutton primary={true}>
+                  <span>9M</span>
+              </Styled.Chartbutton> :
+              <Styled.Chartbutton primary={false} onClick={() => props.ranger(3)}>
+                  <span>9M</span>
+              </Styled.Chartbutton>
+          }
+          </Styled.RangeControlBox>
+      </Styled.RangeContainer>
+      </>
+  )
+}
+
+const LegendSet = styled.div`
+  width: 25%;
+  text-align: center;
+  height: 30px;
+  @media screen and (max-width: 500px){
+    width: 50%;
+  }
+`
 
 const PC = styled.div`
   color: black;
@@ -461,8 +586,8 @@ const Pagination = styled.div`
 
 
 const TemplateBlockinner = styled.div`
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   flex-direction: row;
   padding-bottom: 10px;
   padding-top: 5px;
