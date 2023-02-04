@@ -186,8 +186,10 @@ import MOOI from "./MOOI.svg"
 import GXA from "./GXA.jpeg"
 import ZEMIT from "./ZEMIT.svg"
 import wemixFi from "./wemixFi.png"
+import STONE from "./STONE.png"
 
 const icons = {
+    STONE,
     wemixFi,
     ZEMIT,
     MOOI,
