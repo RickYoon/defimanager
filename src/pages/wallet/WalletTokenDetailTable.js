@@ -11,71 +11,19 @@ import axios from "axios";
 const WalletTokenDetailTable = () => {
 
 
-    const { assetState, isDataLoading, SetIsDataLoading, isWalletLoad, SetIsWalletLoad,walletAddress, SetWalletAddress } = useContext(WalletContext);
-
-//     const [isLoading, setIsLoading] = useState(false)
-//     const [assetState, setAssetState] = useState([
-//         {
-//           address: '0xd6dab4cff47df175349e6e7ee2bf7c40bb8c05a3',
-//           name: 'Tether USDT',
-//           symbol: 'USDT',
-//           decimals: 6,
-//           balance: 9.993652
-//         }
-//       ])
-
-//     useEffect(() => {
-//       loadchart()
-//       // loadchart()
-//       }, [])
-
-
-//   const loadchart = async () => {
-
-//     const kk = [
-//       {
-//           "address": "0xce40569d65106c32550626822b91565643c07823",
-//           "name": "Kairos Cash",
-//           "symbol": "KASH",
-//           "decimals": 18,
-//           "balance": -8.388608e-12
-//       }
-//     ]
+    const { assetState, isSmallTokenOpen, setIsSmallTokenOpen, isDataLoading, SetIsDataLoading, isWalletLoad, SetIsWalletLoad,walletAddress, SetWalletAddress } = useContext(WalletContext);
     
-
-//     let returnTemp = []
-
-//     // kk.forEach((res)=>{
-//     //   if(FIlterJson[res.address]!==undefined){
-//     //     console.log("here",FIlterJson[res.address])
-//     //   returnTemp.push({
-//     //     tokenType : FIlterJson[res.address].type,
-//     //     tokenProject : FIlterJson[res.address].project,
-//     //     tokenName : FIlterJson[res.address].name,
-//     //     tokenSymbol : FIlterJson[res.address].symbol,
-//     //     balance : res.balance
-//     //   })
-//     //   }
-//     // })
-
-//     // tokenFIlter
-
-//     console.log("returnTemp", returnTemp)
-
-//     setAssetState(returnTemp)
-//     }
-
     return (
         <>
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalBalance}</div>
+                <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalValue}</div>
             </SubTemplateBlockVertical>
 
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
                 <div style={{ fontSize: "18px", color: "#657795" }}>Tokens
                     <span style={{ fontSize: "12px" }}> (23) 
-                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 23,321.2</span>
+                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span>
                     </span>
                 </div>
 
@@ -85,8 +33,8 @@ const WalletTokenDetailTable = () => {
                         <Thr>Token Price ($)</Thr>
                         <Thrr>Value ($)</Thrr>
                     </Thead>
-                    {assetState.token.TokenList.map((token) => (
                     <tbody>
+                    {assetState.token.tokenList.map((token) => (
                         <Tr>
                             <Td>
                                 {icons[token.symbol] !== undefined ? 
@@ -99,19 +47,149 @@ const WalletTokenDetailTable = () => {
                             <Tdr>{token.price.toFixed(3)}</Tdr>
                             <Tdrr>{(token.price * token.balance).toFixed(3)}</Tdrr>
                         </Tr>
-                    </tbody>
                     ))}
+                    {isSmallTokenOpen ?
+                        assetState.token.smallTokenList.map((token) => (
+                            <Tr>
+                                <Td>
+                                    {icons[token.symbol] !== undefined ? 
+                                    <><img src={icons[token.symbol]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                    <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.symbol}</span></> :
+                                    <><img src={icons["unknown"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                    <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.symbol}</span></>
+                                    }
+                                </Td>
+                                <Tdr>{token.price.toFixed(3)}</Tdr>
+                                <Tdrr>{(token.price * token.balance).toFixed(3)}</Tdrr>
+                            </Tr>
+                        ))
+                        :
+                        <></>
+                    }
+                    </tbody>                    
                 </Table>                
+                <ButtonCover>
+                    <Button onClick={()=>setIsSmallTokenOpen(!isSmallTokenOpen)}>
+                    {!isSmallTokenOpen ? <>+ 소액 보이기</> : <>- 소액 감추기</>}
+                    </Button>
+                </ButtonCover>
+
             </SubTemplateBlockVertical>
 
-            <SubTemplateBlockVertical style={{marginTop:"20px"}}>
-                <div style={{ fontSize: "18px", color: "#657795" }}>
-                <img src={icons["Klayswap"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                <span style={{fontSize:"13px"}}>Klayswap</span>
-                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 32.2</span>
-                </div>
+            
+            {
+                assetState.klayswap.totalValue === 0 ?
+                <></> :
+                <SubTemplateBlockVertical style={{marginTop:"20px"}}>
+                    <div style={{ fontSize: "18px", color: "#657795" }}>
+                    <img src={icons["Klayswap"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                    <span style={{fontSize:"13px"}}>Klayswap</span>
+                            <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.klayswap.totalValue}</span>
+                    </div>
 
-                <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Single Deposit</span>
+                    {assetState.klayswap.stakedKSP.balance === 0 ?
+                    <></> :
+                    <>
+                    <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Staking</span>
+
+                    <Table>
+                        <Thead>
+                            <Th>Token</Th>
+                            <Th>unlockedDate</Th>
+                            <Thr>Balance ($)</Thr>
+                            <Thrr>Value ($)</Thrr>
+                        </Thead>
+                        <tbody>
+                            <Tr>
+                                <Td>KSP</Td>
+                                <Tdr>{assetState.klayswap.stakedKSP.unlockedDate}</Tdr>
+                                <Tdr>{assetState.klayswap.stakedKSP.balance}</Tdr>
+                                <Tdrr>{assetState.klayswap.stakedKSP.value}</Tdrr>
+                            </Tr>
+                        </tbody>
+                    </Table>   
+                    </>
+                    }
+
+                    {assetState.klayswap.vKSP === 0 ?
+                    <></>
+                    :
+                    <>
+                    <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Voting Power</span>
+
+                    <Table>
+                        <Thead>
+                            <Th>Token</Th>
+                            <Thrr>Number</Thrr>
+                        </Thead>
+                        <tbody>
+                            <Tr>
+                                <Td>vKSP</Td>
+                                <Tdrr>{assetState.klayswap.vKSP}</Tdrr>
+                            </Tr>
+                        </tbody>
+                    </Table>  
+                    </> 
+                    }
+
+                    {assetState.klayswap.singlePool.length === 0 ?
+                    <></>
+                    :
+                    <>
+                    <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Single Deposit</span>
+
+                    
+                    <Table>
+                        <Thead>
+                            <Th>Token</Th>
+                            <Thr>Balance ($)</Thr>
+                            <Thrr>Value ($)</Thrr>
+                        </Thead>
+                        <tbody>
+                            {assetState.klayswap.singlePool.map((res)=>(
+                            <Tr>
+                                <Td>{res.depositToken}</Td>
+                                <Tdr>{res.balance}</Tdr>
+                                <Tdrr>{res.value}</Tdrr>
+                            </Tr>
+                            ))
+                            }
+                        </tbody>
+                    </Table>       
+                    </>
+                    }        
+
+                {assetState.klayswap.pairPool.length === 0 ?
+                    <></>
+                    :
+                    <>
+                <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Pair Deposit</span>
+
+                <Table>
+                    <Thead>
+                        <Th>Pool</Th>
+                        <Thr>Balance</Thr>
+                        <Thrr>Value ($)</Thrr>
+                    </Thead>
+                    <tbody>
+                    {assetState.klayswap.pairPool.map((res)=>(
+                        <Tr>
+                            <Td>
+                                <Imgs src={icons[res.pairList[0]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                <Imgs src={icons[res.pairList[1]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                            </Td>
+                            <Tdr>
+                                {res.balance[0]} {res.pairList[0]} + {res.balance[1]} {res.pairList[1]}
+                            </Tdr>
+                            <Tdrr>25</Tdrr>
+                        </Tr>
+                    ))}
+                    </tbody>
+                </Table>    
+                </>            
+                }
+
+{/*              <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Plus Deposit</span>
 
                 <Table>
                     <Thead>
@@ -126,81 +204,41 @@ const WalletTokenDetailTable = () => {
                             <Tdrr>0.3</Tdrr>
                         </Tr>
                     </tbody>
-                </Table>               
+                </Table>       */}
 
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Pair Deposit</span>
 
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>                
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Plus Deposit</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>      
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Staking</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>   
-
-            <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Voting Power</span>
-
-            <Table>
-                <Thead>
-                    <Th>Pool</Th>
-                    <Thr>Balance ($)</Thr>
-                    <Thrr>Value ($)</Thrr>
-                </Thead>
-                <tbody>
-                    <Tr>
-                        <Td>Klay</Td>
-                        <Tdr>23</Tdr>
-                        <Tdrr>0.3</Tdrr>
-                    </Tr>
-                </tbody>
-            </Table>   
 
             </SubTemplateBlockVertical>
+        }
 
         </>
     )
 }
+
+const ButtonCover = styled.div`
+  text-align: center;
+  margin: auto;
+`
+
+const Button = styled.button`
+  display: inline-block;
+  color: gray;
+  font-size: 12px;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 0px solid gray;
+  border-radius: 3px;
+  display: block;
+  height: 30px;
+  width: 100px;
+`;
+
+const Imgs = styled.img`
+  width: 20px;
+  height: 20px;
+  border: 0.5px solid #eaeaea;
+  border-radius:50%;
+`
 
 
 const Tr = styled.tr`

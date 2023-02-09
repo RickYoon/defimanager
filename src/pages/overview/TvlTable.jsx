@@ -154,7 +154,9 @@ function TvlTable() {
                 <Styled.Tdpd className="head" style={{ width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
                     <Link to={`/project/${tvld.proj}`}>
                         <img src={icons[tvld.proj]} alt="logo" height="25px" width="25px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                        <span style={{ padding: "0px", whiteSpace: "nowrap", paddingLeft:"5px" }}>{tvld.proj}</span>
+                        <span style={{ padding: "0px", whiteSpace: "nowrap", paddingLeft:"5px" }}>
+                          {tvld.proj === "kleva" ? "KLEVA" : tvld.proj}
+                        </span>
                     </Link>
                 </Styled.Tdpd>
                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.chain}</Styled.Tdc>

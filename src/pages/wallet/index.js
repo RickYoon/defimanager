@@ -14,14 +14,55 @@ const Wallet = () => {
   const [isDataLoading, SetIsDataLoading] = useState(false)
   const [isWalletLoad, SetIsWalletLoad] = useState(false) 
   const [walletAddress, SetWalletAddress] = useState("") // wallet address
+  const [isSmallTokenOpen, setIsSmallTokenOpen] = useState(false)
 
-  const [assetState, setAssetState] = useState({        
-        totalBalance : 0,
-        token : {
-          TotalValue : 0,
-          TokenList : []
-        }
-      })
+  const [assetState, setAssetState] = useState({
+    isWallet : true,
+    totalValue : 1,
+    token : {
+      totalValue : 0,
+      tokenList : [{
+          symbol: "KLAY",
+          price: 12,
+          balance: 20,
+          value: 240
+      }],
+      smallTokenList : [{
+        symbol: "KLAY",
+        price: 12,
+        balance: 20,
+        value: 240
+     }]
+    },
+    klayswap : {
+      totalValue : 1,
+      vKSP : 200,
+      stakedKSP : {
+          balance : 1,
+          price : 0.12,
+          value : 2,
+          unlockedDate : "2011-20-11"
+      },
+      pairPool : [{
+            pairList : ["KLAY", "LAY"],
+            balance : [32,11],
+            value : 23.1
+        }],
+      singlePool : [{
+            pairToken : "KLAY",
+            balance : 231,
+            price : 2,
+            value : 23.1
+        }],
+      plusPool : [{
+            pairList : ["KLAY", "LAY"],
+            supply : [32,11],
+            borrow : [2,1],
+            debtRatio : 21,
+            value : 0
+        }]
+      }
+    })
 
       useEffect(() => {
         if(isDataLoading){
@@ -54,9 +95,16 @@ const Wallet = () => {
         SetIsDataLoading(false)
         alert("올바른 월렛주소를 입력해주세요.")
       } else {
-        kk.data.token.TokenList.sort(function (a, b) {
+        kk.data.token.tokenList.sort(function (a, b) {
           return (a.balance * a.price) > (b.balance * b.price) ? -1 : (a.balance * a.price) < (b.balance * b.price) ? 1 : 0;
         })
+
+        kk.data.token.smallTokenList.sort(function (a, b) {
+          return (a.balance * a.price) > (b.balance * b.price) ? -1 : (a.balance * a.price) < (b.balance * b.price) ? 1 : 0;
+        })
+
+
+        console.log("aa",kk.data)
 
         setAssetState(kk.data)
         SetIsWalletLoad(true)
@@ -72,7 +120,7 @@ const Wallet = () => {
 
     return (
         <>
-            <WalletContext.Provider value={{assetState, isDataLoading, SetIsDataLoading, isWalletLoad, SetIsWalletLoad,walletAddress, SetWalletAddress}}>
+            <WalletContext.Provider value={{assetState, isDataLoading, SetIsDataLoading, isWalletLoad, SetIsWalletLoad,walletAddress, SetWalletAddress, isSmallTokenOpen, setIsSmallTokenOpen}}>
             <OverBox>
               <Topbox>
                 <Leftcolumn>

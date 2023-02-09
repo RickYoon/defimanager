@@ -47,7 +47,9 @@ function TvlTable() {
                                 </Link>
                               </Styled.Tdpdd>
 
-                              <Styled.Tdc><span style={{ fontSize: "14px", color: "gray",paddingLeft:"20px" }}>{tvld.project}</span></Styled.Tdc>
+                              <Styled.Tdc><span style={{ fontSize: "14px", color: "gray",paddingLeft:"20px" }}>
+                              {tvld.project === "kleva" ? "KLEVA" : tvld.project}
+                              </span></Styled.Tdc>
                               <Styled.Td className="head" style={{ height: "30px", width: "400px", paddingLeft: "1em", textAlign: "right" }}>{Number(tvld.price).toFixed(3)}
                               </Styled.Td>
                               <Styled.Td className="content" style={{ width: "400px", textAlign: "right" }}>
