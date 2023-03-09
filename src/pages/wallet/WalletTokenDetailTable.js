@@ -17,7 +17,7 @@ const WalletTokenDetailTable = () => {
         <>
             <SubTemplateBlockVertical>
                 <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalValue}</div>
+                <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)}</div>
             </SubTemplateBlockVertical>
 
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
@@ -84,7 +84,7 @@ const WalletTokenDetailTable = () => {
                     <div style={{ fontSize: "18px", color: "#657795" }}>
                     <img src={icons["Klayswap"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                     <span style={{fontSize:"13px"}}>Klayswap</span>
-                            <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.klayswap.totalValue}</span>
+                            <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.klayswap.totalValue.toFixed(1)}</span>
                     </div>
 
                     {assetState.klayswap.stakedKSP.balance === 0 ?
@@ -102,9 +102,9 @@ const WalletTokenDetailTable = () => {
                         <tbody>
                             <Tr>
                                 <Td>KSP</Td>
-                                <Tdr>{assetState.klayswap.stakedKSP.unlockedDate}</Tdr>
+                                <Td>{assetState.klayswap.stakedKSP.UnlockedDate}</Td>
                                 <Tdr>{assetState.klayswap.stakedKSP.balance}</Tdr>
-                                <Tdrr>{assetState.klayswap.stakedKSP.value}</Tdrr>
+                                <Tdrr>{assetState.klayswap.stakedKSP.value.toFixed(1)}</Tdrr>
                             </Tr>
                         </tbody>
                     </Table>   
@@ -149,8 +149,8 @@ const WalletTokenDetailTable = () => {
                             {assetState.klayswap.singlePool.map((res)=>(
                             <Tr>
                                 <Td>{res.depositToken}</Td>
-                                <Tdr>{res.balance}</Tdr>
-                                <Tdrr>{res.value}</Tdrr>
+                                <Tdr>{res.balance.toFixed(4)}</Tdr>
+                                <Tdrr>{res.value.toFixed(4)}</Tdrr>
                             </Tr>
                             ))
                             }
@@ -189,7 +189,7 @@ const WalletTokenDetailTable = () => {
                 </>            
                 }
 
-{/*              <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Plus Deposit</span>
+             <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Plus Deposit</span>
 
                 <Table>
                     <Thead>
@@ -204,7 +204,7 @@ const WalletTokenDetailTable = () => {
                             <Tdrr>0.3</Tdrr>
                         </Tr>
                     </tbody>
-                </Table>       */}
+                </Table>      
 
 
 

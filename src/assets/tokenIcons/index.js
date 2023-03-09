@@ -187,8 +187,12 @@ import GXA from "./GXA.jpeg"
 import ZEMIT from "./ZEMIT.svg"
 import wemixFi from "./wemixFi.png"
 import STONE from "./STONE.png"
+import megatonfinance from "./megatonfinance.png"
+import klimax from "./klimax.png"
 
 const icons = {
+    klimax,
+    megatonfinance,
     STONE,
     wemixFi,
     ZEMIT,
