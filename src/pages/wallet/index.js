@@ -13,7 +13,7 @@ const Wallet = () => {
 
   const [walletSearchTrigger, setWalletSearchTrigger] = useState(false)
   const [isDataLoading, SetIsDataLoading] = useState(false)
-  const [isWalletLoad, SetIsWalletLoad] = useState(true) 
+  const [isWalletLoad, SetIsWalletLoad] = useState(false) 
   const [walletAddress, SetWalletAddress] = useState("") // wallet address
   const [isSmallTokenOpen, setIsSmallTokenOpen] = useState(false)
   const [modal, setModal] = useState(false)
