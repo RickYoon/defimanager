@@ -307,8 +307,10 @@ const Table = styled.table`
     
         
   @media screen and (max-width: 500px){
-      width: 310px;
-      font-size: 20px;
+      /* width: 310px;
+      font-size: 20px; */
+      width: 100%;
+
     }
 
 `
@@ -338,10 +340,13 @@ const SubTemplateBlockVertical = styled.div`
     box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
     overflow: visible;
     
+
   @media screen and (max-width: 500px){
-      width: 360px;
+      /* width: 360px; */
       /* margin: 10px 10px; */
-      font-size: 15px;
+      /* font-size: 15px; */
+      width: 100%;
+      box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
     }
 `;
 

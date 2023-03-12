@@ -2,12 +2,13 @@ import React, {useState,useEffect} from 'react';
 import axios from "axios";
 import styled from "styled-components";
 import { Button, Modal,Image, List } from 'semantic-ui-react'
+import icons from "../../assets/tokenIcons"
 
 import { WalletContext } from "components/context/WalletContext"
 import AddressBox from "./AddressBox.jsx"
 import Selector from "./Selector.jsx"
 import WalletTokenDetailTable from "pages/wallet/WalletTokenDetailTable.js"
-
+import WalletHistory from "pages/wallet/WalletHistory.js"
 
 const Wallet = () => {
 
@@ -17,6 +18,13 @@ const Wallet = () => {
   const [walletAddress, SetWalletAddress] = useState("") // wallet address
   const [isSmallTokenOpen, setIsSmallTokenOpen] = useState(false)
   const [modal, setModal] = useState(false)
+  const [isAsset, setIsAsset] = useState(true)
+  const [walletHistory, setWalletHistory] = useState([{
+    time:"2022-10-22 12:00",
+    from:"",
+    to:"",
+    content: ""    
+  }])
 
   const [assetState, setAssetState] = useState({
     isWallet : true,
@@ -54,6 +62,9 @@ const Wallet = () => {
     // https://tonwhales.com/explorer/address/EQCeHendv97uqK8bU0I2xiRPVuWFMiHviEZKIwJUMl_CKOsY
 
       useEffect(() => {
+        var lastWalletAddress = localStorage.getItem('lastWalletAddress');
+        SetWalletAddress(lastWalletAddress)
+
         if(isDataLoading){
         setTimeout(function() {
           console.log(walletAddress.slice(0,2))
@@ -92,6 +103,8 @@ const Wallet = () => {
 
         // get token price
         let priceObject = {}
+        localStorage.setItem('lastWalletAddress', walletAddress);
+
         const tokenInfosFromMegaton = await axios.get("https://megaton.fi/api/token/infoList")
         tokenInfosFromMegaton.data.forEach((res)=>
           priceObject[res.symbol] = res.price
@@ -210,14 +223,18 @@ const Wallet = () => {
             },
           }
 
+
+        const historyData = await axios.get("https://api.ton.cat/v2/contracts/address/EQCeHendv97uqK8bU0I2xiRPVuWFMiHviEZKIwJUMl_CKOsY/transactions?limit=20&offset=0")
+        console.log("historyData", historyData)
+
         setAssetState(returnObject)
         SetIsWalletLoad(true)
         SetIsDataLoading(false)  
 
-      } catch (e) {
-        SetIsDataLoading(false)
-        alert("Please check your wallet address")
-      }
+        } catch (e) {
+          SetIsDataLoading(false)
+          alert("Please check your wallet address")
+        }
       }
 
     const connectedList = [
@@ -255,7 +272,7 @@ const Wallet = () => {
 
     return (
         <>
-            <WalletContext.Provider value={{assetState, isDataLoading, SetIsDataLoading, isWalletLoad, SetIsWalletLoad,walletAddress, SetWalletAddress, isSmallTokenOpen, setIsSmallTokenOpen}}>
+            <WalletContext.Provider value={{isAsset, setIsAsset, assetState, isDataLoading, SetIsDataLoading, isWalletLoad, SetIsWalletLoad,walletAddress, SetWalletAddress, isSmallTokenOpen, setIsSmallTokenOpen}}>
             <OverBox>
               <Topbox>
                 <Leftcolumn>
@@ -283,7 +300,7 @@ const Wallet = () => {
                         <List.Content floated='right'>
                           <Button disabled style={{fontSize:"13px"}}>{element.category}</Button>
                         </List.Content>
-                        {/* <Image avatar src={icons[element.projectName]} /> */}
+                        <Image avatar src={icons[element.projectName]} />
                         <List.Content verticalAlign='middle'>
                           <span style={{marginLeft:"10px", fontSize:"13px"}}>{element.projectName}
                         </span></List.Content>
@@ -304,13 +321,21 @@ const Wallet = () => {
                     <AddressBox />
                     {
                     isWalletLoad ? 
-                    <>
-                    <div style={{paddingTop:"20px"}}/>
-                    <Selector />
-                    <div style={{paddingTop:"20px"}}/>
-                    <WalletTokenDetailTable />
-                    <div style={{paddingTop:"20px"}}/>
-                    </>
+                      isAsset ? 
+                      <>
+                      <div style={{paddingTop:"20px"}}/>
+                      <Selector />
+                      <div style={{paddingTop:"20px"}}/>
+                      <WalletTokenDetailTable />
+                      <div style={{paddingTop:"20px"}}/>
+                      </> :
+                      <>
+                      <div style={{paddingTop:"20px"}}/>
+                      <Selector />
+                      <div style={{paddingTop:"20px"}}/>
+                      <WalletHistory />
+                      <div style={{paddingTop:"20px"}}/>
+                      </>
                     :
                     <></>
                   }

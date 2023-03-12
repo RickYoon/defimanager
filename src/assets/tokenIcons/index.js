@@ -191,8 +191,14 @@ import megatonfinance from "./megatonfinance.png"
 import klimax from "./klimax.png"
 import tonwhales from "./tonwhales.png"
 import tonstake from "./tonstake.png"
+import stonfi from "./stonfi.png"
+import dedust from "./dedust.png"
+import tegrofinance from "./tegrofinance.svg"
 
 const icons = {
+    tegrofinance,
+    dedust,
+    stonfi,
     tonstake,
     tonwhales,
     klimax,
