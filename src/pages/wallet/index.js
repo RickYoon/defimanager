@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from "axios";
 import styled from "styled-components";
+import { Button, Modal,Image, List } from 'semantic-ui-react'
 
 import { WalletContext } from "components/context/WalletContext"
 import AddressBox from "./AddressBox.jsx"
@@ -12,9 +13,10 @@ const Wallet = () => {
 
   const [walletSearchTrigger, setWalletSearchTrigger] = useState(false)
   const [isDataLoading, SetIsDataLoading] = useState(false)
-  const [isWalletLoad, SetIsWalletLoad] = useState(false) 
+  const [isWalletLoad, SetIsWalletLoad] = useState(true) 
   const [walletAddress, SetWalletAddress] = useState("") // wallet address
   const [isSmallTokenOpen, setIsSmallTokenOpen] = useState(false)
+  const [modal, setModal] = useState(false)
 
   const [assetState, setAssetState] = useState({
     isWallet : true,
@@ -25,59 +27,41 @@ const Wallet = () => {
           symbol: "KLAY",
           price: 12,
           balance: 20,
-          value: 240
-      }],
-      smallTokenList : [{
-        symbol: "KLAY",
-        price: 12,
-        balance: 20,
-        value: 240
-     }]
+          value: 240,
+          image: ""
+      }]
     },
-    klayswap : {
+    megaton : {
       totalValue : 1,
-      vKSP : 200,
-      stakedKSP : {
-          balance : 1,
-          price : 0.12,
-          value : 2,
-          unlockedDate : "2011-20-11"
-      },
       pairPool : [{
             pairList : ["KLAY", "LAY"],
             balance : [32,11],
             value : 23.1
-        }],
-      singlePool : [{
-            pairToken : "KLAY",
-            balance : 231,
-            price : 2,
-            value : 23.1
-        }],
-      plusPool : [{
-            pairList : ["KLAY", "LAY"],
-            supply : [32,11],
-            borrow : [2,1],
-            debtRatio : 21,
-            value : 0
+        }]
+      },
+      tonwhales : {
+        totalValue : 0,
+        tokenList : [{
+            symbol: "KLAY",
+            price: 12,
+            balance: 20,
+            value: 240,
+            image: ""
         }]
       }
     })
+
+    // https://tonwhales.com/explorer/address/EQCeHendv97uqK8bU0I2xiRPVuWFMiHviEZKIwJUMl_CKOsY
 
       useEffect(() => {
         if(isDataLoading){
         setTimeout(function() {
           console.log(walletAddress.slice(0,2))
-          if(walletAddress.slice(0,2) === "0x"){
-            if(walletAddress.length === 42){
-              loadchart()
-            } else {
-              SetIsDataLoading(false)
-              alert("올바른 월렛주소를 입력해주세요.")
-            }
+          if(walletAddress.slice(0,2) === "EQ"){
+            loadchart()
           } else {
             SetIsDataLoading(false)
-            alert("올바른 월렛주소를 입력해주세요.")
+            alert("Please check your wallet address")
           }
         }, 1000);
         }
@@ -87,36 +71,187 @@ const Wallet = () => {
   
   
     const loadchart = async () => {
-  
-      const kk = await axios.get(`https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/walletbalance?address=${walletAddress}&chain=klaytn`)
-      console.log("kk",kk.data)
+ 
 
-      if(kk.data.isWallet === false){
-        SetIsDataLoading(false)
-        alert("올바른 월렛주소를 입력해주세요.")
-      } else {
-        kk.data.token.tokenList.sort(function (a, b) {
-          return (a.balance * a.price) > (b.balance * b.price) ? -1 : (a.balance * a.price) < (b.balance * b.price) ? 1 : 0;
+      // get Ton balance of wallet
+
+
+      // console.log("priceObject", priceObject)
+      // https://megaton.fi/api/token/infoList?
+
+      // LP infos
+      // https://megaton.fi/api/lp/infoList?
+
+      // jetton address to wallet address
+
+      // jetton_address : 0:8966b671880f34cd70994c44421d6dc1b9070e077725e59de91b66a72fb10ce7
+
+      // https://tonapi.io/v1/jetton/getInfo?account=0%3A8966b671880f34cd70994c44421d6dc1b9070e077725e59de91b66a72fb10ce7
+
+      try {
+
+        // get token price
+        let priceObject = {}
+        const tokenInfosFromMegaton = await axios.get("https://megaton.fi/api/token/infoList")
+        tokenInfosFromMegaton.data.forEach((res)=>
+          priceObject[res.symbol] = res.price
+        )
+        priceObject["TON"] = priceObject["WTON"]
+
+        // get ton balance of wallet
+
+        let tempBalanceArray = []
+        let tempMegatonLP = []
+        let totalTokenValue = 0
+
+        // ton balance
+        const tonBalance = await axios.get(`https://toncenter.com/api/v2/getAddressInformation?address=EQCeHendv97uqK8bU0I2xiRPVuWFMiHviEZKIwJUMl_CKOsY`)
+        if(Number(tonBalance.data.result.balance)>0){
+          tempBalanceArray.push({
+            symbol: "TON",
+            price: priceObject["TON"],
+            balance: Number(tonBalance.data.result.balance)/1000000000,
+            value: Number(tonBalance.data.result.balance)/1000000000 * priceObject["TON"],
+            image: "https://megaton.fi/static/img/token/ic-token-ton.png"
+          })        
+        }
+        // console.log("tonbalance", Number(tonBalance.data.result.balance)/1000000000)
+
+
+        // EQCeHendv97uqK8bU0I2xiRPVuWFMiHviEZKIwJUMl_CKOsY
+        const walletBalanceData = await axios.get(`https://tonapi.io/v1/jetton/getBalances?account=EQCeHendv97uqK8bU0I2xiRPVuWFMiHviEZKIwJUMl_CKOsY`)
+
+        walletBalanceData.data.balances.forEach((res)=>{
+          if(res.metadata.symbol === "MGLP") {
+            if(Number(res.balance) > 0){
+              console.log("LP",res)
+
+              // LP 의 res.jetton_address 를 기반으로 address 를 알아낸다.
+              let pairName = res.metadata.name.split(" ")[2]
+              let tokenAname = pairName.split("-")[0]
+              let tokenBname = pairName.split("-")[1]
+              
+              tempMegatonLP.push({
+                pairList : [tokenAname,tokenBname],
+                lpAddress : res.jetton_address,
+                lpBalance : Number(res.balance) / Math.pow(10,(res.metadata.decimals)),
+                lpAccount : "EQCJZrZxiA80zXCZTERCHW3BuQcOB3cl5Z3pG2anL7EM505O",
+                balance : [0,0],
+                value : 0
+              })
+            }
+          } else {
+            if((Number(res.balance) / Math.pow(10,(res.metadata.decimals))) * 10000 > 1){
+              // console.log("token",res)
+              tempBalanceArray.push({
+                symbol: res.metadata.symbol,
+                price: priceObject[res.metadata.symbol],
+                balance: Number(res.balance) / Math.pow(10,(res.metadata.decimals)),
+                value: priceObject[res.metadata.symbol] * Number(res.balance) / Math.pow(10,(res.metadata.decimals)),
+                image: res.metadata.image
+              })
+            }
+          }
         })
 
-        kk.data.token.smallTokenList.sort(function (a, b) {
-          return (a.balance * a.price) > (b.balance * b.price) ? -1 : (a.balance * a.price) < (b.balance * b.price) ? 1 : 0;
+        // total Token value
+        tempBalanceArray.forEach((res)=>{
+          totalTokenValue += res.value
         })
+       
+        console.log("tempMegatonLP", tempMegatonLP)
+
+        const currentLpInformation = await axios.get("https://megaton.fi/api/lp/infoList")
+        console.log("currentLp", currentLpInformation.data[0])
+
+        currentLpInformation.data[0].forEach((res)=>{
+            //lpAccount
+            // console.log("res",res)
+            // if(res.address === )
+            // if(res.)
+            if(res.address === tempMegatonLP[0].lpAccount){
+              console.log("res", res)
+              tempMegatonLP[0].value = Number(res.lpPrice) * tempMegatonLP[0].lpBalance
+            }
+        })
+          
+        // balance : [0,0],
+        // value : 0
+
+        
+          
+
+        // lp balance => token balance and LP holding value
+        // for (const element of tempMegatonLP) {
+
+          // console.log("element",element)
+          // const currentLpInformation = await axios.get(`https://toncenter.com/api/v2/getExtendedAddressInformation?address=0%3A${element.lpAddress.split(":")[1]}`)
+          // console.log("currentLpInformation",currentLpInformation.data.result.address.account_address)
+          // 
+        // }
+
+        // https://toncenter.com/api/v2/getExtendedAddressInformation?address=0%3A8966b671880f34cd70994c44421d6dc1b9070e077725e59de91b66a72fb10ce7
+        
 
 
-        console.log("aa",kk.data)
+        let returnObject = {
+            totalValue : 0,
+            token : {
+              totalValue : totalTokenValue,
+              tokenList : tempBalanceArray
+            },
+            megaton : {
+            totalValue : 1,
+            pairPool : tempMegatonLP,
+            },
+            tonwhales : {
+              totalValue : totalTokenValue,
+              tokenList : tempBalanceArray
+            },
+          }
 
-        setAssetState(kk.data)
+        setAssetState(returnObject)
         SetIsWalletLoad(true)
         SetIsDataLoading(false)  
+
+      } catch (e) {
+        SetIsDataLoading(false)
+        alert("Please check your wallet address")
+      }
       }
 
-
-
-      // setAssetState(kk.data)
-
-
-    }      
+    const connectedList = [
+      {
+        projectName : "megatonfinance",
+        category : "Dexes",
+        poolNumber : 0
+      },
+      {
+        projectName : "stonfi",
+        category : "Dexes",
+        poolNumber : 0
+      },
+      {
+        projectName : "dedust",
+        category : "Dexes",
+        poolNumber : 0
+      },
+      {
+        projectName : "tegrofinance",
+        category : "Dexes",
+        poolNumber : 0
+      },
+      {
+        projectName : "tonwhales",
+        category : "staking",
+        poolNumber : 0
+      },
+      {
+        projectName : "tonstake",
+        category : "staking",
+        poolNumber : 0
+      }
+    ]
 
     return (
         <>
@@ -125,11 +260,47 @@ const Wallet = () => {
               <Topbox>
                 <Leftcolumn>
 
-                    <Wrappertitle>
-                        <Title>Portfolio Viewer</Title>
-                    </Wrappertitle>
+                <Wrappertitle>
+                  <Title>Portfolio
+                    <Button onClick={() => setModal(true)} size="mini" style={{marginLeft:"20px"}}>{connectedList.length} projects
+                    </Button>
+                  </Title>
+                </Wrappertitle>
 
-                    <div style={{paddingTop:"20px"}}/>
+                <Modal
+                  closeOnEscape={true}
+                  closeOnDimmerClick={true}
+                  open={modal}
+                  size="mini"
+                  onClose={() => setModal(false)}
+                  onOpen={() => setModal(true)}
+                >
+                <Modal.Header style={{fontSize:"17px"}}>Connected Projects ({connectedList.length})</Modal.Header>
+                <Modal.Content>
+                <List verticalAlign='middle'>
+                    {connectedList.map((element)=>(
+                      <List.Item>
+                        <List.Content floated='right'>
+                          <Button disabled style={{fontSize:"13px"}}>{element.category}</Button>
+                        </List.Content>
+                        {/* <Image avatar src={icons[element.projectName]} /> */}
+                        <List.Content verticalAlign='middle'>
+                          <span style={{marginLeft:"10px", fontSize:"13px"}}>{element.projectName}
+                        </span></List.Content>
+                      </List.Item>
+                    ))
+                    }
+                  </List>
+
+                  </Modal.Content>
+                  <Modal.Actions> 
+                    <Button color='black' onClick={() => setModal(false)}>
+                      Ok
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
+
+                <div style={{paddingTop:"20px"}}/>
                     <AddressBox />
                     {
                     isWalletLoad ? 

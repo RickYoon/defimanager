@@ -34,12 +34,12 @@ function AddressBox() {
             <Bar></Bar>
             <div style={{marginLeft:"10px", width:"78%"}}>
               {!isDataLoading ? 
-                <InputAmount value={walletAddress} onChange={handleAddress} type="text" name="ticketNum" placeholder="0x..." required/>
+                <InputAmount value={walletAddress} onChange={handleAddress} type="text" name="ticketNum" placeholder="address" required/>
                 :
-                <InputAmount value={walletAddress} onChange={handleAddress} type="text" name="ticketNum" placeholder="0x..." disabled/>
+                <InputAmount value={walletAddress} onChange={handleAddress} type="text" name="ticketNum" placeholder="address" disabled/>
               }
             </div>
-            <Button onClick={updateWalletAddress}>조회</Button>
+            <Button onClick={updateWalletAddress}>search</Button>
             </RowContainer>
             </>
           :
@@ -50,7 +50,7 @@ function AddressBox() {
               <WalletAddressBox>
                 {walletAddress}
               </WalletAddressBox>
-            <Button onClick={changeWalletStatus}>변경</Button>
+            <Button onClick={changeWalletStatus}>Change</Button>
             </RowContainer>
             </>
         }

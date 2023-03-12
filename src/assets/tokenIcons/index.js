@@ -189,8 +189,12 @@ import wemixFi from "./wemixFi.png"
 import STONE from "./STONE.png"
 import megatonfinance from "./megatonfinance.png"
 import klimax from "./klimax.png"
+import tonwhales from "./tonwhales.png"
+import tonstake from "./tonstake.png"
 
 const icons = {
+    tonstake,
+    tonwhales,
     klimax,
     megatonfinance,
     STONE,

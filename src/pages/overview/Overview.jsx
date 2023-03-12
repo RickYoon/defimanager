@@ -318,7 +318,7 @@ function Overview() {
         <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist,ovfilter, setOvfilter}}>
           <Styled.OverBox>
             <Styled.Wrappertitle>
-              <Styled.Title>Klaytn DeFi Overview</Styled.Title>
+              <Styled.Title>DeFi Projects</Styled.Title>
             </Styled.Wrappertitle>
             <Styled.Topbox>
                 <Styled.Leftcolumn>

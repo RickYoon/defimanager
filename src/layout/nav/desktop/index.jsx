@@ -32,20 +32,21 @@ function DesktopNav() {
             <Wrapper>
             <Nav>
                 <span onClick={moveMain} style={{ cursor: "pointer" }}>
-                    <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} />
+                    <p style={{fontSize:"16px", fontWeight:"800"}}>DEFi-Manager</p>
+                    {/* <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} /> */}
                     <span style={{ marginLeft: "0px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
 
             <div style={{height:"15px"}}></div>
-            
-            <p data-linksheader>Project</p>
+
+            <p data-linksheader>Manage</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
                 <Link to="/">
                 <Detailss>
                     <summary>
                         <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                        <span>DeFi</span>
+                        <span>Portfoilo</span>
                     </summary>
                 </Detailss>
                 </Link>
@@ -54,16 +55,16 @@ function DesktopNav() {
                     <Details>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
-                            <span>DeFi</span>
+                            <span>Portfoilo</span>
                         </summary>
                     </Details>
                 </Link>
            }
-                   {/* {pathname === "/nftview" ?
+        {pathname === "/nftview" ?
             <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
-                    <span>NFT</span>
+                    <span>Notification</span>
                 </summary>
             </Detailss>
         :
@@ -71,45 +72,46 @@ function DesktopNav() {
             <Details>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
-                    <span>NFT</span>
+                    <span>Notification</span>
                 </summary>
             </Details>
         </Link>
-        } */}
-            <p data-linksheader>Analytics</p>
+        }
 
-            {pathname === "/klaytn" ?
+        <p data-linksheader>Investment</p>
+
+            {pathname === "/projects" ?
                 <Detailss>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
-                            <span>Chain</span>
+                            <span>Projects</span>
                         </summary>
                 </Detailss>
                 :
-                <Link to="/klaytn">
+                <Link to="/projects">
                     <Details>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainBlack} /></span>
-                            <span>Chain</span>
+                            <span>Projects</span>
                         </summary>
                     </Details>
                     </Link>
             }
 
 
-        {pathname === "/analytics" ?
+        {pathname === "/poolpage" ?
            <Detailss>
             <summary>
                 <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
-                <span>Compare</span>
+                <span>LP Pools</span>
             </summary>
            </Detailss>
            :
-           <Link to="/analytics">
+           <Link to="/poolpage">
            <Details>
             <summary>
                 <span data-mainlinkicon><img height="25px" src={analyticsBlack} /></span>
-                <span>Compare</span>
+                <span>LP Pools</span>
             </summary>
           </Details>
           </Link>
@@ -119,7 +121,7 @@ function DesktopNav() {
            <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
-                    <span>Yield</span>
+                    <span>Ton Staking</span>
                 </summary>
            </Detailss>
            :
@@ -127,7 +129,24 @@ function DesktopNav() {
             <Details>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldBlack} /></span>
-                    <span>Yield</span>
+                    <span>Ton Staking</span>
+                </summary>
+            </Details>
+            </Link>
+        }
+        {pathname === "/Poolpage" ?
+           <Detailss>
+                <summary>
+                    <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
+                    <span>Tokens</span>
+                </summary>
+           </Detailss>
+           :
+           <Link to="/Poolpage">
+            <Details>
+                <summary>
+                    <span data-mainlinkicon><img height="25px" src={yieldBlack} /></span>
+                    <span>Tokens</span>
                 </summary>
             </Details>
             </Link>
@@ -165,13 +184,13 @@ function DesktopNav() {
             {/* <span style={{ background: "gray", padding: "0 10px" }}>manage</span> */}
         </div>
         <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://amazing-leaf-bca.notion.site/Introduction-1fbb9ef8a0a542d18ca3351c3c88b58c`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        About</Links>
-        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://twitter.com/klaylabs2022`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+        Docs</Links>
+        {/* <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://twitter.com/klaylabs2022`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
         Twitter</Links>
         <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://t.me/klaylabsAlarm`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        Notification</Links>
+        Notification</Links> */}
         <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`mailto:klaylabs2022@gmail.com`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        email</Links>
+        E-mail</Links>
         </Nav>
         </Wrapper>
         </Aside>
