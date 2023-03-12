@@ -23,7 +23,7 @@ function DesktopNav() {
     const { pathname } = useLocation();
 
     const moveMain = () => {
-        window.location.href = "https://www.klaylabs.net"
+        window.location.href = "https://www.defimanager.io"
     }
 
     return (
@@ -32,7 +32,7 @@ function DesktopNav() {
             <Wrapper>
             <Nav>
                 <span onClick={moveMain} style={{ cursor: "pointer" }}>
-                    <p style={{fontSize:"16px", fontWeight:"800"}}>DEFi-Manager</p>
+                    <p style={{fontSize:"16px", fontWeight:"800"}}>DefiManager</p>
                     {/* <img src={logo} alt="logo" style={{ height: "40px", verticalAlign: "middle" }} /> */}
                     <span style={{ marginLeft: "0px", fontSize: "12px", fontStyle: "oblique" }}></span>
                 </span>
