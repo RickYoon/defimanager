@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, Fragment, forwardRef } from 'react'
 // import { slide as Menu } from 'react-burger-menu';
 import './Menu.css';
 import styled, { keyframes } from 'styled-components'
-import logo from "assets/CI/modified.svg"
+import logo from "assets/CI/dmlogonew.png"
 import { BiBook } from "react-icons/bi";
 import { ChevronRight, Menu as MenuIcon, X } from 'react-feather'
 import { Button, Close } from './shared'

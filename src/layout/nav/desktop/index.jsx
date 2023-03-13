@@ -190,7 +190,7 @@ function DesktopNav() {
         <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://t.me/klaylabsAlarm`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
         Notification</Links> */}
         <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`mailto:defimng@gmail.com`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        E-mail</Links>
+        support</Links>
         </Nav>
         </Wrapper>
         </Aside>

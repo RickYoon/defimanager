@@ -26,13 +26,13 @@ import Wallet from './pages/wallet'
 
 
 import NftDetail from './pages/nftDetail/NftDetail'
-import StrategyPage from './pages/strategy'
 
 import Nftoverview from 'pages/nftOverview/Overview';
 import Sidenav from 'components/layout/Sidenav'
 import Nav from 'layout/nav'
 
 import Main from 'pages/analytics/Main'
+import Lending from 'pages/lending'
 
 
 function App() {
@@ -41,15 +41,12 @@ function App() {
       <ScrollToTop />
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Nav />} />
+        <Route path="/wallet" element={<Nav />} />
+
+        
         <Route path="/projects" element={<Nav />} />
         <Route exact path="/Poolpage" element={<Nav />} />
         <Route path="/notification" element={<Nav />} />
-
-
-
-
-        <Route path="/wallet" element={<Nav />} />
         <Route exact path="/wallet/:id" element={<Nav />} />
         <Route exact path="/project/:id" element={<Nav />} />
         <Route exact path="/nftview" element={<Nav />} />
@@ -58,14 +55,12 @@ function App() {
         <Route exact path="/news" element={<Topnav />} />
       </Routes>
       <Routes>
-        {/* <Route path="/" element={<Overview />} /> */}
-        <Route path="/" element={<Wallet />} />
+        <Route exact path="/" element={<Lending />} />
+        <Route path="/wallet" element={<Wallet />} />
+
         <Route path="/projects" element={<Overview />} />
         <Route exact path="/Poolpage" element={<Poolsearch />} />
         <Route exact path="/notification" element={<Poolsearch />} />
-
-
-        <Route path="/wallet" element={<Wallet />} />
         <Route path="/klaytn" element={<KlaytnOverview />} />
         <Route exact path="/wallet/:id" element={<Wallet />} />
         <Route exact path="/project/:id" element={<Detail />} />
@@ -73,7 +68,6 @@ function App() {
         <Route exact path="/nftview/:id" element={<NftDetail />} />
         <Route exact path="/analytics" element={<Main />} />
         <Route exact path="/news" element={<Newspage />} />
-        <Route exact path="/Strategy" element={<StrategyPage />} />
       </Routes>
     </Router>
   );

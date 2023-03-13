@@ -11,14 +11,27 @@ import axios from "axios";
 const WalletHistory = () => {
 
 
-    const { assetState } = useContext(WalletContext);
+    const { walletHistory } = useContext(WalletContext);
+    console.log(walletHistory)
     
     return (
         <>
-            <SubTemplateBlockVertical>
-                <div style={{ marginBottom: "30px", fontSize: "18px", color: "#657795" }}>Total Value</div>
-                <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)}</div>
-            </SubTemplateBlockVertical>
+            {walletHistory.map((element) => (
+                <SubTemplateBlockVertical>
+                    <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{element.dateTime} (UTC)</div>
+                    {
+                        element.jettonList.map((jetton)=>(
+                            <>
+                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.direction}</div>
+                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.address}</div>
+                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.symbol}</div>
+                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.amount}</div>
+                            </>
+                            ))
+                    }
+                    
+                </SubTemplateBlockVertical>
+            ))}
         </>
     )
 }
