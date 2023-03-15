@@ -33,7 +33,8 @@ import Nav from 'layout/nav'
 
 import Main from 'pages/analytics/Main'
 import Lending from 'pages/lending'
-
+import Bot from 'pages/bot'
+import Staking from 'pages/staking'
 
 function App() {
   return (
@@ -42,11 +43,12 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/wallet" element={<Nav />} />
-
-        
-        <Route path="/projects" element={<Nav />} />
+        <Route path="/Bot" element={<Nav />} />
         <Route exact path="/Poolpage" element={<Nav />} />
-        <Route path="/notification" element={<Nav />} />
+        <Route exact path="/Staking" element={<Nav />} />
+
+
+        <Route path="/projects" element={<Nav />} />
         <Route exact path="/wallet/:id" element={<Nav />} />
         <Route exact path="/project/:id" element={<Nav />} />
         <Route exact path="/nftview" element={<Nav />} />
@@ -57,10 +59,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Lending />} />
         <Route path="/wallet" element={<Wallet />} />
+        <Route exact path="/Bot" element={<Bot />} />
+        <Route exact path="/Poolpage" element={<Poolsearch />} />
+        <Route exact path="/Staking" element={<Staking />} />
+
 
         <Route path="/projects" element={<Overview />} />
-        <Route exact path="/Poolpage" element={<Poolsearch />} />
-        <Route exact path="/notification" element={<Poolsearch />} />
         <Route path="/klaytn" element={<KlaytnOverview />} />
         <Route exact path="/wallet/:id" element={<Wallet />} />
         <Route exact path="/project/:id" element={<Detail />} />

@@ -189,18 +189,26 @@ import wemixFi from "./wemixFi.png"
 import STONE from "./STONE.png"
 import megatonfinance from "./megatonfinance.png"
 import klimax from "./klimax.png"
-import tonwhales from "./tonwhales.png"
-import tonstake from "./tonstake.png"
-import stonfi from "./stonfi.png"
-import dedust from "./dedust.png"
-import tegrofinance from "./tegrofinance.svg"
+import TonWhales from "./tonwhales.png"
+import TonStake from "./tonstake.png"
+import StonFi from "./stonfi.png"
+import DeDust from "./dedust.png"
+import TegroFinance from "./tegrofinance.svg"
+import tonswap from "./tonswap.svg"
+import AMBR from "./AMBR.png"
+import TGR from "./tegrofinance.svg"
+import SCALE from "./SCALE.png"
 
 const icons = {
-    tegrofinance,
-    dedust,
-    stonfi,
-    tonstake,
-    tonwhales,
+    SCALE,
+    TGR,
+    AMBR,
+    tonswap,
+    TegroFinance,
+    DeDust,
+    StonFi,
+    TonStake,
+    TonWhales,
     klimax,
     megatonfinance,
     STONE,

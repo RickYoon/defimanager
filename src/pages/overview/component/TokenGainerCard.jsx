@@ -37,7 +37,7 @@ function TokenGainerCard(props) {
                         <Styled.ProjectBox>
                             <Tr>
                                 <Td width="10px" >{index+1}</Td>
-                                <Td width="30px">{TopTokenElement.token === "KAI" || TopTokenElement.token === "AKAI"?
+                                <Td width="50px">{TopTokenElement.token === "KAI" || TopTokenElement.token === "AKAI"?
                                      <Styled.Img src={icons[TopTokenElement.project]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> :
                                      <Styled.Img src={icons[TopTokenElement.token]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                                     }

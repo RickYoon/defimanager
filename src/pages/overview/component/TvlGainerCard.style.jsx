@@ -84,8 +84,8 @@ export const Righttext = Styled.span`
 
 
 export const Img = Styled.img`
-    height: 30px;
-    /* width: 70%; */
+    /* height: 30px; */
+    /* width: 30px; */
     border:1px solid #eaeaea;
     border-radius:50%;
     background-color: #f5f5f5;

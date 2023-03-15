@@ -6,7 +6,7 @@ import TvlTable from "./TvlTable"
 import TokenTable from "./TokenTable"
 import RightBox from "./RightBox"
 import { OverviewContext } from "../../components/context/OverviewContext"
-import { getTvlData,getTotalChartData } from 'apis/tvl';
+import { getTvlData,getTotalChartData,getTonTvlData } from 'apis/tvl';
 import {getEventData} from 'apis/event';
 import { Leftcolumn } from './TopNumbercard.style';
 import * as Styled from "./Overview.style"
@@ -90,7 +90,8 @@ function Overview() {
             tvl: 207856632,
             tvltwo: 206008719,
             MarketShare: 0
-        }]
+        }],
+        tonTotalTvl : 0
       })   
       
     const [backupTvldata, setBackupTvldata]= useState({
@@ -112,7 +113,8 @@ function Overview() {
           tvl: 207856632,
           tvltwo: 206008719,
           MarketShare: 0
-      }]
+      }],
+      tonTotalTvl : 0
     })
 
     useEffect(() => {
@@ -208,9 +210,9 @@ function Overview() {
 
         setIsloading(true)
 
-        await getTvlData().then(function (response) {
+        await getTonTvlData().then(function (response) {
 
-            // console.log("response : ", response)
+            console.log("response : ", response)
 
             let tempArr = response.body.data.filter(dat => dat.proj !== "KCT-Total")
             let refArr = response.body.data.filter(dat => dat.proj !== "KCT-Total")
@@ -253,8 +255,9 @@ function Overview() {
             setTokendata(tokenArrSort)
       
             // tempArr = tempArr.filter(dat => dat.proj !== "neuronswap")
+            console.log("리스판스", response.body.tonTotalTvl)
             tempArr.map((component) => {
-              component["MarketShare"] = component.tvl / tempTotal[0].tvl * 100
+              component["MarketShare"] = component.tvl / response.body.tonTotalTvl * 100
               return null
             })
       
@@ -263,7 +266,7 @@ function Overview() {
       
             const responseObj = {
               refDate: response.body.refDate,
-              total: tempTotal[0],
+              total: response.body.tonTotalTvl,
               data: tempArr
             }
             // console.log("tempArr", tempArr)
@@ -318,7 +321,7 @@ function Overview() {
         <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist,ovfilter, setOvfilter}}>
           <Styled.OverBox>
             <Styled.Wrappertitle>
-              <Styled.Title>DeFi Projects</Styled.Title>
+              <Styled.Title>Ton DeFi Overview</Styled.Title>
             </Styled.Wrappertitle>
             <Styled.Topbox>
                 <Styled.Leftcolumn>

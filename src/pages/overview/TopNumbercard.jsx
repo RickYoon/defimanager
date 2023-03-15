@@ -5,7 +5,7 @@ import { OverviewContext } from 'components/context/OverviewContext';
 function TopNumbercard() {
 
   const { tvldata,isloading } = useContext(OverviewContext);
-  // console.log("tvldata : ", tvldata.total.tvl)
+  console.log("ddd : ", tvldata.total)
   // console.log("tvldata : ", tvldata.total.difftwo)
   
   return (
@@ -18,7 +18,9 @@ function TopNumbercard() {
                   <Styled.Lefttext> Total Value Locked (USD) </Styled.Lefttext>
                   {isloading ? 
                     <Styled.Righttext style={{width: "70px", float:"right"}}><Styled.ProductSkeleton /></Styled.Righttext> : 
-                    <Styled.Righttext color="#316395"><TransBillion data={tvldata.total.tvl}/></Styled.Righttext>
+                    <Styled.Righttext color="#316395">
+                      <TransBillion data={tvldata.total}/>
+                    </Styled.Righttext>
                   }
               </Styled.Containersub>
             </Styled.Topcard>
@@ -27,12 +29,12 @@ function TopNumbercard() {
             <Styled.Topcard>
               <Styled.Containersub>
                   <Styled.Lefttext> Change (24h) </Styled.Lefttext>
-                  {isloading ? 
+                  {/* {isloading ? 
                     <Styled.Righttext style={{width: "70px", float:"right"}}><Styled.ProductSkeleton /></Styled.Righttext> : 
                     tvldata.total.difftwo > 0 ? 
                     <Styled.Righttext color="red">+{tvldata.total.difftwo}%</Styled.Righttext> :
                     <Styled.Righttext color="blue">{tvldata.total.difftwo}%</Styled.Righttext> 
-                  }
+                  } */}
               </Styled.Containersub>
             </Styled.Topcard>
           </Styled.Rightcolumn>
@@ -46,8 +48,8 @@ const TransBillion = (props) => {
 
   return (
     <>
-      {props.data > 10000000 ?
-        <span> ${(props.data / 1000000000).toFixed(2)}B</span> :
+      {props.data > 1000000 ?
+        <span> ${(props.data / 1000000).toFixed(2)}M</span> :
         <span> - </span>
       }
     </>

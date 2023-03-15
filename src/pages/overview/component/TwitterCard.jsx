@@ -22,9 +22,7 @@ function TwitterCard(props) {
             <>
               <Styled.ProductSkeleton width="100%" height="300px" style={{marginBottom:"20px"}} />
             </> : 
-            selsns === "twitter" ?
-            <Twitter /> :
-            <><Medium /></>
+            <Twitter />
           }
       </Topdash>
     </>
@@ -165,7 +163,7 @@ function Twitter () {
       <Timeline
         dataSource={{
           sourceType: 'list',
-          id: "1491952670558412804",
+          id: "1635641212245008384",
         }}
         options={{
           height: '500',
@@ -187,21 +185,11 @@ function Cardmenu (props) {
           </Styled.UpperColumn>
           
           <Styled.Selcontainer>
-            {props.selsns === "twitter" ? 
             <>
               <Styled.SelectionHover>
                 <FaTwitter style={{height:"25px",width:"25px"}} />
               </Styled.SelectionHover>
-              <FaMedium style={{height:"25px",width:"25px", color: "gray", cursor:"pointer"}} onClick={()=>props.chageSel("medium")}/>
-            </>
-            :
-            <>
-              <Styled.SelectionNo onClick={()=>props.chageSel("twitter")}>
-                <FaTwitter style={{height:"25px",width:"25px"}}/>
-              </Styled.SelectionNo>
-              <FaMedium style={{height:"25px",width:"25px", color: "black"}} />
-            </>
-            }
+            </>          
           </Styled.Selcontainer>
        </Styled.RangeContainer>
       </>

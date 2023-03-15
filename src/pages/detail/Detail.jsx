@@ -64,9 +64,30 @@ function Detail() {
           let sortArr = [];
 
           // console.log("response", response.chart.Items[0])
-
           const sortable = Object.entries(response.chart.Items[0])
-          sortable.forEach((table)=>{
+
+          const tonProjects = {
+            "TonWhales": true,
+            "megatonfinance": true,
+            "TonStake": true,
+            "StonFi": true,
+            "DeDust": true,
+            "TegroFinance": true,
+            "tonswap": true
+          }
+
+          let tempTonList = []
+
+          sortable.forEach((res)=>{
+            console.log("res",res)
+            if(tonProjects[res[0]]){
+              tempTonList.push(res)
+            }
+          })
+
+          console.log("tempTonList",tempTonList)
+
+          tempTonList.forEach((table)=>{
             if(table[0] !=="date"){
               table[0] !=="dataType" ? 
               sortArr.push({
@@ -83,7 +104,7 @@ function Detail() {
 
           console.log("sortArr", sortArr)
 
-          rankList.myRank = sortArr.findIndex(i => i.projName === id)
+          rankList.myRank = sortArr.findIndex(i => i.projName === id) + 1
           rankList.myRank === 1 ? rankList.Prev = "" : rankList.Prev = sortArr[rankList.myRank - 1].projName
           rankList.myRank === sortArr.length-1 ? rankList.Next = "end" : rankList.Next = sortArr[rankList.myRank + 1].projName
 

@@ -29,7 +29,6 @@ function ListTable() {
           <thead>
             <tr style={{ height: "40px", borderBottom: "2px solid black " }}>
               <Th className="head" style={{ width: "5%", textAlign: "center" }}>#</Th>
-              <Tdc className="head" style={{ width: "5%", textAlign: "center", fontSize:"13px" }}>@</Tdc>
               <Th className="head" style={{ width: "40%", textAlign: "left", fontSize:"13px" }}>POOLINFO</Th>
               <Tdc className="head" style={{ width: "15%", textAlign: "left", fontSize:"13px" }}>TYPE</Tdc>
               <Tdc className="content" style={{ width: "10%", fontSize:"13px" }}>REWARDS</Tdc>
@@ -45,10 +44,6 @@ function ListTable() {
             skeletonArray.map((skelton,index)=>(
             <tr key={index} style={{ height: "40px", borderBottom: "0.06em solid #D4D4D4 " }}>
                  <Styled.Th className="head" style={{ width: "30px", textAlign: "left" }}><Styled.ProductSkeleton/></Styled.Th>
-                 <Styled.Tdc className="head" style={{ height: "20px", width: "30px", textAlign: "left", whiteSpace: "nowrap" }}>
-                     <Styled.IconSkeleton style={{ padding: "1px",borderRadius: "15px"}}/>
-                     <Styled.ProductSkeleton style={{whiteSpace: "nowrap", marginLeft:"10px", height:"25px"}}/>
-                </Styled.Tdc>
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
@@ -61,15 +56,6 @@ function ListTable() {
             pooldata.map((pool, index) => (
             <Tr style={{ height: "60px", borderBottom: "0.06em solid #D4D4D4 " }}>
                 <Th className="head" style={{ width: "30px", textAlign: "center", fontSize: "13px" }}>{index+1}</Th>
-                <Tdc>                    
-                  {pool.protocol.split("-")[0] === "klaystation" ?
-                      <Imgs src={icons["Klaystation"]} alt="logo" height="15px" width="15px" style={{ marginLeft:"10px", padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                      : pool.protocol === "hashquark" ?
-                        <Imgs src={icons["KLAYportal"]} alt="logo" height="18px" width="18px" style={{ marginLeft:"10px",  padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />                  
-                          :
-                          <Imgs src={icons[pool.protocol]} alt="logo" height="18px" width="18px" style={{ marginLeft:"10px",  padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                      }
-                </Tdc>
                 <Th>
                   <PoolinfoBox>
                     <Iconbox>
@@ -243,7 +229,7 @@ const Imgs = styled.img`
 `
 
 const Iconwrapper = styled.div`
-    width: 15px;
+    width: 30px;
     height: 25px;
     /* overflow: hidden; */
 `

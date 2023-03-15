@@ -4,8 +4,6 @@ import opensansSemibold from 'assets/fonts/OpenSans-Semibold.woff'
 import opensansLight from 'assets/fonts/OpenSans-Light.woff'
 import opensansMedium from 'assets/fonts/OpenSans-Medium.woff'
 
-
-
 const GlobalStyles = createGlobalStyle` 
     ${reset}
     a{

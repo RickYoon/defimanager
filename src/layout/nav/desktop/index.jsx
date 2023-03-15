@@ -41,8 +41,8 @@ function DesktopNav() {
 
             <p data-linksheader>Manage</p>
 
-            {pathname === "/" || pathname.split("/")[1] === "project" ?
-                <Link to="/">
+            {pathname === "/wallet" || pathname.split("/wallet")[1] === "project" ?
+                <Link to="/wallet">
                 <Detailss>
                     <summary>
                         <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
@@ -51,7 +51,7 @@ function DesktopNav() {
                 </Detailss>
                 </Link>
                 :
-                <Link to="/">
+                <Link to="/wallet">
                     <Details>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
@@ -60,31 +60,31 @@ function DesktopNav() {
                     </Details>
                 </Link>
            }
-        {/* {pathname === "/nftview" ?
+        {pathname === "/Bot" ?
             <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
-                    <span>Notification</span>
+                    <span>Bots</span>
                 </summary>
             </Detailss>
         :
-        <Link to="/nftview">
+        <Link to="/Bot">
             <Details>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
-                    <span>Notification</span>
+                    <span>Bots</span>
                 </summary>
             </Details>
         </Link>
-        } */}
+        }
 
-        {/* <p data-linksheader>Investment</p>
+        <p data-linksheader>Investment</p>
 
             {pathname === "/projects" ?
                 <Detailss>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
-                            <span>Projects</span>
+                            <span>Overview</span>
                         </summary>
                 </Detailss>
                 :
@@ -92,12 +92,11 @@ function DesktopNav() {
                     <Details>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainBlack} /></span>
-                            <span>Projects</span>
+                            <span>Overview</span>
                         </summary>
                     </Details>
                     </Link>
             }
-
 
         {pathname === "/poolpage" ?
            <Detailss>
@@ -115,25 +114,25 @@ function DesktopNav() {
             </summary>
           </Details>
           </Link>
-        } */}
-        {/* 
-        {pathname === "/Poolpage" ?
+        }
+        
+        {pathname === "/Staking" ?
            <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
-                    <span>Ton Staking</span>
+                    <span>Staking</span>
                 </summary>
            </Detailss>
            :
-           <Link to="/Poolpage">
+           <Link to="/Staking">
             <Details>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldBlack} /></span>
-                    <span>Ton Staking</span>
+                    <span>Staking</span>
                 </summary>
             </Details>
             </Link>
-        } */}
+        }
         {/* {pathname === "/Poolpage" ?
            <Detailss>
                 <summary>

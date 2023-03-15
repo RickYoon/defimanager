@@ -36,8 +36,8 @@ function TvlGainerCard(props) {
                         <Styled.ProjectBox>
                             <Tr>
                                 <Td width="10%">{index+1}</Td>
-                                <Td width="30px" >
-                                    <Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+                                <Td width="50px" >
+                                    <Styled.Img src={icons[toptvlElement.proj]} alt="logo" height="px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
                                 </Td>
                                 <Tdp>
                                     <Link to={`/project/${toptvlElement.proj}`}>
@@ -94,7 +94,7 @@ line-height: 40px;
 const Td = styled.td`
 
   vertical-align:middle;
-  padding-left: 1em;
+  /* padding-left: 1em; */
   width: ${props => props.width || "30px"};
 
   @media screen and (max-width: 500px){

@@ -24,20 +24,8 @@ function TvlTable() {
     },
     {
         key: 1,
-        text: 'Lending',
-        value: 'Lending',
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 2,
         text: 'Staking',
         value: 'Staking',
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 3,
-        text: 'Optimizer',
-        value: 'Optimizer',
         style: { fontSize:'13px'}
     }
   ]
@@ -93,7 +81,7 @@ function TvlTable() {
           <Styled.TrHead>
             <Styled.Th>#</Styled.Th>
             <Styled.Tdp>Project</Styled.Tdp>
-            <Styled.Tdc width="200px">Chain</Styled.Tdc>
+            {/* <Styled.Tdc width="200px">Chain</Styled.Tdc> */}
             <Styled.Tdc width="150px">
                 <span className={styles.name_box}>
                     <Dropdown 
@@ -132,7 +120,7 @@ function TvlTable() {
                      <Styled.IconSkeleton style={{ padding: "1px",borderRadius: "15px",  verticalAlign: "bottom" }}/>
                      <Styled.ProductSkeleton marginTop="10px" style={{ padding: "7px", whiteSpace: "nowrap", paddingLeft:"10px"}}/>
                 </Styled.Tdpd>
-                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
+                 {/* <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc> */}
                  <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}><Styled.ProductSkeleton/></Styled.Tdc>
                  <Styled.Td className="content" style={{ width: "200px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
                 <Styled.Td className="content" style={{ width: "50px", textAlign: "right" }}><Styled.ProductSkeleton/></Styled.Td>
@@ -159,7 +147,7 @@ function TvlTable() {
                         </span>
                     </Link>
                 </Styled.Tdpd>
-                <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.chain}</Styled.Tdc>
+                {/* <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.chain}</Styled.Tdc> */}
                 <Styled.Tdc className="head" style={{ width: "100px", fontSize:"14px", color:"#3f3f3f"}}>{tvld.cat}</Styled.Tdc>
                 <Styled.Td className="content" style={{ width: "200px", textAlign: "right" }}>
                     {tvld.tvl > 1000000000 ?

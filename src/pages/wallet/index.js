@@ -999,14 +999,13 @@ const WaterChart = styled.div`
   justify-content: center;
 `;
 
-
-
 const Segment = styled.div`
   height: 100%;
 `;
 
 const Leftcolumn = styled.div`
   width: 788px;
+  margin: 0px auto;
   /* background: gray; */
   @media screen and (max-width: 500px){
     width: 100%;
@@ -1014,7 +1013,7 @@ const Leftcolumn = styled.div`
 `
 
 const Topbox = styled.div`
-  width: 1136px;
+  width: 100%;
   /* margin-left: 32px;
   margin-right: 32px; */
   margin: 0px auto;
