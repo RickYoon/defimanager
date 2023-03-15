@@ -16,12 +16,12 @@ function NavBox() {
       </Topdash> :
       <Topdash>
           {detailinfo.rankInfo.myRank === 1 ? <PrevHide href="#" id="prev"></PrevHide> : 
-         <Prev href="#" id="next" onClick={()=>window.location.href = `https://klaylabs.net/project/${detailinfo.rankInfo.Prev}`}>
+         <Prev href="#" id="next" onClick={()=>window.location.href = `https://defimanager.io/project/${detailinfo.rankInfo.Prev}`}>
            #{detailinfo.rankInfo.myRank-1}. {detailinfo.rankInfo.Prev}</Prev> }
 
           {detailinfo.rankInfo.Next === "end"?
           <></> :  
-          <Next href="#" id="next" onClick={()=>window.location.href = `https://klaylabs.net/project/${detailinfo.rankInfo.Next}`}>
+          <Next href="#" id="next" onClick={()=>window.location.href = `https://defimanager.io/project/${detailinfo.rankInfo.Next}`}>
             #{detailinfo.rankInfo.myRank+1}. {detailinfo.rankInfo.Next}</Next>
            }
       </Topdash>
