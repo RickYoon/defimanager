@@ -17,7 +17,7 @@ function Selector() {
         </Styled.Item>
         <Styled.Item primary={!selTvl} onClick={() => setSelTvl(false)} style={{ cursor: "pointer" }}>
             <BsCurrencyBitcoin style={{ verticalAlign: "top" }} size="20" />
-            <span style={{ fontSize: "18px" }}>TOKEN</span>
+            <span style={{ fontSize: "18px" }}>Jettons</span>
         </Styled.Item>
     </Styled.Container>
 

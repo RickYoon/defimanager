@@ -19,7 +19,6 @@ import Footer from './components/layout/Footer';
 import Newspage from './components/pages/Newspage'
 
 import Overview from './pages/overview/Overview'
-import KlaytnOverview from "./pages/klaytnOverview/Overview"
 import Detail from './pages/detail/Detail'
 import Poolsearch from './pages/poolsearch'
 import Wallet from './pages/wallet'
@@ -65,7 +64,6 @@ function App() {
 
 
         <Route path="/projects" element={<Overview />} />
-        <Route path="/klaytn" element={<KlaytnOverview />} />
         <Route exact path="/wallet/:id" element={<Wallet />} />
         <Route exact path="/project/:id" element={<Detail />} />
         <Route exact path="/nftview" element={<Nftoverview />} />

@@ -195,53 +195,8 @@ function Poolpage() {
 
   const connectedList = [
     {
-      projectName : "Klayswap",
+      projectName : "megatonfinance",
       category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "Kokonutswap",
-      category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "klexfinance",
-      category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "PangeaSwap",
-      category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "KLAYportal",
-      category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "Claimswap",
-      category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "PALA",
-      category : "Dexes",
-      poolNumber : 0
-    },
-    {
-      projectName : "Klaymore",
-      category : "Staking",
-      poolNumber : 0
-    },
-    {
-      projectName : "Klaystation",
-      category : "Staking",
-      poolNumber : 0
-    },
-    {
-      projectName : "stakely",
-      category : "Staking",
       poolNumber : 0
     }
   ]

@@ -105,8 +105,8 @@ function Detail() {
           console.log("sortArr", sortArr)
 
           rankList.myRank = sortArr.findIndex(i => i.projName === id) + 1
-          rankList.myRank === 1 ? rankList.Prev = "" : rankList.Prev = sortArr[rankList.myRank - 1].projName
-          rankList.myRank === sortArr.length-1 ? rankList.Next = "end" : rankList.Next = sortArr[rankList.myRank + 1].projName
+          rankList.myRank === 1 ? rankList.Prev = "" : rankList.Prev = sortArr[rankList.myRank - 2].projName
+          rankList.myRank === sortArr.length ? rankList.Next = "end" : rankList.Next = sortArr[rankList.myRank].projName
 
           // console.log(sortArr.length)
 
@@ -207,7 +207,7 @@ function Detail() {
         <DetailContext.Provider value={{detailinfo, isloading}}>
         <Styled.OverBox>
             <Styled.SubTopNavBlock style={{ marginBottom: "30px", fontSize: "17px" }}>
-            <Link to="/">
+            <Link to="/projects">
                     <BsBoxArrowLeft style={{ marginRight: "10px", verticalAlign: "middle" }}/>
                     Back to List
             </Link>

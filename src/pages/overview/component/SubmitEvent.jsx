@@ -6,9 +6,9 @@ function SubmitEvent() {
 
   return (
     <>
-        <Styled.Topdash style={{textAlign: "center", cursor:"pointer"}} onClick={()=>window.location.href = "https://forms.gle/5GBZSi6f5Qh3yg3n7"}>
+        <Styled.Topdash style={{textAlign: "center", cursor:"pointer"}} onClick={()=>window.location.href = "https://tally.so/r/wvMOLl"}>
           <Styled.UpperColumn>
-            <VscFeedback style={{marginRight:"10px"}}/>Submit Feedback & Event <br/>
+            <VscFeedback style={{marginRight:"10px"}}/>Add Your Project ! <br/>
           </Styled.UpperColumn>
       </Styled.Topdash>
     </>

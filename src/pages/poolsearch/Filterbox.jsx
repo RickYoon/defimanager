@@ -10,73 +10,10 @@ import { Accordion } from 'semantic-ui-react'
 const projectOptions = [
     {
       key: 0,
-      text: 'Klayswap',
-      value: 'Klayswap',
-      image: { avatar: true, src: icons["Klayswap"] },
+      text: 'megatonfinance',
+      value: 'megatonfinance',
+      image: { avatar: true, src: icons["megatonfinance"] },
       style: { fontSize:'13px'}
-    },
-    {
-        key: 1,
-        text: 'Kokonutswap',
-        value: 'Kokonutswap',
-        image: { avatar: true, src: icons["Kokonutswap"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 2,
-        text: 'klexfinance',
-        value: 'klexfinance',
-        image: { avatar: true, src: icons["klexfinance"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 3,
-        text: 'PangeaSwap',
-        value: 'PangeaSwap',
-        image: { avatar: true, src: icons["PangeaSwap"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 4,
-        text: 'KLAYportal',
-        value: 'KLAYportal',
-        image: { avatar: true, src: icons["KLAYportal"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 5,
-        text: 'Claimswap',
-        value: 'Claimswap',
-        image: { avatar: true, src: icons["Claimswap"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 6,
-        text: 'PALA',
-        value: 'PALA',
-        image: { avatar: true, src: icons["PALA"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 7,
-        text: 'Klaymore',
-        value: 'Klaymore',
-        image: { avatar: true, src: icons["Klaymore"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 8,
-        text: 'Klaystation',
-        value: 'Klaystation',
-        image: { avatar: true, src: icons["Klaystation"] },
-        style: { fontSize:'13px'}
-    },
-    {
-        key: 9,
-        text: 'stakely',
-        value: 'stakely',
-        image: { avatar: true, src: icons["stakely"] },
-        style: { fontSize:'13px'}
     }
       
 ]

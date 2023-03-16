@@ -27,14 +27,14 @@ function AddressBox() {
   return (
     <>
         <FeedbackBoxStyle>
-          <div style={{height:"30px", fontSize:"15px"}}>TON Notify Bot</div>
-            <RowContainer>
-              <WalletAddressBox>
+          <div style={{height:"30px", fontSize:"15px"}}>Find the best yield for your TON.</div>
+            {/* <RowContainer> */}
+              {/* <WalletAddressBox>
               Get instant notifications about new transactions at your wallet via telegram bot.
-              </WalletAddressBox>
-              <span onClick={()=>window.open(`https://explorer.wemix.com/token`)}>aa</span>
+              </WalletAddressBox> */}
+              {/* <span onClick={()=>window.open(`https://explorer.wemix.com/token`)}>aa</span> */}
               {/* <Button onClick={}>Join</Button> */}
-            </RowContainer>
+            {/* </RowContainer> */}
         </FeedbackBoxStyle>
     </>
   );
@@ -75,15 +75,15 @@ const FeedbackBoxStyle = styled.div`
     /* width: 1136px; */
     /* min-width: 350px; */
     /* margin: 20px auto; */
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-    padding:15px;
+    /* padding:15px; */
     /* display:flex; */
     /* flex-direction:row; */
     -webkit-box-align: center;
     align-items: center;
 
-    padding: 20px 25px !important;
+    padding: 15px 20px !important;
     /* background: #fff; */
 
     color: rgba(0, 0, 0, 0.87);
