@@ -6,7 +6,7 @@ import TvlTable from "./TvlTable"
 import TokenTable from "./TokenTable"
 import RightBox from "./RightBox"
 import { OverviewContext } from "../../components/context/OverviewContext"
-import { getTvlData,getTotalChartData,getTonTvlData } from 'apis/tvl';
+import { getTvlData,getTotalChartData,getTonTvlData,getTotalTonChartData } from 'apis/tvl';
 import {getEventData} from 'apis/event';
 import { Leftcolumn } from './TopNumbercard.style';
 import * as Styled from "./Overview.style"
@@ -15,7 +15,7 @@ import { flowRight } from 'lodash';
 function Overview() {
 
     const [isloading, setIsloading] = useState(false)
-
+    const [lastdiff, setLastdiff] = useState(0)
     const [ovfilter, setOvfilter] = useState({
       category : "",
       tvlOrder: true,
@@ -37,6 +37,10 @@ function Overview() {
         "date": "2022-01-10",
         "value": 1000000000
       }]);    
+
+      // {"statusCode":200,"headers":{"Content-Type":"application/json","Access-Control-Allow-Methods":"GET,POST,OPTIONS","Access-Control-Allow-Origin":"*"},"body":{"Items":[{"time":"2023-03-16","totalTVL":71949619.24245694,"type":"tvlDaily"},{"time":"2023-03-15","totalTVL":72243853.34540905,"type":"tvlDaily"}],"Count":2,"ScannedCount":2},"isBase64Encoded":false}
+
+      // https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tonchart
 
     
     const [toptvl, setToptvl] = useState([
@@ -190,18 +194,30 @@ function Overview() {
 
     const loadchart = async () => {
 
-        await getTotalChartData().then(function (response){
+        await getTotalTonChartData().then(function (response){
 
             let sixMonthData = response.body;      
             
-            console.log("response.body",response.body)
+            // console.log("response.body",response.body.Items[0])
 
-            sixMonthData.sort(function (a, b) {
-                return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+            response.body.Items.sort(function (a, b) {
+                return a.time < b.time ? -1 : a.time > b.time ? 1 : 0;
             })
-            console.log("sixMonthData",sixMonthData)
 
-            setTotalchart(sixMonthData)
+            let temparray = []
+
+            response.body.Items.forEach((res)=>{
+              temparray.push({
+                "date" : res.time,
+                "value" : res.totalTVL
+              })
+            })
+
+            setLastdiff(((temparray[temparray.length-1].value - temparray[temparray.length-2].value)/ (temparray[temparray.length-2].value) * 100).toFixed(1))
+            // console.log("last", temparray[temparray.length-1])
+            // console.log("last-1", temparray[temparray.length-2])
+            // console.log("lastdiff", (temparray[temparray.length-1].value - temparray[temparray.length-2].value)/ (temparray[temparray.length-2].value))
+            setTotalchart(temparray)
         })
     
     }
@@ -318,7 +334,7 @@ function Overview() {
 
   return (
     <>
-        <OverviewContext.Provider value={{tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist,ovfilter, setOvfilter}}>
+        <OverviewContext.Provider value={{lastdiff, tvldata,totalchart,selTvl,setSelTvl,tokendata,isloading,toptvl,toptoken,eventlist,ovfilter, setOvfilter}}>
           <Styled.OverBox>
             <Styled.Wrappertitle>
               <Styled.Title>Ton DeFi Overview</Styled.Title>

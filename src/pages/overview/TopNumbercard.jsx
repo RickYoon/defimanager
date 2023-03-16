@@ -4,7 +4,7 @@ import { OverviewContext } from 'components/context/OverviewContext';
 
 function TopNumbercard() {
 
-  const { tvldata,isloading } = useContext(OverviewContext);
+  const { tvldata,lastdiff, isloading } = useContext(OverviewContext);
   console.log("ddd : ", tvldata.total)
   // console.log("tvldata : ", tvldata.total.difftwo)
   
@@ -29,12 +29,12 @@ function TopNumbercard() {
             <Styled.Topcard>
               <Styled.Containersub>
                   <Styled.Lefttext> Change (24h) </Styled.Lefttext>
-                  {/* {isloading ? 
+                  {isloading ? 
                     <Styled.Righttext style={{width: "70px", float:"right"}}><Styled.ProductSkeleton /></Styled.Righttext> : 
                     tvldata.total.difftwo > 0 ? 
-                    <Styled.Righttext color="red">+{tvldata.total.difftwo}%</Styled.Righttext> :
-                    <Styled.Righttext color="blue">{tvldata.total.difftwo}%</Styled.Righttext> 
-                  } */}
+                    <Styled.Righttext color="red">+{lastdiff}%</Styled.Righttext> :
+                    <Styled.Righttext color="blue">{lastdiff}%</Styled.Righttext> 
+                  }
               </Styled.Containersub>
             </Styled.Topcard>
           </Styled.Rightcolumn>

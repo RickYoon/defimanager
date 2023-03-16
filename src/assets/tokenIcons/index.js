@@ -188,6 +188,7 @@ import ZEMIT from "./ZEMIT.svg"
 import wemixFi from "./wemixFi.png"
 import STONE from "./STONE.png"
 import megatonfinance from "./megatonfinance.png"
+import MEGA from "./megatonfinance.png"
 import klimax from "./klimax.png"
 import TonWhales from "./tonwhales.png"
 import TonStake from "./tonstake.png"
@@ -198,8 +199,17 @@ import tonswap from "./tonswap.svg"
 import AMBR from "./AMBR.png"
 import TGR from "./tegrofinance.svg"
 import SCALE from "./SCALE.png"
+import WTON from "./WTON.png"
+import oWEMIX from "./oWEMIX.png"
+import oWEMIX$ from "./oWEMIX.png"
+
+
 
 const icons = {
+    WTON,
+    oWEMIX,
+    oWEMIX$,
+    MEGA,
     SCALE,
     TGR,
     AMBR,

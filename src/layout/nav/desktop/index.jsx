@@ -39,48 +39,9 @@ function DesktopNav() {
 
             <div style={{height:"15px"}}></div>
 
-            <p data-linksheader>Manage</p>
-
-            {pathname === "/wallet" || pathname.split("/wallet")[1] === "project" ?
-                <Link to="/wallet">
-                <Detailss>
-                    <summary>
-                        <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                        <span>Portfoilo</span>
-                    </summary>
-                </Detailss>
-                </Link>
-                :
-                <Link to="/wallet">
-                    <Details>
-                        <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
-                            <span>Portfoilo</span>
-                        </summary>
-                    </Details>
-                </Link>
-           }
-        {pathname === "/Bot" ?
-            <Detailss>
-                <summary>
-                    <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
-                    <span>Bots</span>
-                </summary>
-            </Detailss>
-        :
-        <Link to="/Bot">
-            <Details>
-                <summary>
-                    <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
-                    <span>Bots</span>
-                </summary>
-            </Details>
-        </Link>
-        }
-
         <p data-linksheader>Investment</p>
 
-            {pathname === "/projects" ?
+            {pathname === "/" ?
                 <Detailss>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
@@ -88,7 +49,7 @@ function DesktopNav() {
                         </summary>
                 </Detailss>
                 :
-                <Link to="/projects">
+                <Link to="/">
                     <Details>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainBlack} /></span>
@@ -102,7 +63,7 @@ function DesktopNav() {
            <Detailss>
             <summary>
                 <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
-                <span>LP Pools</span>
+                <span>Yield</span>
             </summary>
            </Detailss>
            :
@@ -110,13 +71,52 @@ function DesktopNav() {
            <Details>
             <summary>
                 <span data-mainlinkicon><img height="25px" src={analyticsBlack} /></span>
-                <span>LP Pools</span>
+                <span>Yield</span>
             </summary>
           </Details>
           </Link>
         }
+
+<p data-linksheader>Manage</p>
+
+{pathname === "/wallet" || pathname.split("/wallet")[1] === "project" ?
+    <Link to="/wallet">
+    <Detailss>
+        <summary>
+            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
+            <span>Portfoilo</span>
+        </summary>
+    </Detailss>
+    </Link>
+    :
+    <Link to="/wallet">
+        <Details>
+            <summary>
+                <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
+                <span>Portfoilo</span>
+            </summary>
+        </Details>
+    </Link>
+}
+{/* {pathname === "/Bot" ?
+<Detailss>
+    <summary>
+        <span data-mainlinkicon><img height="25px" src={collectionsWhite} /></span>
+        <span>Bots</span>
+    </summary>
+</Detailss>
+:
+<Link to="/Bot">
+<Details>
+    <summary>
+        <span data-mainlinkicon><img height="25px" src={collectionsBlack} /></span>
+        <span>Bots</span>
+    </summary>
+</Details>
+</Link>
+} */}
         
-        {pathname === "/Staking" ?
+        {/* {pathname === "/Staking" ?
            <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
@@ -132,7 +132,7 @@ function DesktopNav() {
                 </summary>
             </Details>
             </Link>
-        }
+        } */}
         {/* {pathname === "/Poolpage" ?
            <Detailss>
                 <summary>

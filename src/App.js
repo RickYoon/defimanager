@@ -24,13 +24,9 @@ import Poolsearch from './pages/poolsearch'
 import Wallet from './pages/wallet'
 
 
-import NftDetail from './pages/nftDetail/NftDetail'
-
-import Nftoverview from 'pages/nftOverview/Overview';
 import Sidenav from 'components/layout/Sidenav'
 import Nav from 'layout/nav'
 
-import Main from 'pages/analytics/Main'
 import Lending from 'pages/lending'
 import Bot from 'pages/bot'
 import Staking from 'pages/staking'
@@ -41,13 +37,11 @@ function App() {
       <ScrollToTop />
       <GlobalStyles />
       <Routes>
+        <Route path="/" element={<Nav />} />
+        <Route exact path="/Poolpage" element={<Nav />} />
         <Route path="/wallet" element={<Nav />} />
         <Route path="/Bot" element={<Nav />} />
-        <Route exact path="/Poolpage" element={<Nav />} />
         <Route exact path="/Staking" element={<Nav />} />
-
-
-        <Route path="/projects" element={<Nav />} />
         <Route exact path="/wallet/:id" element={<Nav />} />
         <Route exact path="/project/:id" element={<Nav />} />
         <Route exact path="/nftview" element={<Nav />} />
@@ -56,19 +50,14 @@ function App() {
         <Route exact path="/news" element={<Topnav />} />
       </Routes>
       <Routes>
-        <Route exact path="/" element={<Lending />} />
+        {/* <Route exact path="/" element={<Lending />} /> */}
+        <Route path="/" element={<Overview />} />
+        <Route exact path="/Poolpage" element={<Poolsearch />} />
         <Route path="/wallet" element={<Wallet />} />
         <Route exact path="/Bot" element={<Bot />} />
-        <Route exact path="/Poolpage" element={<Poolsearch />} />
         <Route exact path="/Staking" element={<Staking />} />
-
-
-        <Route path="/projects" element={<Overview />} />
         <Route exact path="/wallet/:id" element={<Wallet />} />
         <Route exact path="/project/:id" element={<Detail />} />
-        <Route exact path="/nftview" element={<Nftoverview />} />
-        <Route exact path="/nftview/:id" element={<NftDetail />} />
-        <Route exact path="/analytics" element={<Main />} />
         <Route exact path="/news" element={<Newspage />} />
       </Routes>
     </Router>

@@ -34,8 +34,8 @@ function ListTable() {
               <Tdc className="content" style={{ width: "10%", fontSize:"13px" }}>REWARDS</Tdc>
               <Td className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>TVL($)</Td>
               <Td className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>APR(%)</Td>
-              <Tdc className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>Amount(x)</Tdc>
-              <Tdc className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>Amount(y)</Tdc>
+              <Tdc className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>Amount(A)</Tdc>
+              <Tdc className="content" style={{ width: "10%", textAlign: "right", fontSize:"13px" }}>Amount(B)</Tdc>
             </tr>
           </thead>
           <tbody>
@@ -114,13 +114,6 @@ function ListTable() {
                 </Tdc>
                 <Td className="content" style={{ width: "20px", fontSize:"14px",textAlign: "right"}}>
                   {pool.tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} <br />
-                  {pool.tvlDiff > 0 ? 
-                    <span style={{color:"red", fontSize:"12px"}}>+{pool.tvlDiff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br/>{(100 * ((pool.tvlDiff) / pool.tvlyes)).toFixed(1)}%</span>
-                    : pool.tvlDiff < 0 ?
-                      <span style={{color:"blue", fontSize:"12px"}}>{pool.tvlDiff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br/>{(100 * ((pool.tvlDiff) / pool.tvlyes)).toFixed(1)}%</span>
-                      :
-                      <><span style={{color:"blue", fontSize:"12px"}}>-<br/>-%</span></>
-                    }
                 </Td>
                 <Td className="head" style={{ height: "50px", width: "20px", paddingLeft: "1em", textAlign: "right", fontSize:"13px" }}>{Number(pool.apr).toFixed(1)} <br />
                   {pool.aprDiff > 0 ?
@@ -135,13 +128,6 @@ function ListTable() {
                   {pool.amount !== undefined ?  
                     <>
                     {Number(pool.amount[0]).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br/>
-                    {pool.amountDiffA !== undefined ? Number(pool.amountDiffA).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : <></>}<br/>
-                    {pool.amountDiffA !== undefined ? Number(pool.amountDiffA) > 0 ? 
-                      <span style={{color:"red", fontSize:"12px"}}>+{(100*Number(pool.amountDiffA) / Number(pool.amount[0]+ pool.amountDiffA)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span> :
-                      <span style={{color:"blue", fontSize:"12px"}}>{(100*Number(pool.amountDiffA) / Number(pool.amount[0]- pool.amountDiffA)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
-                      :
-                      <></>
-                    }
                     </>
                     :  <></>}
                 </Tdc>
@@ -149,13 +135,6 @@ function ListTable() {
                   {pool.amount !== undefined ?  
                     <>
                     {pool.amount[1] !== undefined ? Number(pool.amount[1]).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : <></>}<br/>
-                    {pool.amountDiffB !== null ? Number(pool.amountDiffB).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : <></>}<br/>
-                    {pool.amountDiffB !== null ? Number(pool.amountDiffB) > 0 ? 
-                      <span style={{color:"red", fontSize:"12px"}}>+{(100*Number(pool.amountDiffB) / Number(pool.amount[1] + pool.amountDiffB)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span> :
-                      <span style={{color:"blue", fontSize:"12px"}}>{(100*Number(pool.amountDiffB) / Number(pool.amount[1] - pool.amountDiffB)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
-                      :
-                      <></>
-                    }
                     </>
                     :  <></>}
                 </Tdc>                

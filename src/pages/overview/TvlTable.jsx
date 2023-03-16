@@ -12,7 +12,7 @@ import {CgArrowDown} from "react-icons/cg"
 
 function TvlTable() {
 
-  const skeletonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  const skeletonArray = [0,0,0,0,0,0,0,0,0]
   const { tvldata, isloading, ovfilter, setOvfilter } = useContext(OverviewContext);
 
   const categoryOption = [

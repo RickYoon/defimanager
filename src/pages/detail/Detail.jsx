@@ -207,7 +207,7 @@ function Detail() {
         <DetailContext.Provider value={{detailinfo, isloading}}>
         <Styled.OverBox>
             <Styled.SubTopNavBlock style={{ marginBottom: "30px", fontSize: "17px" }}>
-            <Link to="/projects">
+            <Link to="/">
                     <BsBoxArrowLeft style={{ marginRight: "10px", verticalAlign: "middle" }}/>
                     Back to List
             </Link>
