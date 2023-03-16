@@ -44,8 +44,8 @@ function TokenChartcard(props) {
             </>
             :
             <>
-            <Styled.Img src={icons[pageInfo]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
-            <span style={{fontSize:"12px",marginLeft:"10px"}}>{detailinfo.proj.tokensymbol}</span>
+            <Styled.Img src={icons[detailinfo.tokenList[0]]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> 
+            <span style={{fontSize:"12px",marginLeft:"10px"}}>{detailinfo.tokenList[0]}</span>
             </>
           }
         </div>

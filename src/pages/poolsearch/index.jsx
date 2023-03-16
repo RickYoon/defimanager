@@ -135,13 +135,13 @@ function Poolpage() {
     setIsloading(true)
     // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/getPoolList_v1"
     // const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/queryPoolList"
-    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/poollist_v2"
+    const url = "https://uv8kd7y3w5.execute-api.ap-northeast-2.amazonaws.com/production/tonpoollist"
 
     await axios.get(url).then(function (response) {
-      // console.log(response)
-      setPooldata(response.data.body.data)
-      setBackupPooldata(response.data.body.data)
-      setAggtime(response.data.body.date)
+      console.log(response)
+      setPooldata(response.data.body)
+      setBackupPooldata(response.data.body)
+      setAggtime(response.data.body)
       console.log(aggtime)
     })
     setIsloading(false)
