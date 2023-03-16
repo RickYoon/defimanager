@@ -202,10 +202,10 @@ import SCALE from "./SCALE.png"
 import WTON from "./WTON.png"
 import oWEMIX from "./oWEMIX.png"
 import oWEMIX$ from "./oWEMIX.png"
-
-
+import TON from "./TON.png"
 
 const icons = {
+    TON,
     WTON,
     oWEMIX,
     oWEMIX$,

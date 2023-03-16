@@ -14,8 +14,21 @@ const projectOptions = [
       value: 'megatonfinance',
       image: { avatar: true, src: icons["megatonfinance"] },
       style: { fontSize:'13px'}
-    }
-      
+    },
+    {
+      key: 1,
+      text: 'tonstake',
+      value: 'tonstake',
+      image: { avatar: true, src: icons["TonStake"] },
+      style: { fontSize:'13px'}
+    },
+    {
+      key: 2,
+      text: 'tonwhales',
+      value: 'tonwhales',
+      image: { avatar: true, src: icons["TonWhales"] },
+      style: { fontSize:'13px'}
+    }   
 ]
 
 const lowHighOption = [
@@ -43,7 +56,7 @@ const typeOption = [
     },
     {
     key: 1,
-    text: 'KLAY-only',
+    text: 'TON-only',
     value: 'klayOnly',
     style: { fontSize:'13px'}
     }  
@@ -52,9 +65,9 @@ const typeOption = [
 const tokenOption = [
     {
       key: 0,
-      text: 'KLAY',
-      value: 'KLAY',
-      image: { avatar: true, src: icons["KLAY"] },
+      text: 'TON',
+      value: 'TON',
+      image: { avatar: true, src: icons["TON"] },
       style: { fontSize:'13px'}
     },
     {

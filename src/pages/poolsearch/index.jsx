@@ -74,8 +74,8 @@ function Poolpage() {
     } else {
       if(filter.project === "KLAYportal"){
         tempState = tempState.filter(pool => pool.protocol === "hashquark" )
-      } else if (filter.project === "Klaystation") {
-        tempState = tempState.filter(pool => pool.protocol.split("-")[0] === "klaystation" )
+      } else if (filter.project === "tonwhales") {
+        tempState = tempState.filter(pool => pool.protocol.split("-")[0] === "tonwhales" )
       } else {
         tempState = tempState.filter(pool => pool.protocol === filter.project )
       }
@@ -89,21 +89,29 @@ function Poolpage() {
       tempState = tempState.filter(pool => pool.stableOnly === "yes" )
       setPooldata(tempState)
     } else if (filter.type === "klayOnly"){
-      tempState = tempState.filter(pool => pool.klayOnly === "yes" )
+      tempState = tempState.filter(pool => pool.amountType === "tononly" )
       setPooldata(tempState)
     }
 
     if(filter.token === ""){
       tempState = tempState.filter(pool => pool )
       setPooldata(tempState)
-    } else if (filter.token === "KLAY"){
+    } else if (filter.token === "TON"){
       let tempArray = []
-      let zeroCoin = tempState.filter(pool => pool.poolinfo[0] === "KLAY" )
-      let oneCoin = tempState.filter(pool => pool.poolinfo[1] === "KLAY" )
+      let zeroCoin = tempState.filter(pool => pool.poolinfo[0] === "TON" )
+      let oneCoin = tempState.filter(pool => pool.poolinfo[1] === "TON" )
+      let twoCoin = tempState.filter(pool => pool.poolinfo[0] === "WTON" )
+      let threeCoin = tempState.filter(pool => pool.poolinfo[1] === "WTON" )
       zeroCoin.forEach((res)=>{
         tempArray.push(res)
       })
       oneCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      twoCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      threeCoin.forEach((res)=>{
         tempArray.push(res)
       })
       setPooldata(tempArray)
@@ -113,6 +121,25 @@ function Poolpage() {
       let oneCoin = tempState.filter(pool => pool.poolinfo[1] === "oUSDT" )
       let twoCoin = tempState.filter(pool => pool.poolinfo[2] === "oUSDT" )
       let threeCoin = tempState.filter(pool => pool.poolinfo[3] === "oUSDT" )
+      zeroCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      oneCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      twoCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      threeCoin.forEach((res)=>{
+        tempArray.push(res)
+      })
+      setPooldata(tempArray)
+    } else if (filter.token === "oUSDC"){
+      let tempArray = []
+      let zeroCoin = tempState.filter(pool => pool.poolinfo[0] === "oUSDC" )
+      let oneCoin = tempState.filter(pool => pool.poolinfo[1] === "oUSDC" )
+      let twoCoin = tempState.filter(pool => pool.poolinfo[2] === "oUSDC" )
+      let threeCoin = tempState.filter(pool => pool.poolinfo[3] === "oUSDC" )
       zeroCoin.forEach((res)=>{
         tempArray.push(res)
       })
@@ -197,6 +224,16 @@ function Poolpage() {
     {
       projectName : "megatonfinance",
       category : "Dexes",
+      poolNumber : 0
+    },
+    {
+      projectName : "TonStake",
+      category : "Staking",
+      poolNumber : 0
+    },
+    {
+      projectName : "TonWhales",
+      category : "Staking",
       poolNumber : 0
     }
   ]
