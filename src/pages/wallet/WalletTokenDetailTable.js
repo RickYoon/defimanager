@@ -53,7 +53,7 @@ const WalletTokenDetailTable = () => {
                 <div style={{ fontSize: "18px", color: "#657795" }}>
                 <img src={icons["TonStake"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> TonStake
                     <span style={{ fontSize: "12px" }}>
-                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 5,232.11</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 8,639.11</span>
                         {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
                     </span>
                 </div>
@@ -65,20 +65,14 @@ const WalletTokenDetailTable = () => {
                         <Thrr>Value ($)</Thrr>
                     </Thead>
                     <tbody>
-                    {assetState.tonwhales.tokenList.map((token) => (
-                        <Tr>
+                    <Tr>
                             <Td>
-                                {icons[token.symbol] !== undefined ? 
-                                <><img src={token.image} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.symbol}</span></> :
-                                <><img src={token.image} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.symbol}</span></>
-                                }
+                                <><img src={icons["TON"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                <span style={{fontSize:"13px"}}>4211.22</span></>
                             </Td>
-                            <Tdr>{token.price.toFixed(3)}</Tdr>
-                            <Tdrr>{(token.price * token.balance).toFixed(3)}</Tdrr>
+                            <Tdr>2.48</Tdr>
+                            <Tdrr>8,231.11</Tdrr>
                         </Tr>
-                    ))}
                     </tbody>                    
                 </Table>                
             </SubTemplateBlockVertical>
@@ -99,7 +93,16 @@ const WalletTokenDetailTable = () => {
                         <Thrr>Value ($)</Thrr>
                     </Thead>
                     <tbody>
-                    {assetState.tonwhales.tokenList.map((token) => (
+                        <Tr>
+                            <Td>
+                                <><img src={icons["TON"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                <span style={{fontSize:"13px"}}>2211.22</span></>
+                            </Td>
+                            <Tdr>2.48</Tdr>
+                            <Tdrr>5,231.11</Tdrr>
+                        </Tr>
+
+                    {/* {assetState.tonwhales.tokenList.map((token) => (
                         <Tr>
                             <Td>
                                 {icons[token.symbol] !== undefined ? 
@@ -112,7 +115,7 @@ const WalletTokenDetailTable = () => {
                             <Tdr>{token.price.toFixed(3)}</Tdr>
                             <Tdrr>{(token.price * token.balance).toFixed(3)}</Tdrr>
                         </Tr>
-                    ))}
+                    ))} */}
                     </tbody>                    
                 </Table>                
             </SubTemplateBlockVertical>

@@ -730,8 +730,8 @@ const Wallet = () => {
               let sendReceive = "receive";
               let interAddress = "";
 
-              console.log("innerRes",innerRes.JettonTransfer)
-              console.log("innerRes",res.account.address)
+              // console.log("innerRes",innerRes.JettonTransfer)
+              // console.log("innerRes",res.account.address)
   
               if(innerRes.JettonTransfer.sender.address === res.account.address){
                 sendReceive = "send"
@@ -820,17 +820,17 @@ const Wallet = () => {
         poolNumber : 0
       },
       {
-        projectName : "stonfi",
+        projectName : "StonFi",
         category : "Dexes",
         poolNumber : 0
       },
       {
-        projectName : "dedust",
+        projectName : "DeDust",
         category : "Dexes",
         poolNumber : 0
       },
       {
-        projectName : "tegrofinance",
+        projectName : "TegroFinance",
         category : "Dexes",
         poolNumber : 0
       }
@@ -953,7 +953,7 @@ const Wallet = () => {
                     {
                       isloadingstate ?
                       <>
-                                            <div style={{paddingTop:"20px"}}/>
+                      <div style={{paddingTop:"20px"}}/>
                       <SubTemplateBlockVertical>
                           <div style={{ marginBottom: "30px", fontSize: "13px", color: "#657795" }}>Total Value</div>
                           <div style={{ fontSize: "24px" }}><Styled.ProductSkeleton/></div>

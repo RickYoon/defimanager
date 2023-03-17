@@ -184,10 +184,10 @@ function DesktopNav() {
         </div>
         {/* <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://amazing-leaf-bca.notion.site/Introduction-1fbb9ef8a0a542d18ca3351c3c88b58c`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
         Docs</Links> */}
-        {/* <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://twitter.com/klaylabs2022`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://twitter.com/defi_manager`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
         Twitter</Links>
-        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://t.me/klaylabsAlarm`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        Notification</Links> */}
+        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://t.me/defi_manager`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+        Telegram</Links>
         <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`mailto:defimng@gmail.com`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
         support</Links>
         </Nav>

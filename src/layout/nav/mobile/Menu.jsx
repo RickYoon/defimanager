@@ -141,14 +141,14 @@ function Menubutton() {
                     <X height={20} width={20} strokeWidth="4px" />
             </Close>
 
-            <p data-linksheader>Project</p>
+            <p data-linksheader>Investment</p>
 
             {pathname === "/" || pathname.split("/")[1] === "project" ?
                 <Link to="/">
                 <Detailss>
                     <summary>
                         <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
-                        <span>DeFi</span>
+                        <span>Overview</span>
                     </summary>
                 </Detailss>
                 </Link>
@@ -156,8 +156,8 @@ function Menubutton() {
                 <Link to="/">
                     <Details>
                         <summary>
-                            <span data-mainlinkicon><img height="25px" src={overviewBlack} /></span>
-                            <span>DeFi</span>
+                            <span data-mainlinkicon><img height="25px" src={overviewWhite} /></span>
+                            <span>Overview</span>
                         </summary>
                     </Details>
                 </Link>
@@ -180,58 +180,40 @@ function Menubutton() {
         </Link>
         } */}
 
-            <p data-linksheader>Analytics</p>
-
-            {pathname === "/klaytn" ?
+            {pathname === "/poolpage" ?
                 <Detailss>
                         <summary>
                             <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
-                            <span>Chain</span>
+                            <span>Yield</span>
                         </summary>
                 </Detailss>
                 :
-                <Link to="/klaytn">
+                <Link to="/poolpage">
                     <Details>
                         <summary>
-                            <span data-mainlinkicon><img height="25px" src={chainBlack} /></span>
-                            <span>Chain</span>
+                            <span data-mainlinkicon><img height="25px" src={chainWhite} /></span>
+                            <span>Yield</span>
                         </summary>
                     </Details>
                     </Link>
             }
 
 
-        {pathname === "/analytics" ?
-           <Detailss>
-            <summary>
-                <span data-mainlinkicon><img height="25px" src={analyticsWhite} /></span>
-                <span>Compare</span>
-            </summary>
-           </Detailss>
-           :
-           <Link to="/analytics">
-           <Details>
-            <summary>
-                <span data-mainlinkicon><img height="25px" src={analyticsBlack} /></span>
-                <span>Compare</span>
-            </summary>
-          </Details>
-          </Link>
-        }
+<p data-linksheader>Manage</p>
 
-        {pathname === "/Poolpage" ?
+        {pathname === "/wallet" ?
            <Detailss>
                 <summary>
                     <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
-                    <span>Yield</span>
+                    <span>Portfoilo</span>
                 </summary>
            </Detailss>
            :
-           <Link to="/Poolpage">
+           <Link to="/wallet">
             <Details>
                 <summary>
-                    <span data-mainlinkicon><img height="25px" src={yieldBlack} /></span>
-                    <span>Yield</span>
+                    <span data-mainlinkicon><img height="25px" src={yieldWhite} /></span>
+                    <span>Portfoilo</span>
                 </summary>
             </Details>
             </Link>
@@ -267,14 +249,12 @@ function Menubutton() {
             >
             {/* <span style={{ background: "gray", padding: "0 10px" }}>manage</span> */}
         </div>
-        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://amazing-leaf-bca.notion.site/Introduction-1fbb9ef8a0a542d18ca3351c3c88b58c`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        About</Links>
-        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://twitter.com/klaylabs2022`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://twitter.com/defi_manager`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
         Twitter</Links>
-        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://t.me/klaylabsAlarm`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        Notification</Links>
-        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`mailto:klaylabs2022@gmail.com`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
-        email</Links>
+        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`https://t.me/defi_manager`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+        Telegram</Links>
+        <Links style={{marginLeft:"5px",fontSize:"12px"}} onClick={()=>window.open(`mailto:defimng@gmail.com`, "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+        support</Links>
             </Nav>
         </Backdrop>
     </TemplateBlock>
