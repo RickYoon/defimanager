@@ -24,7 +24,7 @@ import FINIX from './FINIX.png'
 import Eklipse from './eklipse.png'
 import EKL from './eklipse.png'
 import neverland from './neverland.png'
-import kai from './kai.png'
+import KAI from './KAI.png'
 import Bluewhale from './bluewhale.png'
 import UFO from './ufo.svg'
 import KAIAUTO from './akai.svg'
@@ -204,7 +204,39 @@ import oWEMIX from "./oWEMIX.png"
 import oWEMIX$ from "./oWEMIX.png"
 import TON from "./TON.png"
 
+import oNPT from "./oNPT.png"
+import oMOOI from "./oMOOI.png"
+import oAZIT from "./oAZIT.png"
+import oGXA from "./oGXA.png"
+import oORBS from "./oORBS.png"
+import oGHUB from "./oGHUB.png"
+import oMETA from "./oMETA.png"
+import oKSP from "./oKSP.png"
+import oARM from "./oARM.png"
+import oEL from "./oEL.png"
+import oKLAY from "./oKLAY.png"
+import oMATIC from "./oMATIC.png"
+import oAPM from "./oAPM.png"
+import oMPWR from "./oMPWR.png"
+import Jettons from "./TON.png"
+
+
 const icons = {
+    Jettons,
+    oMPWR,
+    oAPM,
+    oMATIC,
+    oKLAY,
+    oEL,
+    oARM,
+    oKSP,
+    oMETA,
+    oGHUB,
+    oORBS,
+    oGXA,
+    oAZIT,
+    oMOOI,
+    oNPT,
     TON,
     WTON,
     oWEMIX,
@@ -377,7 +409,7 @@ const icons = {
     definix,
     Eklipse,
     neverland,
-    kai,
+    KAI,
     Bluewhale,
     UFO,
     KAIAUTO,

@@ -64,10 +64,15 @@ function TvlDiffAfter(props) {
 
     // console.log("props",props)
     let difference = props.data.tvl-props.data.tvltwo
+    let minus = false
+    if(difference <0){
+      difference = -difference
+      minus = true
+    }
     // +{(toptvlElement.tvl-toptvlElement.tvltwo).toFixed(0)}
     return (
-        <>
-        {difference > 1000000 ?
+        <> {minus ? "-":""}
+            {difference > 1000000 ?
             <>{(difference/1000000).toFixed(1)} M</> :
             difference > 1000 ?
             <>{(difference/1000).toFixed(1)} K</> :

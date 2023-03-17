@@ -15,11 +15,11 @@ const WalletTokenDetailTable = () => {
     
     return (
         <>
-
+            {/* Tokens */}
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
-                <div style={{ fontSize: "18px", color: "#657795" }}>Tokens
+                <div style={{ fontSize: "15px", color: "#657795" }}>Tokens
                     <span style={{ fontSize: "12px" }}>
-                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 10,223.15</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toLocaleString()}</span>
                         {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
                     </span>
                 </div>
@@ -48,78 +48,6 @@ const WalletTokenDetailTable = () => {
                     </tbody>                    
                 </Table>                
             </SubTemplateBlockVertical>
-
-            <SubTemplateBlockVertical style={{marginTop:"20px"}}>
-                <div style={{ fontSize: "18px", color: "#657795" }}>
-                <img src={icons["TonStake"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> TonStake
-                    <span style={{ fontSize: "12px" }}>
-                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 8,639.11</span>
-                        {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
-                    </span>
-                </div>
-
-                <Table>
-                    <Thead>
-                        <Th>Asset</Th>
-                        <Thr>Token Price ($)</Thr>
-                        <Thrr>Value ($)</Thrr>
-                    </Thead>
-                    <tbody>
-                    <Tr>
-                            <Td>
-                                <><img src={icons["TON"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>4211.22</span></>
-                            </Td>
-                            <Tdr>2.48</Tdr>
-                            <Tdrr>8,231.11</Tdrr>
-                        </Tr>
-                    </tbody>                    
-                </Table>                
-            </SubTemplateBlockVertical>
-
-            <SubTemplateBlockVertical style={{marginTop:"20px"}}>
-                <div style={{ fontSize: "18px", color: "#657795" }}>
-                <img src={icons["TonWhales"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> tonwhales
-                    <span style={{ fontSize: "12px" }}>
-                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 4,312.2</span>
-                        {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
-                    </span>
-                </div>
-
-                <Table>
-                    <Thead>
-                        <Th>Asset</Th>
-                        <Thr>Token Price ($)</Thr>
-                        <Thrr>Value ($)</Thrr>
-                    </Thead>
-                    <tbody>
-                        <Tr>
-                            <Td>
-                                <><img src={icons["TON"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>2211.22</span></>
-                            </Td>
-                            <Tdr>2.48</Tdr>
-                            <Tdrr>5,231.11</Tdrr>
-                        </Tr>
-
-                    {/* {assetState.tonwhales.tokenList.map((token) => (
-                        <Tr>
-                            <Td>
-                                {icons[token.symbol] !== undefined ? 
-                                <><img src={token.image} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.symbol}</span></> :
-                                <><img src={token.image} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <span style={{fontSize:"13px"}}>{token.balance.toFixed(3)} {token.symbol}</span></>
-                                }
-                            </Td>
-                            <Tdr>{token.price.toFixed(3)}</Tdr>
-                            <Tdrr>{(token.price * token.balance).toFixed(3)}</Tdrr>
-                        </Tr>
-                    ))} */}
-                    </tbody>                    
-                </Table>                
-            </SubTemplateBlockVertical>
-
             
             {
                 assetState.megaton.totalValue === 0 ?
@@ -127,44 +55,41 @@ const WalletTokenDetailTable = () => {
                 <SubTemplateBlockVertical style={{marginTop:"20px"}}>
                     <div style={{ fontSize: "18px", color: "#657795" }}>
                     <img src={icons["megatonfinance"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                    <span style={{fontSize:"13px"}}>megatonfinance</span>
-                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 7,842.5</span>
-                            {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.megaton.totalValue.toFixed(1)}</span> */}
+                    <span style={{fontSize:"15px"}}>megatonfinance</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.megaton.totalValue.toFixed(1)}</span>
                     </div>
 
                 {assetState.megaton.pairPool.length === 0 ?
                     <></>
                     :
                     <>
-                <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Pair Deposit</span>
+                    <span style={{fontSize:"13px", marginTop:"15px", color:"gray"}}>Pair Deposit</span>
 
-                <Table>
-                    <Thead>
-                        <Th>Pool</Th>
-                        <Thr>Balance</Thr>
-                        <Thrr>Value ($)</Thrr>
-                    </Thead>
-                    <tbody>
-                    {assetState.megaton.pairPool.map((res)=>(
-                        <Tr>
-                            <Td>
-                                <Imgs src={icons[res.pairList[0]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                                <Imgs src={icons[res.pairList[1]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
-                            </Td>
-                            <Tdr>
-                                1,822.1 {res.pairList[0]} + 3,921.2{res.pairList[1]}
-                                {/* {res.balance[0]}1,822.1 {res.pairList[0]} + {res.balance[1]} 3,921.2{res.pairList[1]} */}
-                            </Tdr>
-                            <Tdrr>7,842.5</Tdrr>
-                            {/* <Tdrr>{Number(res.value).toFixed(2)}</Tdrr> */}
-                        </Tr>
-                    ))}
-                    </tbody>
-                </Table>    
-                </>            
+                    <Table>
+                        <Thead>
+                            <Th>Pool</Th>
+                            <Thr>Balance</Thr>
+                            <Thrr>Value ($)</Thrr>
+                        </Thead>
+                        <tbody>
+                        {assetState.megaton.pairPool.map((res)=>(
+                            <Tr>
+                                <Td>
+                                    <Imgs src={icons[res.pairList[0]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                    <Imgs src={icons[res.pairList[1]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                </Td>
+                                <Tdr>
+                                    {res.balance[0].toFixed(1)} {res.pairList[0]} + {res.balance[1].toFixed(1)} {res.pairList[1]}
+                                </Tdr>
+                                <Tdrr>{Number(res.value).toFixed(2)}</Tdrr>
+                            </Tr>
+                        ))}
+                        </tbody>
+                    </Table>    
+                    </>            
                 }
-            </SubTemplateBlockVertical>
-        }
+                </SubTemplateBlockVertical>
+            }
 
 
 
