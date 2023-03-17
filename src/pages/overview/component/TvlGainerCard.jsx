@@ -94,6 +94,7 @@ line-height: 40px;
 const Td = styled.td`
 
   vertical-align:middle;
+  
   /* padding-left: 1em; */
   width: ${props => props.width || "30px"};
 

@@ -10,16 +10,9 @@ function ListTable() {
   const skeletonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   const { isloading, pooldata } = useContext(PoolContext);
   const homeJson = {
-    "Klayswap" : "https://klayswap.com/exchange/pool",
-    "Kokonutswap" : "https://kokonutswap.finance/pools",
-    "Klaymore": "https://klaystake.house/",
-    "klaystation": "https://klaystation.io/staking",
-    "stakely": "https://stake.ly/klay",
-    "klexfinance": "https://app.klex.finance/",
-    "PangeaSwap": "https://app.pangeaswap.com/pool",
-    "hashquark": "https://klayportal.hashquark.io/",
-    "Claimswap": "https://app.claimswap.org/",
-    "PALA": "https://pala.io/dex"
+    "megatonfinance": "https://megaton.fi/pool",
+    "tonwhales": "https://tonwhales.com/staking",
+    "tonstake": "https://www.tonstake.com/#/"
   }
 
   return (
@@ -72,11 +65,11 @@ function ListTable() {
                     </Iconbox>
                     <Explainbox>
                     <Protocol>
-                    {pool.protocol.split("-")[0] === "klaystation" ? 
-                      <Span onClick={()=>window.open(homeJson["klaystation"], "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                    {pool.protocol.split("-")[0] === "tonwhales" ? 
+                      <Span onClick={()=>window.open(homeJson["tonwhales"])}>
                       {pool.protocol} </Span>       
                       :
-                      <Span onClick={()=>window.open(homeJson[pool.protocol], "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")}>
+                      <Span onClick={()=>window.open(homeJson[pool.protocol])}>
                       {pool.protocol} </Span>       
                     }
 

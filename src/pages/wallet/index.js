@@ -3,6 +3,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { Button, Modal,Image, List } from 'semantic-ui-react'
 import icons from "../../assets/tokenIcons"
+import * as Styled from "./index.style"
+
 
 import { WalletContext } from "components/context/WalletContext"
 import AddressBox from "./AddressBox.jsx"
@@ -16,6 +18,7 @@ const Wallet = () => {
   const [walletSearchTrigger, setWalletSearchTrigger] = useState(false)
   const [isDataLoading, SetIsDataLoading] = useState(false)
   const [isWalletLoad, SetIsWalletLoad] = useState(false) 
+  const [isloadingstate, setIsloadingstate] = useState(false)
   const [walletAddress, SetWalletAddress] = useState("") // wallet address
   const [isSmallTokenOpen, setIsSmallTokenOpen] = useState(false)
   const [modal, setModal] = useState(false)
@@ -109,6 +112,7 @@ const Wallet = () => {
 
         // get token price
         let priceObject = {}
+        setIsloadingstate(true)
         localStorage.setItem('lastWalletAddress', walletAddress);
 
         const tokenInfosFromMegaton = await axios.get("https://megaton.fi/api/token/infoList")
@@ -727,8 +731,9 @@ const Wallet = () => {
               let interAddress = "";
 
               console.log("innerRes",innerRes.JettonTransfer)
+              console.log("innerRes",res.account.address)
   
-              if(innerRes.JettonTransfer.sender === res.account.address){
+              if(innerRes.JettonTransfer.sender.address === res.account.address){
                 sendReceive = "send"
                 interAddress = innerRes.JettonTransfer.recipient.address
               } else {
@@ -739,9 +744,9 @@ const Wallet = () => {
               let decimals = innerRes.JettonTransfer.jetton.decimals
               let transAmount = tempAmount / Math.pow(10,decimals)
 
-              console.log("tempAmount", tempAmount)
-              console.log("decimals", decimals)
-              console.log("transAmount", transAmount)
+              // console.log("tempAmount", tempAmount)
+              // console.log("decimals", decimals)
+              // console.log("transAmount", transAmount)
 
               jettonTrxList.push({
                 direction : sendReceive,
@@ -787,6 +792,7 @@ const Wallet = () => {
 
         setWalletHistory(tempHistoryList)
         setAssetState(returnObject)
+        setIsloadingstate(false)
         SetIsWalletLoad(true)
         SetIsDataLoading(false)  
 
@@ -882,7 +888,7 @@ const Wallet = () => {
                 <div style={{paddingTop:"20px"}}/>
                     <AddressBox />
                     {
-                    isWalletLoad ? 
+                    isWalletLoad ?
                       isAsset ? 
                       <>
                       <div style={{paddingTop:"20px"}}/>
@@ -917,9 +923,10 @@ const Wallet = () => {
                       <div style={{paddingTop:"20px"}}/>
                       <SubTemplateBlockVertical>
                           <div style={{ marginBottom: "30px", fontSize: "13px", color: "#657795" }}>Total Value</div>
-                          <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)}</div>
+                          <div style={{ fontSize: "24px" }}>$ 25,310.22</div>
+                          {/* {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)} */}
                           <div style={{paddingTop:"20px"}}/>
-                          <ChartCover a="594" b="20" c="10">
+                          <ChartCover a="50" b="30" c="20">
                             <AppleChart>token</AppleChart>
                             {
                               true ?
@@ -939,10 +946,31 @@ const Wallet = () => {
                       <Selector />
                       {/* <div style={{paddingTop:"20px"}}/> */}
                       <WalletHistory />
-                      <div style={{paddingTop:"20px"}}/>
+                      {/* <div style={{paddingTop:"20px"}}/> */}
                       </>
                     :
-                    <></>
+                    <>
+                    {
+                      isloadingstate ?
+                      <>
+                                            <div style={{paddingTop:"20px"}}/>
+                      <SubTemplateBlockVertical>
+                          <div style={{ marginBottom: "30px", fontSize: "13px", color: "#657795" }}>Total Value</div>
+                          <div style={{ fontSize: "24px" }}><Styled.ProductSkeleton/></div>
+                          {/* {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)} */}
+                          <div style={{paddingTop:"20px"}}/>
+                          <ChartCover style={{width:"100%"}}>
+                            <div>
+                              <Styled.ProductSkeleton/>
+                            </div>
+                            {/* <AppleChart>token</AppleChart> */}
+                          </ChartCover>
+                      </SubTemplateBlockVertical>
+                      </>
+                      :
+                      <></>
+                    }
+                    </>
                   }
                 </Leftcolumn>
               </Topbox>

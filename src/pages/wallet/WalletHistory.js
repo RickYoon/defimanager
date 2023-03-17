@@ -12,7 +12,7 @@ const WalletHistory = () => {
 
 
     const { walletHistory } = useContext(WalletContext);
-    console.log(walletHistory)
+    // console.log(walletHistory)
     
     return (
         <>
@@ -22,10 +22,14 @@ const WalletHistory = () => {
                     {
                         element.jettonList.map((jetton)=>(
                             <>
-                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.direction}</div>
-                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.address}</div>
-                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.symbol}</div>
-                            <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.amount}</div>
+                            <div style={{ fontSize: "15px", color: "#657795" }}>{jetton.direction} 
+                                <div style={{float:"right"}}>
+                                <img src={icons[jetton.symbol]} alt="logo" height="30px" width="30px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
+                                    {jetton.amount} 
+                                </div>
+                            </div>
+                            {/* <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}>{jetton.address}</div> */}
+                            {/* <div style={{ marginBottom: "30px", fontSize: "12px", color: "#657795" }}></div> */}
                             </>
                             ))
                     }
@@ -41,9 +45,9 @@ const SubTemplateBlockVertical = styled.div`
      max-width: 900px;
 
     margin: 10px auto;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     position: relative; /* 추후 박스 하단에 추가 버튼을 위치시키기 위한 설정 */
-    padding:15px;
+    /* padding:15px; */
     display:flex;
     flex-direction:column;
 
