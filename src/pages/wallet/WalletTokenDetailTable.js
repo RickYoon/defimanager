@@ -19,7 +19,8 @@ const WalletTokenDetailTable = () => {
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
                 <div style={{ fontSize: "18px", color: "#657795" }}>Tokens
                     <span style={{ fontSize: "12px" }}>
-                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 10,223.15</span>
+                        {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
                     </span>
                 </div>
 
@@ -50,9 +51,10 @@ const WalletTokenDetailTable = () => {
 
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
                 <div style={{ fontSize: "18px", color: "#657795" }}>
-                <img src={icons["tonstake"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> TonStake
+                <img src={icons["TonStake"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> TonStake
                     <span style={{ fontSize: "12px" }}>
-                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 5,232.11</span>
+                        {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
                     </span>
                 </div>
 
@@ -83,9 +85,10 @@ const WalletTokenDetailTable = () => {
 
             <SubTemplateBlockVertical style={{marginTop:"20px"}}>
                 <div style={{ fontSize: "18px", color: "#657795" }}>
-                <img src={icons["tonwhales"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> tonwhales
+                <img src={icons["TonWhales"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} /> tonwhales
                     <span style={{ fontSize: "12px" }}>
-                        <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 4,312.2</span>
+                        {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.token.totalValue.toFixed(2)}</span> */}
                     </span>
                 </div>
 
@@ -122,7 +125,8 @@ const WalletTokenDetailTable = () => {
                     <div style={{ fontSize: "18px", color: "#657795" }}>
                     <img src={icons["megatonfinance"]} alt="logo" height="25px" style={{ marginRight:"10px",padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                     <span style={{fontSize:"13px"}}>megatonfinance</span>
-                            <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.megaton.totalValue.toFixed(1)}</span>
+                    <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ 7,842.5</span>
+                            {/* <span style={{float:"right", fontSize:"15px", marginRight:"5px"}}>$ {assetState.megaton.totalValue.toFixed(1)}</span> */}
                     </div>
 
                 {assetState.megaton.pairPool.length === 0 ?
@@ -145,9 +149,11 @@ const WalletTokenDetailTable = () => {
                                 <Imgs src={icons[res.pairList[1]]} alt="logo" height="18px" width="18px" style={{ padding: "1px", verticalAlign: "middle", borderRadius: "15px" }} />
                             </Td>
                             <Tdr>
-                                {res.balance[0]} {res.pairList[0]} + {res.balance[1]} {res.pairList[1]}
+                                1,822.1 {res.pairList[0]} + 3,921.2{res.pairList[1]}
+                                {/* {res.balance[0]}1,822.1 {res.pairList[0]} + {res.balance[1]} 3,921.2{res.pairList[1]} */}
                             </Tdr>
-                            <Tdrr>{Number(res.value).toFixed(2)}</Tdrr>
+                            <Tdrr>7,842.5</Tdrr>
+                            {/* <Tdrr>{Number(res.value).toFixed(2)}</Tdrr> */}
                         </Tr>
                     ))}
                     </tbody>

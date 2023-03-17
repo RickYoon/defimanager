@@ -61,7 +61,9 @@ function Chartcard() {
                         />
 
                         <YAxis
-                            dataKey="value" 
+                            dataKey="value"
+                            // scale="log"
+                            domain={['auto', 'auto']}
                             axisLine={false}
                             tickLine={false}
                             tickCount={8}

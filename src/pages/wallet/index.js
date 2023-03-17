@@ -798,13 +798,13 @@ const Wallet = () => {
 
     const connectedList = [
       {
-        projectName : "tonstake",
+        projectName : "TonStake",
         category : "staking",
         poolNumber : 0
       }
       ,
       {
-        projectName : "tonwhales",
+        projectName : "TonWhales",
         category : "staking",
         poolNumber : 0
       },
@@ -888,9 +888,10 @@ const Wallet = () => {
                       <div style={{paddingTop:"20px"}}/>
                       <SubTemplateBlockVertical>
                           <div style={{ marginBottom: "30px", fontSize: "13px", color: "#657795" }}>Total Value</div>
-                          <div style={{ fontSize: "24px" }}>$ {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)}</div>
+                          <div style={{ fontSize: "24px" }}>$ 25,310.22</div>
+                          {/* {assetState.totalBalance === 0 ? "-" : assetState.totalValue.toFixed(1)} */}
                           <div style={{paddingTop:"20px"}}/>
-                          <ChartCover a="594" b="20" c="10">
+                          <ChartCover a="50" b="30" c="20">
                             <AppleChart>token</AppleChart>
                             {
                               true ?
