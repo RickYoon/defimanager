@@ -122,15 +122,16 @@ const Wallet = () => {
 
           let jettonTrxList = []
 
-
           res.actions.forEach((innerRes)=>{
 
             if(innerRes.type === "JettonTransfer"){
               let sendReceive = "receive";
               let interAddress = "";
 
-              // console.log("innerRes",innerRes.JettonTransfer)
-              // console.log("innerRes",res.account.address)
+              console.log("innerResaaa",innerRes.JettonTransfer.sender)
+              console.log("innerRes",res.account.address)
+
+              if(innerRes.JettonTransfer.sender !== undefined){
   
               if(innerRes.JettonTransfer.sender.address === res.account.address){
                 sendReceive = "send"
@@ -143,10 +144,6 @@ const Wallet = () => {
               let decimals = innerRes.JettonTransfer.jetton.decimals
               let transAmount = tempAmount / Math.pow(10,decimals)
 
-              // console.log("tempAmount", tempAmount)
-              // console.log("decimals", decimals)
-              // console.log("transAmount", transAmount)
-
               jettonTrxList.push({
                 direction : sendReceive,
                 address : interAddress,
@@ -154,6 +151,7 @@ const Wallet = () => {
                 amount : transAmount
               })
             }
+          }
 
           })
 
